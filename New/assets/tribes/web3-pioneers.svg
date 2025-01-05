@@ -1,0 +1,20 @@
+<!-- Web3 Pioneers Logo -->
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background hexagon (blockchain reference) -->
+    <polygon points="24,4 44,14 44,34 24,44 4,34 4,14" fill="#10B981" opacity="0.1"/>
+    
+    <!-- Compass rose (pioneers) -->
+    <circle cx="24" cy="24" r="16" fill="none" stroke="#10B981" stroke-width="2"/>
+    
+    <!-- Compass points -->
+    <path d="M24 12l4 16h-8z" fill="#10B981"/> <!-- North -->
+    <path d="M36 24l-16 4v-8z" fill="#10B981" opacity="0.7"/> <!-- East -->
+    <path d="M24 36l-4-16h8z" fill="#10B981" opacity="0.5"/> <!-- South -->
+    <path d="M12 24l16-4v8z" fill="#10B981" opacity="0.3"/> <!-- West -->
+    
+    <!-- Central dot -->
+    <circle cx="24" cy="24" r="2" fill="#10B981"/>
+    
+    <!-- Web3 connection lines -->
+    <path d="M8 8l32 32M8 40l32-32" stroke="#10B981" stroke-width="1" opacity="0.2"/>
+</svg> 

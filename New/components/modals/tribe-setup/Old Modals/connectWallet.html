@@ -1,0 +1,91 @@
+<div id="connectWallet" class="section mb-3">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="h5">Connect Your Tribe's Wallet</h2>
+            
+            <!-- Wallet Selection -->
+            <div class="mb-4">
+                <label class="form-label">Select Wallet Type</label>
+                <select class="form-control" id="walletType" onchange="handleWalletSelection(this.value)">
+                    <option value="">Choose your wallet</option>
+                    <optgroup label="BitcoinSV Wallets">
+                        <option value="handcash">HandCash (Recommended)</option>
+                        <option value="yours">Yours Wallet</option>
+                    </optgroup>
+                    <optgroup label="Other Wallets">
+                        <option value="metamask">MetaMask</option>
+                        <option value="walletconnect">WalletConnect</option>
+                        <option value="coinbase">Coinbase Wallet</option>
+                        <option value="phantom">Phantom (Solana)</option>
+                        <option value="trust">Trust Wallet</option>
+                        <option value="ledger">Ledger</option>
+                        <option value="trezor">Trezor</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <!-- Custom Network Configuration -->
+            <div class="mb-4">
+                <label class="form-label">Custom Network Configuration</label>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="customNetwork">
+                    <label class="form-check-label" for="customNetwork">
+                        Add Custom Network
+                    </label>
+                </div>
+            </div>
+
+            <!-- Wallet Features -->
+            <div class="mb-4">
+                <label class="form-label">Wallet Features</label>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="hardwareWallet">
+                    <label class="form-check-label" for="hardwareWallet">
+                        Enable Hardware Wallet Support
+                    </label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="multiSig">
+                    <label class="form-check-label" for="multiSig">
+                        Enable MultiSig
+                    </label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="gasOptimization">
+                    <label class="form-check-label" for="gasOptimization">
+                        Enable Gas Optimization
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="bridging">
+                    <label class="form-check-label" for="bridging">
+                        Enable Cross-Chain Bridging
+                    </label>
+                </div>
+            </div>
+
+            <!-- Security Settings -->
+            <div class="mb-4">
+                <label class="form-label">Security Settings</label>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="twoFactor" checked>
+                    <label class="form-check-label" for="twoFactor">
+                        Enable Two-Factor Authentication
+                    </label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Transaction Limit (24h)</label>
+                    <input type="number" class="form-control" id="txLimit" 
+                           placeholder="Daily transaction limit in USD">
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-custom btn-sm" onclick="connectSelectedWallet()">
+                Connect Wallet
+            </button>
+            <div id="walletStatus" class="alert alert-info d-none mt-2">
+                Status will appear here
+            </div>
+        </div>
+    </div>
+</div> 

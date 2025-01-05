@@ -1,0 +1,2906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEURAL AI by CryptoVoyager - Tribe Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #00ffff;
+            --dark-bg: #1a1a1a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            background: var(--dark-bg);
+            color: white;
+            font-family: 'Courier New', monospace;
+        }
+
+        .container-fluid {
+            padding: 0 1.5rem;
+        }
+
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.2;
+        }
+
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .dashboard-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        .token-info {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .progress {
+            height: 8px;
+            background: rgba(0, 255, 255, 0.1);
+        }
+
+        .progress-bar {
+            background: var(--primary-color);
+        }
+
+        .chart-container {
+            height: 300px;
+            width: 100%;
+        }
+
+        .metric-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            position: relative;
+            background: rgba(0, 255, 255, 0.05);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+            animation: pulse 2s infinite;
+        }
+
+        .performance-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .pso-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .control-group {
+            background: rgba(0, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .pso-visualization {
+            height: 300px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0); }
+        }
+
+        /* Add tabs for different views */
+        .dashboard-tabs {
+            margin-bottom: 2rem;
+        }
+
+        .nav-tabs {
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .nav-tabs .nav-link {
+            color: rgba(255, 255, 255, 0.7);
+            border: none;
+            padding: 1rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tabs .nav-link:hover {
+            color: var(--primary-color);
+            border: none;
+            background: rgba(0, 255, 255, 0.1);
+        }
+
+        .nav-tabs .nav-link.active {
+            color: var(--primary-color);
+            background: rgba(0, 255, 255, 0.1);
+            border: none;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 2rem;
+            margin-left: 2rem;
+        }
+
+        .dashboard-title {
+            color: var(--primary-color);
+            font-size: 2.4rem;
+            text-align: left;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            margin-bottom: 0;
+            padding: 1rem 0;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .metric-box {
+            background: rgba(0, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .parameter-group {
+            background: rgba(0, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .utility-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .utility-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(0, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .utility-item:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 255, 255, 0.1);
+        }
+
+        .utility-item i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .distribution-legend {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .metric-change.positive {
+            color: #00ff00;
+        }
+
+        .metric-change.negative {
+            color: #ff0000;
+        }
+
+        .address-node {
+            background: rgba(0, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .utxo-weight {
+            font-family: monospace;
+            color: var(--primary-color);
+        }
+
+        .network-topology {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+        }
+
+        .topology-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .connected-wallet {
+            display: flex;
+            align-items: center;
+            background: rgba(0, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .connected-wallet .avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+        }
+
+        .creator-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: none;
+        }
+
+        .stat-card {
+            background: rgba(0, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .stat-subtitle {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .node-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .node-dot.active {
+            background: var(--primary-color);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .node-dot.inactive {
+            background: #666;
+        }
+
+        .edge-line {
+            display: inline-block;
+            width: 20px;
+            height: 2px;
+            margin-right: 8px;
+        }
+
+        .edge-line.strong {
+            background: var(--primary-color);
+            height: 3px;
+        }
+
+        .edge-line.weak {
+            background: rgba(0, 255, 255, 0.3);
+        }
+
+        .topology-legend {
+            display: grid;
+            grid-template-columns: repeat(4, auto);
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .btn-outline-primary {
+            border-color: #8A2BE2;
+            color: #8A2BE2;
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: #8A2BE2;
+            border-color: #8A2BE2;
+            color: white;
+        }
+        
+        .modal-body .btn {
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-body .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .address-popup {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 1rem;
+            z-index: 1000;
+            min-width: 300px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .popup-header h4 {
+            margin: 0;
+            color: var(--primary-color);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .address-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .address-row .label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .address-row .value {
+            color: var(--primary-color);
+            font-family: monospace;
+        }
+
+        .mission-statement {
+            margin-bottom: 2rem;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .vision-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .value-propositions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .value-card {
+            background: rgba(0, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .value-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .impact-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(0, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .impact-item i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .node-explanation {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .node-explanation ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .node-explanation li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .node-explanation li:before {
+            content: "→";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .status-item {
+            background: rgba(0, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .status-value {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin: 0.5rem 0;
+        }
+
+        .status-change {
+            font-size: 0.9rem;
+        }
+
+        .status-change.positive {
+            color: #00ff00;
+        }
+
+        .status-change.negative {
+            color: #ff4444;
+        }
+
+        .health-indicator {
+            color: #00ff00;
+            font-size: 0.9rem;
+        }
+
+        .parameter-group {
+            background: rgba(0, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .utility-metric {
+            margin-top: 1rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid rgba(0, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .utility-metric .value {
+            color: var(--primary-color);
+            font-family: monospace;
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+        }
+
+        .navbar-brand {
+            padding: 0.5rem 0;
+        }
+
+        .brand-content {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .brand-icon {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        .title-group {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .dashboard-title {
+            color: var(--primary-color);
+            font-size: 2rem;
+            text-align: left;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            margin: 0;
+            line-height: 1.2;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .ai-text {
+            color: #fff;
+            background: rgba(0, 255, 255, 0.1);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            margin-left: 0.2rem;
+        }
+
+        .creator-subtitle {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: none;
+            margin: 0;
+            margin-top: 0.2rem;
+        }
+
+        .creator-name {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .separator {
+            color: rgba(255, 255, 255, 0.4);
+            margin: 0 0.5rem;
+        }
+
+        .badge.bg-info {
+            background-color: rgba(0, 255, 255, 0.2) !important;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            padding: 0.5rem 0.8rem;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        .btn-outline-info {
+            border-color: rgba(0, 255, 255, 0.3);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-info:hover {
+            background-color: rgba(0, 255, 255, 0.1);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .allocation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .allocation-item {
+            background: rgba(0, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .allocation-value {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin: 0.5rem 0;
+        }
+
+        .allocation-price {
+            font-family: monospace;
+            color: #00ff99;
+        }
+
+        .concept-card {
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .comparison-item {
+            background: rgba(0, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .comparison-item.neural {
+            border: 1px solid var(--primary-color);
+        }
+
+        .micropayment-example {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .example-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .flow-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .flow-step i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .flow-arrow {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(0, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .step i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .step h5 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .token-types {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .token-type {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: rgba(0, 255, 255, 0.05);
+            border-radius: 6px;
+        }
+
+        .token-type i {
+            color: var(--primary-color);
+        }
+
+        .architecture-explanation .lead {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="video-background">
+        <video muted playsinline autoplay loop>
+            <source src="../../assets/heroimages/herovideo1.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container-fluid">
+            <div class="navbar-brand">
+                <div class="brand-content">
+                    <i class="fas fa-brain brand-icon"></i>
+                    <div class="title-group">
+                        <h1 class="dashboard-title">NEURAL<span class="ai-text">AI</span></h1>
+                        <div class="creator-subtitle">by <span class="creator-name">CryptoVoyager</span> <span class="separator">|</span> Tribe Dashboard</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ms-auto d-flex align-items-center">
+                <span class="badge bg-info">$NRAI</span>
+                <button class="btn btn-outline-info ms-2" onclick="showConnectWalletModal()">
+                    <i class="fas fa-wallet me-2"></i>Connect Wallet
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- First, the tab navigation -->
+    <div class="dashboard-tabs">
+        <ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab">
+                    <i class="fas fa-chart-line me-2"></i>Overview
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="network-tab" data-bs-toggle="tab" data-bs-target="#network" type="button" role="tab">
+                    <i class="fas fa-network-wired me-2"></i>Network Training
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tokenomics-tab" data-bs-toggle="tab" data-bs-target="#tokenomics" type="button" role="tab">
+                    <i class="fas fa-coins me-2"></i>Tokenomics
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Then, the tab content -->
+    <div class="tab-content">
+        <!-- Overview Tab -->
+        <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+            <div class="row">
+                <!-- Mission Statement -->
+                <div class="col-12">
+                    <div class="mission-statement dashboard-card">
+                        <h2><i class="fas fa-lightbulb me-2"></i>Neural AI Vision</h2>
+                        <div class="vision-content">
+                            <p class="lead">Neural AI revolutionizes artificial intelligence by creating a decentralized neural network where computational power is directly tied to economic stake through BSV addresses.</p>
+                            
+                            <div class="value-propositions mt-4">
+                                <div class="value-card">
+                                    <h3>Economically Weighted Intelligence</h3>
+                                    <p>Our groundbreaking approach uses BSV UTXOs as neural weights, creating a natural selection mechanism where successful neural pathways are reinforced by actual economic stake. This mimics biological neural networks while ensuring economic rationality.</p>
+                                </div>
+                                
+                                <div class="value-card">
+                                    <h3>Decentralized Learning</h3>
+                                    <p>Each BSV address acts as a network node, contributing to a collectively trained model. Node influence is proportional to UTXO value, ensuring that those with proven economic success have greater impact on network decisions.</p>
+                                </div>
+                                
+                                <div class="value-card">
+                                    <h3>Real-World Alignment</h3>
+                                    <p>By linking computational decisions to economic outcomes, Neural AI ensures AI development aligns with tangible value creation, preventing misaligned optimization and promoting beneficial outcomes.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Stats -->
+                <div class="col-md-3">
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-pulse me-2"></i>Network Status</h3>
+                        <div class="status-grid">
+                            <div class="status-item">
+                                <div class="status-label">Active Nodes</div>
+                                <div class="status-value">1,247</div>
+                                <div class="status-change positive">+12.5%</div>
+                            </div>
+                            <div class="status-item">
+                                <div class="status-label">Network TVL</div>
+                                <div class="status-value">₿ 157.34</div>
+                                <div class="status-change positive">+5.2%</div>
+                            </div>
+                            <div class="status-item">
+                                <div class="status-label">Avg. Node Weight</div>
+                                <div class="status-value">1.24 BSV</div>
+                                <div class="status-change negative">-2.1%</div>
+                            </div>
+                            <div class="status-item">
+                                <div class="status-label">Network Health</div>
+                                <div class="status-value">98.7%</div>
+                                <div class="health-indicator">Excellent</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Other overview cards -->
+            </div>
+        </div>
+
+        <!-- Network Training Tab -->
+        <div class="tab-pane fade" id="network" role="tabpanel" aria-labelledby="network-tab">
+            <div class="row">
+                <!-- Training Progress -->
+                <div class="col-md-8">
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-brain me-2"></i>Training Progress</h3>
+                        <div id="trainingProgressChart"></div>
+                        <!-- Training metrics -->
+                    </div>
+                </div>
+                
+                <!-- Training Controls -->
+                <div class="col-md-4">
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-sliders-h me-2"></i>Training Controls</h3>
+                        <div class="control-groups">
+                            <div class="parameter-group mb-3">
+                                <label>Learning Rate</label>
+                                <input type="range" class="form-range" min="0.0001" max="0.01" step="0.0001" value="0.001">
+                                <div class="d-flex justify-content-between">
+                                    <small>0.0001</small>
+                                    <span id="learningRateValue">0.001</span>
+                                </div>
+                            </div>
+                            
+                            <div class="parameter-group mb-3">
+                                <label>Batch Size</label>
+                                <select class="form-select">
+                                    <option value="16">16</option>
+                                    <option value="32">32</option>
+                                    <option value="64" selected>64</option>
+                                    <option value="128">128</option>
+                                </select>
+                            </div>
+                            
+                            <div class="parameter-group mb-3">
+                                <label>Optimization Algorithm</label>
+                                <select class="form-select">
+                                    <option value="adam" selected>Adam</option>
+                                    <option value="sgd">SGD</option>
+                                    <option value="rmsprop">RMSprop</option>
+                                </select>
+                            </div>
+                            
+                            <div class="parameter-group mb-3">
+                                <label>Node Participation Threshold</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" value="0.1">
+                                    <span class="input-group-text">BSV</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="training-actions mt-4">
+                            <button class="btn btn-outline-info w-100 mb-2">
+                                <i class="fas fa-play me-2"></i>Start Training
+                            </button>
+                            <div class="btn-group w-100">
+                                <button class="btn btn-outline-warning">
+                                    <i class="fas fa-save me-2"></i>Save Model
+                                </button>
+                                <button class="btn btn-outline-danger">
+                                    <i class="fas fa-stop me-2"></i>Stop
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- BSV Network Topology -->
+                <div class="col-md-12">
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-network-wired me-2"></i>BSV Address Network</h3>
+                        <div class="network-stats mb-3">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="stat-card">
+                                        <div class="stat-label">Active Nodes</div>
+                                        <div class="stat-value">147</div>
+                                        <div class="stat-subtitle">BSV Addresses with UTXOs</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="stat-card">
+                                        <div class="stat-label">Network Density</div>
+                                        <div class="stat-value">0.68</div>
+                                        <div class="stat-subtitle">Connection Ratio</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="stat-card">
+                                        <div class="stat-label">Avg. Weight</div>
+                                        <div class="stat-value">1.24</div>
+                                        <div class="stat-subtitle">UTXOs per Node</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="stat-card">
+                                        <div class="stat-label">Total Value</div>
+                                        <div class="stat-value">₿ 2.47</div>
+                                        <div class="stat-subtitle">Network BSV</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="networkTopologyViz" style="height: 400px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tokenomics Tab -->
+        <div class="tab-pane fade" id="tokenomics" role="tabpanel" aria-labelledby="tokenomics-tab">
+            <div class="row">
+                <!-- Token Distribution -->
+                <div class="col-md-6">
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-chart-pie me-2"></i>$NRAI Token Distribution</h3>
+                        <div id="tokenDistributionChart"></div>
+                        <div class="distribution-legend mt-3">
+                            <div class="token-allocation">
+                                <h4>Token Allocation & Pricing Tranches</h4>
+                                <div class="allocation-grid">
+                                    <div class="allocation-item">
+                                        <div class="allocation-label">Team</div>
+                                        <div class="allocation-value">10%</div>
+                                        <div class="allocation-note">Vested over 4 years</div>
+                                    </div>
+                                    <div class="allocation-item">
+                                        <div class="allocation-label">Tranche 1</div>
+                                        <div class="allocation-value">10%</div>
+                                        <div class="allocation-price">$10,000</div>
+                                    </div>
+                                    <div class="allocation-item">
+                                        <div class="allocation-label">Tranche 2</div>
+                                        <div class="allocation-value">10%</div>
+                                        <div class="allocation-price">$100,000</div>
+                                    </div>
+                                    <!-- Continue for all tranches -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Token Metrics -->
+                <div class="col-md-6">
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-chart-line me-2"></i>Token Metrics</h3>
+                        <div id="tokenPriceChart"></div>
+                        <!-- Token metrics -->
+                    </div>
+                </div>
+                
+                <!-- Token Utility -->
+                <div class="col-md-12">
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-cube me-2"></i>Token Utility</h3>
+                        <div class="utility-grid">
+                            <div class="utility-item">
+                                <i class="fas fa-brain"></i>
+                                <h4>Neural Training Power</h4>
+                                <p>Stake $NRAI to participate in network training and earn rewards based on contribution quality.</p>
+                                <div class="utility-metric">
+                                    <span class="label">Current APY:</span>
+                                    <span class="value">24.7%</span>
+                                </div>
+                            </div>
+                            
+                            <div class="utility-item">
+                                <i class="fas fa-vote-yea"></i>
+                                <h4>Network Governance</h4>
+                                <p>Vote on network parameters, architecture changes, and development initiatives.</p>
+                                <div class="utility-metric">
+                                    <span class="label">Voting Power:</span>
+                                    <span class="value">1 NRAI = 1 Vote</span>
+                                </div>
+                            </div>
+                            
+                            <div class="utility-item">
+                                <i class="fas fa-chart-network"></i>
+                                <h4>Economic Node Weight</h4>
+                                <p>Influence network topology and training through economic stake in the system.</p>
+                                <div class="utility-metric">
+                                    <span class="label">Min Stake:</span>
+                                    <span class="value">100 NRAI</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add MetaNet Concept Card -->
+                <div class="col-md-12">
+                    <div class="dashboard-card concept-card">
+                        <h3><i class="fas fa-project-diagram me-2"></i>MetaNet Neural Architecture</h3>
+                        <div class="concept-content">
+                            <div class="architecture-explanation">
+                                <p class="lead">NEURAL AI leverages BSV's unique single-use address architecture to create a dynamic, ever-evolving neural network where each transaction spawns new neural pathways.</p>
+                                
+                                <div class="comparison-grid">
+                                    <div class="comparison-item traditional">
+                                        <h4>Traditional Neural Networks</h4>
+                                        <ul>
+                                            <li>Static network architecture</li>
+                                            <li>Fixed number of nodes and connections</li>
+                                            <li>Centralized weight updates</li>
+                                            <li>Limited scalability</li>
+                                        </ul>
+                                    </div>
+                                    <div class="comparison-item neural">
+                                        <h4>NEURAL AI (Dynamic Address Network)</h4>
+                                        <ul>
+                                            <li>Evolving network topology through single-use addresses</li>
+                                            <li>Each transaction creates new neural pathways</li>
+                                            <li>Trillions of potential neural connections</li>
+                                            <li>Self-pruning through economic activity</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="neural-process mt-4">
+                                    <h4>Dynamic Neural Evolution</h4>
+                                    <div class="process-steps">
+                                        <div class="step">
+                                            <i class="fas fa-envelope"></i>
+                                            <h5>Single-Use Addresses</h5>
+                                            <p>Each address acts as a temporary neural node, holding both tokens and tokenized data</p>
+                                        </div>
+                                        <div class="step">
+                                            <i class="fas fa-random"></i>
+                                            <h5>Transaction Branching</h5>
+                                            <p>Every transaction creates multiple new addresses, exponentially expanding the network's potential pathways</p>
+                                        </div>
+                                        <div class="step">
+                                            <i class="fas fa-code-branch"></i>
+                                            <h5>Pathway Evolution</h5>
+                                            <p>Successful neural patterns create more valuable UTXO branches, strengthening effective pathways</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="data-tokenization mt-4">
+                                    <h4>Tokenized Neural Data</h4>
+                                    <p>Each address can hold:</p>
+                                    <div class="token-types">
+                                        <div class="token-type">
+                                            <i class="fas fa-brain"></i>
+                                            <span>Neural Weights</span>
+                                        </div>
+                                        <div class="token-type">
+                                            <i class="fas fa-database"></i>
+                                            <span>Training Data</span>
+                                        </div>
+                                        <div class="token-type">
+                                            <i class="fas fa-network-wired"></i>
+                                            <span>Network Parameters</span>
+                                        </div>
+                                        <div class="token-type">
+                                            <i class="fas fa-chart-line"></i>
+                                            <span>Performance Metrics</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="particles-js" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
+
+    <div class="neuralai-dashboard">
+        <div class="dashboard-container">
+            <div class="row">
+                <!-- Neural Network Training Progress -->
+                <div class="col-md-6 mb-4">
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-brain me-2"></i>Neural Network Training Progress</h3>
+                        <div class="metric-value" id="epochCount">Epoch: 1,247</div>
+                        <div class="progress mt-3 mb-2">
+                            <div class="progress-bar" role="progressbar" style="width: 75%"></div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>Loss: 0.0234</span>
+                            <span>Accuracy: 94.7%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PSO Optimization -->
+                <div class="col-md-6 mb-4">
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-atom me-2"></i>PSO Optimization</h3>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="metric-value">0.0156</div>
+                                <div class="metric-label">Global Best</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="metric-value">127</div>
+                                <div class="metric-label">Particle Count</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Neural Network Architecture -->
+                <div class="col-md-6 mb-4">
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-network-wired me-2"></i>Neural Network Architecture</h3>
+                        <div class="architecture-stats">
+                            <div class="mb-2">Input Layer: 784 neurons</div>
+                            <div class="mb-2">Hidden Layers: [512, 256, 128]</div>
+                            <div class="mb-2">Output Layer: 10 neurons</div>
+                            <div>Total Parameters: 667,522</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- $NAI Token Metrics -->
+                <div class="col-md-6 mb-4">
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-coins me-2"></i>$NRAI Token Metrics</h3>
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <div class="metric-value">$0.0847</div>
+                                <div class="metric-label">Current Price</div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <div class="metric-value">1.2M</div>
+                                <div class="metric-label">Total Supply: 1,000,000 $NRAI</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="metric-value">$847K</div>
+                                <div class="metric-label">Market Cap</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="metric-value">234</div>
+                                <div class="metric-label">Holders</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Network Statistics -->
+                <div class="col-md-6 mb-4">
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-chart-line me-2"></i>Network Statistics</h3>
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <div class="metric-value">98.7%</div>
+                                <div class="metric-label">Uptime</div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <div class="metric-value">1.23ms</div>
+                                <div class="metric-label">Latency</div>
+                            </div>
+                            <div class="col-12">
+                                <div id="networkChart" class="chart-container"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Network Training Controls -->
+                <div class="col-md-12 mb-4">
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-sliders-h me-2"></i>Network Training Controls</h3>
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label>Learning Rate</label>
+                                <input type="range" class="form-range" min="0" max="100" value="30">
+                                <div class="text-center">0.003</div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label>Batch Size</label>
+                                <input type="range" class="form-range" min="0" max="100" value="60">
+                                <div class="text-center">64</div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label>Momentum</label>
+                                <input type="range" class="form-range" min="0" max="100" value="90">
+                                <div class="text-center">0.9</div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <button class="btn btn-outline-info w-100 mb-2">
+                                    <i class="fas fa-play me-2"></i>Start Training
+                                </button>
+                                <button class="btn btn-outline-warning w-100">
+                                    <i class="fas fa-save me-2"></i>Save Model
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Network Training Tab -->
+                <div class="col-md-12 mb-4">
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-brain me-2"></i>Advanced Network Training</h3>
+                        <div class="row">
+                            <!-- Training Parameters -->
+                            <div class="col-md-4">
+                                <div class="parameter-group mb-4">
+                                    <h4>Hyperparameters</h4>
+                                    <div class="mb-3">
+                                        <label>Learning Rate</label>
+                                        <input type="range" class="form-range" id="learningRate" min="0.0001" max="0.1" step="0.0001" value="0.001">
+                                        <div class="d-flex justify-content-between">
+                                            <small>0.0001</small>
+                                            <span id="learningRateValue">0.001</span>
+                                            <small>0.1</small>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Batch Size</label>
+                                        <select class="form-select" id="batchSize">
+                                            <option value="16">16</option>
+                                            <option value="32">32</option>
+                                            <option value="64" selected>64</option>
+                                            <option value="128">128</option>
+                                            <option value="256">256</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Optimizer</label>
+                                        <select class="form-select" id="optimizer">
+                                            <option value="adam">Adam</option>
+                                            <option value="sgd">SGD</option>
+                                            <option value="rmsprop">RMSprop</option>
+                                            <option value="adagrad">Adagrad</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Training Progress -->
+                            <div class="col-md-8">
+                                <div class="training-progress mb-4">
+                                    <h4>Training Progress</h4>
+                                    <div class="progress mb-3" style="height: 25px;">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                                             role="progressbar" style="width: 45%">
+                                            Epoch 45/100
+                                        </div>
+                                    </div>
+                                    <div class="metrics-grid">
+                                        <div class="metric-box">
+                                            <div class="metric-label">Loss</div>
+                                            <div class="metric-value" id="lossValue">0.0234</div>
+                                        </div>
+                                        <div class="metric-box">
+                                            <div class="metric-label">Accuracy</div>
+                                            <div class="metric-value" id="accuracyValue">94.7%</div>
+                                        </div>
+                                        <div class="metric-box">
+                                            <div class="metric-label">Validation Loss</div>
+                                            <div class="metric-value" id="valLossValue">0.0256</div>
+                                        </div>
+                                        <div class="metric-box">
+                                            <div class="metric-label">Validation Accuracy</div>
+                                            <div class="metric-value" id="valAccValue">93.8%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tokenomics Tab -->
+                <div class="col-md-12 mb-4">
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-coins me-2"></i>$NRAI Tokenomics Dashboard</h3>
+                        <div class="row">
+                            <!-- Token Distribution -->
+                            <div class="col-md-6 mb-4">
+                                <div class="token-distribution">
+                                    <h4>Token Distribution</h4>
+                                    <div id="distributionChart" style="height: 300px;"></div>
+                                    <div class="distribution-legend mt-3">
+                                        <div class="legend-item">
+                                            <span class="legend-color" style="background: #00ffff"></span>
+                                            <span>Training Rewards (40%)</span>
+                                        </div>
+                                        <div class="legend-item">
+                                            <span class="legend-color" style="background: #00ff99"></span>
+                                            <span>Development Fund (20%)</span>
+                                        </div>
+                                        <div class="legend-item">
+                                            <span class="legend-color" style="background: #ff00ff"></span>
+                                            <span>Community Pool (25%)</span>
+                                        </div>
+                                        <div class="legend-item">
+                                            <span class="legend-color" style="background: #ffff00"></span>
+                                            <span>Liquidity (15%)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Token Metrics -->
+                            <div class="col-md-6 mb-4">
+                                <div class="token-metrics">
+                                    <h4>Live Metrics</h4>
+                                    <div class="metrics-container">
+                                        <div class="metric-item">
+                                            <div class="metric-title">Current Price</div>
+                                            <div class="metric-value" id="tokenPrice">$0.0847</div>
+                                            <div class="metric-change positive">+5.2%</div>
+                                        </div>
+                                        <div class="metric-item">
+                                            <div class="metric-title">Market Cap</div>
+                                            <div class="metric-value" id="marketCap">$847,000</div>
+                                        </div>
+                                        <div class="metric-item">
+                                            <div class="metric-title">24h Volume</div>
+                                            <div class="metric-value" id="volume">$123,456</div>
+                                        </div>
+                                        <div class="metric-item">
+                                            <div class="metric-title">Circulating Supply</div>
+                                            <div class="metric-value" id="supply">750,000 $NRAI</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Token Utility -->
+                            <div class="col-md-12">
+                                <div class="token-utility mb-4">
+                                    <h4>Token Utility</h4>
+                                    <div class="utility-grid">
+                                        <div class="utility-item">
+                                            <i class="fas fa-robot"></i>
+                                            <h5>Training Credits</h5>
+                                            <p>Stake NAI to earn training credits for neural network computation</p>
+                                        </div>
+                                        <div class="utility-item">
+                                            <i class="fas fa-vote-yea"></i>
+                                            <h5>Governance</h5>
+                                            <p>Vote on network parameters and development proposals</p>
+                                        </div>
+                                        <div class="utility-item">
+                                            <i class="fas fa-chart-line"></i>
+                                            <h5>Revenue Share</h5>
+                                            <p>Earn a share of network fees based on stake amount</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add this new section after the Network Training Controls -->
+                <div class="col-md-12 mb-4">
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-network-wired me-2"></i>BSV Address Node Network</h3>
+                        <div class="row">
+                            <!-- BSV Node Weights -->
+                            <div class="col-md-6">
+                                <div class="node-weights mb-4">
+                                    <h4>Address Node Weights</h4>
+                                    <div class="address-node-list">
+                                        <div class="address-node">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <span class="address-label">Node 1</span>
+                                                <span class="utxo-weight">UTXO Weight: 1.0</span>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar" style="width: 100%"></div>
+                                            </div>
+                                            <small class="text-muted">BSV Address: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</small>
+                                        </div>
+                                        <div class="address-node mt-3">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <span class="address-label">Node 2</span>
+                                                <span class="utxo-weight">UTXO Weight: 0.0</span>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-secondary" role="progressbar" style="width: 0%"></div>
+                                            </div>
+                                            <small class="text-muted">BSV Address: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNb</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- UTXO Predicate Distribution -->
+                            <div class="col-md-6">
+                                <div class="utxo-distribution mb-4">
+                                    <h4>UTXO Predicate Distribution</h4>
+                                    <div id="utxoPredicateChart"></div>
+                                    <div class="predicate-legend mt-3">
+                                        <div class="legend-item">
+                                            <span class="badge bg-danger">0</span>
+                                            Inactive Nodes (Zero UTXO)
+                                        </div>
+                                        <div class="legend-item">
+                                            <span class="badge bg-success">1</span>
+                                            Active Nodes (Single UTXO)
+                                        </div>
+                                        <div class="legend-item">
+                                            <span class="badge bg-primary">2+</span>
+                                            Multi-UTXO Nodes
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Network Topology -->
+                            <div class="col-md-12">
+                                <div class="network-topology mb-4">
+                                    <h4><i class="fas fa-network-wired me-2"></i>BSV Address Network Topology</h4>
+                                    <div class="topology-stats mb-3">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="stat-card">
+                                                    <div class="stat-label">Active Nodes</div>
+                                                    <div class="stat-value">147</div>
+                                                    <div class="stat-subtitle">BSV Addresses with UTXOs</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="stat-card">
+                                                    <div class="stat-label">Network Density</div>
+                                                    <div class="stat-value">0.68</div>
+                                                    <div class="stat-subtitle">Connection Ratio</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="stat-card">
+                                                    <div class="stat-label">Avg. Weight</div>
+                                                    <div class="stat-value">1.24</div>
+                                                    <div class="stat-subtitle">UTXOs per Node</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="stat-card">
+                                                    <div class="stat-label">Total Value</div>
+                                                    <div class="stat-value">₿ 2.47</div>
+                                                    <div class="stat-subtitle">Network BSV</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="networkTopologyViz" style="height: 400px;"></div>
+                                    <div class="topology-legend mt-3">
+                                        <div class="legend-item">
+                                            <span class="node-dot active"></span>
+                                            <span>Active Node (1+ UTXO)</span>
+                                        </div>
+                                        <div class="legend-item">
+                                            <span class="node-dot inactive"></span>
+                                            <span>Inactive Node (0 UTXO)</span>
+                                        </div>
+                                        <div class="legend-item">
+                                            <span class="edge-line strong"></span>
+                                            <span>Strong Connection (2+ UTXOs)</span>
+                                        </div>
+                                        <div class="legend-item">
+                                            <span class="edge-line weak"></span>
+                                            <span>Weak Connection (1 UTXO)</span>
+                                        </div>
+                                    </div>
+                                    <div class="topology-controls mt-3">
+                                        <div class="btn-group me-3">
+                                            <button class="btn btn-outline-info btn-sm" onclick="filterNodes('all')">
+                                                All Nodes
+                                            </button>
+                                            <button class="btn btn-outline-info btn-sm" onclick="filterNodes('active')">
+                                                Active Only
+                                            </button>
+                                            <button class="btn btn-outline-info btn-sm" onclick="filterNodes('strong')">
+                                                Strong Links
+                                            </button>
+                                        </div>
+                                        <button class="btn btn-outline-info btn-sm" onclick="updateTopologyLayout()">
+                                            <i class="fas fa-sync me-2"></i>Recalculate Weights
+                                        </button>
+                                        <button class="btn btn-outline-warning btn-sm" onclick="exportTopology()">
+                                            <i class="fas fa-file-export me-2"></i>Export Network State
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="connectWalletModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark">
+                <div class="modal-header border-bottom border-info">
+                    <h5 class="modal-title text-info">Connect Wallet</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center py-4">
+                    <button class="btn btn-lg btn-outline-info w-75 mb-3" onclick="connectHandCash()">
+                        <i class="fas fa-wallet me-2"></i>
+                        Connect with HandCash
+                    </button>
+                    <button class="btn btn-lg btn-outline-primary w-75 mb-3" onclick="connectPhantom()">
+                        <i class="fas fa-ghost me-2"></i>
+                        Connect with Phantom
+                    </button>
+                    <div class="text-muted small">More wallet options coming soon</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Training Progress Chart
+        const trainingCtx = document.getElementById('trainingChart').getContext('2d');
+        new Chart(trainingCtx, {
+            type: 'line',
+            data: {
+                labels: Array.from({length: 100}, (_, i) => i + 1),
+                datasets: [{
+                    label: 'Accuracy',
+                    data: Array.from({length: 100}, () => Math.random() * 0.2 + 0.8),
+                    borderColor: '#00ffff',
+                    tension: 0.4
+                }, {
+                    label: 'Loss',
+                    data: Array.from({length: 100}, () => Math.random() * 0.3),
+                    borderColor: '#ff00ff',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: 'white'
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: 'white'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: 'white'
+                        }
+                    }
+                }
+            }
+        });
+
+        // PSO Visualization
+        const psoCtx = document.getElementById('psoVisualization').getContext('2d');
+        const particles = [];
+        const numParticles = 50;
+
+        for (let i = 0; i < numParticles; i++) {
+            particles.push({
+                x: Math.random() * psoCtx.canvas.width,
+                y: Math.random() * psoCtx.canvas.height,
+                vx: Math.random() * 2 - 1,
+                vy: Math.random() * 2 - 1
+            });
+        }
+
+        function animatePSO() {
+            psoCtx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            psoCtx.fillRect(0, 0, psoCtx.canvas.width, psoCtx.canvas.height);
+
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > psoCtx.canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > psoCtx.canvas.height) p.vy *= -1;
+
+                psoCtx.beginPath();
+                psoCtx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+                psoCtx.fillStyle = '#00ffff';
+                psoCtx.fill();
+            });
+
+            requestAnimationFrame(animatePSO);
+        }
+
+        animatePSO();
+    });
+
+    function initNetworkVisualization() {
+        const container = document.getElementById('networkArchitecture');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        container.appendChild(renderer.domElement);
+
+        // Create neural network layers
+        const layers = [784, 256, 128, 10];
+        const neurons = [];
+        const connections = [];
+        const layerSpacing = 2;
+        
+        layers.forEach((nodeCount, layerIndex) => {
+            const layer = new THREE.Group();
+            const nodeSpacing = 0.2;
+            const layerHeight = nodeCount * nodeSpacing;
+            
+            for (let i = 0; i < nodeCount; i++) {
+                const geometry = new THREE.SphereGeometry(0.05, 16, 16);
+                const material = new THREE.MeshPhongMaterial({ 
+                    color: 0x00ffff,
+                    emissive: 0x00ffff,
+                    emissiveIntensity: 0.2
+                });
+                const neuron = new THREE.Mesh(geometry, material);
+                
+                neuron.position.y = (i - nodeCount/2) * nodeSpacing;
+                neuron.position.z = layerIndex * layerSpacing - 6;
+                layer.add(neuron);
+                neurons.push(neuron);
+            }
+            scene.add(layer);
+        });
+
+        // Add lighting
+        const light = new THREE.PointLight(0x00ffff, 1, 100);
+        light.position.set(0, 0, 10);
+        scene.add(light);
+        
+        const ambientLight = new THREE.AmbientLight(0x404040);
+        scene.add(ambientLight);
+
+        camera.position.z = 5;
+
+        // Animation
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            neurons.forEach(neuron => {
+                neuron.material.emissiveIntensity = 0.2 + Math.sin(Date.now() * 0.003) * 0.1;
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+    }
+
+    function initPSOVisualization() {
+        const options = {
+            series: [{
+                name: 'Global Best',
+                data: generatePSOData()
+            }, {
+                name: 'Local Best',
+                data: generatePSOData(0.9)
+            }],
+            chart: {
+                type: 'scatter',
+                height: 300,
+                animations: {
+                    enabled: true,
+                    easing: 'easeinout',
+                    speed: 800,
+                    dynamicAnimation: {
+                        enabled: true,
+                        speed: 350
+                    }
+                },
+                background: 'transparent',
+                foreColor: '#fff'
+            },
+            xaxis: {
+                type: 'numeric',
+                min: -10,
+                max: 10,
+                labels: {
+                    style: {
+                        colors: '#fff'
+                    }
+                }
+            },
+            yaxis: {
+                min: -10,
+                max: 10,
+                labels: {
+                    style: {
+                        colors: '#fff'
+                    }
+                }
+            },
+            theme: {
+                mode: 'dark'
+            },
+            markers: {
+                size: [6, 4],
+                strokeWidth: 2,
+                hover: {
+                    size: 8
+                }
+            },
+            colors: ['#00ffff', '#ff00ff']
+        };
+
+        const chart = new ApexCharts(document.querySelector("#psoVisualization"), options);
+        chart.render();
+
+        // Update particles periodically
+        setInterval(() => {
+            chart.updateSeries([{
+                data: generatePSOData()
+            }, {
+                data: generatePSOData(0.9)
+            }]);
+        }, 1000);
+    }
+
+    function generatePSOData(scale = 1) {
+        return Array.from({ length: 50 }, () => ({
+            x: (Math.random() * 20 - 10) * scale,
+            y: (Math.random() * 20 - 10) * scale
+        }));
+    }
+
+    function initTokenChart() {
+        const options = {
+            series: [{
+                name: 'Token Price',
+                data: generateTokenPriceHistory()
+            }],
+            chart: {
+                type: 'area',
+                height: 300,
+                animations: {
+                    enabled: true,
+                    easing: 'linear',
+                    dynamicAnimation: {
+                        speed: 1000
+                    }
+                },
+                toolbar: {
+                    show: true,
+                    tools: {
+                        download: false,
+                        selection: true,
+                        zoom: true,
+                        zoomin: true,
+                        zoomout: true,
+                        pan: true,
+                    }
+                },
+                background: 'transparent'
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'smooth',
+                width: 2,
+                colors: ['#00ffff']
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shadeIntensity: 1,
+                    opacityFrom: 0.3,
+                    opacityTo: 0.1,
+                    stops: [0, 90, 100]
+                }
+            },
+            grid: {
+                borderColor: 'rgba(0, 255, 255, 0.1)',
+                strokeDashArray: 3
+            },
+            markers: {
+                size: 4,
+                colors: ['#00ffff'],
+                strokeWidth: 2,
+                hover: {
+                    size: 6
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Price (USD)',
+                    style: {
+                        color: '#fff'
+                    }
+                },
+                labels: {
+                    style: {
+                        colors: '#fff'
+                    }
+                }
+            },
+            xaxis: {
+                type: 'datetime',
+                labels: {
+                    style: {
+                        colors: '#fff'
+                    }
+                }
+            },
+            tooltip: {
+                theme: 'dark',
+                x: {
+                    format: 'dd MMM yyyy'
+                }
+            }
+        };
+
+        const chart = new ApexCharts(document.querySelector("#tokenChart"), options);
+        chart.render();
+
+        // Simulate real-time updates
+        setInterval(() => {
+            const newPrice = generateNewPrice();
+            chart.appendData([{
+                data: [{
+                    x: new Date().getTime(),
+                    y: newPrice
+                }]
+            }]);
+        }, 3000);
+    }
+
+    function generateTokenPriceHistory() {
+        const prices = [];
+        let lastPrice = 0.0045;
+        const now = new Date().getTime();
+
+        for (let i = 30; i >= 0; i--) {
+            lastPrice = lastPrice * (1 + (Math.random() - 0.5) * 0.1);
+            prices.push({
+                x: now - i * 24 * 60 * 60 * 1000,
+                y: lastPrice.toFixed(6)
+            });
+        }
+        return prices;
+    }
+
+    function generateNewPrice() {
+        const lastPrice = parseFloat(document.querySelector('.token-metrics .value').textContent.replace('$', ''));
+        return (lastPrice * (1 + (Math.random() - 0.5) * 0.05)).toFixed(6);
+    }
+
+    function initNetworkStats() {
+        const data = [{
+            type: 'indicator',
+            mode: 'gauge+number',
+            value: 98.7,
+            title: { text: 'Network Health', font: { size: 24, color: '#fff' } },
+            gauge: {
+                axis: { range: [null, 100], tickwidth: 1, tickcolor: "#00ffff" },
+                bar: { color: "#00ffff" },
+                bgcolor: "transparent",
+                borderwidth: 2,
+                bordercolor: "#00ffff",
+                steps: [
+                    { range: [0, 50], color: 'rgba(255, 0, 0, 0.2)' },
+                    { range: [50, 80], color: 'rgba(255, 255, 0, 0.2)' },
+                    { range: [80, 100], color: 'rgba(0, 255, 255, 0.2)' }
+                ],
+            }
+        }];
+
+        const layout = {
+            paper_bgcolor: 'transparent',
+            plot_bgcolor: 'transparent',
+            font: { color: '#fff' },
+            margin: { t: 0, b: 0 }
+        };
+
+        Plotly.newPlot('networkStats', data, layout);
+
+        // Update gauge periodically
+        setInterval(() => {
+            Plotly.update('networkStats', {
+                'value': [95 + Math.random() * 5]
+            });
+        }, 5000);
+    }
+
+    function initPSOConvergence() {
+        const options = {
+            series: [{
+                name: 'Global Best Fitness',
+                data: generateConvergenceData()
+            }, {
+                name: 'Average Fitness',
+                data: generateConvergenceData(0.8)
+            }],
+            chart: {
+                type: 'line',
+                height: 200,
+                animations: {
+                    enabled: true,
+                    easing: 'linear',
+                    dynamicAnimation: {
+                        speed: 1000
+                    }
+                },
+                background: 'transparent',
+                foreColor: '#fff'
+            },
+            stroke: {
+                curve: 'smooth',
+                width: [3, 2]
+            },
+            grid: {
+                borderColor: 'rgba(0, 255, 255, 0.1)',
+                strokeDashArray: 3
+            },
+            colors: ['#00ffff', '#ff00ff'],
+            xaxis: {
+                title: {
+                    text: 'Iterations',
+                    style: {
+                        color: '#fff'
+                    }
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Fitness',
+                    style: {
+                        color: '#fff'
+                    }
+                }
+            }
+        };
+
+        const chart = new ApexCharts(document.querySelector("#psoConvergence"), options);
+        chart.render();
+    }
+
+    particlesJS("particles-js", {
+        particles: {
+            number: { value: 80, density: { enable: true, value_area: 800 } },
+            color: { value: "#00ffff" },
+            shape: { type: "circle" },
+            opacity: {
+                value: 0.5,
+                random: false,
+                animation: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+            },
+            size: {
+                value: 3,
+                random: true,
+                animation: { enable: true, speed: 2, size_min: 0.1, sync: false }
+            },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: "#00ffff",
+                opacity: 0.4,
+                width: 1
+            },
+            move: {
+                enable: true,
+                speed: 2,
+                direction: "none",
+                random: false,
+                straight: false,
+                out_mode: "out",
+                bounce: false,
+            }
+        },
+        interactivity: {
+            detect_on: "canvas",
+            events: {
+                onhover: { enable: true, mode: "repulse" },
+                onclick: { enable: true, mode: "push" },
+                resize: true
+            }
+        },
+        retina_detect: true
+    });
+
+    function init3DNetworkVisualization() {
+        const container = document.getElementById('networkArchitecture3D');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        container.appendChild(renderer.domElement);
+
+        // Create neural network layers
+        const layers = [784, 256, 128, 10];
+        const neurons = [];
+        const synapses = [];
+        
+        // Create layers
+        layers.forEach((neurons, layerIndex) => {
+            const layer = createLayer(neurons, layerIndex);
+            networkGeometry.add(layer);
+        });
+
+        // Add synaptic connections
+        for (let i = 0; i < layers.length - 1; i++) {
+            createConnections(layers[i], layers[i + 1], i);
+        }
+
+        scene.add(networkGeometry);
+
+        // Add dynamic lighting
+        const lights = [];
+        for (let i = 0; i < 3; i++) {
+            const light = new THREE.PointLight(0x00ffff, 1, 100);
+            light.position.set(
+                Math.sin(i * 2.4) * 20,
+                Math.cos(i * 2.4) * 20,
+                Math.sin(i * 2.4) * 20
+            );
+            lights.push(light);
+            scene.add(light);
+        }
+
+        camera.position.z = 30;
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Rotate network
+            networkGeometry.rotation.y += 0.001;
+            
+            // Pulse neurons
+            neurons.forEach(neuron => {
+                neuron.material.emissiveIntensity = 0.2 + Math.sin(Date.now() * 0.003) * 0.1;
+            });
+
+            // Animate synapses
+            synapses.forEach(synapse => {
+                synapse.material.opacity = 0.2 + Math.sin(Date.now() * 0.002) * 0.1;
+            });
+
+            // Move lights
+            lights.forEach((light, i) => {
+                light.position.x = Math.sin(Date.now() * 0.001 + i * 2.4) * 20;
+                light.position.z = Math.cos(Date.now() * 0.001 + i * 2.4) * 20;
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+    }
+
+    function initRealTimeMetrics() {
+        const metrics = {
+            accuracy: { value: 98.7, min: 97, max: 99.5 },
+            loss: { value: 0.0023, min: 0.001, max: 0.005 },
+            latency: { value: 1.2, min: 0.8, max: 2.0 }
+        };
+
+        function updateMetrics() {
+            Object.keys(metrics).forEach(key => {
+                const metric = metrics[key];
+                const delta = (Math.random() - 0.5) * 0.1;
+                metric.value = Math.max(metric.min, Math.min(metric.max, metric.value + delta));
+                
+                const element = document.querySelector(`.metric-${key} .metric-value`);
+                if (element) {
+                    element.textContent = metric.value.toFixed(
+                        key === 'accuracy' ? 1 : 
+                        key === 'loss' ? 4 : 2
+                    ) + (key === 'accuracy' ? '%' : 
+                         key === 'latency' ? 'ms' : '');
+                }
+            });
+        }
+
+        setInterval(updateMetrics, 2000);
+    }
+
+    function init3DPSOVisualization() {
+        const container = document.getElementById('pso3D');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        container.appendChild(renderer.domElement);
+
+        // Create particles
+        const particleGeometry = new THREE.SphereGeometry(0.1, 8, 8);
+        const particleMaterial = new THREE.MeshPhongMaterial({
+            color: 0x00ffff,
+            emissive: 0x00ffff,
+            emissiveIntensity: 0.5,
+            transparent: true,
+            opacity: 0.8
+        });
+
+        const particles = [];
+        const numParticles = 100;
+        const bounds = 20;
+
+        for (let i = 0; i < numParticles; i++) {
+            const particle = new THREE.Mesh(particleGeometry, particleMaterial.clone());
+            particle.position.set(
+                (Math.random() - 0.5) * bounds,
+                (Math.random() - 0.5) * bounds,
+                (Math.random() - 0.5) * bounds
+            );
+            particle.velocity = new THREE.Vector3(
+                (Math.random() - 0.5) * 0.2,
+                (Math.random() - 0.5) * 0.2,
+                (Math.random() - 0.5) * 0.2
+            );
+            particle.personalBest = particle.position.clone();
+            particles.push(particle);
+            scene.add(particle);
+        }
+
+        // Add global best indicator
+        const globalBest = new THREE.Mesh(
+            new THREE.SphereGeometry(0.3, 16, 16),
+            new THREE.MeshPhongMaterial({
+                color: 0xff00ff,
+                emissive: 0xff00ff,
+                emissiveIntensity: 0.8
+            })
+        );
+        scene.add(globalBest);
+
+        // Add lighting
+        const lights = [];
+        for (let i = 0; i < 3; i++) {
+            const light = new THREE.PointLight(0x00ffff, 1, 100);
+            light.position.set(
+                Math.sin(i * 2.4) * bounds,
+                Math.cos(i * 2.4) * bounds,
+                Math.sin(i * 2.4) * bounds
+            );
+            lights.push(light);
+            scene.add(light);
+        }
+
+        camera.position.z = 30;
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Update particles
+            particles.forEach(particle => {
+                // Update position
+                particle.position.add(particle.velocity);
+
+                // Boundary check
+                ['x', 'y', 'z'].forEach(axis => {
+                    if (Math.abs(particle.position[axis]) > bounds) {
+                        particle.position[axis] = Math.sign(particle.position[axis]) * bounds;
+                        particle.velocity[axis] *= -0.8;
+                    }
+                });
+
+                // Update personal best
+                if (Math.random() < 0.1) {
+                    particle.personalBest.copy(particle.position);
+                }
+
+                // Particle effects
+                particle.material.emissiveIntensity = 0.3 + Math.sin(Date.now() * 0.003) * 0.2;
+            });
+
+            // Move global best
+            globalBest.position.x = Math.sin(Date.now() * 0.001) * bounds * 0.5;
+            globalBest.position.y = Math.cos(Date.now() * 0.001) * bounds * 0.5;
+            globalBest.position.z = Math.sin(Date.now() * 0.0015) * bounds * 0.5;
+
+            // Rotate camera
+            camera.position.x = Math.sin(Date.now() * 0.0002) * 40;
+            camera.position.z = Math.cos(Date.now() * 0.0002) * 40;
+            camera.lookAt(scene.position);
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+    }
+
+    function initWeightHeatmap() {
+        const data = [{
+            z: generateWeightMatrix(),
+            type: 'heatmap',
+            colorscale: [
+                [0, 'rgba(0,0,255,0.3)'],
+                [0.5, 'rgba(0,255,255,0.5)'],
+                [1, 'rgba(0,255,0,0.7)']
+            ],
+            showscale: true,
+            colorbar: {
+                tickfont: { color: '#fff' },
+                title: {
+                    text: 'Weight Strength',
+                    font: { color: '#fff' }
+                }
+            }
+        }];
+
+        const layout = {
+            title: {
+                text: 'Neural Network Weight Distribution',
+                font: { color: '#fff', size: 16 }
+            },
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            font: { color: '#fff' },
+            margin: { t: 50, b: 50, l: 50, r: 50 }
+        };
+
+        Plotly.newPlot('weightHeatmap', data, layout);
+
+        // Update weights periodically
+        setInterval(() => {
+            Plotly.update('weightHeatmap', {
+                z: [generateWeightMatrix()]
+            });
+        }, 2000);
+    }
+
+    function generateWeightMatrix() {
+        return Array.from({ length: 20 }, () => 
+            Array.from({ length: 20 }, () => Math.random() * 2 - 1)
+        );
+    }
+
+    function initActivationLandscape() {
+        const data = [{
+            type: 'surface',
+            colorscale: 'Electric',
+            contours: {
+                z: {
+                    show: true,
+                    usecolormap: true,
+                    project: { z: true }
+                }
+            },
+            surface: { show: true, fill: 0.8 }
+        }];
+
+        const layout = {
+            title: 'Activation Landscape',
+            scene: {
+                xaxis: { title: 'X', gridcolor: 'rgba(0,255,255,0.1)', showgrid: true },
+                yaxis: { title: 'Y', gridcolor: 'rgba(0,255,255,0.1)', showgrid: true },
+                zaxis: { title: 'Activation', gridcolor: 'rgba(0,255,255,0.1)', showgrid: true },
+                camera: {
+                    eye: { x: 1.5, y: 1.5, z: 1.5 }
+                },
+                bgcolor: 'rgba(0,0,0,0)'
+            },
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            margin: { l: 0, r: 0, t: 30, b: 0 }
+        };
+
+        function generateData() {
+            const size = 50;
+            const z = [];
+            const x = [];
+            const y = [];
+            
+            for(let i = 0; i < size; i++) {
+                const row = [];
+                const time = Date.now() * 0.0001;
+                for(let j = 0; j < size; j++) {
+                    const xVal = (i - size/2) * 0.1;
+                    const yVal = (j - size/2) * 0.1;
+                    const zVal = Math.sin(Math.sqrt(xVal*xVal + yVal*yVal) + time) * 
+                                Math.cos(xVal * 0.5 + time) * Math.sin(yVal * 0.5);
+                    row.push(zVal);
+                }
+                z.push(row);
+            }
+            return [{ z: z }];
+        }
+
+        Plotly.newPlot('activationLandscape', generateData(), layout);
+
+        setInterval(() => {
+            Plotly.update('activationLandscape', generateData());
+        }, 50);
+    }
+
+    // Initialize distribution chart
+    function initDistributionChart() {
+        const options = {
+            series: [40, 20, 25, 15],
+            chart: {
+                type: 'donut',
+                height: 300,
+                background: 'transparent'
+            },
+            colors: ['#00ffff', '#00ff99', '#ff00ff', '#ffff00'],
+            labels: ['Training Rewards', 'Development Fund', 'Community Pool', 'Liquidity'],
+            title: {
+                text: '$NRAI Token Distribution',
+                style: {
+                    color: '#00ffff'
+                }
+            },
+            theme: {
+                mode: 'dark'
+            }
+        };
+
+        new ApexCharts(document.querySelector("#tokenDistributionChart"), options).render();
+    }
+
+    // Initialize event listeners
+    document.addEventListener('DOMContentLoaded', function() {
+        initDistributionChart();
+
+        // Learning rate slider
+        const learningRateSlider = document.getElementById('learningRate');
+        const learningRateValue = document.getElementById('learningRateValue');
+        
+        learningRateSlider.addEventListener('input', function() {
+            learningRateValue.textContent = this.value;
+        });
+
+        // Simulate live price updates
+        setInterval(() => {
+            updateTokenMetrics();
+        }, 5000);
+    });
+
+    function updateTokenMetrics() {
+        const price = document.getElementById('tokenPrice');
+        const currentPrice = parseFloat(price.textContent.replace('$', ''));
+        const change = (Math.random() - 0.5) * 0.001;
+        const newPrice = (currentPrice + change).toFixed(4);
+        price.textContent = '$' + newPrice;
+    }
+
+    function initUTXOPredicateChart() {
+        const options = {
+            series: [{
+                name: 'Node Count',
+                data: [45, 30, 25] // Distribution of 0, 1, and 2+ UTXO nodes
+            }],
+            chart: {
+                type: 'bar',
+                height: 250,
+                background: 'transparent',
+                toolbar: {
+                    show: false
+                }
+            },
+            colors: ['#dc3545', '#28a745', '#007bff'],
+            xaxis: {
+                categories: ['Zero UTXO', 'Single UTXO', 'Multi UTXO'],
+                labels: {
+                    style: {
+                        colors: '#ffffff'
+                    }
+                }
+            },
+            yaxis: {
+                labels: {
+                    style: {
+                        colors: '#ffffff'
+                    }
+                }
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    horizontal: false,
+                    columnWidth: '55%'
+                }
+            }
+        };
+
+        const chart = new ApexCharts(document.querySelector("#utxoPredicateChart"), options);
+        chart.render();
+    }
+
+    function initNetworkTopology() {
+        try {
+            const container = document.querySelector("#networkTopologyViz");
+            if (!container) return;
+
+            const width = container.clientWidth;
+            const height = container.clientHeight || 400;
+
+            container.innerHTML = '';
+
+            const svg = d3.select(container)
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+            const NODE_COUNT = 80;   // More manageable number
+            const nodes = [];
+            const links = [];
+            
+            function generateBsvAddress() {
+                const chars = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+                let address = '1';
+                for (let i = 0; i < 33; i++) {
+                    address += chars[Math.floor(Math.random() * chars.length)];
+                }
+                return address;
+            }
+            
+            const nodeColors = {
+                highValue: '#00ffff',
+                mediumValue: '#ff00ff',
+                lowValue: '#00ff99',
+                inactive: '#666666'
+            };
+            
+            for(let i = 0; i < NODE_COUNT; i++) {
+                const utxoCount = Math.floor(Math.random() * 10);
+                nodes.push({
+                    id: i,
+                    address: generateBsvAddress(),
+                    utxoCount: utxoCount,
+                    weight: utxoCount > 0 ? utxoCount : 0,
+                    type: utxoCount > 5 ? 'highValue' : 
+                          utxoCount > 2 ? 'mediumValue' : 
+                          utxoCount > 0 ? 'lowValue' : 'inactive'
+                });
+            }
+
+            nodes.forEach((node, i) => {
+                if(node.weight > 0) {
+                    const numConnections = Math.floor(Math.random() * 3) + 1;  // 1-3 connections per node
+                    for(let j = 0; j < numConnections; j++) {
+                        const target = Math.floor(Math.random() * nodes.length);
+                        if(target !== i && nodes[target].weight > 0) {
+                            links.push({
+                                source: i,
+                                target: target,
+                                value: Math.min(node.utxoCount, nodes[target].utxoCount) * 0.5,
+                                type: node.type
+                            });
+                        }
+                    }
+                }
+            });
+
+            const simulation = d3.forceSimulation(nodes)
+                .force("link", d3.forceLink(links).id(d => d.id)
+                    .distance(30)
+                    .strength(0.5))
+                .force("charge", d3.forceManyBody()
+                    .strength(-50))
+                .force("center", d3.forceCenter(width / 2, height / 2))
+                .force("collision", d3.forceCollide().radius(10));
+
+            const defs = svg.append("defs");
+            links.forEach((link, i) => {
+                const gradient = defs.append("linearGradient")
+                    .attr("id", `link-gradient-${i}`)
+                    .attr("gradientUnits", "userSpaceOnUse");
+                gradient.append("stop")
+                    .attr("offset", "0%")
+                    .attr("stop-color", nodeColors[link.source.type]);
+                gradient.append("stop")
+                    .attr("offset", "100%")
+                    .attr("stop-color", nodeColors[link.target.type]);
+            });
+
+            const link = svg.append("g")
+                .selectAll("line")
+                .data(links)
+                .enter()
+                .append("line")
+                .style("stroke", (d, i) => `url(#link-gradient-${i})`)
+                .style("stroke-opacity", 0.4)
+                .style("stroke-width", d => d.value);
+
+            const node = svg.append("g")
+                .selectAll("g")
+                .data(nodes)
+                .enter()
+                .append("g")
+                .style("cursor", "pointer")
+                .on("click", (event, d) => {
+                    // Create or update address info popup
+                    const popup = document.createElement("div");
+                    popup.className = "address-popup";
+                    popup.innerHTML = `
+                        <div class="popup-header">
+                            <h4>BSV Address Details</h4>
+                            <button class="close-btn">&times;</button>
+                        </div>
+                        <div class="popup-content">
+                            <div class="address-row">
+                                <span class="label">Address:</span>
+                                <span class="value">${d.address}</span>
+                            </div>
+                            <div class="address-row">
+                                <span class="label">UTXO Count:</span>
+                                <span class="value">${d.utxoCount}</span>
+                            </div>
+                            <div class="address-row">
+                                <span class="label">Node Type:</span>
+                                <span class="value">${d.type}</span>
+                            </div>
+                            <div class="address-row">
+                                <span class="label">Connections:</span>
+                                <span class="value">${links.filter(l => l.source.id === d.id || l.target.id === d.id).length}</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Position popup near clicked node
+                    popup.style.left = `${event.pageX + 10}px`;
+                    popup.style.top = `${event.pageY - 10}px`;
+                    
+                    // Remove any existing popup
+                    document.querySelectorAll('.address-popup').forEach(p => p.remove());
+                    
+                    // Add popup to document
+                    document.body.appendChild(popup);
+                    
+                    // Add close button functionality
+                    popup.querySelector('.close-btn').onclick = () => popup.remove();
+                });
+
+            node.append("circle")
+                .attr("r", d => 3 + d.weight)
+                .style("fill", d => nodeColors[d.type])
+                .style("filter", "url(#glow)");
+
+            const filter = defs.append("filter")
+                .attr("id", "glow");
+            filter.append("feGaussianBlur")
+                .attr("stdDeviation", "2")
+                .attr("result", "coloredBlur");
+            const feMerge = filter.append("feMerge");
+            feMerge.append("feMergeNode")
+                .attr("in", "coloredBlur");
+            feMerge.append("feMergeNode")
+                .attr("in", "SourceGraphic");
+
+            node.append("title")
+                .text(d => d.address);
+
+            simulation.nodes(nodes).on("tick", () => {
+                link
+                    .attr("x1", d => d.source.x)
+                    .attr("y1", d => d.source.y)
+                    .attr("x2", d => d.target.x)
+                    .attr("y2", d => d.target.y);
+
+                node
+                    .attr("transform", d => `translate(${d.x},${d.y})`);
+            });
+
+            function dragstarted(event) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                event.subject.fx = event.subject.x;
+                event.subject.fy = event.subject.y;
+            }
+
+            function dragged(event) {
+                event.subject.fx = event.x;
+                event.subject.fy = event.y;
+            }
+
+            function dragended(event) {
+                if (!event.active) simulation.alphaTarget(0);
+                event.subject.fx = null;
+                event.subject.fy = null;
+            }
+        } catch (error) {
+            console.warn('Network topology error:', error);
+        }
+    }
+
+    // Initialize everything when document loads
+    document.addEventListener('DOMContentLoaded', function() {
+        initUTXOPredicateChart();
+        initNetworkTopology();
+        // ... other initializations
+    });
+
+    async function connectHandCash() {
+        try {
+            // Close the modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('connectWalletModal'));
+            modal.hide();
+
+            // Demo account data
+            const demoAccount = {
+                displayName: 'CryptoVoyager',
+                avatarUrl: 'assets/images/avatar-placeholder.png'
+            };
+            
+            // Update UI to show connected state
+            const walletButton = document.querySelector('.btn-outline-info.ms-2');
+            walletButton.innerHTML = `
+                <img src="${demoAccount.avatarUrl}" alt="Profile" class="rounded-circle me-2" style="width: 24px; height: 24px;">
+                ${demoAccount.displayName}
+                <span class="badge bg-success ms-2">Connected</span>
+            `;
+            walletButton.classList.remove('btn-outline-info');
+            walletButton.classList.add('btn-info');
+
+            // Update demo balance
+            document.querySelectorAll('.wallet-balance').forEach(el => {
+                el.textContent = '1.337 BSV';
+            });
+
+            // Enable wallet-specific features
+            document.querySelectorAll('.wallet-required').forEach(el => {
+                el.classList.remove('disabled');
+            });
+
+        } catch (error) {
+            console.error('HandCash connection error:', error);
+            alert('Failed to connect HandCash wallet. Please try again.');
+        }
+    }
+
+    async function connectPhantom() {
+        try {
+            // Close the modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('connectWalletModal'));
+            modal.hide();
+
+            // Demo Phantom account data
+            const demoAccount = {
+                displayName: 'CryptoVoyager.sol',
+                avatarUrl: 'assets/images/avatar-placeholder.png'
+            };
+            
+            // Update UI to show connected state
+            const walletButton = document.querySelector('.btn-outline-info.ms-2');
+            walletButton.innerHTML = `
+                <img src="${demoAccount.avatarUrl}" alt="Profile" class="rounded-circle me-2" style="width: 24px; height: 24px;">
+                ${demoAccount.displayName}
+                <span class="badge bg-success ms-2">Connected</span>
+            `;
+            walletButton.classList.remove('btn-outline-info');
+            walletButton.classList.add('btn-primary');
+
+            // Update demo balance
+            document.querySelectorAll('.wallet-balance').forEach(el => {
+                el.textContent = '4.20 SOL';
+            });
+
+            // Enable wallet-specific features
+            document.querySelectorAll('.wallet-required').forEach(el => {
+                el.classList.remove('disabled');
+            });
+
+        } catch (error) {
+            console.error('Phantom connection error:', error);
+            alert('Failed to connect Phantom wallet. Please try again.');
+        }
+    }
+
+    // Add new chart initializations
+    function initializeCharts() {
+        try {
+            const trainingProgressEl = document.querySelector("#trainingProgressChart");
+            if (trainingProgressEl) {
+                new ApexCharts(trainingProgressEl, trainingOptions).render();
+            }
+
+            const tokenPriceEl = document.querySelector("#tokenPriceChart");
+            if (tokenPriceEl) {
+                new ApexCharts(tokenPriceEl, tokenPriceOptions).render();
+            }
+        } catch (error) {
+            console.warn('Chart initialization error:', error);
+        }
+    }
+
+    // Helper function for random data
+    function generateRandomData(count) {
+        const data = [];
+        let value = 50;
+        for(let i = 0; i < count; i++) {
+            value += Math.random() * 10 - 5;
+            data.push({x: new Date(Date.now() - (count-i)*3600000), y: value});
+        }
+        return data;
+    }
+
+    // Initialize tabs
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize Bootstrap tabs
+        const triggerTabList = [].slice.call(document.querySelectorAll('#dashboardTabs button'));
+        triggerTabList.forEach(function(triggerEl) {
+            const tabTrigger = new bootstrap.Tab(triggerEl);
+            triggerEl.addEventListener('click', function(event) {
+                event.preventDefault();
+                tabTrigger.show();
+            });
+        });
+
+        // Initialize all charts
+        initializeCharts();
+        initUTXOPredicateChart();
+        initNetworkTopology();
+        initDistributionChart();
+    });
+
+    function showConnectWalletModal() {
+        const modal = new bootstrap.Modal(document.getElementById('connectWalletModal'));
+        modal.show();
+    }
+
+    const trainingOptions = {
+        series: [{
+            name: 'Accuracy',
+            data: generateRandomData(30)
+        }, {
+            name: 'Loss',
+            data: generateRandomData(30)
+        }],
+        chart: {
+            type: 'line',
+            height: 300,
+            background: 'transparent',
+            animations: {
+                enabled: true,
+                easing: 'linear',
+                dynamicAnimation: {
+                    speed: 1000
+                }
+            }
+        },
+        colors: ['#00ffff', '#ff00ff'],
+        theme: { mode: 'dark' }
+    };
+
+    const tokenPriceOptions = {
+        series: [{
+            name: '$NRAI Price',
+            data: generateRandomData(30)
+        }],
+        chart: {
+            type: 'area',
+            height: 200,
+            background: 'transparent'
+        },
+        colors: ['#00ff99'],
+        fill: {
+            type: 'gradient',
+            gradient: {
+                shadeIntensity: 1,
+                opacityFrom: 0.7,
+                opacityTo: 0.3
+            }
+        }
+    };
+    </script>
+</body>
+</html> 

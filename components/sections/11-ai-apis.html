@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/sections.css" rel="stylesheet">
+    <style>
+        .api-category {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .api-category:last-child {
+            border-bottom: none;
+        }
+        .model-selector {
+            margin-top: 0.5rem;
+        }
+        .api-status {
+            font-size: 0.8rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            margin-left: 0.5rem;
+        }
+        .status-active {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .status-inactive {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .test-response {
+            font-family: monospace;
+            font-size: 0.9rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="section-container">
+        <h2 class="section-title">Connect AI APIs</h2>
+        <p class="section-description">Configure AI services and models for your tribe's intelligent features.</p>
+        
+        <form id="aiApisForm">
+            <!-- Language Models Section -->
+            <div class="api-category">
+                <h4>Language Models</h4>
+                
+                <div class="form-group">
+                    <label for="openaiKey">OpenAI API Key</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="openaiKey" placeholder="sk-...">
+                        <button type="button" class="btn btn-outline-secondary" onclick="testAPI('openai')">Test</button>
+                    </div>
+                    <small class="form-text text-muted">Your OpenAI API key for GPT models</small>
+                    <div class="model-selector">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="gpt4" checked>
+                            <label class="form-check-label" for="gpt4">GPT-4</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="gpt35" checked>
+                            <label class="form-check-label" for="gpt35">GPT-3.5</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="dalle3">
+                            <label class="form-check-label" for="dalle3">DALL-E 3</label>
+                        </div>
+                    </div>
+                    <div id="openaiResponse" class="test-response mt-2"></div>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="anthropicKey">Anthropic API Key</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="anthropicKey" placeholder="sk-ant-...">
+                        <button type="button" class="btn btn-outline-secondary" onclick="testAPI('anthropic')">Test</button>
+                    </div>
+                    <small class="form-text text-muted">Your Anthropic API key for Claude models</small>
+                    <div class="model-selector">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="claude3" checked>
+                            <label class="form-check-label" for="claude3">Claude 3</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="claude2">
+                            <label class="form-check-label" for="claude2">Claude 2</label>
+                        </div>
+                    </div>
+                    <div id="anthropicResponse" class="test-response mt-2"></div>
+                </div>
+            </div>
+
+            <!-- Image Generation Section -->
+            <div class="api-category">
+                <h4>Image Generation</h4>
+                
+                <div class="form-group">
+                    <label for="stabilityKey">Stability AI API Key</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="stabilityKey" placeholder="sk-...">
+                        <button type="button" class="btn btn-outline-secondary" onclick="testAPI('stability')">Test</button>
+                    </div>
+                    <small class="form-text text-muted">Your Stability AI key for image generation</small>
+                    <div class="model-selector">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="sdxl" checked>
+                            <label class="form-check-label" for="sdxl">SDXL</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="sd2">
+                            <label class="form-check-label" for="sd2">Stable Diffusion 2</label>
+                        </div>
+                    </div>
+                    <div id="stabilityResponse" class="test-response mt-2"></div>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="midjourney">Midjourney Integration</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="midjourney" placeholder="Discord Webhook URL">
+                        <button type="button" class="btn btn-outline-secondary" onclick="testAPI('midjourney')">Test</button>
+                    </div>
+                    <small class="form-text text-muted">Connect Midjourney through Discord webhook</small>
+                </div>
+            </div>
+
+            <!-- Voice & Audio Section -->
+            <div class="api-category">
+                <h4>Voice & Audio</h4>
+                
+                <div class="form-group">
+                    <label for="elevenlabsKey">ElevenLabs API Key</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="elevenlabsKey" placeholder="eleven-...">
+                        <button type="button" class="btn btn-outline-secondary" onclick="testAPI('elevenlabs')">Test</button>
+                    </div>
+                    <small class="form-text text-muted">Your ElevenLabs key for voice synthesis</small>
+                    <div id="elevenlabsResponse" class="test-response mt-2"></div>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="whisperConfig">OpenAI Whisper (Speech-to-Text)</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="whisperEnabled" checked>
+                        <label class="form-check-label" for="whisperEnabled">
+                            Enable Whisper (uses OpenAI API key)
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced Settings -->
+            <div class="api-category">
+                <h4>Advanced Settings</h4>
+                
+                <div class="form-group">
+                    <label for="rateLimit">Rate Limiting</label>
+                    <select class="form-control" id="rateLimit">
+                        <option value="low">Conservative (Lowest Cost)</option>
+                        <option value="medium" selected>Balanced</option>
+                        <option value="high">Aggressive (Best Performance)</option>
+                    </select>
+                    <small class="form-text text-muted">Control API usage and costs</small>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="fallbackBehavior">Fallback Behavior</label>
+                    <select class="form-control" id="fallbackBehavior">
+                        <option value="next-model">Try Next Available Model</option>
+                        <option value="cache">Use Cached Response</option>
+                        <option value="error">Return Error</option>
+                    </select>
+                    <small class="form-text text-muted">What to do when primary model is unavailable</small>
+                </div>
+
+                <div class="form-check mt-3">
+                    <input class="form-check-input" type="checkbox" id="cacheResponses" checked>
+                    <label class="form-check-label" for="cacheResponses">
+                        Cache API Responses
+                    </label>
+                    <small class="form-text text-muted d-block">Save responses to reduce API calls and costs</small>
+                </div>
+            </div>
+            
+            <div class="navigation-buttons">
+                <button type="button" class="btn btn-back" onclick="window.parent.postMessage({action: 'back'}, '*')">Back</button>
+                <button type="button" class="btn btn-next" onclick="window.parent.postMessage({action: 'next'}, '*')">Next</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function testAPI(provider) {
+            const responseDiv = document.getElementById(`${provider}Response`);
+            responseDiv.style.display = 'block';
+            responseDiv.innerHTML = 'Testing connection...';
+            
+            // Simulate API test
+            setTimeout(() => {
+                const responses = {
+                    openai: 'Connection successful! Model: GPT-4 Turbo',
+                    anthropic: 'Connected to Claude 3 Opus',
+                    stability: 'SDXL engine ready',
+                    elevenlabs: 'Voice synthesis available',
+                    midjourney: 'Discord webhook configured'
+                };
+                responseDiv.innerHTML = responses[provider] || 'Test completed';
+            }, 1000);
+        }
+
+        document.getElementById('aiApisForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add form submission logic here
+        });
+    </script>
+</body>
+</html> 

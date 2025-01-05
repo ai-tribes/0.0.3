@@ -1,0 +1,315 @@
+<div class="section-content">
+    <h4 class="mb-4">PFP NFT Collection</h4>
+    
+    <!-- Instructions Box -->
+    <div class="alert alert-info mb-4">
+        <h6 class="alert-heading"><i class="fas fa-info-circle me-2"></i>Choose Your Style</h6>
+        <p class="mb-0">Select a style and let AI help generate your collection</p>
+    </div>
+    
+    <form id="pfpForm">
+        <!-- Style Selection -->
+        <div class="style-selection mb-4">
+            <div class="row g-4">
+                <!-- Pixel Art Style -->
+                <div class="col-md-4">
+                    <div class="style-card p-4 border rounded h-100 text-center style-selectable" onclick="selectStyle('pixel')">
+                        <div class="style-preview mb-3">
+                            <div class="preview-grid">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAGUSURBVFiF7ZY9TsNAEIXfzK4dO8EJICFBQQEFPQfgElyEY3AGzsDvQTgBFQ0SoqGCIhQrwf6Z2aGwE2M7JpGcAgGvstLO7Mx7b3Z3xgL+9VdFvV5/KpVKm5TSdQDY3dEYRdFDEAQbhJBbSulGsVjcchwn2GV8FEXPhUJhDQDCMHwvl8urjLFbzvkDpXRj1/hJkrw5jrNCCNkMguBVCPFUqVTu4zj+8H3/bF4AKSU8z1sXQjxJKd+llOu2bV+YpnkupVxljF3N9QYQhuG767pLtm2fCyFWpZTvnPMNxthlu91+nRuAEIIwxlYMw7jgnK9JKT8451d9QcwFII7jD9/3zzjnV0KINSHEixDiudlsPjiOU+Wcr84FwPO8pTAM3wkhG1LKNynlS7lcXrYsq8Y5X58LQKPR2MqybD1N0w0p5asQ4tm27QvTNM/SNL2bGwAhJEuS5M1xnGXLss6llM9SynXG2GWr1fqcGwAAZFn2nSTJO2NsxTTNMyHEkxBiLUmSTdd1l+YK8K/fqy+OlrQ4uPqCwwAAAABJRU5ErkJggg==" alt="Pixel Sample 1" class="sample-preview">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAGUSURBVFiF7ZY9TsNAEIXfzK4dO8EJICFBQQEFPQfgElyEY3AGzsDvQTgBFQ0SoqGCIhQrwf6Z2aGwE2M7JpGcAgGvstLO7Mx7b3Z3xgL+9VdFvV5/KpVKm5TSdQDY3dEYRdFDEAQbhJBbSulGsVjcchwn2GV8FEXPhUJhDQDCMHwvl8urjLFbzvkDpXRj1/hJkrw5jrNCCNkMguBVCPFUqVTu4zj+8H3/bF4AKSU8z1sXQjxJKd+llOu2bV+YpnkupVxljF3N9QYQhuG767pLtm2fCyFWpZTvnPMNxthlu91+nRuAEIIwxlYMw7jgnK9JKT8451d9QcwFII7jD9/3zzjnV0KINSHEixDiudlsPjiOU+Wcr84FwPO8pTAM3wkhG1LKNynlS7lcXrYsq8Y5X58LQKPR2MqybD1N0w0p5asQ4tm27QvTNM/SNL2bGwAhJEuS5M1xnGXLss6llM9SynXG2GWr1fqcGwAAZFn2nSTJO2NsxTTNMyHEkxBiLUmSTdd1l+YK8K/fqy+OlrQ4uPqCwwAAAABJRU5ErkJggg==" alt="Pixel Sample 2" class="sample-preview">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAGUSURBVFiF7ZY9TsNAEIXfzK4dO8EJICFBQQEFPQfgElyEY3AGzsDvQTgBFQ0SoqGCIhQrwf6Z2aGwE2M7JpGcAgGvstLO7Mx7b3Z3xgL+9VdFvV5/KpVKm5TSdQDY3dEYRdFDEAQbhJBbSulGsVjcchwn2GV8FEXPhUJhDQDCMHwvl8urjLFbzvkDpXRj1/hJkrw5jrNCCNkMguBVCPFUqVTu4zj+8H3/bF4AKSU8z1sXQjxJKd+llOu2bV+YpnkupVxljF3N9QYQhuG767pLtm2fCyFWpZTvnPMNxthlu91+nRuAEIIwxlYMw7jgnK9JKT8451d9QcwFII7jD9/3zzjnV0KINSHEixDiudlsPjiOU+Wcr84FwPO8pTAM3wkhG1LKNynlS7lcXrYsq8Y5X58LQKPR2MqybD1N0w0p5asQ4tm27QvTNM/SNL2bGwAhJEuS5M1xnGXLss6llM9SynXG2GWr1fqcGwAAZFn2nSTJO2NsxTTNMyHEkxBiLUmSTdd1l+YK8K/fqy+OlrQ4uPqCwwAAAABJRU5ErkJggg==" alt="Pixel Sample 3" class="sample-preview">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAGUSURBVFiF7ZY9TsNAEIXfzK4dO8EJICFBQQEFPQfgElyEY3AGzsDvQTgBFQ0SoqGCIhQrwf6Z2aGwE2M7JpGcAgGvstLO7Mx7b3Z3xgL+9VdFvV5/KpVKm5TSdQDY3dEYRdFDEAQbhJBbSulGsVjcchwn2GV8FEXPhUJhDQDCMHwvl8urjLFbzvkDpXRj1/hJkrw5jrNCCNkMguBVCPFUqVTu4zj+8H3/bF4AKSU8z1sXQjxJKd+llOu2bV+YpnkupVxljF3N9QYQhuG767pLtm2fCyFWpZTvnPMNxthlu91+nRuAEIIwxlYMw7jgnK9JKT8451d9QcwFII7jD9/3zzjnV0KINSHEixDiudlsPjiOU+Wcr84FwPO8pTAM3wkhG1LKNynlS7lcXrYsq8Y5X58LQKPR2MqybD1N0w0p5asQ4tm27QvTNM/SNL2bGwAhJEuS5M1xnGXLss6llM9SynXG2GWr1fqcGwAAZFn2nSTJO2NsxTTNMyHEkxBiLUmSTdd1l+YK8K/fqy+OlrQ4uPqCwwAAAABJRU5ErkJggg==" alt="Pixel Sample 4" class="sample-preview">
+                            </div>
+                        </div>
+                        <h5>Pixel Art</h5>
+                        <p class="text-muted mb-3">Retro-inspired pixel art characters</p>
+                        <span class="badge bg-primary">Popular Choice</span>
+                        <div class="style-features mt-3">
+                            <small class="text-muted">
+                                <i class="fas fa-check-circle text-success me-1"></i>32x32 Pixel Art<br>
+                                <i class="fas fa-check-circle text-success me-1"></i>AI-Generated Variations<br>
+                                <i class="fas fa-check-circle text-success me-1"></i>Retro Color Palettes
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Anime Style -->
+                <div class="col-md-4">
+                    <div class="style-card p-4 border rounded h-100 text-center style-selectable" onclick="selectStyle('anime')">
+                        <div class="style-preview mb-3">
+                            <div class="preview-grid">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAGUSURBVFiF7ZY9TsNAEIXfzK4dO8EJICFBQQEFPQfgElyEY3AGzsDvQTgBFQ0SoqGCIhQrwf6Z2aGwE2M7JpGcAgGvstLO7Mx7b3Z3xgL+9VdFvV5/KpVKm5TSdQDY3dEYRdFDEAQbhJBbSulGsVjcchwn2GV8FEXPhUJhDQDCMHwvl8urjLFbzvkDpXRj1/hJkrw5jrNCCNkMguBVCPFUqVTu4zj+8H3/bF4AKSU8z1sXQjxJKd+llOu2bV+YpnkupVxljF3N9QYQhuG767pLtm2fCyFWpZTvnPMNxthlu91+nRuAEIIwxlYMw7jgnK9JKT8451d9QcwFII7jD9/3zzjnV0KINSHEixDiudlsPjiOU+Wcr84FwPO8pTAM3wkhG1LKNynlS7lcXrYsq8Y5X58LQKPR2MqybD1N0w0p5asQ4tm27QvTNM/SNL2bGwAhJEuS5M1xnGXLss6llM9SynXG2GWr1fqcGwAAZFn2nSTJO2NsxTTNMyHEkxBiLUmSTdd1l+YK8K/fqy+OlrQ4uPqCwwAAAABJRU5ErkJggg==" alt="Anime Sample 1" class="sample-preview">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAGUSURBVFiF7ZY9TsNAEIXfzK4dO8EJICFBQQEFPQfgElyEY3AGzsDvQTgBFQ0SoqGCIhQrwf6Z2aGwE2M7JpGcAgGvstLO7Mx7b3Z3xgL+9VdFvV5/KpVKm5TSdQDY3dEYRdFDEAQbhJBbSulGsVjcchwn2GV8FEXPhUJhDQDCMHwvl8urjLFbzvkDpXRj1/hJkrw5jrNCCNkMguBVCPFUqVTu4zj+8H3/bF4AKSU8z1sXQjxJKd+llOu2bV+YpnkupVxljF3N9QYQhuG767pLtm2fCyFWpZTvnPMNxthlu91+nRuAEIIwxlYMw7jgnK9JKT8451d9QcwFII7jD9/3zzjnV0KINSHEixDiudlsPjiOU+Wcr84FwPO8pTAM3wkhG1LKNynlS7lcXrYsq8Y5X58LQKPR2MqybD1N0w0p5asQ4tm27QvTNM/SNL2bGwAhJEuS5M1xnGXLss6llM9SynXG2GWr1fqcGwAAZFn2nSTJO2NsxTTNMyHEkxBiLUmSTdd1l+YK8K/fqy+OlrQ4uPqCwwAAAABJRU5ErkJggg==" alt="Anime Sample 2" class="sample-preview">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAGUSURBVFiF7ZY9TsNAEIXfzK4dO8EJICFBQQEFPQfgElyEY3AGzsDvQTgBFQ0SoqGCIhQrwf6Z2aGwE2M7JpGcAgGvstLO7Mx7b3Z3xgL+9VdFvV5/KpVKm5TSdQDY3dEYRdFDEAQbhJBbSulGsVjcchwn2GV8FEXPhUJhDQDCMHwvl8urjLFbzvkDpXRj1/hJkrw5jrNCCNkMguBVCPFUqVTu4zj+8H3/bF4AKSU8z1sXQjxJKd+llOu2bV+YpnkupVxljF3N9QYQhuG767pLtm2fCyFWpZTvnPMNxthlu91+nRuAEIIwxlYMw7jgnK9JKT8451d9QcwFII7jD9/3zzjnV0KINSHEixDiudlsPjiOU+Wcr84FwPO8pTAM3wkhG1LKNynlS7lcXrYsq8Y5X58LQKPR2MqybD1N0w0p5asQ4tm27QvTNM/SNL2bGwAhJEuS5M1xnGXLss6llM9SynXG2GWr1fqcGwAAZFn2nSTJO2NsxTTNMyHEkxBiLUmSTdd1l+YK8K/fqy+OlrQ4uPqCwwAAAABJRU5ErkJggg==" alt="Anime Sample 3" class="sample-preview">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAGUSURBVFiF7ZY9TsNAEIXfzK4dO8EJICFBQQEFPQfgElyEY3AGzsDvQTgBFQ0SoqGCIhQrwf6Z2aGwE2M7JpGcAgGvstLO7Mx7b3Z3xgL+9VdFvV5/KpVKm5TSdQDY3dEYRdFDEAQbhJBbSulGsVjcchwn2GV8FEXPhUJhDQDCMHwvl8urjLFbzvkDpXRj1/hJkrw5jrNCCNkMguBVCPFUqVTu4zj+8H3/bF4AKSU8z1sXQjxJKd+llOu2bV+YpnkupVxljF3N9QYQhuG767pLtm2fCyFWpZTvnPMNxthlu91+nRuAEIIwxlYMw7jgnK9JKT8451d9QcwFII7jD9/3zzjnV0KINSHEixDiudlsPjiOU+Wcr84FwPO8pTAM3wkhG1LKNynlS7lcXrYsq8Y5X58LQKPR2MqybD1N0w0p5asQ4tm27QvTNM/SNL2bGwAhJEuS5M1xnGXLss6llM9SynXG2GWr1fqcGwAAZFn2nSTJO2NsxTTNMyHEkxBiLUmSTdd1l+YK8K/fqy+OlrQ4uPqCwwAAAABJRU5ErkJggg==" alt="Anime Sample 4" class="sample-preview">
+                            </div>
+                        </div>
+                        <h5>Anime</h5>
+                        <p class="text-muted mb-3">Japanese anime-inspired characters</p>
+                        <span class="badge bg-info">Trending</span>
+                        <div class="style-features mt-3">
+                            <small class="text-muted">
+                                <i class="fas fa-check-circle text-success me-1"></i>Anime Art Style<br>
+                                <i class="fas fa-check-circle text-success me-1"></i>AI-Generated Variations<br>
+                                <i class="fas fa-check-circle text-success me-1"></i>Dynamic Poses
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom Style -->
+                <div class="col-md-4">
+                    <div class="style-card p-4 border rounded h-100 text-center style-selectable" onclick="selectStyle('custom')">
+                        <div class="style-preview mb-3">
+                            <div class="preview-grid custom-grid">
+                                <div class="custom-sample">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                                <div class="custom-sample">
+                                    <i class="fas fa-image"></i>
+                                </div>
+                                <div class="custom-sample">
+                                    <i class="fas fa-layer-group"></i>
+                                </div>
+                                <div class="custom-sample">
+                                    <i class="fas fa-magic"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <h5>Custom Design</h5>
+                        <p class="text-muted mb-3">Create your own unique style</p>
+                        <span class="badge bg-secondary">Advanced</span>
+                        <div class="style-features mt-3">
+                            <small class="text-muted">
+                                <i class="fas fa-check-circle text-success me-1"></i>Full Customization<br>
+                                <i class="fas fa-check-circle text-success me-1"></i>AI-Generated Variations<br>
+                                <i class="fas fa-check-circle text-success me-1"></i>Layer Management
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generation Method (shows after style selection) -->
+        <div id="generationMethod" class="mb-4 pb-3 border-bottom d-none">
+            <h5>Generation Method</h5>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="method-card p-4 border rounded text-center method-selectable" onclick="selectMethod('ai')">
+                        <i class="fas fa-robot fa-3x text-primary mb-3"></i>
+                        <h6>AI Generation</h6>
+                        <p class="text-muted">Let AI generate variations based on your style preferences</p>
+                        <span class="badge bg-success">Recommended</span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="method-card p-4 border rounded text-center method-selectable" onclick="selectMethod('manual')">
+                        <i class="fas fa-layer-group fa-3x text-secondary mb-3"></i>
+                        <h6>Manual Layers</h6>
+                        <p class="text-muted">Upload your own artwork and manage layers</p>
+                        <span class="badge bg-secondary">Advanced</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Generation Options -->
+        <div id="aiOptions" class="mb-4 pb-3 border-bottom d-none">
+            <h5>AI Generation Settings</h5>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Base Style Prompt</label>
+                    <textarea class="form-control" rows="2" placeholder="Describe your desired art style..."></textarea>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Sample Image (Optional)</label>
+                    <input type="file" class="form-control" accept="image/*">
+                    <small class="text-muted">Upload a reference image for the AI</small>
+                </div>
+                <div class="col-12">
+                    <button type="button" class="btn btn-outline-primary" onclick="generateSamples()">
+                        <i class="fas fa-magic me-2"></i>Generate Samples
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manual Layer Options -->
+        <div id="layerOptions" class="mb-4 pb-3 border-bottom d-none">
+            <!-- Previous layer management UI -->
+        </div>
+
+        <!-- Collection Settings -->
+        <div id="collectionSettings" class="mb-4 pb-3 border-bottom d-none">
+            <h5>Collection Settings</h5>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Collection Name</label>
+                    <input type="text" name="collectionName" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Collection Size</label>
+                    <input type="number" name="collectionSize" class="form-control" required>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label">Blockchain Networks</label>
+                    <div class="network-options">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="bsv" checked>
+                            <label class="form-check-label">BSV</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="eth">
+                            <label class="form-check-label">ETH</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="sol">
+                            <label class="form-check-label">Solana</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preview Section -->
+        <div id="previewSection" class="mb-4 d-none">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5>Preview Generated NFTs</h5>
+                <button type="button" class="btn btn-outline-primary" onclick="refreshPreview()">
+                    <i class="fas fa-sync-alt me-2"></i>Generate More
+                </button>
+            </div>
+            <div class="preview-grid row g-3">
+                <!-- Preview images will be added here -->
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Save & Continue
+        </button>
+    </form>
+</div>
+
+<style>
+.style-selectable {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.style-selectable:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.style-selectable.selected {
+    border-color: #0d6efd;
+    background-color: rgba(13, 110, 253, 0.05);
+}
+
+.method-selectable {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.method-selectable:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.method-selectable.selected {
+    border-color: #0d6efd;
+    background-color: rgba(13, 110, 253, 0.05);
+}
+
+.preview-grid img {
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+.preview-grid img:hover {
+    transform: scale(1.05);
+}
+</style>
+
+<!-- Trait Items Modal -->
+<div class="modal fade" id="traitItemsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Manage Trait Items</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="trait-items-list">
+                    <!-- Item upload form -->
+                    <div class="upload-form mb-3">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <input type="file" class="form-control" accept="image/*">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" placeholder="Item name">
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select">
+                                    <option value="common">Common</option>
+                                    <option value="uncommon">Uncommon</option>
+                                    <option value="rare">Rare</option>
+                                    <option value="legendary">Legendary</option>
+                                </select>
+                            </div>
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-primary" onclick="uploadTraitItem()">
+                                    <i class="fas fa-upload"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Items grid -->
+                    <div class="items-grid row g-3">
+                        <!-- Items will be added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Layer Template -->
+<template id="traitLayerTemplate">
+    <div class="trait-layer mb-3 p-3 border rounded">
+        <div class="row g-3">
+            <div class="col-md-3">
+                <label class="form-label">Layer Name</label>
+                <input type="text" class="form-control layer-name" placeholder="e.g., Eyes">
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Z-Index</label>
+                <input type="number" class="form-control z-index" placeholder="Layer order">
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">Required</label>
+                <div class="form-check mt-2">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Must have one</label>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Items</label>
+                <button type="button" class="btn btn-outline-secondary btn-sm w-100" onclick="manageTraitItems(this)">
+                    Manage Items
+                </button>
+            </div>
+            <div class="col-md-1">
+                <label class="form-label">&nbsp;</label>
+                <button type="button" class="btn btn-outline-danger btn-sm w-100" onclick="removeTraitLayer(this)">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</template> 

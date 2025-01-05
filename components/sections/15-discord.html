@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="/assets/css/sections.css" rel="stylesheet">
+    <style>
+        .setup-steps {
+            counter-reset: step;
+        }
+        
+        .setup-step {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .setup-step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: #e9ecef;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .test-response {
+            display: none;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .test-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .test-error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .channel-list {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 0.5rem;
+        }
+
+        .channel-item {
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            background: #f8f9fa;
+        }
+
+        .channel-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .bot-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            color: #0d6efd;
+            margin-bottom: 0.5rem;
+        }
+
+        .role-config {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="section-container">
+        <h2 class="section-title">Setup Discord</h2>
+        <p class="section-description">Connect your tribe's Discord server and configure bot features</p>
+
+        <form id="discordForm">
+            <!-- Setup Instructions -->
+            <div class="alert alert-info mb-4">
+                <h6 class="alert-heading mb-3"><i class="fas fa-info-circle me-2"></i>Setup Requirements</h6>
+                <div class="setup-steps">
+                    <div class="setup-step">Create a Discord server for your tribe</div>
+                    <div class="setup-step">Create a new application in Discord Developer Portal</div>
+                    <div class="setup-step">Add a bot to your application and get the token</div>
+                    <div class="setup-step">Enable required bot permissions</div>
+                    <div class="setup-step">Invite the bot to your server</div>
+                </div>
+            </div>
+
+            <!-- Server Configuration -->
+            <div class="mb-4">
+                <h4 class="mb-3">Server Configuration</h4>
+                
+                <div class="mb-3">
+                    <label class="form-label" for="serverName">Server Name</label>
+                    <input type="text" class="form-control" id="serverName" 
+                           placeholder="Your Tribe HQ" required>
+                    <div class="form-text">The name of your Discord server</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="serverId">Server ID</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="serverId" 
+                               placeholder="123456789012345678" required>
+                        <button class="btn btn-outline-primary" type="button" onclick="verifyServer()">
+                            Verify Server
+                        </button>
+                    </div>
+                    <div class="form-text">Enable Developer Mode and right-click server to copy ID</div>
+                    <div id="serverVerification" class="test-response"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="botToken">Bot Token</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="botToken" required>
+                        <button class="btn btn-outline-primary" type="button" onclick="verifyBot()">
+                            Verify Bot
+                        </button>
+                    </div>
+                    <div class="form-text">Your Discord bot token from Developer Portal</div>
+                    <div id="botVerification" class="test-response"></div>
+                </div>
+            </div>
+
+            <!-- Bot Features -->
+            <div class="mb-4">
+                <h4 class="mb-3">Bot Features</h4>
+                
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="welcomeMessages" checked>
+                    <label class="form-check-label" for="welcomeMessages">
+                        Welcome Messages
+                    </label>
+                    <small class="form-text d-block">Send custom welcome messages to new members</small>
+                </div>
+
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="autoModeration" checked>
+                    <label class="form-check-label" for="autoModeration">
+                        Auto Moderation
+                    </label>
+                    <small class="form-text d-block">Automatically moderate content and users</small>
+                </div>
+
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="roleManagement" checked>
+                    <label class="form-check-label" for="roleManagement">
+                        Role Management
+                    </label>
+                    <small class="form-text d-block">Automatic role assignment and management</small>
+                </div>
+
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="aiAssistant">
+                    <label class="form-check-label" for="aiAssistant">
+                        AI Assistant
+                    </label>
+                    <small class="form-text d-block">Enable AI-powered chat assistance</small>
+                </div>
+            </div>
+
+            <!-- Role Configuration -->
+            <div class="role-config">
+                <h5 class="mb-3">Role Configuration</h5>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Default Member Role</label>
+                        <input type="text" class="form-control" placeholder="Member">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Admin Role</label>
+                        <input type="text" class="form-control" placeholder="Admin">
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Custom Roles (comma-separated)</label>
+                        <input type="text" class="form-control" placeholder="Moderator, Contributor, VIP">
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons mt-4">
+                <button type="button" class="btn btn-back" onclick="window.parent.postMessage({action: 'back'}, '*')">Back</button>
+                <button type="button" class="btn btn-next" onclick="window.parent.postMessage({action: 'next'}, '*')">Next</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function verifyServer() {
+            const serverId = document.getElementById('serverId').value;
+            const verification = document.getElementById('serverVerification');
+            
+            verification.style.display = 'block';
+            verification.innerHTML = 'Verifying Discord server...';
+            verification.className = 'test-response';
+            
+            // Simulate API verification
+            setTimeout(() => {
+                if (serverId.length === 18) {
+                    verification.innerHTML = 'Discord server verified successfully!';
+                    verification.classList.add('test-success');
+                } else {
+                    verification.innerHTML = 'Invalid server ID. Please check and try again.';
+                    verification.classList.add('test-error');
+                }
+            }, 1500);
+        }
+
+        function verifyBot() {
+            const token = document.getElementById('botToken').value;
+            const verification = document.getElementById('botVerification');
+            
+            verification.style.display = 'block';
+            verification.innerHTML = 'Verifying bot token...';
+            verification.className = 'test-response';
+            
+            // Simulate API verification
+            setTimeout(() => {
+                if (token.length > 50) {
+                    verification.innerHTML = 'Bot token verified! Bot is ready to join.';
+                    verification.classList.add('test-success');
+                } else {
+                    verification.innerHTML = 'Invalid bot token. Please check Developer Portal.';
+                    verification.classList.add('test-error');
+                }
+            }, 1500);
+        }
+
+        document.getElementById('discordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add form submission logic here
+        });
+    </script>
+</body>
+</html> 

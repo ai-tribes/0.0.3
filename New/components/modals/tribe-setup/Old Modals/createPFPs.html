@@ -1,0 +1,37 @@
+<div id="createPFPs" class="section mb-3">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="h5">Create Your Tribe's PFP NFTs</h2>
+            <form onsubmit="return handlePFPSubmit(event)">
+                <div class="mb-3">
+                    <label class="form-label">Collection Name</label>
+                    <input type="text" class="form-control" id="collectionName" placeholder="Collection Name" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Collection Size</label>
+                    <input type="number" class="form-control" id="collectionSize" placeholder="Number of NFTs" required min="1" max="10000">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Style Description</label>
+                    <textarea class="form-control" id="stylePrompt" rows="3" placeholder="Describe the style of your PFPs..." required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Traits</label>
+                    <div id="traitsList">
+                        <div class="trait-item mb-2">
+                            <input type="text" class="form-control" placeholder="Trait name (e.g., Background, Hair, Eyes)">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-secondary" onclick="addTraitField()">+ Add Trait</button>
+                </div>
+                <button type="submit" class="btn btn-custom btn-sm">Generate PFP Collection</button>
+            </form>
+            <div id="pfpPreview" class="mt-3 d-none">
+                <h6>Preview</h6>
+                <div class="row" id="pfpPreviewImages">
+                    <!-- Preview images will be added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

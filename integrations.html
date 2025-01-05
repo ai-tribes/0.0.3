@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Integrations - AI Tribes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <style>
+        .integration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .integration-card {
+            background: var(--bs-body-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .integration-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--bs-border-color);
+        }
+
+        .integration-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+        }
+
+        .integration-content {
+            padding: 1.5rem;
+        }
+
+        .integration-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: var(--bs-gray-100);
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .integration-status {
+            background: var(--bs-gray-100);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .integration-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--bs-border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Include your navbar here -->
+
+    <div class="container mt-5 pt-5">
+        <h1 class="mb-4">Platform Integrations</h1>
+        
+        <div class="integration-grid">
+            <!-- Google AI Integration -->
+            <div class="integration-card">
+                <div class="integration-header">
+                    <img src="assets/icons/google-ai.svg" alt="Google AI" class="integration-icon">
+                    <div>
+                        <h4 class="mb-0">Google AI</h4>
+                        <span class="badge bg-success">Active</span>
+                    </div>
+                </div>
+                <div class="integration-content">
+                    <p>Access Google's advanced AI models and services.</p>
+                    <div class="integration-features">
+                        <div class="feature">
+                            <i class="fas fa-brain"></i>
+                            <span>PaLM API</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-code"></i>
+                            <span>Gemini</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="integration-footer">
+                    <a href="https://ai.google/discover" target="_blank" class="btn btn-link">Learn More</a>
+                    <button class="btn btn-primary" onclick="configureIntegration('google')">Configure</button>
+                </div>
+            </div>
+
+            <!-- OpenAI Integration -->
+            <div class="integration-card">
+                <div class="integration-header">
+                    <img src="assets/icons/openai.svg" alt="OpenAI" class="integration-icon">
+                    <div>
+                        <h4 class="mb-0">OpenAI</h4>
+                        <span class="badge bg-success">Active</span>
+                    </div>
+                </div>
+                <div class="integration-content">
+                    <p>Integrate with OpenAI's powerful language models.</p>
+                    <div class="integration-features">
+                        <div class="feature">
+                            <i class="fas fa-robot"></i>
+                            <span>GPT-4</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-image"></i>
+                            <span>DALL·E 3</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="integration-footer">
+                    <a href="https://openai.com" target="_blank" class="btn btn-link">Learn More</a>
+                    <button class="btn btn-primary" onclick="configureIntegration('openai')">Configure</button>
+                </div>
+            </div>
+
+            <!-- GitHub Integration -->
+            <div class="integration-card">
+                <div class="integration-header">
+                    <img src="assets/icons/github.svg" alt="GitHub" class="integration-icon">
+                    <div>
+                        <h4 class="mb-0">GitHub</h4>
+                        <span class="badge bg-success">Active</span>
+                    </div>
+                </div>
+                <div class="integration-content">
+                    <p>Manage code repositories and development workflows.</p>
+                    <div class="integration-features">
+                        <div class="feature">
+                            <i class="fas fa-code-branch"></i>
+                            <span>Repositories</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-tasks"></i>
+                            <span>Actions</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="integration-footer">
+                    <a href="https://github.com" target="_blank" class="btn btn-link">Learn More</a>
+                    <button class="btn btn-primary" onclick="configureIntegration('github')">Configure</button>
+                </div>
+            </div>
+
+            <!-- Add more integration cards as needed -->
+        </div>
+    </div>
+
+    <script>
+        function configureIntegration(platform) {
+            // Handle integration configuration
+            console.log(`Configuring ${platform} integration`);
+        }
+    </script>
+</body>
+</html> 

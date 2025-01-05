@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="section-content">
+        <h4 class="mb-4">Brand & Design</h4>
+
+        <!-- Logo & PFP Section -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Logo & Profile Pictures</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <!-- Main Logo -->
+                    <div class="col-md-4">
+                        <label class="form-label">Main Logo</label>
+                        <div class="upload-box mb-2">
+                            <i class="fas fa-cloud-upload-alt mb-2"></i>
+                            <div>Drag & drop or click to upload</div>
+                            <small class="text-muted">Recommended: 512x512px PNG</small>
+                            <input type="file" class="d-none" accept="image/*">
+                        </div>
+                    </div>
+
+                    <!-- PFP Collection -->
+                    <div class="col-md-4">
+                        <label class="form-label">PFP Collection</label>
+                        <div class="upload-box mb-2">
+                            <i class="fas fa-images mb-2"></i>
+                            <div>Upload PFP Collection</div>
+                            <small class="text-muted">ZIP file with PNG/JPG images</small>
+                            <input type="file" class="d-none" accept=".zip">
+                        </div>
+                    </div>
+
+                    <!-- Banner Image -->
+                    <div class="col-md-4">
+                        <label class="form-label">Banner Image</label>
+                        <div class="upload-box mb-2">
+                            <i class="fas fa-image mb-2"></i>
+                            <div>Upload Banner</div>
+                            <small class="text-muted">Recommended: 1500x500px</small>
+                            <input type="file" class="d-none" accept="image/*">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Color Scheme -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Color Scheme</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label class="form-label">Primary Color</label>
+                        <div class="input-group">
+                            <input type="color" class="form-control form-control-color" value="#4ECDC4">
+                            <input type="text" class="form-control" value="#4ECDC4">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Secondary Color</label>
+                        <div class="input-group">
+                            <input type="color" class="form-control form-control-color" value="#FF6B6B">
+                            <input type="text" class="form-control" value="#FF6B6B">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Accent Color</label>
+                        <div class="input-group">
+                            <input type="color" class="form-control form-control-color" value="#45B7D1">
+                            <input type="text" class="form-control" value="#45B7D1">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Background Color</label>
+                        <div class="input-group">
+                            <input type="color" class="form-control form-control-color" value="#FFFFFF">
+                            <input type="text" class="form-control" value="#FFFFFF">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Typography -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Typography</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label class="form-label">Heading Font</label>
+                        <select class="form-select">
+                            <option value="Inter">Inter</option>
+                            <option value="Roboto">Roboto</option>
+                            <option value="Poppins">Poppins</option>
+                            <option value="custom">Custom Font...</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Body Font</label>
+                        <select class="form-select">
+                            <option value="Inter">Inter</option>
+                            <option value="Roboto">Roboto</option>
+                            <option value="Poppins">Poppins</option>
+                            <option value="custom">Custom Font...</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design Elements -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Design Elements</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label class="form-label">Button Style</label>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-primary">Rounded</button>
+                            <button class="btn btn-primary" style="border-radius: 0">Square</button>
+                            <button class="btn btn-primary" style="border-radius: 25px">Pill</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Card Style</label>
+                        <div class="d-flex gap-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="cardStyle" checked>
+                                <label class="form-check-label">Rounded</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="cardStyle">
+                                <label class="form-check-label">Sharp</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Brand Identity -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Brand Identity</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <!-- Brand Voice -->
+                    <div class="col-md-6">
+                        <label class="form-label">Brand Voice</label>
+                        <select class="form-select mb-2">
+                            <option value="professional">Professional & Formal</option>
+                            <option value="casual">Casual & Friendly</option>
+                            <option value="playful">Playful & Fun</option>
+                            <option value="technical">Technical & Precise</option>
+                            <option value="custom">Custom...</option>
+                        </select>
+                    </div>
+
+                    <!-- Brand Personality -->
+                    <div class="col-md-6">
+                        <label class="form-label">Brand Personality</label>
+                        <div class="d-flex flex-wrap gap-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="innovative">
+                                <label class="form-check-label" for="innovative">Innovative</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="trustworthy">
+                                <label class="form-check-label" for="trustworthy">Trustworthy</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="friendly">
+                                <label class="form-check-label" for="friendly">Friendly</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="professional">
+                                <label class="form-check-label" for="professional">Professional</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NFT Collection Design -->
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">NFT Collection Design</h5>
+                <button class="btn btn-sm btn-outline-primary">
+                    <i class="fas fa-plus me-2"></i>Add Trait
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <!-- Base Character -->
+                    <div class="col-md-4">
+                        <label class="form-label">Base Character</label>
+                        <div class="upload-box mb-2">
+                            <i class="fas fa-user mb-2"></i>
+                            <div>Upload Base Design</div>
+                            <small class="text-muted">PNG with transparent background</small>
+                        </div>
+                    </div>
+
+                    <!-- Traits -->
+                    <div class="col-md-8">
+                        <label class="form-label">Trait Categories</label>
+                        <div class="trait-list">
+                            <div class="trait-item p-3 border rounded mb-2">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h6 class="mb-0">Background</h6>
+                                    <button class="btn btn-sm btn-outline-primary">Add Variant</button>
+                                </div>
+                                <div class="trait-variants d-flex gap-2">
+                                    <div class="trait-variant">
+                                        <div class="color-box" style="background: #4ECDC4"></div>
+                                        <small>Aqua</small>
+                                    </div>
+                                    <div class="trait-variant">
+                                        <div class="color-box" style="background: #FF6B6B"></div>
+                                        <small>Coral</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Visual Elements -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Visual Elements</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <!-- Icons -->
+                    <div class="col-md-6">
+                        <label class="form-label">Icon Style</label>
+                        <div class="d-flex gap-3 mb-3">
+                            <div class="icon-style-option text-center">
+                                <div class="icon-preview rounded p-3 mb-2">
+                                    <i class="fas fa-solid fa-icons"></i>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="iconStyle" checked>
+                                    <label class="form-check-label">Solid</label>
+                                </div>
+                            </div>
+                            <div class="icon-style-option text-center">
+                                <div class="icon-preview rounded p-3 mb-2">
+                                    <i class="far fa-regular fa-icons"></i>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="iconStyle">
+                                    <label class="form-check-label">Regular</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Illustrations -->
+                    <div class="col-md-6">
+                        <label class="form-label">Illustration Style</label>
+                        <select class="form-select mb-2">
+                            <option value="flat">Flat Design</option>
+                            <option value="3d">3D Design</option>
+                            <option value="hand-drawn">Hand Drawn</option>
+                            <option value="isometric">Isometric</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Animation & Motion -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Animation & Motion</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <!-- Transitions -->
+                    <div class="col-md-6">
+                        <label class="form-label">Page Transitions</label>
+                        <select class="form-select mb-2">
+                            <option value="fade">Fade</option>
+                            <option value="slide">Slide</option>
+                            <option value="zoom">Zoom</option>
+                            <option value="none">None</option>
+                        </select>
+                    </div>
+
+                    <!-- Hover Effects -->
+                    <div class="col-md-6">
+                        <label class="form-label">Hover Effects</label>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-primary hover-demo">Scale</button>
+                            <button class="btn btn-outline-primary hover-demo">Glow</button>
+                            <button class="btn btn-outline-primary hover-demo">Lift</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .upload-box {
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .upload-box:hover {
+            border-color: #0d6efd;
+            background: #f8f9fa;
+        }
+        .form-control-color {
+            width: 50px;
+        }
+        .color-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            margin-bottom: 4px;
+        }
+
+        .icon-preview {
+            background: #f8f9fa;
+            font-size: 24px;
+        }
+
+        .hover-demo.scale:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+
+        .hover-demo.glow:hover {
+            box-shadow: 0 0 10px rgba(13, 110, 253, 0.5);
+            transition: box-shadow 0.2s;
+        }
+
+        .hover-demo.lift:hover {
+            transform: translateY(-2px);
+            transition: transform 0.2s;
+        }
+
+        .trait-variant {
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        document.querySelectorAll('.upload-box').forEach(box => {
+            box.addEventListener('click', function() {
+                this.querySelector('input[type="file"]').click();
+            });
+        });
+    </script>
+</body>
+</html> 

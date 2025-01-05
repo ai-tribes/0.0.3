@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/sections.css" rel="stylesheet">
+</head>
+<body>
+    <div class="section-container">
+        <h2 class="section-title">Setup Domain</h2>
+        <p class="section-description">Configure your tribe's custom domain and DNS settings.</p>
+        
+        <form id="domainForm">
+            <div class="form-group">
+                <label for="domainName">Domain Name</label>
+                <input type="text" class="form-control" id="domainName" placeholder="mytribe.com">
+                <small class="form-text text-muted">Enter your domain name without http:// or www</small>
+            </div>
+
+            <div class="form-group">
+                <label for="registrar">Domain Registrar</label>
+                <select class="form-control" id="registrar">
+                    <option value="">Select your domain registrar</option>
+                    <option value="godaddy">GoDaddy</option>
+                    <option value="namecheap">Namecheap</option>
+                    <option value="cloudflare">Cloudflare</option>
+                    <option value="google">Google Domains</option>
+                    <option value="aws">Amazon Route 53</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>DNS Configuration</label>
+                <div class="card bg-light mb-3">
+                    <div class="card-body">
+                        <h6>Add these DNS records:</h6>
+                        <pre class="mb-2">
+Type: A
+Name: @
+Value: 76.76.21.21</pre>
+                        <pre>
+Type: CNAME
+Name: www
+Value: your-tribe.vercel.app</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="sslEnabled">
+                    <label class="form-check-label" for="sslEnabled">
+                        Enable SSL/HTTPS
+                    </label>
+                    <small class="form-text text-muted d-block">We recommend enabling SSL for secure connections</small>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="customSubdomains">Additional Subdomains (Optional)</label>
+                <input type="text" class="form-control" id="customSubdomains" placeholder="blog.mytribe.com, docs.mytribe.com">
+                <small class="form-text text-muted">Comma-separated list of additional subdomains</small>
+            </div>
+            
+            <div class="navigation-buttons">
+                <button type="button" class="btn btn-back" onclick="window.parent.postMessage({action: 'back'}, '*')">Back</button>
+                <button type="button" class="btn btn-next" onclick="window.parent.postMessage({action: 'next'}, '*')">Next</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('domainForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add form submission logic here
+        });
+    </script>
+</body>
+</html> 

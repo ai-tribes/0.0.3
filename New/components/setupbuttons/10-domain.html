@@ -1,0 +1,177 @@
+<div class="section-content">
+    <h4 class="mb-4">Domain & Hosting Setup</h4>
+    
+    <!-- Instructions Box -->
+    <div class="alert alert-info mb-4">
+        <h6 class="alert-heading"><i class="fas fa-info-circle me-2"></i>Setup Instructions</h6>
+        <ol class="mb-0">
+            <li>Choose or connect your domain registrar</li>
+            <li>Select your hosting provider</li>
+            <li>Configure basic services (website, email)</li>
+            <li>Set up agent access for website management</li>
+        </ol>
+    </div>
+    
+    <form id="domainForm">
+        <!-- Domain Registration -->
+        <div class="domain-section mb-4 pb-3 border-bottom">
+            <h5>Domain Configuration</h5>
+            <div class="alert alert-light border mb-3">
+                <small><i class="fas fa-lightbulb me-2"></i>Connect your domain or register a new one</small>
+            </div>
+            
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Domain Name</label>
+                    <div class="input-group">
+                        <input type="text" name="domainName" class="form-control" placeholder="yourtribe">
+                        <select class="form-select" style="max-width: 120px;" name="tld">
+                            <option value=".com">.com</option>
+                            <option value=".io">.io</option>
+                            <option value=".ai">.ai</option>
+                            <option value=".dao">.dao</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Registrar</label>
+                    <select class="form-select" name="registrar">
+                        <option value="namecheap">Namecheap</option>
+                        <option value="godaddy">GoDaddy</option>
+                        <option value="cloudflare">Cloudflare</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hosting Configuration -->
+        <div class="hosting-section mb-4 pb-3 border-bottom">
+            <h5>Hosting Setup</h5>
+            <div class="alert alert-light border mb-3">
+                <small><i class="fas fa-lightbulb me-2"></i>Configure where your tribe's website will be hosted</small>
+            </div>
+            
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Hosting Provider</label>
+                    <select class="form-select" name="hostingProvider" id="hostingProvider">
+                        <option value="vercel">Vercel (Recommended)</option>
+                        <option value="netlify">Netlify</option>
+                        <option value="digitalocean">DigitalOcean</option>
+                        <option value="aws">AWS</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Authentication Type</label>
+                    <select class="form-select" name="authType" id="authType">
+                        <option value="token">API Token</option>
+                        <option value="oauth">OAuth</option>
+                        <option value="key">Access Key</option>
+                    </select>
+                </div>
+                <div class="col-12" id="authDetails">
+                    <div class="input-group">
+                        <input type="password" class="form-control" name="authToken" placeholder="Enter your authentication token">
+                        <button type="button" class="btn btn-outline-primary" onclick="verifyHostingAuth()">
+                            Verify Access
+                        </button>
+                    </div>
+                    <small class="text-muted">Your credentials are encrypted and only used for deployment</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Services -->
+        <div class="services-section mb-4 pb-3 border-bottom">
+            <h5>Additional Services</h5>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="service-card p-3 border rounded">
+                        <h6><i class="fas fa-envelope me-2"></i>Email Configuration</h6>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="enableEmail" name="services[]" value="email">
+                            <label class="form-check-label" for="enableEmail">
+                                Enable Email Service
+                            </label>
+                        </div>
+                        <select class="form-select form-select-sm mt-2" name="emailProvider" disabled>
+                            <option value="google">Google Workspace</option>
+                            <option value="zoho">Zoho Mail</option>
+                            <option value="proton">Proton Mail</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="service-card p-3 border rounded">
+                        <h6><i class="fas fa-shield-alt me-2"></i>Security</h6>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="enableSSL" name="services[]" value="ssl" checked>
+                            <label class="form-check-label" for="enableSSL">
+                                Auto SSL/HTTPS
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="enableDDOS" name="services[]" value="ddos">
+                            <label class="form-check-label" for="enableDDOS">
+                                DDOS Protection
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Agent Access -->
+        <div class="agent-access mb-4">
+            <h5>Agent Website Access</h5>
+            <div class="alert alert-light border mb-3">
+                <small><i class="fas fa-lightbulb me-2"></i>Configure which agents can update the website</small>
+            </div>
+            
+            <div id="agentAccessList">
+                <!-- Agent access will be added here -->
+            </div>
+
+            <button type="button" class="btn btn-outline-primary mt-3" onclick="addAgentAccess()">
+                <i class="fas fa-plus me-2"></i>Add Agent Access
+            </button>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Save & Continue
+        </button>
+    </form>
+</div>
+
+<!-- Agent Access Template -->
+<template id="agentAccessTemplate">
+    <div class="agent-access-item mb-3 p-3 border rounded">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label">Agent Name</label>
+                <input type="text" class="form-control agent-name" placeholder="e.g., Content Agent">
+            </div>
+            <div class="col-md-8">
+                <label class="form-label">Website Permissions</label>
+                <div class="permission-checkboxes">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="content">
+                        <label class="form-check-label">Edit Content</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="deploy">
+                        <label class="form-check-label">Deploy Changes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="dns">
+                        <label class="form-check-label">Manage DNS</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-sm btn-outline-danger mt-2" onclick="removeAgentAccess(this)">
+            <i class="fas fa-trash me-2"></i>Remove Access
+        </button>
+    </div>
+</template> 

@@ -1,0 +1,25 @@
+<svg width="800" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="news-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e74c3c"/>
+      <stop offset="100%" style="stop-color:#c0392b"/>
+    </linearGradient>
+    <!-- News pattern -->
+    <pattern id="headlines" x="0" y="0" width="200" height="50" patternUnits="userSpaceOnUse">
+      <rect x="10" y="10" width="150" height="5" fill="#e95e50"/>
+      <rect x="10" y="25" width="100" height="5" fill="#e95e50"/>
+      <rect x="10" y="40" width="130" height="5" fill="#e95e50"/>
+    </pattern>
+  </defs>
+  
+  <!-- Base gradient -->
+  <rect width="800" height="200" fill="url(#news-bg)"/>
+  
+  <!-- Headlines pattern overlay -->
+  <rect width="800" height="200" fill="url(#headlines)" opacity="0.3"/>
+  
+  <!-- Broadcast waves -->
+  <path d="M300,100 q50,-30 100,0 t100,0 t100,0" fill="none" stroke="#e95e50" stroke-width="3" opacity="0.5"/>
+  <path d="M300,120 q50,-30 100,0 t100,0 t100,0" fill="none" stroke="#e95e50" stroke-width="2" opacity="0.4"/>
+  <path d="M300,140 q50,-30 100,0 t100,0 t100,0" fill="none" stroke="#e95e50" stroke-width="2" opacity="0.3"/>
+</svg> 

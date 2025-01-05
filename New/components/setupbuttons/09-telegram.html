@@ -1,0 +1,170 @@
+<div class="section-content">
+    <h4 class="mb-4">Telegram Integration</h4>
+    
+    <!-- Instructions Box -->
+    <div class="alert alert-info mb-4">
+        <h6 class="alert-heading"><i class="fas fa-info-circle me-2"></i>Community Setup</h6>
+        <ol class="mb-0">
+            <li>Create a public channel to share announcements and attract new members</li>
+            <li>Set up a private group for tribe members to collaborate</li>
+            <li>Configure agent access to interact with your community</li>
+            <li>Optionally add automation bots for enhanced functionality</li>
+        </ol>
+    </div>
+    
+    <form id="telegramForm">
+        <!-- Community Channels -->
+        <div class="channels-section mb-4 pb-3 border-bottom">
+            <h5>Community Channels</h5>
+            <div class="alert alert-light border mb-3">
+                <small><i class="fas fa-lightbulb me-2"></i>Your tribe needs both a public presence and a private space for members</small>
+            </div>
+            
+            <div class="row g-3">
+                <!-- Public Channel -->
+                <div class="col-md-6">
+                    <div class="p-3 border rounded">
+                        <h6><i class="fas fa-broadcast-tower me-2"></i>Public Channel</h6>
+                        <div class="mb-3">
+                            <label class="form-label">Channel Name</label>
+                            <div class="input-group">
+                                <span class="input-group-text">@</span>
+                                <input type="text" name="channelName" class="form-control" placeholder="your_channel_name" required />
+                            </div>
+                            <small class="text-muted">For announcements and public updates</small>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="enableAgentPosts" name="agentPosts">
+                            <label class="form-check-label" for="enableAgentPosts">
+                                Allow agents to post updates
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Private Group -->
+                <div class="col-md-6">
+                    <div class="p-3 border rounded">
+                        <h6><i class="fas fa-users me-2"></i>Private Group</h6>
+                        <div class="mb-3">
+                            <label class="form-label">Group Name</label>
+                            <div class="input-group">
+                                <span class="input-group-text">@</span>
+                                <input type="text" name="groupName" class="form-control" placeholder="your_private_group" required />
+                            </div>
+                            <small class="text-muted">For member discussions and collaboration</small>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="enableMemberApproval" name="memberApproval">
+                            <label class="form-check-label" for="enableMemberApproval">
+                                Require member approval
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="enableAgentInteractions" name="agentInteractions">
+                            <label class="form-check-label" for="enableAgentInteractions">
+                                Allow agents to interact with members
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Agent Access -->
+        <div class="agent-access mb-4 pb-3 border-bottom">
+            <h5>Agent Community Access</h5>
+            <div class="alert alert-light border mb-3">
+                <small><i class="fas fa-lightbulb me-2"></i>Configure how your AI agents interact with your community</small>
+            </div>
+            
+            <div id="agentAccessList">
+                <!-- Agent access configurations will be added here -->
+            </div>
+
+            <button type="button" class="btn btn-outline-primary mt-3" onclick="addAgentAccess()">
+                <i class="fas fa-plus me-2"></i>Add Agent Access
+            </button>
+        </div>
+
+        <!-- Optional Bot Automation -->
+        <div class="bot-automation mb-4">
+            <h5>Community Automation</h5>
+            <div class="alert alert-light border mb-3">
+                <small><i class="fas fa-lightbulb me-2"></i>Add optional bot features to enhance your community</small>
+            </div>
+            
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="feature-card p-3 border rounded">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="enableWelcome" name="features[]" value="welcome">
+                            <label class="form-check-label" for="enableWelcome">
+                                <strong>Welcome Messages</strong>
+                                <p class="small text-muted mb-0">Greet new members automatically</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card p-3 border rounded">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="enablePolling" name="features[]" value="polling">
+                            <label class="form-check-label" for="enablePolling">
+                                <strong>Community Polls</strong>
+                                <p class="small text-muted mb-0">Create and manage polls</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card p-3 border rounded">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="enableModeration" name="features[]" value="moderation">
+                            <label class="form-check-label" for="enableModeration">
+                                <strong>Auto-Moderation</strong>
+                                <p class="small text-muted mb-0">Filter spam and inappropriate content</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Save & Continue
+        </button>
+    </form>
+</div>
+
+<!-- Agent Access Template -->
+<template id="agentAccessTemplate">
+    <div class="agent-access-item mb-3 p-3 border rounded">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label">Agent Name</label>
+                <input type="text" class="form-control agent-name" placeholder="e.g., Support Agent">
+            </div>
+            <div class="col-md-8">
+                <label class="form-label">Community Permissions</label>
+                <div class="permission-checkboxes">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="post">
+                        <label class="form-check-label">Post Updates</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="reply">
+                        <label class="form-check-label">Reply to Members</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="moderate">
+                        <label class="form-check-label">Moderate Content</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-sm btn-outline-danger mt-2" onclick="removeAgentAccess(this)">
+            <i class="fas fa-trash me-2"></i>Remove Access
+        </button>
+    </div>
+</template> 

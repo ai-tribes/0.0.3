@@ -1,0 +1,62 @@
+<div class="agent-analytics">
+    <div class="row g-4">
+        <!-- Performance Metrics -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Performance Over Time</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="performanceChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Distribution -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Task Distribution</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="taskDistributionChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Initialize charts using Chart.js
+function initializeAnalytics() {
+    const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+    const taskDistributionCtx = document.getElementById('taskDistributionChart').getContext('2d');
+
+    // Performance chart
+    new Chart(performanceCtx, {
+        type: 'line',
+        data: {
+            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+            datasets: [{
+                label: 'Response Time (ms)',
+                data: [1200, 1000, 800, 600],
+                borderColor: '#0d6efd'
+            }]
+        }
+    });
+
+    // Task distribution chart
+    new Chart(taskDistributionCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Moderation', 'Support', 'Content', 'Analysis'],
+            datasets: [{
+                data: [30, 25, 25, 20],
+                backgroundColor: ['#0d6efd', '#20c997', '#ffc107', '#dc3545']
+            }]
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initializeAnalytics);
+</script> 

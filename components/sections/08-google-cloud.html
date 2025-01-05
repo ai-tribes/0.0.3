@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/sections.css" rel="stylesheet">
+</head>
+<body>
+    <div class="section-container">
+        <h2 class="section-title">Setup Google Cloud</h2>
+        <p class="section-description">Connect your Google Cloud account to enable AI infrastructure and storage capabilities.</p>
+        
+        <form id="googleCloudForm">
+            <div class="form-group">
+                <label for="projectId">Google Cloud Project ID</label>
+                <input type="text" class="form-control" id="projectId" placeholder="my-project-id">
+                <small class="form-text text-muted">Your Google Cloud project identifier</small>
+            </div>
+
+            <div class="form-group">
+                <label for="serviceAccount">Service Account Key</label>
+                <textarea class="form-control" id="serviceAccount" rows="8" placeholder="Paste your JSON service account key here"></textarea>
+                <small class="form-text text-muted">Your Google Cloud service account key in JSON format</small>
+            </div>
+
+            <div class="form-group">
+                <label for="region">Primary Region</label>
+                <select class="form-control" id="region">
+                    <option value="us-central1">US Central (Iowa)</option>
+                    <option value="us-east1">US East (South Carolina)</option>
+                    <option value="us-west1">US West (Oregon)</option>
+                    <option value="europe-west1">Europe West (Belgium)</option>
+                    <option value="asia-east1">Asia East (Taiwan)</option>
+                </select>
+                <small class="form-text text-muted">Select the region closest to your users</small>
+            </div>
+            
+            <div class="navigation-buttons">
+                <button type="button" class="btn btn-back" onclick="window.parent.postMessage({action: 'back'}, '*')">Back</button>
+                <button type="button" class="btn btn-next" onclick="window.parent.postMessage({action: 'next'}, '*')">Next</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('googleCloudForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add form submission logic here
+        });
+    </script>
+</body>
+</html> 

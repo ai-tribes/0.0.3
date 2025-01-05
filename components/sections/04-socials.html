@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="section-content">
+        <h4 class="mb-4">Social Media Setup</h4>
+        <p class="text-muted">Connect and configure your tribe's social presence</p>
+
+        <!-- Primary Social Platforms -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Primary Platforms</h5>
+            </div>
+            <div class="card-body">
+                <!-- X/Twitter -->
+                <div class="social-platform-item mb-4">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="d-flex gap-3">
+                            <div class="platform-icon">
+                                <i class="fab fa-x-twitter fa-2x"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">X (Twitter)</h6>
+                                <p class="text-muted mb-2">Connect your tribe's X account for announcements and community engagement</p>
+                                <div class="connection-status text-success d-none">
+                                    <i class="fas fa-check-circle me-1"></i>Connected as @tribename
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-primary btn-sm" onclick="configureBot('twitter')">
+                                <i class="fas fa-robot me-1"></i>Configure Bot
+                            </button>
+                            <button class="btn btn-primary btn-sm" onclick="connectPlatform('twitter')">
+                                <i class="fas fa-plug me-1"></i>Connect
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bot-config mt-3 d-none" id="twitterBotConfig">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="mb-3">Bot Configuration</h6>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Auto-Reply</label>
+                                        <select class="form-select">
+                                            <option value="disabled">Disabled</option>
+                                            <option value="basic">Basic Responses</option>
+                                            <option value="ai">AI-Powered</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Post Frequency</label>
+                                        <select class="form-select">
+                                            <option value="manual">Manual Only</option>
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Discord -->
+                <div class="social-platform-item mb-4">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="d-flex gap-3">
+                            <div class="platform-icon">
+                                <i class="fab fa-discord fa-2x"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Discord</h6>
+                                <p class="text-muted mb-2">Create and manage your tribe's Discord community</p>
+                                <div class="connection-status text-success d-none">
+                                    <i class="fas fa-check-circle me-1"></i>Server Created: Tribe Name
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-primary btn-sm" onclick="configureServer('discord')">
+                                <i class="fas fa-cog me-1"></i>Server Settings
+                            </button>
+                            <button class="btn btn-primary btn-sm" onclick="createServer('discord')">
+                                <i class="fas fa-plus me-1"></i>Create Server
+                            </button>
+                        </div>
+                    </div>
+                    <div class="server-config mt-3 d-none" id="discordServerConfig">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="mb-3">Server Configuration</h6>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Server Template</label>
+                                        <select class="form-select">
+                                            <option value="basic">Basic Community</option>
+                                            <option value="gaming">Gaming Community</option>
+                                            <option value="dao">DAO Community</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Verification Level</label>
+                                        <select class="form-select">
+                                            <option value="none">None</option>
+                                            <option value="low">Low</option>
+                                            <option value="medium">Medium</option>
+                                            <option value="high">High</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Channels</label>
+                                        <div class="channel-list">
+                                            <div class="channel-item d-flex align-items-center mb-2">
+                                                <i class="fas fa-hashtag me-2"></i>
+                                                <input type="text" class="form-control form-control-sm" value="general">
+                                                <button class="btn btn-sm btn-link text-danger">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                            <button class="btn btn-sm btn-outline-secondary" onclick="addChannel()">
+                                                <i class="fas fa-plus me-1"></i>Add Channel
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Telegram -->
+                <div class="social-platform-item">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="d-flex gap-3">
+                            <div class="platform-icon">
+                                <i class="fab fa-telegram fa-2x"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Telegram</h6>
+                                <p class="text-muted mb-2">Set up your tribe's Telegram group and bot</p>
+                                <div class="connection-status text-success d-none">
+                                    <i class="fas fa-check-circle me-1"></i>Group Created: t.me/tribename
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-primary btn-sm" onclick="configureBot('telegram')">
+                                <i class="fas fa-robot me-1"></i>Configure Bot
+                            </button>
+                            <button class="btn btn-primary btn-sm" onclick="createGroup('telegram')">
+                                <i class="fas fa-plus me-1"></i>Create Group
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bot-config mt-3 d-none" id="telegramBotConfig">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="mb-3">Bot Configuration</h6>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Bot Token</label>
+                                        <input type="text" class="form-control" placeholder="Enter bot token">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Group Type</label>
+                                        <select class="form-select">
+                                            <option value="public">Public Group</option>
+                                            <option value="private">Private Group</option>
+                                            <option value="channel">Channel</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Platforms -->
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Additional Platforms</h5>
+                <button class="btn btn-outline-primary btn-sm" onclick="showAllPlatforms()">
+                    <i class="fas fa-plus me-2"></i>Add Platform
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <!-- Platform Cards -->
+                    <div class="col-md-4">
+                        <div class="platform-card">
+                            <i class="fab fa-instagram fa-lg"></i>
+                            <span>Instagram</span>
+                            <button class="btn btn-sm btn-outline-secondary">Add</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="platform-card">
+                            <i class="fab fa-youtube fa-lg"></i>
+                            <span>YouTube</span>
+                            <button class="btn btn-sm btn-outline-secondary">Add</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="platform-card">
+                            <i class="fab fa-tiktok fa-lg"></i>
+                            <span>TikTok</span>
+                            <button class="btn btn-sm btn-outline-secondary">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cross-Platform Settings -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Cross-Platform Settings</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Content Sync</label>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="syncAnnouncements">
+                            <label class="form-check-label" for="syncAnnouncements">
+                                Sync announcements across platforms
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="syncMedia">
+                            <label class="form-check-label" for="syncMedia">
+                                Sync media content
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Automation</label>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="autoRespond">
+                            <label class="form-check-label" for="autoRespond">
+                                Enable cross-platform auto-responses
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="analyticsSync">
+                            <label class="form-check-label" for="analyticsSync">
+                                Sync analytics data
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="d-flex justify-content-between mt-4">
+            <button class="btn btn-outline-primary" onclick="loadSetupContent('03-brand')">
+                <i class="fas fa-arrow-left me-2"></i>Previous
+            </button>
+            <button class="btn btn-primary" onclick="saveSocialConfig()">
+                Next<i class="fas fa-arrow-right ms-2"></i>
+            </button>
+        </div>
+    </div>
+
+    <style>
+        .platform-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .social-platform-item {
+            padding: 1.5rem;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .platform-card {
+            padding: 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .platform-card button {
+            margin-left: auto;
+        }
+
+        .channel-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+
+    <script>
+        function configureBot(platform) {
+            const configDiv = document.getElementById(`${platform}BotConfig`);
+            configDiv.classList.toggle('d-none');
+        }
+
+        function configureServer(platform) {
+            const configDiv = document.getElementById(`${platform}ServerConfig`);
+            configDiv.classList.toggle('d-none');
+        }
+
+        function connectPlatform(platform) {
+            // Implement OAuth flow for each platform
+            console.log(`Connecting to ${platform}...`);
+        }
+
+        function createServer(platform) {
+            // Implement server creation logic
+            console.log(`Creating ${platform} server...`);
+        }
+
+        function createGroup(platform) {
+            // Implement group creation logic
+            console.log(`Creating ${platform} group...`);
+        }
+
+        function addChannel() {
+            const channelList = document.querySelector('.channel-list');
+            const newChannel = document.createElement('div');
+            newChannel.className = 'channel-item d-flex align-items-center mb-2';
+            newChannel.innerHTML = `
+                <i class="fas fa-hashtag me-2"></i>
+                <input type="text" class="form-control form-control-sm" placeholder="channel-name">
+                <button class="btn btn-sm btn-link text-danger" onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            channelList.insertBefore(newChannel, channelList.lastElementChild);
+        }
+
+        function showAllPlatforms() {
+            // Implement modal or dropdown for all available platforms
+            console.log('Showing all platforms...');
+        }
+
+        function saveSocialConfig() {
+            // Save social media configuration
+            const config = {
+                platforms: {
+                    twitter: {
+                        connected: true,
+                        botEnabled: document.querySelector('#twitterBotConfig select').value
+                    },
+                    discord: {
+                        serverCreated: true,
+                        template: document.querySelector('#discordServerConfig select').value
+                    },
+                    telegram: {
+                        groupCreated: true,
+                        botToken: document.querySelector('#telegramBotConfig input').value
+                    }
+                },
+                crossPlatform: {
+                    syncAnnouncements: document.getElementById('syncAnnouncements').checked,
+                    syncMedia: document.getElementById('syncMedia').checked,
+                    autoRespond: document.getElementById('autoRespond').checked,
+                    analyticsSync: document.getElementById('analyticsSync').checked
+                }
+            };
+
+            localStorage.setItem('socialConfig', JSON.stringify(config));
+            loadSetupContent('05-integrations');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved config if exists
+            const savedConfig = localStorage.getItem('socialConfig');
+            if (savedConfig) {
+                const config = JSON.parse(savedConfig);
+                // Apply saved configuration
+                // ... implementation here
+            }
+        });
+    </script>
+</body>
+</html> 

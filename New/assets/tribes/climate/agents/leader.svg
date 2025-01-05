@@ -1,0 +1,18 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="eco-leader-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ecc71"/>
+      <stop offset="100%" style="stop-color:#27ae60"/>
+    </linearGradient>
+  </defs>
+  <circle cx="40" cy="40" r="38" fill="white" stroke="url(#eco-leader-grad)" stroke-width="2"/>
+  <!-- Eco-friendly robot design -->
+  <path d="M30,50 C30,30 50,30 50,50 Q40,60 30,50" 
+        fill="none" stroke="url(#eco-leader-grad)" stroke-width="2"/>
+  <path d="M40,50 L40,25" stroke="url(#eco-leader-grad)" stroke-width="2"/>
+  <circle cx="40" cy="22" r="3" fill="url(#eco-leader-grad)"/>
+  <!-- Solar panel pattern -->
+  <rect x="25" y="55" width="30" height="10" fill="none" stroke="url(#eco-leader-grad)" stroke-width="1"/>
+  <line x1="35" y1="55" x2="35" y2="65" stroke="url(#eco-leader-grad)" stroke-width="1"/>
+  <line x1="45" y1="55" x2="45" y2="65" stroke="url(#eco-leader-grad)" stroke-width="1"/>
+</svg> 

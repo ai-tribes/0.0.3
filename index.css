@@ -1,0 +1,248 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa; /* Light background */
+    color: #343a40; /* Dark text */
+    margin: 0;
+    padding: 20px;
+}
+
+nav {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+nav .btn {
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+nav .btn:hover {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+}
+
+.section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.section:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.login-button {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 5px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+h2, h4 {
+    margin-bottom: 0.5rem; /* Adjusts the space below the headings */
+}
+
+/* Wallet Modal Styles */
+.wallet-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.wallet-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.wallet-item:hover {
+    border-color: #0d6efd;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.wallet-item.featured {
+    background: linear-gradient(45deg, #f8f9fa, #ffffff);
+    border: 2px solid #9945FF;
+}
+
+.wallet-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.wallet-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-left: 1rem;
+}
+
+.wallet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wallet-name {
+    font-weight: 500;
+}
+
+.wallet-description {
+    font-size: 0.75rem;
+    color: #6c757d;
+    margin: 0.2rem 0;
+}
+
+/* Network Badges */
+.network-badge {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.network-badge.sol { background: #9945FF; color: white; }
+.network-badge.eth { background: #627EEA; color: white; }
+.network-badge.bsv { background: #11A97D; color: white; }
+.network-badge.bnb { background: #F3BA2F; color: black; }
+.network-badge.multi { background: linear-gradient(45deg, #2193b0, #6dd5ed); color: white; }
+
+/* Feature Badges */
+.feature-badge {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    background: #e9ecef;
+    color: #495057;
+    margin-right: 0.5rem;
+}
+
+/* Search and Filter */
+.wallet-search {
+    position: relative;
+}
+
+.wallet-search input {
+    padding-left: 2.5rem;
+    border-radius: 12px;
+}
+
+.wallet-search::before {
+    content: '\f002';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+}
+
+.wallet-categories {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.wallet-category {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: #f8f9fa;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.wallet-category:hover {
+    background: #e9ecef;
+}
+
+.wallet-category.active {
+    background: #0d6efd;
+    color: white;
+}
+
+/* Modal styles */
+.modal-content {
+    border: none;
+    border-radius: 16px;
+}
+
+.modal-header {
+    border-bottom: none;
+    padding: 1.5rem 1.5rem 0.5rem;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+/* Modal backdrop */
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-backdrop.fade {
+    opacity: 0;
+    transition: opacity 0.15s linear;
+}
+
+.modal-backdrop.show {
+    opacity: 0.5;
+}
+
+/* Remove modal-open class effects */
+body.modal-open {
+    overflow: auto;
+    padding-right: 0 !important;
+}
+
+/* Base card styles */
+.pricing-card {
+    height: 100%;
+    border: none;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+/* Icon Circle Styles */
+.icon-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px; /* Adjust size as needed */
+    height: 64px; /* Adjust size as needed */
+    border-radius: 50%;
+    background-color: #f8f9fa; /* Light background for visibility */
+    margin: 0 auto 1rem; /* Center and add margin */
+}
+
+/* SVG Icon Styles */
+.icon-circle svg {
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
+    fill: #0d6efd; /* Default color for the icons */
+}

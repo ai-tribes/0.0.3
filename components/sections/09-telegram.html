@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Integration - AI Tribes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../sections/sections.css" rel="stylesheet">
+</head>
+<body>
+    <div class="section-container">
+        <h2>Telegram Integration</h2>
+
+        <!-- Community Setup -->
+        <div class="mb-5">
+            <h5 class="mb-3">Community Setup</h5>
+            <ol class="setup-steps">
+                <li>Create a public channel to share announcements and attract new members</li>
+                <li>Set up a private group for tribe members to collaborate</li>
+                <li>Configure agent access to interact with your community</li>
+                <li>Optionally add automation bots for enhanced functionality</li>
+            </ol>
+        </div>
+
+        <!-- Community Channels -->
+        <div class="mb-4">
+            <h5 class="mb-3">Community Channels</h5>
+            <p class="text-muted mb-4">Your tribe needs both a public presence and a private space for members</p>
+
+            <!-- Public Channel -->
+            <div class="channel-section mb-4">
+                <h6>Public Channel</h6>
+                <div class="form-group mb-3">
+                    <label class="form-label">Channel Name</label>
+                    <div class="input-group">
+                        <span class="input-group-text">@</span>
+                        <input type="text" class="form-control" placeholder="your_channel_name">
+                    </div>
+                    <small class="text-muted">For announcements and public updates</small>
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="allowAgentPosts">
+                    <label class="form-check-label" for="allowAgentPosts">
+                        Allow agents to post updates
+                    </label>
+                </div>
+            </div>
+
+            <!-- Private Group -->
+            <div class="channel-section mb-4">
+                <h6>Private Group</h6>
+                <div class="form-group mb-3">
+                    <label class="form-label">Group Name</label>
+                    <div class="input-group">
+                        <span class="input-group-text">@</span>
+                        <input type="text" class="form-control" placeholder="your_private_group">
+                    </div>
+                    <small class="text-muted">For member discussions and collaboration</small>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="requireApproval">
+                    <label class="form-check-label" for="requireApproval">
+                        Require member approval
+                    </label>
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="allowAgentInteraction">
+                    <label class="form-check-label" for="allowAgentInteraction">
+                        Allow agents to interact with members
+                    </label>
+                </div>
+            </div>
+
+            <!-- Agent Community Access -->
+            <div class="channel-section mb-4">
+                <h6>Agent Community Access</h6>
+                <p class="text-muted mb-3">Configure how your AI agents interact with your community</p>
+                <button class="btn btn-outline-primary btn-sm">Add Agent Access</button>
+            </div>
+
+            <!-- Community Automation -->
+            <div class="channel-section mb-4">
+                <h6>Community Automation</h6>
+                <p class="text-muted mb-3">Add optional bot features to enhance your community</p>
+
+                <div class="automation-options">
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="welcomeMessages">
+                        <label class="form-check-label" for="welcomeMessages">
+                            <strong>Welcome Messages</strong>
+                            <div class="text-muted small">Greet new members automatically</div>
+                        </label>
+                    </div>
+
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="communityPolls">
+                        <label class="form-check-label" for="communityPolls">
+                            <strong>Community Polls</strong>
+                            <div class="text-muted small">Create and manage polls</div>
+                        </label>
+                    </div>
+
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="autoModeration">
+                        <label class="form-check-label" for="autoModeration">
+                            <strong>Auto-Moderation</strong>
+                            <div class="text-muted small">Filter spam and inappropriate content</div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-outline-secondary" onclick="window.parent.postMessage({action: 'back'}, '*')">Back</button>
+            <button type="button" class="btn btn-primary" onclick="window.parent.postMessage({action: 'next'}, '*')">Save & Continue</button>
+        </div>
+    </div>
+
+    <style>
+    .setup-steps {
+        padding-left: 1.2rem;
+        line-height: 1.8;
+    }
+    .setup-steps li {
+        margin-bottom: 0.5rem;
+        color: #666;
+    }
+    .channel-section h6 {
+        margin-bottom: 1rem;
+        font-weight: 500;
+    }
+    </style>
+</body>
+</html> 

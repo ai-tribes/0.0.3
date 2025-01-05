@@ -1,0 +1,344 @@
+<div class="section-content">
+    <h4 class="mb-4">AI Services Integration</h4>
+    
+    <!-- Instructions Box -->
+    <div class="alert alert-info mb-4">
+        <h6 class="alert-heading"><i class="fas fa-info-circle me-2"></i>Connect AI Services</h6>
+        <ol class="mb-0">
+            <li>Select the AI providers you want to use</li>
+            <li>Add your API keys or authentication tokens</li>
+            <li>Set usage limits and permissions for agents</li>
+            <li>Configure default models and parameters</li>
+        </ol>
+    </div>
+    
+    <form id="aiApisForm">
+        <!-- Main AI Providers -->
+        <div class="providers-section mb-4 pb-3 border-bottom">
+            <h5>AI Service Providers</h5>
+            <div class="alert alert-light border mb-3">
+                <small><i class="fas fa-lightbulb me-2"></i>Connect the AI services your agents will use</small>
+            </div>
+            
+            <div class="row g-3">
+                <!-- OpenAI -->
+                <div class="col-md-6">
+                    <div class="provider-card p-3 border rounded">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-circle bg-success bg-opacity-10 me-3">
+                                <i class="fas fa-brain text-success"></i>
+                            </div>
+                            <h6 class="mb-0">OpenAI</h6>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="enableOpenAI" name="providers[]" value="openai">
+                            <label class="form-check-label" for="enableOpenAI">Enable OpenAI Services</label>
+                        </div>
+                        <div class="api-details mt-3">
+                            <input type="password" class="form-control mb-2" placeholder="API Key" name="openaiKey">
+                            <select class="form-select mb-2" name="openaiModel">
+                                <option value="gpt-4">GPT-4 (Recommended)</option>
+                                <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+                                <option value="dall-e-3">DALL-E 3</option>
+                            </select>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input type="number" class="form-control" placeholder="Monthly Budget" name="openaiLimit">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- XAI API -->
+                <div class="col-md-6">
+                    <div class="provider-card p-3 border rounded">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-circle bg-info bg-opacity-10 me-3">
+                                <i class="fas fa-robot text-info"></i>
+                            </div>
+                            <h6 class="mb-0">XAI API</h6>
+                            <span class="badge bg-primary ms-2">Recommended</span>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="enableXAI" name="providers[]" value="xai" checked>
+                            <label class="form-check-label" for="enableXAI">Enable XAI Services</label>
+                        </div>
+                        <div class="api-details mt-3">
+                            <input type="password" class="form-control mb-2" placeholder="API Key" name="xaiKey">
+                            <select class="form-select mb-2" name="xaiModel">
+                                <option value="xai-standard">XAI Standard</option>
+                                <option value="xai-pro">XAI Pro</option>
+                                <option value="xai-enterprise">XAI Enterprise</option>
+                            </select>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input type="number" class="form-control" placeholder="Monthly Budget" name="xaiLimit">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Anthropic -->
+                <div class="col-md-6">
+                    <div class="provider-card p-3 border rounded">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-circle bg-warning bg-opacity-10 me-3">
+                                <i class="fas fa-microchip text-warning"></i>
+                            </div>
+                            <h6 class="mb-0">Anthropic</h6>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="enableAnthropic" name="providers[]" value="anthropic">
+                            <label class="form-check-label" for="enableAnthropic">Enable Claude</label>
+                        </div>
+                        <div class="api-details mt-3">
+                            <input type="password" class="form-control mb-2" placeholder="API Key" name="anthropicKey">
+                            <select class="form-select mb-2" name="anthropicModel">
+                                <option value="claude-3-opus">Claude 3 Opus</option>
+                                <option value="claude-3-sonnet">Claude 3 Sonnet</option>
+                                <option value="claude-2.1">Claude 2.1</option>
+                            </select>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input type="number" class="form-control" placeholder="Monthly Budget" name="anthropicLimit">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stability AI -->
+                <div class="col-md-6">
+                    <div class="provider-card p-3 border rounded">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-circle bg-danger bg-opacity-10 me-3">
+                                <i class="fas fa-palette text-danger"></i>
+                            </div>
+                            <h6 class="mb-0">Stability AI</h6>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="enableStability" name="providers[]" value="stability">
+                            <label class="form-check-label" for="enableStability">Enable Image Generation</label>
+                        </div>
+                        <div class="api-details mt-3">
+                            <input type="password" class="form-control mb-2" placeholder="API Key" name="stabilityKey">
+                            <select class="form-select mb-2" name="stabilityModel">
+                                <option value="stable-diffusion-xl">SDXL</option>
+                                <option value="stable-diffusion-3">SD 3.0</option>
+                            </select>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input type="number" class="form-control" placeholder="Monthly Budget" name="stabilityLimit">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom API -->
+                <div class="col-md-6">
+                    <div class="provider-card p-3 border rounded">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-circle bg-primary bg-opacity-10 me-3">
+                                <i class="fas fa-plug text-primary"></i>
+                            </div>
+                            <h6 class="mb-0">Custom API</h6>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="enableCustom" name="providers[]" value="custom">
+                            <label class="form-check-label" for="enableCustom">Add Custom API</label>
+                        </div>
+                        <div class="api-details mt-3">
+                            <input type="text" class="form-control mb-2" placeholder="API Endpoint" name="customEndpoint">
+                            <input type="password" class="form-control mb-2" placeholder="API Key" name="customKey">
+                            <select class="form-select" name="customAuth">
+                                <option value="bearer">Bearer Token</option>
+                                <option value="basic">Basic Auth</option>
+                                <option value="apikey">API Key Header</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Gemini after OpenAI -->
+                <div class="col-md-6">
+                    <div class="provider-card p-3 border rounded">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-circle bg-primary bg-opacity-10 me-3">
+                                <i class="fas fa-gem text-primary"></i>
+                            </div>
+                            <h6 class="mb-0">Google Gemini</h6>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="enableGemini" name="providers[]" value="gemini">
+                            <label class="form-check-label" for="enableGemini">Enable Gemini</label>
+                        </div>
+                        <div class="api-details mt-3">
+                            <input type="password" class="form-control mb-2" placeholder="API Key" name="geminiKey">
+                            <select class="form-select mb-2" name="geminiModel">
+                                <option value="gemini-pro">Gemini Pro</option>
+                                <option value="gemini-ultra">Gemini Ultra</option>
+                            </select>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input type="number" class="form-control" placeholder="Monthly Budget" name="geminiLimit">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Payment Configuration Section before Agent Access -->
+        <div class="payment-section mb-4 pb-3 border-bottom">
+            <h5>Payment Configuration</h5>
+            <div class="alert alert-light border mb-3">
+                <small><i class="fas fa-lightbulb me-2"></i>Set up payment methods for AI services</small>
+            </div>
+            
+            <div class="row g-3">
+                <!-- Credit Card -->
+                <div class="col-md-6">
+                    <div class="payment-card p-3 border rounded">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-circle bg-success bg-opacity-10 me-3">
+                                <i class="fas fa-credit-card text-success"></i>
+                            </div>
+                            <h6 class="mb-0">Credit Card</h6>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="enableCard" name="paymentMethods[]" value="card">
+                            <label class="form-check-label" for="enableCard">Enable Card Payments</label>
+                        </div>
+                        <div class="payment-details mt-3">
+                            <input type="text" class="form-control mb-2" placeholder="Card Number" name="cardNumber">
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <input type="text" class="form-control" placeholder="MM/YY" name="cardExpiry">
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" class="form-control" placeholder="CVC" name="cardCvc">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Crypto Payments -->
+                <div class="col-md-6">
+                    <div class="payment-card p-3 border rounded">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-circle bg-warning bg-opacity-10 me-3">
+                                <i class="fab fa-bitcoin text-warning"></i>
+                            </div>
+                            <h6 class="mb-0">Crypto Payments</h6>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="enableCrypto" name="paymentMethods[]" value="crypto">
+                            <label class="form-check-label" for="enableCrypto">Enable Crypto Payments</label>
+                        </div>
+                        <div class="payment-details mt-3">
+                            <select class="form-select mb-2" name="cryptoCurrency">
+                                <option value="usdt">USDT (Tether)</option>
+                                <option value="usdc">USDC (USD Coin)</option>
+                                <option value="bsv">BSV</option>
+                                <option value="eth">ETH</option>
+                            </select>
+                            <select class="form-select mb-2" name="cryptoNetwork">
+                                <option value="bsv">BSV Network</option>
+                                <option value="eth">Ethereum Network</option>
+                                <option value="tron">Tron Network (USDT)</option>
+                            </select>
+                            <input type="text" class="form-control" placeholder="Wallet Address" name="cryptoWallet">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Auto-Recharge Settings -->
+                <div class="col-12">
+                    <div class="payment-card p-3 border rounded">
+                        <h6><i class="fas fa-sync-alt me-2"></i>Auto-Recharge Settings</h6>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="enableAutoRecharge" name="autoRecharge">
+                            <label class="form-check-label" for="enableAutoRecharge">
+                                Enable automatic recharge when balance is low
+                            </label>
+                        </div>
+                        <div class="row g-3 mt-2">
+                            <div class="col-md-6">
+                                <label class="form-label">Recharge Threshold</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control" name="rechargeThreshold" placeholder="50">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Recharge Amount</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control" name="rechargeAmount" placeholder="100">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Agent API Access -->
+        <div class="agent-access mb-4">
+            <h5>Agent API Access</h5>
+            <div class="alert alert-light border mb-3">
+                <small><i class="fas fa-lightbulb me-2"></i>Configure which AI services each agent can use</small>
+            </div>
+            
+            <div id="agentAccessList">
+                <!-- Agent access configurations will be added here -->
+            </div>
+
+            <button type="button" class="btn btn-outline-primary mt-3" onclick="addAgentAccess()">
+                <i class="fas fa-plus me-2"></i>Add Agent Access
+            </button>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Save & Continue
+        </button>
+    </form>
+</div>
+
+<!-- Agent Access Template -->
+<template id="agentAccessTemplate">
+    <div class="agent-access-item mb-3 p-3 border rounded">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label">Agent Name</label>
+                <input type="text" class="form-control agent-name" placeholder="e.g., Content Agent">
+            </div>
+            <div class="col-md-8">
+                <label class="form-label">API Access</label>
+                <div class="api-checkboxes">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="openai">
+                        <label class="form-check-label">OpenAI</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="anthropic">
+                        <label class="form-check-label">Claude</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="stability">
+                        <label class="form-check-label">Stability</label>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input type="number" class="form-control agent-budget" placeholder="Monthly Budget">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-sm btn-outline-danger mt-2" onclick="removeAgentAccess(this)">
+            <i class="fas fa-trash me-2"></i>Remove Access
+        </button>
+    </div>
+</template> 

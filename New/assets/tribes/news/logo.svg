@@ -1,0 +1,13 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="news-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e74c3c"/>
+      <stop offset="100%" style="stop-color:#c0392b"/>
+    </linearGradient>
+  </defs>
+  <circle cx="40" cy="40" r="38" fill="white" stroke="url(#news-logo-grad)" stroke-width="2"/>
+  <!-- News/broadcast symbol -->
+  <path d="M25,45 v-15 h30 v15 Z" fill="url(#news-logo-grad)"/>
+  <path d="M30,35 h20 M30,40 h15" stroke="white" stroke-width="2"/>
+  <path d="M25,50 q15,-20 30,0" stroke="url(#news-logo-grad)" stroke-width="2" fill="none"/>
+</svg> 

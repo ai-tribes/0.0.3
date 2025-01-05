@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Plan - AI Tribes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <style>
+        .plan-section {
+            padding: 2rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .plan-section:last-child {
+            border-bottom: none;
+        }
+        
+        .metric-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: transform 0.2s;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .icon-circle {
+            width: 48px;
+            height: 48px;
+            background: #e9ecef;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #0d6efd;
+        }
+
+        .timeline-item::after {
+            content: "";
+            position: absolute;
+            left: 5px;
+            top: 12px;
+            bottom: -24px;
+            width: 2px;
+            background: #dee2e6;
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (same as your other pages) -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="tribes_logo.png" alt="AI Tribes Logo">
+                AI Tribes
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tribes.html">Tribes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/plan.html">Business Plan</a>
+                    </li>
+                </ul>
+                <div class="ms-auto d-flex align-items-center">
+                    <a href="https://twitter.com/aitribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fa-brands fa-x-twitter nav-icon"></i>
+                    </a>
+                    <a href="https://discord.gg/aitribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fab fa-discord nav-icon"></i>
+                    </a>
+                    <a href="https://github.com/ai-tribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fab fa-github nav-icon"></i>
+                    </a>
+                    <button class="btn btn-outline-primary ms-2" data-action="connect-wallet">
+                        <i class="fas fa-wallet me-2"></i>Connect Wallet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5 pt-5">
+        <h1 class="display-4 text-center mb-5">AI Tribes Business Plan</h1>
+
+        <!-- Executive Summary -->
+        <section class="plan-section">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="metric-card">
+                        <div class="icon-circle">
+                            <img src="assets/icons/ai-growth.svg" alt="Growth" width="24">
+                        </div>
+                        <h3>Vision</h3>
+                        <p>Revolutionize community management with AI-powered tribes</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="metric-card">
+                        <div class="icon-circle">
+                            <img src="assets/icons/community-growth.svg" alt="Community" width="24">
+                        </div>
+                        <h3>Mission</h3>
+                        <p>Empower communities with intelligent AI agents</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="metric-card">
+                        <div class="icon-circle">
+                            <img src="assets/icons/token-power.svg" alt="Token" width="24">
+                        </div>
+                        <h3>Goal</h3>
+                        <p>Create the leading platform for AI-powered communities</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Market Analysis -->
+        <section class="plan-section">
+            <h2 class="mb-4">Market Analysis</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Target Markets</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            Crypto/Web3 projects
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            DAOs
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            Tech startups
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4>Market Size</h4>
+                    <div class="metric-card">
+                        <h5>Total Addressable Market</h5>
+                        <p class="display-6 mb-0">$5B</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product/Service -->
+        <section class="plan-section">
+            <h2 class="mb-4">Product Features</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="metric-card">
+                        <div class="icon-circle">
+                            <img src="assets/icons/ai-growth.svg" alt="AI Agents" width="24">
+                        </div>
+                        <h4>AI Agent Creation</h4>
+                        <ul class="list-unstyled">
+                            <li>Customizable AI personalities</li>
+                            <li>Role-based capabilities</li>
+                            <li>LLM integration</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="metric-card">
+                        <div class="icon-circle">
+                            <img src="assets/icons/token-power.svg" alt="Token" width="24">
+                        </div>
+                        <h4>Token Platform</h4>
+                        <ul class="list-unstyled">
+                            <li>Multi-chain support</li>
+                            <li>Token economics tools</li>
+                            <li>Distribution management</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="metric-card">
+                        <div class="icon-circle">
+                            <img src="assets/icons/community-tools.svg" alt="Community" width="24">
+                        </div>
+                        <h4>Community Tools</h4>
+                        <ul class="list-unstyled">
+                            <li>Social media automation</li>
+                            <li>Content generation</li>
+                            <li>Analytics dashboard</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Implementation Timeline -->
+        <section class="plan-section">
+            <h2 class="mb-4">Implementation Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Phase 1 (Months 1-6)</h4>
+                    <p>Core platform development, Basic AI agent functionality, MVP launch</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Phase 2 (Months 7-12)</h4>
+                    <p>Advanced AI features, Token launch platform, Community tools</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Phase 3 (Months 13-24)</h4>
+                    <p>Enterprise features, Custom AI model training, Advanced analytics</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Financial Projections -->
+        <section class="plan-section">
+            <h2 class="mb-4">Financial Projections</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="metric-card">
+                        <h4>Year 1</h4>
+                        <p class="display-6 mb-0">$500K</p>
+                        <small class="text-muted">Projected Revenue</small>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="metric-card">
+                        <h4>Year 2</h4>
+                        <p class="display-6 mb-0">$2M</p>
+                        <small class="text-muted">Projected Revenue</small>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="metric-card">
+                        <h4>Year 3</h4>
+                        <p class="display-6 mb-0">$5M</p>
+                        <small class="text-muted">Projected Revenue</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-light py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>AI Tribes</h5>
+                    <p class="text-muted">Building the future of AI-powered communities</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Contact</h6>
+                    <p class="text-muted">info@aitribes.com</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Follow Us</h6>
+                    <div class="social-links">
+                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/walletModal.js"></script>
+</body>
+</html> 

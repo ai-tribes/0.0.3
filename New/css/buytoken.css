@@ -1,0 +1,38 @@
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    min-width: 250px;
+    z-index: 1050;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.toast.show {
+    display: block;
+    opacity: 1;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.toast-success .toast-header {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.toast-error .toast-header {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.chart-container {
+    height: 400px;
+    width: 100%;
+    background: #f8f9fa;
+    border-radius: 4px;
+} 

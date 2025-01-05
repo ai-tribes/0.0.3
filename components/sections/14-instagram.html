@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="/assets/css/sections.css" rel="stylesheet">
+    <style>
+        .setup-steps {
+            counter-reset: step;
+        }
+        
+        .setup-step {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .setup-step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: #e9ecef;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .test-response {
+            display: none;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .test-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .test-error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: #0d6efd;
+            margin-bottom: 1rem;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .preview-item {
+            background: white;
+            border-radius: 8px;
+            padding: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .preview-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="section-container">
+        <h2 class="section-title">Connect Instagram</h2>
+        <p class="section-description">Integrate your tribe's Instagram presence and enable visual storytelling</p>
+
+        <form id="instagramForm">
+            <!-- Setup Instructions -->
+            <div class="alert alert-info mb-4">
+                <h6 class="alert-heading mb-3"><i class="fas fa-info-circle me-2"></i>Setup Requirements</h6>
+                <div class="setup-steps">
+                    <div class="setup-step">Create a business Instagram account for your tribe</div>
+                    <div class="setup-step">Connect your Instagram account to your Facebook Page</div>
+                    <div class="setup-step">Enable Instagram Graph API in Facebook Developer Console</div>
+                    <div class="setup-step">Generate an Instagram access token</div>
+                </div>
+            </div>
+
+            <!-- Account Details -->
+            <div class="mb-4">
+                <h4 class="mb-3">Instagram Account</h4>
+                
+                <div class="mb-3">
+                    <label class="form-label" for="igHandle">Instagram Handle</label>
+                    <div class="input-group">
+                        <span class="input-group-text">@</span>
+                        <input type="text" class="form-control" id="igHandle" 
+                               placeholder="yourtribe" required>
+                        <button class="btn btn-outline-primary" type="button" onclick="verifyAccount()">
+                            Verify Account
+                        </button>
+                    </div>
+                    <div class="form-text">Your tribe's Instagram username</div>
+                    <div id="accountVerification" class="test-response"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="igAccessToken">Access Token</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="igAccessToken" required>
+                        <button class="btn btn-outline-primary" type="button" onclick="verifyToken()">
+                            Verify Token
+                        </button>
+                    </div>
+                    <div class="form-text">Long-lived access token from Facebook Developer Console</div>
+                    <div id="tokenVerification" class="test-response"></div>
+                </div>
+            </div>
+
+            <!-- Integration Settings -->
+            <div class="mb-4">
+                <h4 class="mb-3">Content Settings</h4>
+                
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="autoPost" checked>
+                    <label class="form-check-label" for="autoPost">
+                        Enable automatic content posting
+                    </label>
+                    <small class="form-text d-block">Automatically share tribe updates to Instagram</small>
+                </div>
+
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="storySharing" checked>
+                    <label class="form-check-label" for="storySharing">
+                        Enable story sharing
+                    </label>
+                    <small class="form-text d-block">Share important moments in Instagram Stories</small>
+                </div>
+
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="reelsCreation">
+                    <label class="form-check-label" for="reelsCreation">
+                        Enable Reels creation
+                    </label>
+                    <small class="form-text d-block">Create and share Instagram Reels</small>
+                </div>
+
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="hashtagSync">
+                    <label class="form-check-label" for="hashtagSync">
+                        Enable hashtag synchronization
+                    </label>
+                    <small class="form-text d-block">Automatically add tribe-related hashtags</small>
+                </div>
+            </div>
+
+            <!-- Feature Showcase -->
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h5>Visual Content</h5>
+                    <p class="text-muted">Share your tribe's journey through engaging photos and videos</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h5>Stories & Reels</h5>
+                    <p class="text-muted">Create immersive stories and short-form video content</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hashtag"></i>
+                    </div>
+                    <h5>Hashtag Strategy</h5>
+                    <p class="text-muted">Optimize reach with smart hashtag management</p>
+                </div>
+            </div>
+
+            <div class="navigation-buttons mt-4">
+                <button type="button" class="btn btn-back" onclick="window.parent.postMessage({action: 'back'}, '*')">Back</button>
+                <button type="button" class="btn btn-next" onclick="window.parent.postMessage({action: 'next'}, '*')">Next</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function verifyAccount() {
+            const handle = document.getElementById('igHandle').value;
+            const verification = document.getElementById('accountVerification');
+            
+            verification.style.display = 'block';
+            verification.innerHTML = 'Verifying Instagram account...';
+            verification.className = 'test-response';
+            
+            // Simulate API verification
+            setTimeout(() => {
+                if (handle.length > 3) {
+                    verification.innerHTML = 'Instagram business account verified!';
+                    verification.classList.add('test-success');
+                } else {
+                    verification.innerHTML = 'Invalid Instagram handle or not a business account.';
+                    verification.classList.add('test-error');
+                }
+            }, 1500);
+        }
+
+        function verifyToken() {
+            const token = document.getElementById('igAccessToken').value;
+            const verification = document.getElementById('tokenVerification');
+            
+            verification.style.display = 'block';
+            verification.innerHTML = 'Verifying access token...';
+            verification.className = 'test-response';
+            
+            // Simulate API verification
+            setTimeout(() => {
+                if (token.length > 20) {
+                    verification.innerHTML = 'Token verified with required permissions!';
+                    verification.classList.add('test-success');
+                } else {
+                    verification.innerHTML = 'Invalid token or insufficient permissions.';
+                    verification.classList.add('test-error');
+                }
+            }, 1500);
+        }
+
+        document.getElementById('instagramForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add form submission logic here
+        });
+    </script>
+</body>
+</html> 

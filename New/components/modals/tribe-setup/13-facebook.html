@@ -1,0 +1,60 @@
+<!-- Connect Your Tribe's Facebook Group Modal -->
+<div class="modal fade" id="tribeFacebookModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Connect Your Tribe's Facebook Group</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="tribeFacebookForm">
+                    <div class="mb-3">
+                        <label for="facebookGroup" class="form-label">Facebook Group URL</label>
+                        <div class="input-group">
+                            <span class="input-group-text">facebook.com/groups/</span>
+                            <input type="text" class="form-control" id="facebookGroup" 
+                                   placeholder="your-tribe-group" required>
+                        </div>
+                        <div class="form-text">Enter your Facebook group's URL identifier</div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-grid">
+                            <button type="button" class="btn btn-outline-primary" onclick="connectFacebookGroup()">
+                                <i class="fab fa-facebook"></i> Connect Facebook Group
+                            </button>
+                        </div>
+                        <div class="form-text text-center">
+                            We'll verify your group admin status through Facebook's authentication
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="autoPost">
+                            <label class="form-check-label" for="autoPost">
+                                Enable automated posts from tribe activities
+                            </label>
+                        </div>
+                    </div>
+                    <div id="facebookPreview" class="mb-3 d-none">
+                        <label class="form-label">Connected Group</label>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <img id="groupImage" class="rounded me-2" style="width: 48px; height: 48px;">
+                                    <div>
+                                        <h6 id="groupName" class="mb-0"></h6>
+                                        <small id="groupMembers" class="text-muted"></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save & Continue</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 

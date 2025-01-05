@@ -1,0 +1,346 @@
+/* Pricing Cards */
+.pricing-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.pricing-card.featured {
+    border: 2px solid #0d6efd;
+    position: relative;
+}
+
+/* Pricing Header */
+.pricing-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.pricing-header h3 {
+    color: #212529;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0d6efd;
+    margin-bottom: 0.5rem;
+}
+
+.price .currency {
+    font-size: 1.5rem;
+    font-weight: 500;
+    vertical-align: super;
+}
+
+.price .period {
+    font-size: 1rem;
+    color: #6c757d;
+    font-weight: normal;
+}
+
+/* Features List */
+.pricing-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pricing-features li {
+    padding: 0.75rem 0;
+    color: #495057;
+    display: flex;
+    align-items: center;
+}
+
+.pricing-features li i {
+    color: #0d6efd;
+    margin-right: 0.75rem;
+}
+
+/* Treasury Card */
+.tribe-treasury {
+    font-size: 1.2rem;
+    color: #6c757d;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Agent Economy Section */
+.agent-economy {
+    background: linear-gradient(to right, #e3f2fd, #ffffff);
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.feature-box {
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    height: 100%;
+    transition: transform 0.2s;
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+}
+
+.feature-box i {
+    font-size: 2.5rem;
+    color: #0d6efd;
+    margin-bottom: 1.5rem;
+}
+
+.feature-box h4 {
+    color: #212529;
+    margin-bottom: 1rem;
+}
+
+.feature-box p {
+    color: #6c757d;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .pricing-card {
+        margin-bottom: 2rem;
+    }
+    
+    .agent-economy {
+        padding: 2rem;
+    }
+} 
+
+/* Add distinct background to pricing section */
+#pricing {
+    background-color: #f8f9fa;
+    position: relative;
+    z-index: 1;
+} 
+
+/* Payment Options */
+.payment-options {
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Credit card icons */
+.accepted-cards {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    align-items: center;
+}
+
+.card-icon {
+    position: relative;
+    height: 32px;
+    width: 48px;
+    border-radius: 4px;
+    padding: 4px;
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.payment-card-icon {
+    height: 20px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Card brand-specific styles */
+.card-icon.visa {
+    background: #1434CB;
+    padding: 6px;
+}
+
+.card-icon.mastercard {
+    background: linear-gradient(135deg, #EB001B, #FF5F00, #F79E1B);
+    padding: 6px;
+}
+
+.card-icon.amex {
+    background: #2E77BC;
+    padding: 6px;
+}
+
+.card-icon.discover {
+    background: linear-gradient(135deg, #4D4D4D, #FF6000);
+    padding: 6px;
+}
+
+/* Hover effect */
+.card-icon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    filter: brightness(1.1);
+}
+
+/* Dark mode adjustments */
+[data-bs-theme="dark"] .card-icon {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+[data-bs-theme="dark"] .card-icon:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+}
+
+/* Divider */
+.payment-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.payment-divider::before,
+.payment-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.payment-divider span {
+    padding: 0 1rem;
+    color: #6c757d;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Crypto section */
+.crypto-options {
+    margin-top: 1rem;
+}
+
+.accepted-crypto {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.crypto-icon {
+    height: 24px;
+    width: 24px;
+    opacity: 0.8;
+    transition: all 0.2s ease;
+}
+
+.crypto-icon:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Dark mode adjustments */
+[data-bs-theme="dark"] .payment-options {
+    border-top-color: rgba(255,255,255,0.1);
+}
+
+[data-bs-theme="dark"] .payment-divider::before,
+[data-bs-theme="dark"] .payment-divider::after {
+    border-bottom-color: rgba(255,255,255,0.1);
+}
+
+[data-bs-theme="dark"] .payment-divider span {
+    color: rgba(255,255,255,0.7);
+}
+
+/* Card Payment Modal Styles */
+#cardPaymentModal .modal-content {
+    border: none;
+    border-radius: 12px;
+}
+
+#cardPaymentModal .payment-summary {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+#cardPaymentModal .form-control,
+#cardPaymentModal .form-select {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+}
+
+#cardPaymentModal .form-control:focus,
+#cardPaymentModal .form-select:focus {
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+}
+
+/* Card type icons */
+.card-type-icon {
+    transition: all 0.3s ease;
+}
+
+.card-type-icon.visa i {
+    color: #1434CB;
+}
+
+.card-type-icon.mastercard i {
+    color: #FF5F00;
+}
+
+.card-type-icon.amex i {
+    color: #2E77BC;
+}
+
+.card-type-icon.discover i {
+    color: #FF6000;
+}
+
+/* Form validation styles */
+.form-control.is-invalid,
+.form-select.is-invalid {
+    border-color: #dc3545;
+    background-image: none;
+}
+
+.form-control.is-valid,
+.form-select.is-valid {
+    border-color: #198754;
+    background-image: none;
+}
+
+/* Toast notifications */
+.toast-container {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 1050;
+}
+
+.toast {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Dark mode adjustments */
+[data-bs-theme="dark"] #cardPaymentModal .payment-summary {
+    background: rgba(255,255,255,0.05);
+}
+
+[data-bs-theme="dark"] .toast {
+    background: #212529;
+    border: 1px solid rgba(255,255,255,0.1);
+} 

@@ -1,0 +1,29 @@
+<!-- Send BSV Modal -->
+<div class="modal fade" id="sendBSVModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Send BSV</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="return handleSendBSV(event)">
+                    <div class="mb-3">
+                        <label class="form-label">Recipient (HandCash handle or BSV address)</label>
+                        <input type="text" class="form-control" id="sendTo" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Amount (BSV)</label>
+                        <input type="number" class="form-control" id="sendAmount" 
+                               step="0.00000001" min="0.00000001" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Note (optional)</label>
+                        <input type="text" class="form-control" id="sendNote">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send BSV</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 

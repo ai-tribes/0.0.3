@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tribes - AI Tribes</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card shadow">
+                    <div class="card-body p-4">
+                        <h2 class="mb-4">My Tribes</h2>
+                        <!-- Main Tribes -->
+                        <div class="row g-4">
+                            <!-- Meta Builders DAO -->
+                            <div class="col-md-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <img src="assets/tribes/meta-builders.svg" alt="Meta Builders DAO" class="rounded me-3" width="48">
+                                            <div>
+                                                <h5 class="mb-0">Meta Builders DAO</h5>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <span class="badge bg-success">Active</span>
+                                                    <span class="badge bg-primary" style="font-size: 0.7rem;">
+                                                        <i class="fas fa-crown me-1"></i>Admin
+                                                    </span>
+                                                    <span class="badge bg-secondary" style="font-size: 0.7rem;">
+                                                        <i class="fab fa-bitcoin me-1"></i>BSV
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-muted small">Building the future of decentralized AI communities</p>
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <small class="text-muted">Members:</small>
+                                                <span class="ms-1">156</span>
+                                            </div>
+                                            <div>
+                                                <small class="text-muted">Token:</small>
+                                                <span class="ms-1">META</span>
+                                            </div>
+                                        </div>
+                                        <div class="progress mb-3" style="height: 6px;">
+                                            <div class="progress-bar bg-success" style="width: 100%"></div>
+                                        </div>
+                                        <div class="d-flex gap-2">
+                                            <button class="btn btn-outline-primary flex-grow-1" onclick="window.parent.loadTribeDashboard('metabuildersdao')">
+                                                <i class="fas fa-chart-line me-2"></i>Manage Tribe
+                                            </button>
+                                            <button class="btn btn-outline-secondary">
+                                                <i class="fas fa-chart-line"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AI Collective -->
+                            <div class="col-md-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <img src="assets/tribes/ai-collective.svg" alt="AI Collective" class="rounded me-3" width="48">
+                                            <div>
+                                                <h5 class="mb-0">AI Collective</h5>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <span class="badge bg-warning">Setup In Progress</span>
+                                                    <span class="badge bg-primary" style="font-size: 0.7rem;">
+                                                        <i class="fas fa-crown me-1"></i>Admin
+                                                    </span>
+                                                    <span class="badge bg-secondary" style="font-size: 0.7rem;">
+                                                        <i class="fab fa-ethereum me-1"></i>ETH
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-muted small">Empowering AI agents to create value in the digital economy</p>
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <small class="text-muted">Progress:</small>
+                                                <span class="ms-1">14/22 steps</span>
+                                            </div>
+                                            <div>
+                                                <small class="text-muted">Token:</small>
+                                                <span class="ms-1">AIC</span>
+                                            </div>
+                                        </div>
+                                        <div class="progress mb-3" style="height: 6px;">
+                                            <div class="progress-bar bg-warning" style="width: 65%"></div>
+                                        </div>
+                                        <div class="d-flex gap-2">
+                                            <button class="btn btn-warning flex-grow-1" onclick="window.parent.loadTribeDashboard('aicollective')">
+                                                <i class="fas fa-cog me-2"></i>Manage Tribe
+                                            </button>
+                                            <button class="btn btn-outline-secondary">
+                                                <i class="fas fa-cog"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Web3 Pioneers -->
+                            <div class="col-md-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <img src="assets/tribes/web3-pioneers.svg" alt="Web3 Pioneers" class="rounded me-3" width="48">
+                                            <div>
+                                                <h5 class="mb-0">Web3 Pioneers</h5>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <span class="badge bg-secondary">Draft</span>
+                                                    <span class="badge bg-primary" style="font-size: 0.7rem;">
+                                                        <i class="fas fa-crown me-1"></i>Admin
+                                                    </span>
+                                                    <span class="badge bg-secondary" style="font-size: 0.7rem;">
+                                                        <i class="fas fa-cube me-1"></i>SOL
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-muted small">Pioneering the intersection of AI and blockchain technology</p>
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <small class="text-muted">Created:</small>
+                                                <span class="ms-1">2 days ago</span>
+                                            </div>
+                                            <div>
+                                                <small class="text-muted">Token:</small>
+                                                <span class="ms-1">$W3P</span>
+                                            </div>
+                                        </div>
+                                        <div class="progress mb-3" style="height: 6px;">
+                                            <div class="progress-bar bg-secondary" style="width: 15%"></div>
+                                        </div>
+                                        <div class="d-flex gap-2">
+                                            <button class="btn btn-outline-primary flex-grow-1" onclick="window.parent.loadTribeDashboard('web3pioneers')">
+                                                <i class="fas fa-cog me-2"></i>Manage Tribe
+                                            </button>
+                                            <button class="btn btn-outline-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Other Tribes Section -->
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-12">
+                <div class="card shadow">
+                    <div class="card-body p-4">
+                        <h2 class="mb-4">Other Tribes</h2>
+                        <div class="row g-4">
+                            <!-- BlockDrive -->
+                            <div class="col-md-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="rounded me-3 d-flex align-items-center justify-content-center" 
+                                                 style="width: 48px; height: 48px; background: #3B82F6; opacity: 0.9;">
+                                                <i class="fas fa-cube text-white fa-lg"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-0">
+                                                    BlockDrive
+                                                    <small class="text-muted ms-2" style="font-size: 0.75rem;">by CoffeeGuy999</small>
+                                                </h5>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <span class="badge bg-info">Development</span>
+                                                    <span class="badge bg-success" style="font-size: 0.7rem;">
+                                                        <i class="fas fa-edit me-1"></i>Read/Write
+                                                    </span>
+                                                    <span class="badge bg-secondary" style="font-size: 0.7rem;">
+                                                        <i class="fab fa-ethereum me-1"></i>ETH
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-muted small">Decentralized storage solutions for the future</p>
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <small class="text-muted">Members:</small>
+                                                <span class="ms-1">42</span>
+                                            </div>
+                                            <div>
+                                                <small class="text-muted">Token:</small>
+                                                <span class="ms-1">$DRIVE</span>
+                                            </div>
+                                        </div>
+                                        <div class="progress mb-3" style="height: 6px;">
+                                            <div class="progress-bar bg-info" style="width: 45%"></div>
+                                        </div>
+                                        <div class="d-flex gap-2">
+                                            <button class="btn btn-outline-primary flex-grow-1" onclick="window.parent.loadTribeDashboard('blockdrive')">
+                                                <i class="fas fa-chart-line me-2"></i>Manage Tribe
+                                            </button>
+                                            <button class="btn btn-outline-secondary">
+                                                <i class="fas fa-cog"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- NeuralAI -->
+                            <div class="col-md-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="rounded me-3 d-flex align-items-center justify-content-center" 
+                                                 style="width: 48px; height: 48px; background: #8B5CF6; opacity: 0.9;">
+                                                <i class="fas fa-brain text-white fa-lg"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-0">
+                                                    NeuralAI
+                                                    <small class="text-muted ms-2" style="font-size: 0.75rem;">by CryptoVoyager</small>
+                                                </h5>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <span class="badge bg-warning">Setup</span>
+                                                    <span class="badge bg-secondary" style="font-size: 0.7rem;">
+                                                        <i class="fas fa-eye me-1"></i>Read Only
+                                                    </span>
+                                                    <span class="badge bg-secondary" style="font-size: 0.7rem;">
+                                                        <i class="fab fa-bitcoin me-1"></i>BTC
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-muted small">Advanced neural networks for decentralized intelligence</p>
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <small class="text-muted">Members:</small>
+                                                <span class="ms-1">28</span>
+                                            </div>
+                                            <div>
+                                                <small class="text-muted">Token:</small>
+                                                <span class="ms-1">$NRAI</span>
+                                            </div>
+                                        </div>
+                                        <div class="progress mb-3" style="height: 6px;">
+                                            <div class="progress-bar bg-warning" style="width: 25%"></div>
+                                        </div>
+                                        <div class="d-flex gap-2">
+                                            <button class="btn btn-outline-primary flex-grow-1" onclick="window.parent.loadTribeDashboard('neuralai')">
+                                                <i class="fas fa-chart-line me-2"></i>Manage Tribe
+                                            </button>
+                                            <button class="btn btn-outline-secondary" disabled title="Read-only access">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- HecTik CDN -->
+                            <div class="col-md-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="rounded me-3 d-flex align-items-center justify-content-center" 
+                                                 style="width: 48px; height: 48px; background: #EC4899; opacity: 0.9;">
+                                                <i class="fas fa-cloud text-white fa-lg"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-0">
+                                                    HecTik CDN
+                                                    <small class="text-muted ms-2" style="font-size: 0.75rem;">by Hector</small>
+                                                </h5>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <span class="badge bg-secondary">Draft</span>
+                                                    <span class="badge bg-success" style="font-size: 0.7rem;">
+                                                        <i class="fas fa-edit me-1"></i>Read/Write
+                                                    </span>
+                                                    <span class="badge bg-secondary" style="font-size: 0.7rem;">
+                                                        <i class="fas fa-cube me-1"></i>SOL
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-muted small">Decentralized content delivery network</p>
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <small class="text-muted">Members:</small>
+                                                <span class="ms-1">12</span>
+                                            </div>
+                                            <div>
+                                                <small class="text-muted">Token:</small>
+                                                <span class="ms-1">$HTIK</span>
+                                            </div>
+                                        </div>
+                                        <div class="progress mb-3" style="height: 6px;">
+                                            <div class="progress-bar bg-secondary" style="width: 10%"></div>
+                                        </div>
+                                        <div class="d-flex gap-2">
+                                            <button class="btn btn-outline-primary flex-grow-1" onclick="window.parent.loadTribeDashboard('hectikcdn')">
+                                                <i class="fas fa-chart-line me-2"></i>Manage Tribe
+                                            </button>
+                                            <button class="btn btn-outline-secondary">
+                                                <i class="fas fa-cog"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back to Dashboard Button -->
+        <div class="d-grid gap-2 mt-4">
+            <button type="button" class="btn btn-outline-secondary" onclick="window.parent.location.reload()">Back to Dashboard</button>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

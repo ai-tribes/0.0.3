@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Google Cloud - AI Tribes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/sections.css" rel="stylesheet">
+</head>
+<body>
+    <div class="section-container">
+        <h2>Setup Google Cloud</h2>
+        <p class="text-muted mb-4">Configure your GCP project for AI agent deployment</p>
+
+        <!-- Project Details -->
+        <div class="mb-4">
+            <div class="form-group mb-3">
+                <label class="form-label">Project ID</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Enter your GCP project ID">
+                    <button class="btn btn-outline-secondary">Verify</button>
+                </div>
+                <small class="text-muted">Find this in your Google Cloud Console</small>
+            </div>
+
+            <div class="form-group mb-4">
+                <label class="form-label">Service Account Key</label>
+                <div class="input-group">
+                    <input type="file" class="form-control" accept=".json">
+                    <button class="btn btn-outline-secondary">Upload</button>
+                </div>
+                <small class="text-muted">Upload your service account credentials JSON file</small>
+            </div>
+        </div>
+
+        <!-- Required Services -->
+        <div class="mb-4">
+            <h5 class="mb-3">Required Services</h5>
+            <div class="service-list">
+                <div class="service-item p-3 border rounded mb-3">
+                    <div class="d-flex align-items-center">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" checked disabled>
+                        </div>
+                        <div class="ms-3">
+                            <h6 class="mb-1">Cloud Storage</h6>
+                            <p class="text-muted small mb-0">Required for storing agent data and files</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-item p-3 border rounded mb-3">
+                    <div class="d-flex align-items-center">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" checked disabled>
+                        </div>
+                        <div class="ms-3">
+                            <h6 class="mb-1">Cloud Functions</h6>
+                            <p class="text-muted small mb-0">Required for serverless agent operations</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-item p-3 border rounded mb-3">
+                    <div class="d-flex align-items-center">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" checked disabled>
+                        </div>
+                        <div class="ms-3">
+                            <h6 class="mb-1">Cloud Run</h6>
+                            <p class="text-muted small mb-0">Required for running AI agents</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-outline-secondary" onclick="window.parent.postMessage({action: 'back'}, '*')">Back</button>
+            <button type="button" class="btn btn-primary" onclick="window.parent.postMessage({action: 'next'}, '*')">Continue</button>
+        </div>
+    </div>
+
+    <style>
+    .service-item {
+        background: white;
+        transition: all 0.2s ease;
+    }
+    .service-item:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .form-check-input:checked {
+        background-color: #198754;
+        border-color: #198754;
+    }
+    .form-check-input:disabled {
+        opacity: 1;
+    }
+    .input-group .btn {
+        border-color: #dee2e6;
+    }
+    </style>
+</body>
+</html> 

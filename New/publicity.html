@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tribes - Publicity</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/tribes.css" rel="stylesheet">
+    <script>
+        // Apply theme immediately to prevent flash
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="tribes_logo.png" alt="AI Tribes Logo">
+                AI Tribes
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#explore">Explore</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tribes.html">Tribes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/publicity.html">Publicity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/buytoken.html">Token</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/team.html">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/roadmap.html">Roadmap</a>
+                    </li>
+                </ul>
+                <div class="ms-auto d-flex align-items-center">
+                    <a href="https://twitter.com/ai_tribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fa-brands fa-x-twitter nav-icon"></i>
+                    </a>
+                    <a href="https://discord.gg/J8kcT2d7" target="_blank" class="btn btn-link p-2">
+                        <i class="fab fa-discord nav-icon"></i>
+                    </a>
+                    <a href="https://github.com/ai-tribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fab fa-github nav-icon"></i>
+                    </a>
+                    <a href="https://aitribes.gitbook.io" target="_blank" class="btn btn-link p-2">
+                        <img src="assets/icons/gitbook.svg" alt="Documentation" class="nav-icon">
+                    </a>
+                    <a href="https://dexscreener.com/aitribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fas fa-chart-line nav-icon"></i>
+                    </a>
+                    <button class="btn btn-link p-2" id="theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon nav-icon"></i>
+                    </button>
+                    <button class="btn btn-outline-primary ms-2" data-action="connect-wallet">
+                        <i class="fas fa-wallet me-2"></i>Connect Wallet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5">
+        <!-- AI Tribes Publicity Generator -->
+        <section class="mb-5">
+            <h2 class="mb-4">AI Tribes Publicity Generator</h2>
+            <div class="card">
+                <div class="card-body">
+                    <p class="text-muted">Generate branded images and memes to share AI Tribes with your network</p>
+                    <button class="btn btn-primary" id="generateAITribesPublicity">
+                        <i class="fas fa-magic me-2"></i>Generate AI Tribes Publicity
+                    </button>
+                    <div class="mt-4" id="aiTribesPublicityResult">
+                        <!-- Generated content will appear here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Individual Tribe Publicity Generator -->
+        <section class="mb-5">
+            <h2 class="mb-4">Your Tribe's Publicity</h2>
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="tribeName" class="form-label">Enter Your Tribe's Name</label>
+                        <input type="text" class="form-control" id="tribeName" placeholder="Your Tribe Name">
+                    </div>
+                    <button class="btn btn-primary" id="generateTribePublicity">
+                        <i class="fas fa-wand-magic-sparkles me-2"></i>Generate Tribe Publicity
+                    </button>
+                    <div class="mt-4" id="tribePublicityResult">
+                        <!-- Generated tribe content will appear here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Media Coverage Section -->
+        <section class="mb-5">
+            <h2 class="mb-4">AI Tribes in the Media</h2>
+            <div class="card">
+                <div class="card-body">
+                    <div class="media-items">
+                        <!-- Example media coverage item -->
+                        <div class="media-item mb-4">
+                            <h5>CryptoDaily: "AI Tribes Revolutionizes Web3 Communities"</h5>
+                            <p class="text-muted">December 2023</p>
+                            <a href="#" class="btn btn-outline-primary btn-sm">Read Article</a>
+                        </div>
+                        <!-- Add more media items here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Press Kit Section -->
+        <section class="mb-5">
+            <h2 class="mb-4">Press Kit</h2>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Brand Assets</h5>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-download me-2"></i><a href="#">Logo Pack</a></li>
+                                <li><i class="fas fa-download me-2"></i><a href="#">Brand Guidelines</a></li>
+                                <li><i class="fas fa-download me-2"></i><a href="#">Media Kit</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Contact Press Team</h5>
+                            <p>For press inquiries, please contact:</p>
+                            <a href="mailto:press@ai-tribes.online" class="btn btn-outline-primary">
+                                <i class="fas fa-envelope me-2"></i>Contact Press Team
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Add required scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/publicityGenerator.js"></script>
+    <script src="js/nightMode.js"></script>
+</body>
+</html> 

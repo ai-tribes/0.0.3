@@ -1,0 +1,2297 @@
+.btn-custom {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    font-size: 0.7rem;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+}
+
+.btn-custom:hover {
+    background-color: #f8f9fa;
+}
+
+.navbar-brand img {
+    width: 50px;
+    height: auto;
+}
+
+.form-control {
+    font-size: 0.8rem;
+}
+
+.card {
+    margin-bottom: 1rem;
+}
+
+.preview-window {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+}
+
+/* Left panel preview */
+.preview-window img {
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+}
+
+/* Right panel preview */
+#previewPanel {
+    min-height: 200px;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+}
+
+.preview-tribe-info h6 {
+    color: #0d6efd;
+    margin-bottom: 0.5rem;
+}
+
+.preview-member-item {
+    padding: 0.5rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.preview-member-item:last-child {
+    border-bottom: none;
+}
+
+.social-account-preview {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+}
+
+.preview-traits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+}
+
+/* Animation for preview updates */
+@keyframes previewUpdate {
+    0% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+#previewPanel > div {
+    animation: previewUpdate 0.3s ease;
+}
+
+/* Preview window headings */
+.preview-window h5 {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Launch button styling */
+.preview-window .btn-success {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+}
+
+.preview-logo {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+}
+
+.important-section {
+    background-color: #f8f9fa;
+    border: 1px solid #007bff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+/* Token Section Styling */
+.token-powers, .advanced-features {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.token-powers .form-check, 
+.advanced-features .form-check {
+    margin-bottom: 10px;
+}
+
+.token-powers .form-check:last-child, 
+.advanced-features .form-check:last-child {
+    margin-bottom: 0;
+}
+
+.form-check-label i {
+    color: #6c757d;
+    cursor: help;
+    margin-left: 5px;
+}
+
+#tokenConfig {
+    border-left: 3px solid #0d6efd;
+    padding-left: 15px;
+    margin-top: 15px;
+}
+
+.token-template-card {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.token-template-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* BSV Wallet Styles */
+.wallet-info .card {
+    border: 1px solid #e0e0e0;
+    transition: all 0.2s ease;
+}
+
+.wallet-info .card:hover {
+    border-color: #007bff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.handcash-connected {
+    background: linear-gradient(45deg, #2193b0, #6dd5ed);
+    color: white;
+}
+
+.yours-connected {
+    background: linear-gradient(45deg, #11998e, #38ef7d);
+    color: white;
+}
+
+/* BSV Token Features */
+.bsv-feature {
+    border-left: 3px solid #ff6b6b;
+    padding-left: 15px;
+    margin: 10px 0;
+}
+
+.micropayment-config {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.token-preview .bsv-badge {
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    color: white;
+}
+
+/* BSV Wallet Styles */
+#connectWalletButton.connected {
+    background-color: #e9f7ef;
+    border-color: #28a745;
+    color: #28a745;
+}
+
+.wallet-info {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.bsv-badge {
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    color: white;
+}
+
+.modal-content {
+    border: none;
+    border-radius: 12px;
+}
+
+.modal-header {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.wallet-selection {
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.wallet-selection:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Wallet Selection Styles */
+.wallet-option {
+    cursor: pointer;
+}
+
+.wallet-selection {
+    transition: all 0.2s ease;
+    background: white;
+}
+
+.wallet-selection:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-color: #0d6efd !important;
+}
+
+.wallet-selection img {
+    object-fit: contain;
+}
+
+.modal-content {
+    border-radius: 16px;
+    border: none;
+}
+
+.modal-header {
+    border-bottom: none;
+    padding: 1.5rem 1.5rem 0.5rem;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+/* Wallet status alert styling */
+#walletStatus {
+    margin-top: 1rem;
+    border-radius: 8px;
+}
+
+.wallet-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 0.5rem;
+}
+
+.wallet-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: white;
+    gap: 1rem;
+}
+
+.wallet-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-color: #0d6efd;
+    background: #f8f9fa;
+}
+
+.wallet-item img {
+    width: 32px;
+    height: 32px;
+    margin-right: 1rem;
+    object-fit: contain;
+}
+
+.wallet-item span {
+    font-weight: 500;
+    color: #333;
+}
+
+/* Connected state styles */
+.btn-custom.connected {
+    background-color: #e9f7ef;
+    border-color: #28a745;
+    color: #28a745;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 140px;
+    background-color: rgba(0, 0, 0, 0.2);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    transition: background-image 1.5s ease-in-out;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    color: white;
+}
+
+.hero-section .display-4 {
+    font-size: 3.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.hero-section .lead {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: #495057;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero-description {
+    margin-top: 3rem;
+}
+
+.hero-description p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.features-grid {
+    margin-top: 60px;
+}
+
+.feature-item {
+    padding: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+}
+
+.feature-item i {
+    font-size: 2rem;
+    color: #0d6efd;
+    margin-bottom: 1rem;
+}
+
+.feature-item h5 {
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+.feature-item p {
+    color: #6c757d;
+    margin-bottom: 0;
+    font-size: 1rem;
+}
+
+.hero-stats {
+    margin-top: 4rem;
+}
+
+.stat-card {
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.stat-card h3 {
+    font-weight: 700;
+    color: #0d6efd;
+    margin-bottom: 0.5rem;
+}
+
+/* Feature Cards */
+.feature-card {
+    padding: 2rem;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.icon-wrapper {
+    width: 64px;
+    height: 64px;
+    background: #e9ecef;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.icon-wrapper i {
+    font-size: 24px;
+    color: #0d6efd;
+}
+
+/* Navigation Enhancements */
+.navbar {
+    padding: 1rem 0;
+}
+
+.navbar-brand img {
+    width: 40px;
+    height: auto;
+    margin-right: 0.5rem;
+}
+
+.nav-link {
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+}
+
+/* Button Styles */
+.btn-custom {
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease;
+}
+
+.btn-custom:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Tribe Cards */
+.tribe-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.tribe-banner {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Research tribe banner */
+.tribe-banner.research {
+    background-image: url('../assets/tribes/research/banner.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Gaming tribe banner */
+.tribe-banner.gaming {
+    background-image: url('../assets/tribes/gaming/banner.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Education tribe banner */
+.tribe-banner.edu {
+    background-image: url('../assets/tribes/edu/banner.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* News tribe banner */
+.tribe-banner.news {
+    background: url('../assets/banners/news_banner.png') center center;
+    background-size: cover;
+}
+
+/* Climate tribe banner */
+.tribe-banner.climate {
+    background: url('../assets/banners/climate_banner.png') center center;
+    background-size: cover;
+}
+
+/* Art tribe banner */
+.tribe-banner.art {
+    background-image: url('../assets/tribes/art/banner.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.tribe-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    background: white;
+    padding: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.tribe-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.tribe-content {
+    padding: 2rem;
+}
+
+.token-info {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.token-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.token-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5rem;
+}
+
+.token-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+.token-stats .stat {
+    text-align: center;
+}
+
+.token-stats .label {
+    display: block;
+    font-size: 0.75rem;
+    color: #6c757d;
+}
+
+.token-stats .value {
+    font-weight: 600;
+}
+
+.token-stats .value.up {
+    color: #28a745;
+}
+
+.token-stats .value.down {
+    color: #dc3545;
+}
+
+.agents-preview {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.agent-list {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.agent {
+    text-align: center;
+}
+
+.agent img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-bottom: 0.25rem;
+}
+
+.agent span {
+    display: block;
+    font-size: 0.75rem;
+}
+
+.agent .role {
+    color: #6c757d;
+    font-size: 0.7rem;
+}
+
+.tribe-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.tribe-stats {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.tribe-stats .stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6c757d;
+}
+
+/* Pricing Cards */
+.pricing-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.pricing-card.featured {
+    transform: scale(1.05);
+    border: 2px solid #0d6efd;
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+}
+
+.pricing-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0d6efd;
+}
+
+.price .currency {
+    font-size: 1.5rem;
+    vertical-align: super;
+}
+
+.price .period {
+    font-size: 1rem;
+    color: #6c757d;
+    font-weight: normal;
+}
+
+.pricing-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+}
+
+.pricing-features li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pricing-features i {
+    color: #28a745;
+}
+
+/* Footer Styles */
+.footer {
+    background: #212529;
+    color: white;
+}
+
+.footer h5, .footer h6 {
+    margin-bottom: 1.5rem;
+}
+
+.footer a {
+    color: #adb5bd;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer a:hover {
+    color: white;
+}
+
+.social-links a {
+    font-size: 1.25rem;
+}
+
+.newsletter-form .form-control {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.newsletter-form .form-control::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+/* Wallet Logo Styles */
+.wallet-logo {
+    width: 32px;
+    height: 32px;
+    margin-right: 1rem;
+    object-fit: contain;
+}
+
+.wallet-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: white;
+    gap: 1rem;
+}
+
+.wallet-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-color: #0d6efd;
+    background: #f8f9fa;
+}
+
+/* Connected state wallet logo */
+.btn-custom.connected img {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+    vertical-align: text-bottom;
+}
+
+/* Network Badge Styles */
+.network-badge {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+    margin-left: 6px;
+}
+
+.network-badge.bsv {
+    background-color: #11A97D;
+    color: white;
+}
+
+.network-badge.eth {
+    background-color: #627EEA;
+    color: white;
+}
+
+.network-badge.sol {
+    background-color: #AB9FF2;
+    color: white;
+}
+
+.wallet-info {
+    display: flex;
+    align-items: center;
+}
+
+/* Additional Network Badge Styles */
+.network-badge.multi {
+    background: linear-gradient(45deg, #2193b0, #6dd5ed);
+    color: white;
+}
+
+.network-badge.bnb {
+    background-color: #F3BA2F;
+    color: black;
+}
+
+/* Enhance wallet item styling */
+.wallet-item {
+    display: flex;
+    align-items: center;
+    padding: 1.2rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: white;
+    margin-bottom: 0.75rem;
+    gap: 1rem;
+}
+
+.wallet-item:last-child {
+    margin-bottom: 0;
+}
+
+.wallet-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 0;
+}
+
+/* Add subtle hover effect for network badges */
+.network-badge {
+    transition: all 0.2s ease;
+}
+
+.wallet-item:hover .network-badge {
+    transform: scale(1.05);
+}
+
+/* Add wallet descriptions */
+.wallet-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.wallet-name {
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+}
+
+.wallet-description {
+    font-size: 0.75rem;
+    color: #6c757d;
+    margin-top: 0.2rem;
+}
+
+.wallet-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Wallet Modal Enhancements */
+.wallet-search {
+    position: relative;
+}
+
+.wallet-search .form-control {
+    padding-left: 2.5rem;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+}
+
+.wallet-search::before {
+    content: '\f002';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+}
+
+.wallet-categories {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.wallet-category {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: #f8f9fa;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.wallet-category:hover {
+    background: #e9ecef;
+}
+
+.wallet-category.active {
+    background: #0d6efd;
+    color: white;
+}
+
+/* Enhanced Wallet Items */
+.wallet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 0.25rem;
+}
+
+.wallet-description {
+    font-size: 0.75rem;
+    color: #6c757d;
+    margin: 0;
+}
+
+.wallet-features {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.feature-badge {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    background: #e9ecef;
+    color: #495057;
+}
+
+/* Connection Status Styles */
+.wallet-item.connecting {
+    background: #f8f9fa;
+    pointer-events: none;
+}
+
+.wallet-item.connected {
+    border-color: #28a745;
+    background: #f8fff9;
+}
+
+.wallet-item.error {
+    border-color: #dc3545;
+    background: #fff8f8;
+}
+
+.connection-status {
+    position: absolute;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Animation for connecting state */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.connecting .wallet-info {
+    animation: pulse 1.5s infinite;
+}
+
+/* Update modal sizing and scrolling */
+.modal-dialog {
+    max-width: 600px; /* Wider modal */
+    margin: 1rem auto;
+}
+
+.modal-body {
+    max-height: 85vh; /* Taller viewport height */
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+/* Update wallet list layout */
+.wallet-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Make wallet items more compact */
+.wallet-item {
+    padding: 0.75rem;
+    margin-bottom: 0;
+    gap: 0.75rem;
+}
+
+/* Compact wallet info */
+.wallet-header {
+    margin-bottom: 0.125rem;
+}
+
+.wallet-description {
+    font-size: 0.7rem;
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+}
+
+.wallet-features {
+    margin-top: 0.25rem;
+    gap: 0.25rem;
+}
+
+.feature-badge {
+    font-size: 0.6rem;
+    padding: 1px 6px;
+}
+
+/* Make search and categories more compact */
+.wallet-search {
+    margin-bottom: 1rem;
+}
+
+.wallet-categories {
+    margin-bottom: 1rem;
+}
+
+.wallet-category {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+}
+
+/* Adjust logo size */
+.wallet-logo {
+    width: 28px;
+    height: 28px;
+}
+
+/* Adjust grid layout for larger screens */
+@media (min-width: 768px) {
+    .wallet-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Two columns */
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+
+    /* Remove bottom margin since we're using grid gap */
+    .wallet-item {
+        margin-bottom: 0;
+    }
+}
+
+/* Make the modal appear higher on the screen */
+.modal {
+    padding-top: 40px;
+}
+
+/* AI Member Styling */
+.ai-member {
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+.ai-member:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.personality-traits .trait-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.trait-chips .badge {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.social-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.social-item i {
+    font-size: 1.2rem;
+    width: 24px;
+    text-align: center;
+}
+
+.platform-select {
+    padding-left: 29px;
+}
+
+.ai-capabilities {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 1rem;
+}
+
+/* Role description styling */
+.role-description {
+    display: block;
+    margin-top: 0.25rem;
+    font-style: italic;
+}
+
+/* Social platform icons */
+.fa-twitter { color: #1DA1F2; }
+.fa-discord { color: #7289DA; }
+.fa-linkedin { color: #0077B5; }
+.fa-medium { color: #00AB6C; }
+.fa-github { color: #333333; }
+
+/* Progress Bar at Top */
+.setup-progress {
+    background: white;
+    padding: 1rem 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.progress {
+    height: 8px;
+    border-radius: 4px;
+    background: #e9ecef;
+}
+
+.progress-bar {
+    transition: width 0.3s ease;
+    background: #0d6efd;
+}
+
+/* Social Media Integration Styling */
+.social-platform-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.social-platform-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.social-platform-item label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.social-platform-item i {
+    font-size: 1.2rem;
+}
+
+.ai-member-social {
+    transition: all 0.2s ease;
+}
+
+.ai-member-social:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Platform-specific colors */
+.fa-twitter { color: #1DA1F2; }
+.fa-discord { color: #7289DA; }
+.fa-linkedin { color: #0077B5; }
+.fa-medium { color: #00AB6C; }
+.fa-github { color: #333333; }
+
+/* Featured Wallet Styling */
+.wallet-item.featured {
+    background: linear-gradient(45deg, #f8f9fa, #ffffff);
+    border: 2px solid #9945FF; /* Solana purple */
+    padding: 1.5rem;
+    position: relative;
+    grid-column: 1 / -1; /* Make it full width */
+}
+
+.featured-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #9945FF;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.featured-badge i {
+    color: #FFD700;
+    margin-right: 4px;
+}
+
+/* Network badge for Solana */
+.network-badge.sol {
+    background: linear-gradient(45deg, #9945FF, #14F195);
+    color: white;
+}
+
+/* Premium feature badge */
+.feature-badge.premium {
+    background: #9945FF;
+    color: white;
+}
+
+/* Wallet divider */
+.wallet-divider {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin: 1rem 0;
+    position: relative;
+}
+
+.wallet-divider::before,
+.wallet-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: #e0e0e0;
+}
+
+.wallet-divider::before {
+    left: 0;
+}
+
+.wallet-divider::after {
+    right: 0;
+}
+
+.wallet-divider span {
+    background: white;
+    padding: 0 1rem;
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+/* Button toggle styling */
+.section-toggle, .member-toggle, .platform-toggle {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    transition: all 0.2s ease;
+}
+
+.section-toggle.active,
+.member-toggle.active,
+.platform-toggle.active {
+    background-color: #f8f9fa;
+    border-color: #0d6efd;
+}
+
+.toggle-icon {
+    transition: transform 0.2s ease;
+}
+
+.section-toggle.active .toggle-icon,
+.platform-toggle.active .fas {
+    transform: rotate(180deg);
+}
+
+/* Content animation */
+.section-content,
+.member-content,
+.platform-content {
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Setup Introduction */
+.setup-intro {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.setup-intro h4 {
+    color: #0d6efd;
+    margin-bottom: 0.5rem;
+}
+
+.setup-intro p {
+    margin-bottom: 0;
+}
+
+/* Preview Panel Styling */
+.preview-content {
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+}
+
+.preview-content h6 {
+    color: #0d6efd;
+    margin-bottom: 0.5rem;
+}
+
+.preview-leader, .preview-members {
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+    margin-top: 1rem;
+}
+
+.member-item {
+    padding: 0.25rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.member-item:last-child {
+    border-bottom: none;
+}
+
+/* Animation for updates */
+.preview-content {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Wallet Connection Styles */
+.wallet-connected {
+    background-color: #198754;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.wallet-connected:hover {
+    background-color: #157347;
+    color: white;
+}
+
+#toastContainer {
+    z-index: 1050;
+}
+
+.toast {
+    opacity: 0.95;
+}
+
+/* Disabled button styling */
+.btn:disabled {
+    cursor: not-allowed;
+    position: relative;
+}
+
+.btn:disabled:hover::after {
+    content: 'Connect wallet first';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    margin-bottom: 0.5rem;
+}
+
+.token-benefits {
+    background: linear-gradient(to right, #f8f9fa, #ffffff);
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.benefit-card {
+    padding: 2rem;
+    text-align: center;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    height: 100%;
+    transition: transform 0.2s;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+}
+
+.benefit-card i {
+    font-size: 2.5rem;
+    color: #0d6efd;
+    margin-bottom: 1.5rem;
+}
+
+.benefit-card h5 {
+    color: #212529;
+    margin-bottom: 1rem;
+}
+
+.benefit-card p {
+    color: #6c757d;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Token Utility Badges */
+.token-utility {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.utility-badge {
+    background: rgba(13, 110, 253, 0.1);
+    color: #0d6efd;
+    padding: 0.25rem 0.5rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+}
+
+/* Tribe Activity */
+.tribe-activity {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Enhanced Agent List */
+.agent-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.agent {
+    flex: 1;
+    min-width: 80px;
+    text-align: center;
+    background: white;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.agent:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.tribe-slogan {
+    font-style: italic;
+    color: #6c757d;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 0.5rem;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.tribe-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 0.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.agent-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: white;
+    padding: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.agent-avatar:hover {
+    transform: scale(1.1);
+}
+
+.feature-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+    transition: transform 0.2s;
+}
+
+.feature-item:hover .feature-icon {
+    transform: scale(1.1);
+}
+
+.banner-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.tribe-logo img {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    background: white;
+    padding: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.create-tribe-btn {
+    padding: 15px 40px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.create-tribe-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.create-tribe-btn svg {
+    transition: transform 0.2s ease;
+}
+
+.create-tribe-btn:hover svg {
+    transform: translateX(4px);
+}
+
+.hero-images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.hero-image {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, opacity 0.5s ease;
+}
+
+.hero-image:hover {
+    transform: translateY(-5px);
+}
+
+/* Hero Feature Boxes */
+.hero-feature {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.hero-feature:hover {
+    transform: translateY(-5px);
+}
+
+.icon-circle {
+    width: 64px;
+    height: 64px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.icon-circle img {
+    width: 40px;
+    height: 40px;
+    filter: brightness(0); /* Makes the SVG black */
+}
+
+.icon-circle i {
+    font-size: 24px;
+    color: white;
+}
+
+.hero-feature h4 {
+    margin-bottom: 0.5rem;
+    color: #212529;
+}
+
+.hero-feature p {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+/* SVG icon styling */
+.icon-circle img {
+    width: 40px;
+    height: 40px;
+    /* Remove filter since SVGs are already using white gradients */
+}
+
+.hero .lead {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.9;
+    color: white;
+}
+
+/* Social Connection Styling */
+.social-list {
+    padding: 1rem;
+}
+
+.social-item {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.social-item:last-child {
+    margin-bottom: 0;
+}
+
+.social-item i {
+    width: 24px;
+    text-align: center;
+    color: #6c757d;
+}
+
+.social-item input {
+    flex: 1;
+}
+
+.social-item button {
+    min-width: 100px;
+}
+
+.social-item.connected {
+    background: #e8f5e9;
+}
+
+.social-item.connected i {
+    color: #28a745;
+}
+
+.preview-panel {
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.preview-panel:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+#previewTribeName, #previewTribeDescription {
+    transition: opacity 0.3s ease;
+}
+
+.preview-update {
+    animation: highlight 1s ease;
+}
+
+@keyframes highlight {
+    0% { background-color: rgba(13, 110, 253, 0.1); }
+    100% { background-color: transparent; }
+}
+
+.opacity-0 {
+    opacity: 0;
+}
+
+.opacity-100 {
+    opacity: 1;
+}
+
+.generate-tribe-btn {
+    background-color: #28a745 !important;
+    color: white !important;
+    width: 100% !important;
+    border: none !important;
+    transition: all 0.3s ease;
+}
+
+.generate-tribe-btn:hover {
+    background-color: #218838 !important;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Wallet Modal Styles */
+.wallet-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.wallet-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.wallet-item:hover {
+    border-color: #0d6efd;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.wallet-item.featured {
+    background: linear-gradient(45deg, #f8f9fa, #ffffff);
+    border: 2px solid #9945FF;
+}
+
+.wallet-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.wallet-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-left: 1rem;
+}
+
+.wallet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wallet-name {
+    font-weight: 500;
+}
+
+.wallet-description {
+    font-size: 0.75rem;
+    color: #6c757d;
+    margin: 0.2rem 0;
+}
+
+/* Network Badges */
+.network-badge {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.network-badge.sol { background: #9945FF; color: white; }
+.network-badge.eth { background: #627EEA; color: white; }
+.network-badge.bsv { background: #11A97D; color: white; }
+.network-badge.bnb { background: #F3BA2F; color: black; }
+.network-badge.multi { background: linear-gradient(45deg, #2193b0, #6dd5ed); color: white; }
+
+/* Feature Badges */
+.feature-badge {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    background: #e9ecef;
+    color: #495057;
+    margin-right: 0.5rem;
+}
+
+/* Search and Filter */
+.wallet-search {
+    position: relative;
+}
+
+.wallet-search input {
+    padding-left: 2.5rem;
+    border-radius: 12px;
+}
+
+.wallet-search::before {
+    content: '\f002';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+}
+
+.wallet-categories {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.wallet-category {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: #f8f9fa;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.wallet-category:hover {
+    background: #e9ecef;
+}
+
+.wallet-category.active {
+    background: #0d6efd;
+    color: white;
+}
+
+/* Network Selection Styles */
+.network-card-label {
+    cursor: pointer;
+    margin: 0;
+}
+
+.network-card {
+    transition: all 0.2s ease;
+    border: 2px solid transparent !important;
+}
+
+.network-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Style for selected network */
+input[type="radio"]:checked + .network-card,
+input[type="radio"]:checked + .network-card:hover {
+    border-color: #0d6efd !important;
+    background-color: rgba(13, 110, 253, 0.05);
+}
+
+/* Make the entire wallet option cards clickable too */
+.wallet-option-card {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid transparent !important;
+}
+
+.wallet-option-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+input[type="radio"]:checked + .wallet-option-card,
+input[type="radio"]:checked + .wallet-option-card:hover {
+    border-color: #0d6efd !important;
+    background-color: rgba(13, 110, 253, 0.05);
+}
+
+/* Icon circle styles */
+.icon-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-circle i {
+    font-size: 1.25rem;
+}
+
+/* Add these wallet grid styles */
+.wallet-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.wallet-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: white;
+}
+
+.recommended-section .wallet-item.featured {
+    grid-column: 1 / -1;
+    background: linear-gradient(45deg, #f8f9fa, #ffffff);
+    border: 2px solid #9945FF;
+    margin-bottom: 1rem;
+}
+
+/* Keep the rest of the wallet styles from setup.css */
+
+/* Social icons styling */
+.navbar .btn-link {
+    color: #6c757d;
+    padding: 0.5rem;
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+}
+
+.navbar .btn-link:hover {
+    color: #0d6efd;
+    transform: translateY(-1px);
+}
+
+/* Custom icon for Dexscreener */
+.fa-eagle:before {
+    content: "\e4c7";  /* This is a placeholder, we might need to use an SVG instead */
+}
+
+.site-header {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 1rem;
+}
+
+.main-nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: #007bff;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+/* Dark mode styles */
+.dark-mode {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.dark-mode .navbar {
+    background-color: #232323 !important;
+    border-bottom: 1px solid #404040;
+}
+
+.dark-mode .nav-link,
+.dark-mode .nav-icon,
+.dark-mode .navbar-brand {
+    color: #ffffff !important;
+}
+
+.dark-mode .card {
+    background-color: #2d2d2d;
+    border-color: #404040;
+}
+
+.dark-mode .text-muted {
+    color: #ced4da !important;
+}
+
+.dark-mode .modal-content {
+    background-color: #2d2d2d;
+    border-color: #404040;
+}
+
+.dark-mode .btn-close {
+    filter: invert(1);
+}
+
+.dark-mode .form-control {
+    background-color: #1a1a1a;
+    border-color: #404040;
+    color: #ffffff;
+}
+
+.dark-mode .form-control::placeholder {
+    color: #ced4da;
+}
+
+/* Navbar fixed positioning */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Add padding to body to prevent content from hiding under navbar */
+body {
+    padding-top: 76px;  /* Adjust this value based on your navbar height */
+}
+
+/* Ensure dark mode navbar stays fixed too */
+.dark-mode .navbar {
+    background-color: #232323 !important;
+    border-bottom: 1px solid #404040;
+}
+
+/* Only invert gitbook icon in dark mode */
+.dark-mode a[href*="gitbook"] .nav-icon {
+    filter: invert(1);
+}
+
+/* Dark mode styles for team section */
+.dark-mode .team-member-row {
+    background-color: #2d2d2d !important;
+}
+
+.dark-mode .card[style*="background-color: #f8f9fa"] {
+    background-color: #2d2d2d !important;
+    border-color: #404040;
+}
+
+.dark-mode .card[style*="background-color: #f8f9fa"] p {
+    color: #ced4da !important;
+}
+
+.dark-mode .text-muted {
+    color: #ced4da !important;
+}
+
+.dark-mode .team-member-row:hover {
+    background-color: #363636 !important;
+}
+
+.dark-mode .tribe-permission-group {
+    border-color: #404040 !important;
+}
+
+.dark-mode .form-select {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border-color: #404040;
+}
+
+.dark-mode .form-select option {
+    background-color: #2d2d2d;
+    color: #ffffff;
+}
+
+/* Setup page specific styles */
+.sticky-top {
+    position: fixed;
+    width: 100%;
+    background: #f8f9fa;
+}
+
+/* Ensure content flows under sticky elements */
+.tab-content {
+    position: relative;
+    z-index: 1020;
+}
+
+/* Dark mode styles for setup page */
+body.dark-mode[style*="background-color: #e9ecef"] {
+    background-color: #1a1a1a !important;
+}
+
+/* Navigation and buttons */
+.dark-mode .nav-pills .nav-link {
+    color: #ffffff;
+}
+
+.dark-mode .nav-pills .nav-link.active {
+    background-color: #0d6efd;
+    color: #ffffff;
+}
+
+.dark-mode .btn-custom {
+    background-color: #2d2d2d;
+    color: #ffffff;
+    border-color: #404040;
+}
+
+.dark-mode .btn-custom:hover {
+    background-color: #363636;
+}
+
+/* Cards and panels */
+.dark-mode .preview-panel,
+.dark-mode .setup-intro {
+    background-color: #2d2d2d;
+    border-color: #404040;
+    border-radius: 0.375rem;
+}
+
+/* Text colors */
+.dark-mode .setup-intro p,
+.dark-mode .text-muted,
+.dark-mode .tab-content .text-muted,
+.dark-mode .tab-content .description {
+    color: #ced4da !important;
+}
+
+/* Fix main content cards in dark mode */
+.dark-mode .tab-content .card {
+    background-color: #2d2d2d !important;
+    border-color: #404040;
+}
+
+/* Fix the grey content area in dark mode */
+.dark-mode .tab-content .container > .card,
+.dark-mode .tab-content .container > div > .card,
+.dark-mode .tab-content .container > div {
+    background-color: #2d2d2d !important;
+    color: #ffffff;
+}
+
+/* Ensure text is visible */
+.dark-mode .tab-content .card-body {
+    background-color: #2d2d2d;
+    color: #ffffff;
+}
+
+/* Dark mode styles for setup page */
+body.dark-mode[style*="background-color: #e9ecef"] {
+    background-color: #1a1a1a !important;
+}
+
+/* Fix the light grey surrounding area in dark mode */
+body.dark-mode[style*="background-color: #e9ecef"] .tab-pane {
+    background-color: #1a1a1a !important;
+}
+
+/* Fix any remaining light grey areas */
+body.dark-mode[style*="background-color: #e9ecef"] .container-fluid,
+body.dark-mode[style*="background-color: #e9ecef"] .container {
+    background-color: #1a1a1a !important;
+}
+
+/* Fix the footer area in My Tribes tab */
+body.dark-mode[style*="background-color: #e9ecef"] .tab-content {
+    background-color: #1a1a1a !important;
+    min-height: 100vh;  /* Ensure it covers the full viewport height */
+}
+
+/* Dark mode styles for setup page */
+body.dark-mode[style*="background-color: #e9ecef"] {
+    background-color: #1a1a1a !important;
+}
+
+/* Fix navbar color in setup.html to match logo grey */
+body.dark-mode[style*="background-color: #e9ecef"] .navbar {
+    background-color: #2d2d2d !important;
+}
+
+/* Keep index.html navbar color as is */
+body.dark-mode:not([style*="background-color: #e9ecef"]) .navbar {
+    background-color: #232323 !important;
+}
+
+/* Setup page navbar styles */
+body[style*="background-color: #e9ecef"] .navbar {
+    background-color: #ffffff;  /* Light mode */
+}
+
+body.dark-mode[style*="background-color: #e9ecef"] .navbar {
+    background-color: #333333 !important;  /* Dark mode - matching logo grey */
+}
+
+/* Hero animations */
+.hero-content h1 {
+    opacity: 0;
+    animation: fadeInUp 0.2s ease forwards;
+    animation-delay: 0.1s;
+}
+
+.hero-content p {
+    opacity: 0;
+    animation: fadeInUp 0.2s ease forwards;
+    animation-delay: 0.15s;
+}
+
+.hero-content .cta-buttons {
+    opacity: 0;
+    animation: fadeInUp 0.2s ease forwards;
+    animation-delay: 0.2s;
+}
+
+/* Speed up the fadeInUp animation itself */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.border-dashed {
+    border-style: dashed !important;
+    border-width: 2px !important;
+    background: transparent;
+}
+
+.border-dashed:hover {
+    border-color: var(--bs-primary) !important;
+    cursor: pointer;
+}
+ 

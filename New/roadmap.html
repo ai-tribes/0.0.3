@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Plan & Roadmap - AI Tribes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/tribes.css" rel="stylesheet">
+    <script>
+        // Apply theme immediately to prevent flash
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="tribes_logo.png" alt="AI Tribes Logo">
+                AI Tribes
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#explore">Explore</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tribes.html">Tribes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/publicity.html">Publicity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/buytoken.html">Token</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/team.html">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/roadmap.html">Roadmap</a>
+                    </li>
+                </ul>
+                <div class="ms-auto d-flex align-items-center">
+                    <a href="https://twitter.com/ai_tribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fa-brands fa-x-twitter nav-icon"></i>
+                    </a>
+                    <a href="https://discord.gg/J8kcT2d7" target="_blank" class="btn btn-link p-2">
+                        <i class="fab fa-discord nav-icon"></i>
+                    </a>
+                    <a href="https://github.com/ai-tribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fab fa-github nav-icon"></i>
+                    </a>
+                    <a href="https://aitribes.gitbook.io" target="_blank" class="btn btn-link p-2">
+                        <img src="assets/icons/gitbook.svg" alt="Documentation" class="nav-icon">
+                    </a>
+                    <a href="https://dexscreener.com/aitribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fas fa-chart-line nav-icon"></i>
+                    </a>
+                    <button class="btn btn-link p-2" id="theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon nav-icon"></i>
+                    </button>
+                    <button class="btn btn-outline-primary ms-2" data-action="connect-wallet">
+                        <i class="fas fa-wallet me-2"></i>Connect Wallet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Business Plan Overview -->
+    <div class="container mt-5 pt-5">
+        <!-- Download Resources -->
+        <div class="download-section text-center mb-5">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="mb-4">Download Resources</h3>
+                    <div class="row justify-content-center g-3">
+                        <div class="col-12 mb-3">
+                            <p class="text-muted">View our financial projections in 
+                                <a href="https://docs.google.com/spreadsheets/d/..." target="_blank">
+                                    Google Sheets
+                                </a> 
+                                or download as PDF below
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="assets/docs/AI Tribes Business Plan 2024.pdf" class="btn btn-outline-primary btn-lg w-100">
+                                <i class="fas fa-file-pdf me-2"></i>
+                                Business Plan
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="assets/docs/AI Tribes Technical Roadmap 2024-2026.pdf" class="btn btn-outline-primary btn-lg w-100">
+                                <i class="fas fa-file-pdf me-2"></i>
+                                Technical Roadmap
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="assets/docs/AI Tribes Financial Projections 2024-2026.pdf" class="btn btn-outline-success btn-lg w-100">
+                                <i class="fas fa-file-pdf me-2"></i>
+                                Financial Projections
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="assets/docs/AI Tribes Pitch Deck 2024.pdf" class="btn btn-outline-primary btn-lg w-100">
+                                <i class="fas fa-file-powerpoint me-2"></i>
+                                Pitch Deck
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="mb-5">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="mb-4">Business Plan & Roadmap</h1>
+                    <!-- Executive Summary -->
+                    <div class="mb-5">
+                        <h3>Executive Summary</h3>
+                        <p class="lead">AI Tribes is pioneering the convergence of three transformative technologies: SaaS platforms ($195B), artificial intelligence ($196B), and cryptocurrency ($3T). We're creating the first autonomous software development platform that combines AI-powered development with crypto-economic incentives.</p>
+                        <p>By 2030, autonomous AI corporations are projected to manage over $10T in assets, with SaaS platforms alone reaching $900B by 2025. AI Tribes is positioned to become a foundational platform in this new paradigm, enabling the creation of self-sustaining, AI-driven software businesses backed by crypto economics.</p>
+                    </div>
+
+                    <!-- Market Overview -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-4">
+                            <div class="vision-item">
+                                <div class="icon-circle mx-auto">
+                                    <img src="assets/icons/ai-growth.svg" alt="Growth" width="24">
+                                </div>
+                                <h4>Market Size</h4>
+                                <p class="display-6">$195B</p>
+                                <p class="text-muted">Total Addressable Market</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="vision-item">
+                                <div class="icon-circle mx-auto">
+                                    <img src="assets/icons/community-growth.svg" alt="Community" width="24">
+                                </div>
+                                <h4>Revenue Target</h4>
+                                <div class="timeline-mini">
+                                    <div>Year 1: $7M</div>
+                                    <div>Year 2: $33M</div>
+                                    <div>Year 3: $90M</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="vision-item">
+                                <div class="icon-circle mx-auto">
+                                    <img src="assets/icons/token-power.svg" alt="Token" width="24">
+                                </div>
+                                <h4>Initial Funding</h4>
+                                <p class="display-6">$5M</p>
+                                <p class="text-muted">Seed Round Target</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Detailed Business Strategy -->
+                    <div class="row g-4 mb-5">
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h4>Revenue Streams</h4>
+                                    <ul class="feature-list">
+                                        <li>Subscription Plans
+                                            <ul>
+                                                <li>Basic: $10/month</li>
+                                                <li>Pro: $20/month</li>
+                                                <li>Enterprise: Custom</li>
+                                            </ul>
+                                        </li>
+                                        <li>AI Development Services
+                                            <ul>
+                                                <li>Custom AI agent development</li>
+                                                <li>Integration services</li>
+                                                <li>Enterprise solutions</li>
+                                            </ul>
+                                        </li>
+                                        <li>Token Economics
+                                            <ul>
+                                                <li>Transaction fees</li>
+                                                <li>Premium features</li>
+                                                <li>Staking rewards</li>
+                                                <li>AI agent marketplace fees</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h4>Growth Strategy</h4>
+                                    <ul class="feature-list">
+                                        <li>Market Capture
+                                            <ul>
+                                                <li>Focus on high-engagement DAOs</li>
+                                                <li>Strategic blockchain partnerships</li>
+                                                <li>Developer ecosystem grants</li>
+                                            </ul>
+                                        </li>
+                                        <li>Marketing Channels
+                                            <ul>
+                                                <li>Content marketing</li>
+                                                <li>Social media presence</li>
+                                                <li>Community partnerships</li>
+                                                <li>AI-powered community outreach</li>
+                                            </ul>
+                                        </li>
+                                        <li>Expansion Plans
+                                            <ul>
+                                                <li>Geographic expansion</li>
+                                                <li>Feature development</li>
+                                                <li>Strategic partnerships</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cost Structure -->
+                    <div class="mb-5">
+                        <h4>Cost Structure</h4>
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5>Development</h5>
+                                        <p class="display-6 mb-0">$600K</p>
+                                        <small class="text-muted">Annual Budget</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5>Marketing</h5>
+                                        <p class="display-6 mb-0">$300K</p>
+                                        <small class="text-muted">Annual Budget</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5>Operations</h5>
+                                        <p class="display-6 mb-0">$200K</p>
+                                        <small class="text-muted">Annual Budget</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team Requirements -->
+                    <div class="mb-5">
+                        <h4>Team Structure</h4>
+                        <div class="row g-4">
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5>Development</h5>
+                                        <ul class="list-unstyled">
+                                            <li>Senior Engineers (3)</li>
+                                            <li>AI Specialists (2)</li>
+                                            <li>UI/UX Designer (1)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5>Marketing</h5>
+                                        <ul class="list-unstyled">
+                                            <li>Marketing Lead (1)</li>
+                                            <li>Content Writers (2)</li>
+                                            <li>Community Manager (1)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5>Operations</h5>
+                                        <ul class="list-unstyled">
+                                            <li>Product Manager (1)</li>
+                                            <li>Business Analyst (1)</li>
+                                            <li>Support Team (2)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5>Advisory</h5>
+                                        <ul class="list-unstyled">
+                                            <li>Technical Advisor</li>
+                                            <li>Financial Advisor</li>
+                                            <li>Legal Counsel</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <h5>Target Markets</h5>
+                            <ul class="feature-list">
+                                <li>Crypto/Web3 projects</li>
+                                <li>DAOs requiring automation</li>
+                                <li>Tech startups</li>
+                                <li>Online communities</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Key Features</h5>
+                            <ul class="feature-list">
+                                <li>AI Agent Creation & Management</li>
+                                <li>Token Launch Platform</li>
+                                <li>Community Tools</li>
+                                <li>Analytics Dashboard</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vision Section -->
+        <section class="mb-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Our Vision</h2>
+                    <p class="lead">Building the future of autonomous AI corporations through software development and tokenized collaboration</p>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="vision-item">
+                                <i class="fas fa-users text-primary mb-3 fa-2x"></i>
+                                <h4>Empowered Communities</h4>
+                                <p>Creating self-sustaining digital ecosystems where human creativity combines with AI capabilities to develop innovative solutions and drive technological advancement</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="vision-item">
+                                <i class="fas fa-robot text-success mb-3 fa-2x"></i>
+                                <h4>AI Amplification</h4>
+                                <p>Advanced AI systems that enhance software development through continuous learning, pattern recognition, and autonomous improvement, accelerating the creation of sophisticated applications</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="vision-item">
+                                <i class="fas fa-code text-info mb-3 fa-2x"></i>
+                                <h4>Software Creation</h4>
+                                <p>Revolutionary software development platform combining human insight with AI capabilities to build scalable, efficient, and innovative applications for the Web3 era</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="vision-item">
+                                <i class="fas fa-coins text-warning mb-3 fa-2x"></i>
+                                <h4>Token Economics</h4>
+                                <p>Sophisticated token economics system that aligns stakeholder interests and rewards contribution through automated value distribution</p>
+                                <ul class="feature-list text-start">
+                                    <li>Automated value distribution and reward systems</li>
+                                    <li>AI agent marketplace with dynamic pricing</li>
+                                    <li>Decentralized governance participation rewards</li>
+                                    <li>Developer contribution and innovation incentives</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="vision-item">
+                                <i class="fas fa-brain text-danger mb-3 fa-2x"></i>
+                                <h4>Autonomous Corporations</h4>
+                                <p>Next-generation organizations that leverage AI for decision-making and blockchain for transparent, automated operations</p>
+                                <ul class="feature-list text-start">
+                                    <li>AI-driven strategic decision making</li>
+                                    <li>Intelligent resource allocation and management</li>
+                                    <li>Self-optimizing performance systems</li>
+                                    <li>Decentralized autonomous governance</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="vision-item">
+                                <i class="fas fa-chart-line text-purple mb-3 fa-2x"></i>
+                                <h4>Market Evolution</h4>
+                                <p>Leading the transition to AI-powered markets where autonomous systems create and manage economic value through advanced algorithms</p>
+                                <ul class="feature-list text-start">
+                                    <li>AI-managed investment portfolios</li>
+                                    <li>Automated market making and liquidity</li>
+                                    <li>Dynamic pricing and value optimization</li>
+                                    <li>Cross-chain operations and integration</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Development Phases -->
+        <section class="mb-5">
+            <h2 class="mb-4">Development & Launch Strategy</h2>
+            
+            <!-- Phase 1: Foundation -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="phase-badge">1</div>
+                        <div>
+                            <h3 class="mb-0">Foundation (Q1 2024)</h3>
+                            <p class="text-muted mb-0">Core AI & Blockchain Infrastructure</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>AI Infrastructure</h5>
+                            <ul class="feature-list">
+                                <li>Advanced Language Models
+                                    <ul>
+                                        <li>GPT-4 Turbo integration</li>
+                                        <li>Claude 3 implementation</li>
+                                        <li>Custom model fine-tuning</li>
+                                    </ul>
+                                </li>
+                                <li>Agent Framework
+                                    <ul>
+                                        <li>Role-based architecture</li>
+                                        <li>Learning algorithms</li>
+                                        <li>Task optimization</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Blockchain Foundation</h5>
+                            <ul class="feature-list">
+                                <li>Token Economics
+                                    <ul>
+                                        <li>Deflationary mechanics</li>
+                                        <li>Staking rewards system</li>
+                                        <li>Governance distribution</li>
+                                        <li>Agent incentive structure</li>
+                                    </ul>
+                                </li>
+                                <li>Smart Contracts
+                                    <ul>
+                                        <li>ERC-20 implementation</li>
+                                        <li>Governance protocols</li>
+                                        <li>Automated market maker</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 2: Core Features -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="phase-badge">2</div>
+                        <div>
+                            <h3 class="mb-0">Growth Phase (Q2-Q3 2024)</h3>
+                            <p class="text-muted mb-0">Platform Expansion & Market Capture</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>Advanced AI Features</h5>
+                            <ul class="feature-list">
+                                <li>AI Agent Marketplace Launch</li>
+                                <li>Advanced Learning Systems</li>
+                                <li>Autonomous Development Tools</li>
+                                <li>Pattern Recognition Systems</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Enterprise Solutions</h5>
+                            <ul class="feature-list">
+                                <li>Custom Integration Services</li>
+                                <li>Advanced Analytics Dashboard</li>
+                                <li>White-label Solutions</li>
+                                <li>Enterprise Security Features</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Market Expansion</h5>
+                            <ul class="feature-list">
+                                <li>Strategic Partnerships</li>
+                                <li>Developer Community Growth</li>
+                                <li>Global Market Entry</li>
+                                <li>Token Market Making</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 3 -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="phase-badge">3</div>
+                        <div>
+                            <h3 class="mb-0">Innovation Phase (Q4 2024 - 2025)</h3>
+                            <p class="text-muted mb-0">Autonomous Corporation Development</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>Autonomous Systems</h5>
+                            <ul class="feature-list">
+                                <li>Self-Managing AI Corps</li>
+                                <li>Autonomous Revenue Systems</li>
+                                <li>AI-Driven Development</li>
+                                <li>Automated Governance</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Advanced Infrastructure</h5>
+                            <ul class="feature-list">
+                                <li>Global Scale Operations</li>
+                                <li>Cross-Chain Integration</li>
+                                <li>Advanced Security Protocols</li>
+                                <li>Decentralized Storage</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Market Leadership</h5>
+                            <ul class="feature-list">
+                                <li>Industry Standard Setting</li>
+                                <li>Major Enterprise Adoption</li>
+                                <li>Global Partnership Network</li>
+                                <li>Market Consolidation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Roadmap -->
+        <section class="mb-5">
+            <h2 class="mb-4">2025-2026 Vision</h2>
+            <div class="card">
+                <div class="card-body">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h4>H1 2025: Autonomous Evolution</h4>
+                            <ul class="feature-list">
+                                <li>Full AI-Driven Development Pipeline</li>
+                                <li>Autonomous Corporation Framework</li>
+                                <li>Advanced Token Economics</li>
+                                <li>$33M Revenue Achievement</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>H2 2025: Market Dominance</h4>
+                            <ul class="feature-list">
+                                <li>Industry Standard Platform Status</li>
+                                <li>Major Enterprise Partnerships</li>
+                                <li>Global Market Presence</li>
+                                <li>Advanced AI Agent Network</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>2026: Future Innovation</h4>
+                            <ul class="feature-list">
+                                <li>$90M Annual Revenue Target</li>
+                                <li>Next-Gen AI Integration</li>
+                                <li>Autonomous Economic Systems</li>
+                                <li>Global Ecosystem Leadership</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <style>
+    .vision-item {
+        text-align: center;
+        padding: 1.5rem;
+        background: #f8f9fa;
+        border-radius: 8px;
+        height: 100%;
+    }
+
+    .phase-badge {
+        width: 40px;
+        height: 40px;
+        background: #0d6efd;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-right: 1rem;
+    }
+
+    .feature-list {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .feature-list li {
+        padding: 0.5rem 0;
+        padding-left: 1.5rem;
+        position: relative;
+    }
+
+    .feature-list li:before {
+        content: '→';
+        position: absolute;
+        left: 0;
+        color: #0d6efd;
+    }
+
+    .timeline {
+        border-left: 3px solid #0d6efd;
+        padding-left: 2rem;
+        margin-left: 1rem;
+    }
+
+    .timeline-item {
+        margin-bottom: 2rem;
+        position: relative;
+    }
+
+    .timeline-item:before {
+        content: '';
+        width: 12px;
+        height: 12px;
+        background: #0d6efd;
+        border-radius: 50%;
+        position: absolute;
+        left: -2.6rem;
+        top: 0.5rem;
+    }
+
+    .icon-circle {
+        width: 48px;
+        height: 48px;
+        background: #e9ecef;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    .timeline-mini {
+        text-align: left;
+        padding-left: 20px;
+    }
+
+    .timeline-mini div {
+        position: relative;
+        padding: 0.3rem 0;
+        color: #6c757d;
+    }
+
+    .timeline-mini div:before {
+        content: '→';
+        position: absolute;
+        left: -20px;
+        color: #0d6efd;
+    }
+    </style>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/loadHeader.js"></script>
+    <script src="js/nightMode.js"></script>
+</body>
+</html>

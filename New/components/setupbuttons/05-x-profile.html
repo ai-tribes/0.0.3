@@ -1,0 +1,271 @@
+<div class="section-content">
+    <h4 class="mb-4">Connect X Profiles</h4>
+    
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="mb-3">Primary Tribe Account</h5>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">X Profile Handle</label>
+                    <div class="input-group">
+                        <span class="input-group-text">@</span>
+                        <input type="text" class="form-control" name="primaryHandle" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Account Type</label>
+                    <select class="form-select" name="primaryAccountType" required>
+                        <option value="brand">Brand Account</option>
+                        <option value="community">Community Account</option>
+                        <option value="dao">DAO Account</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <button class="btn btn-primary" onclick="connectXAccount('primary')">
+                            <i class="fab fa-twitter me-2"></i>Connect Primary Account
+                        </button>
+                        <div id="primaryAccountStatus" class="text-muted">
+                            <i class="fas fa-circle-notch me-2"></i>Not Connected
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0">AI Agent Accounts</h5>
+                <div>
+                    <button class="btn btn-outline-secondary btn-sm me-2" onclick="importAgents()">
+                        <i class="fas fa-file-import me-2"></i>Import Agents
+                    </button>
+                    <button class="btn btn-outline-primary btn-sm" onclick="addNewAgentAccount()">
+                        <i class="fas fa-plus me-2"></i>Add Agent Account
+                    </button>
+                </div>
+            </div>
+            
+            <div id="agentAccountsList">
+                <!-- Agent accounts will be added here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="mb-3">X API Configuration</h5>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">API Key</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" name="apiKey" required>
+                        <button class="btn btn-outline-secondary" type="button" onclick="togglePassword(this)">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">API Secret</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" name="apiSecret" required>
+                        <button class="btn btn-outline-secondary" type="button" onclick="togglePassword(this)">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="enableAutoPost" checked>
+                        <label class="form-check-label">Enable Automated Posting</label>
+                        <div class="form-text">Allow AI agents to post automatically based on their roles</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-info d-flex align-items-center mb-4">
+        <i class="fas fa-info-circle me-2"></i>
+        <div>
+            <strong>Tip:</strong> Each AI agent can have its own X profile to interact with the community in different roles. 
+            Make sure to configure posting frequencies and automation settings for each agent.
+        </div>
+    </div>
+
+    <div class="section-description">
+        Link your tribe's X (Twitter) account to @ai_tribes
+    </div>
+
+    <script>
+        let connectedAccounts = new Set();
+
+        function addNewAgentAccount() {
+            const accountId = Date.now();
+            const template = `
+                <div class="agent-account border rounded p-3 mb-3" id="agent-${accountId}">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Agent Name</label>
+                            <input type="text" class="form-control" name="agentName_${accountId}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">X Handle</label>
+                            <div class="input-group">
+                                <span class="input-group-text">@</span>
+                                <input type="text" class="form-control" name="agentHandle_${accountId}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Role</label>
+                            <select class="form-select" name="agentRole_${accountId}" onchange="updateRoleSettings(${accountId})">
+                                <option value="community">Community Manager</option>
+                                <option value="support">Support Agent</option>
+                                <option value="content">Content Creator</option>
+                                <option value="analyst">Data Analyst</option>
+                                <option value="custom">Custom Role</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Posting Frequency</label>
+                            <select class="form-select" name="postFrequency_${accountId}">
+                                <option value="high">High (Multiple times per day)</option>
+                                <option value="medium">Medium (Daily)</option>
+                                <option value="low">Low (Weekly)</option>
+                                <option value="manual">Manual Only</option>
+                            </select>
+                        </div>
+                        <div class="col-12 role-settings" id="roleSettings_${accountId}">
+                            <!-- Role-specific settings will be added here -->
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <button class="btn btn-outline-primary" onclick="connectXAccount('${accountId}')">
+                                        <i class="fab fa-twitter me-2"></i>Connect Account
+                                    </button>
+                                    <span class="connection-status ms-3 text-muted" id="status_${accountId}">
+                                        <i class="fas fa-circle-notch me-2"></i>Not Connected
+                                    </span>
+                                </div>
+                                <button class="btn btn-outline-danger" onclick="removeAgentAccount('${accountId}')">
+                                    <i class="fas fa-trash me-2"></i>Remove Agent
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('agentAccountsList').insertAdjacentHTML('beforeend', template);
+            updateRoleSettings(accountId);
+        }
+
+        function updateRoleSettings(accountId) {
+            const role = document.querySelector(`select[name="agentRole_${accountId}"]`).value;
+            const settingsContainer = document.getElementById(`roleSettings_${accountId}`);
+            
+            let settingsHTML = '<div class="row g-3 mt-2">';
+            
+            switch(role) {
+                case 'community':
+                    settingsHTML += `
+                        <div class="col-md-6">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" name="autoReply_${accountId}" checked>
+                                <label class="form-check-label">Enable Auto-Replies</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" name="monitoring_${accountId}" checked>
+                                <label class="form-check-label">Enable Community Monitoring</label>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'support':
+                    settingsHTML += `
+                        <div class="col-md-6">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" name="ticketing_${accountId}" checked>
+                                <label class="form-check-label">Enable Ticket Creation</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="form-select" name="supportLevel_${accountId}">
+                                <option value="l1">L1 Support</option>
+                                <option value="l2">L2 Support</option>
+                                <option value="l3">L3 Support</option>
+                            </select>
+                        </div>
+                    `;
+                    break;
+                case 'content':
+                    settingsHTML += `
+                        <div class="col-md-6">
+                            <select class="form-select" name="contentType_${accountId}">
+                                <option value="news">News & Updates</option>
+                                <option value="educational">Educational Content</option>
+                                <option value="engagement">Engagement Posts</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" name="scheduling_${accountId}" checked>
+                                <label class="form-check-label">Enable Content Scheduling</label>
+                            </div>
+                        </div>
+                    `;
+                    break;
+            }
+            
+            settingsHTML += '</div>';
+            settingsContainer.innerHTML = settingsHTML;
+        }
+
+        function removeAgentAccount(accountId) {
+            if (connectedAccounts.has(accountId)) {
+                if (!confirm('This account is connected. Are you sure you want to remove it?')) {
+                    return;
+                }
+                connectedAccounts.delete(accountId);
+            }
+            document.getElementById(`agent-${accountId}`).remove();
+        }
+
+        function connectXAccount(accountId) {
+            const statusElement = document.getElementById(`status_${accountId}`);
+            statusElement.innerHTML = '<i class="fas fa-circle-notch fa-spin me-2"></i>Connecting...';
+            
+            // Simulate OAuth connection
+            setTimeout(() => {
+                statusElement.innerHTML = '<i class="fas fa-check-circle me-2 text-success"></i>Connected';
+                connectedAccounts.add(accountId);
+            }, 2000);
+        }
+
+        function togglePassword(button) {
+            const input = button.parentElement.querySelector('input');
+            if (input.type === 'password') {
+                input.type = 'text';
+                button.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            } else {
+                input.type = 'password';
+                button.innerHTML = '<i class="fas fa-eye"></i>';
+            }
+        }
+
+        function importAgents() {
+            // Implement agent import functionality
+            alert('Import functionality to be implemented');
+        }
+
+        // Add one agent account by default
+        document.addEventListener('DOMContentLoaded', function() {
+            addNewAgentAccount();
+        });
+    </script>
+</div> 

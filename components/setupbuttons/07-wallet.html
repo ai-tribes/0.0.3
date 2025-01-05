@@ -1,0 +1,224 @@
+<div class="section-content">
+    <h4 class="mb-4">Wallet Configuration</h4>
+    
+    <form id="walletForm">
+        <!-- Treasury Selection Cards -->
+        <div class="treasury-options mb-4">
+            <h5>Treasury Wallet Type</h5>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="wallet-option-card p-4 border rounded h-100" data-wallet-type="multisig">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-circle bg-primary bg-opacity-10 me-3">
+                                <i class="fas fa-users-gear text-primary"></i>
+                            </div>
+                            <h6 class="mb-0">Multi-Signature Wallet</h6>
+                        </div>
+                        <p class="text-muted small mb-3">Enhanced security with multiple required signatures</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="walletType" id="multisigOption" value="multisig" checked>
+                            <label class="form-check-label" for="multisigOption">
+                                <span class="badge bg-success">Recommended</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="wallet-option-card p-4 border rounded h-100" data-wallet-type="standard">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-circle bg-secondary bg-opacity-10 me-3">
+                                <i class="fas fa-wallet text-secondary"></i>
+                            </div>
+                            <h6 class="mb-0">Standard Wallet</h6>
+                        </div>
+                        <p class="text-muted small mb-3">Single-signature wallet with basic features</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="walletType" id="standardOption" value="standard">
+                            <label class="form-check-label" for="standardOption">
+                                Basic Option
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Network Selection Cards -->
+        <div class="network-options mb-4">
+            <h5>Select Network</h5>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="network-card-label w-100" for="bsvOption">
+                        <div class="network-card p-3 border rounded text-center h-100" data-network="bsv">
+                            <div class="network-icon mb-2">
+                                <!-- BSV Logo -->
+                                <svg width="40" height="40" viewBox="0 0 32 32">
+                                    <path fill="#EAB300" d="M16 32C7.163 32 0 24.837 0 16S7.163 0 16 0s16 7.163 16 16-7.163 16-16 16zm11.16-19.34c-.22-2.4-1.87-3.27-3.9-3.51l-.02-4.15-2.36-.01.02 4.05c-.62-.01-1.25-.03-1.88-.03l-.02-4.05-2.36-.01.02 4.15c-.51 0-1.01-.01-1.5-.01h-3.21l.01 2.52s1.75-.03 1.72.02c.96.01 1.27.56 1.36 1.02l-.02 4.48v6.31c-.03.28-.19.72-.84.72.03.02-1.72 0-1.72 0l-.46 2.82h3.02c.56 0 1.12 0 1.67.01l.02 4.18 2.36.01-.02-4.14c.65.02 1.28.02 1.89.02l.02 4.14 2.36.01-.02-4.17c3.13-.18 5.26-.98 5.53-3.95.22-2.4-.91-3.47-2.73-3.91 1.05-.53 1.77-1.32 1.89-2.97zM19.52 19.8c0 2.35-4.05 2.09-5.34 2.09l.02-4.17c1.29 0 5.32-.27 5.32 2.08zm-.88-5.95c0 2.14-3.38 1.89-4.45 1.89l.02-3.8c1.07 0 4.43-.24 4.43 1.91z"/>
+                                </svg>
+                            </div>
+                            <h6>Bitcoin SV</h6>
+                            <input class="form-check-input visually-hidden" type="radio" name="network" id="bsvOption" value="bsv" checked>
+                        </div>
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="network-card-label w-100" for="ethOption">
+                        <div class="network-card p-3 border rounded text-center h-100" data-network="eth">
+                            <div class="network-icon mb-2">
+                                <!-- ETH Logo -->
+                                <svg width="40" height="40" viewBox="0 0 32 32">
+                                    <g fill="#627EEA">
+                                        <path d="M16 32C7.163 32 0 24.837 0 16S7.163 0 16 0s16 7.163 16 16-7.163 16-16 16zm7.994-15.781L16.498 4 9 16.22l7.498 4.353 7.496-4.354zM24 17.616l-7.502 4.351L9 17.617l7.498 10.378L24 17.616z"/>
+                                        <g fill-opacity=".5"><path d="M16.498 4v8.87l7.497 3.35zm0 17.968v6.027L24 17.616z"/></g>
+                                        <g fill-opacity=".8"><path d="M16.498 20.573l7.497-4.353-7.497-3.348z"/></g>
+                                        <g fill-opacity=".5"><path d="M9 16.22l7.498 4.353v-7.701z"/></g>
+                                    </g>
+                                </svg>
+                            </div>
+                            <h6>Ethereum</h6>
+                            <input class="form-check-input visually-hidden" type="radio" name="network" id="ethOption" value="eth">
+                        </div>
+                    </label>
+                </div>
+                <div class="col-md-4">
+                    <label class="network-card-label w-100" for="solOption">
+                        <div class="network-card p-3 border rounded text-center h-100" data-network="sol">
+                            <div class="network-icon mb-2">
+                                <!-- SOL Logo -->
+                                <svg width="40" height="40" viewBox="0 0 32 32">
+                                    <path fill="#9945FF" d="M16 0c8.837 0 16 7.163 16 16s-7.163 16-16 16S0 24.837 0 16 7.163 0 16 0zM9.05 20.435a.542.542 0 01.383-.159h14.488c.235 0 .353.285.187.451l-2.779 2.779a.542.542 0 01-.383.159H6.458a.27.27 0 01-.187-.451l2.779-2.779zm0-8.935a.542.542 0 01.383-.159h14.488c.235 0 .353.285.187.451l-2.779 2.779a.542.542 0 01-.383.159H6.458a.27.27 0 01-.187-.451l2.779-2.779zm14.671-6.507a.542.542 0 00-.383-.159H8.85a.27.27 0 00-.187.451l2.779 2.779c.102.102.24.159.383.159h14.488a.27.27 0 00.187-.451l-2.779-2.779z"/>
+                                </svg>
+                            </div>
+                            <h6>Solana</h6>
+                            <input class="form-check-input visually-hidden" type="radio" name="network" id="solOption" value="sol">
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- MultiSig Settings -->
+        <div id="multisigSettings" class="mb-4 p-4 border rounded bg-light">
+            <h5>MultiSig Configuration</h5>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Required Signatures</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="requiredSigs" min="2" max="5" value="2">
+                        <span class="input-group-text">of 5 signers</span>
+                    </div>
+                    <small class="text-muted">Minimum signatures needed for transactions</small>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Time-Lock Period</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="timelockPeriod" min="0" value="24">
+                        <span class="input-group-text">hours</span>
+                    </div>
+                    <small class="text-muted">Delay before large transactions execute</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Treasury Controls -->
+        <div class="treasury-controls mb-4 p-4 border rounded">
+            <h5>Treasury Controls</h5>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="control-card p-3 border rounded text-center">
+                        <div class="icon-circle bg-success bg-opacity-10 mb-2 mx-auto">
+                            <i class="fas fa-money-bill-transfer text-success"></i>
+                        </div>
+                        <h6>Agent Budgets</h6>
+                        <div class="form-check justify-content-center">
+                            <input class="form-check-input" type="checkbox" id="enableBudgets">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="control-card p-3 border rounded text-center">
+                        <div class="icon-circle bg-warning bg-opacity-10 mb-2 mx-auto">
+                            <i class="fas fa-hand-holding-dollar text-warning"></i>
+                        </div>
+                        <h6>Spending Limits</h6>
+                        <div class="form-check justify-content-center">
+                            <input class="form-check-input" type="checkbox" id="enableLimits">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="control-card p-3 border rounded text-center">
+                        <div class="icon-circle bg-info bg-opacity-10 mb-2 mx-auto">
+                            <i class="fas fa-list-check text-info"></i>
+                        </div>
+                        <h6>Audit Trail</h6>
+                        <div class="form-check justify-content-center">
+                            <input class="form-check-input" type="checkbox" id="enableAudit">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Agent Wallets -->
+        <div class="agent-wallets mb-4">
+            <h5>Agent Wallets</h5>
+            <p class="text-muted">Configure wallets for your AI agents</p>
+            
+            <div id="agentWalletsList">
+                <!-- Agent wallets will be added here -->
+            </div>
+
+            <button type="button" class="btn btn-outline-primary mt-3" onclick="addAgentWallet()">
+                <i class="fas fa-plus me-2"></i>Add Agent Wallet
+            </button>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Save & Continue
+        </button>
+    </form>
+</div>
+
+<!-- Agent Wallet Template -->
+<template id="agentWalletTemplate">
+    <div class="agent-wallet mb-3 p-3 border rounded">
+        <div class="mb-3">
+            <label class="form-label">Agent Name</label>
+            <input type="text" class="form-control agent-name" placeholder="e.g., Trading Agent">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Wallet Type</label>
+            <select class="form-select agent-wallet-type">
+                <option value="hot">Hot Wallet</option>
+                <option value="cold">Cold Wallet</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <h6 class="mb-2">Wallet Permissions</h6>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label">Allow Token Trading</label>
+            </div>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label">Allow NFT Trading</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label">Allow DeFi Operations</label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <h6 class="mb-2">Spending Controls</h6>
+            <div class="input-group mb-2">
+                <span class="input-group-text">Daily Limit</span>
+                <input type="number" class="form-control agent-daily-limit" placeholder="0.00">
+                <span class="input-group-text">USD</span>
+            </div>
+        </div>
+        <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeAgentWallet(this)">
+            <i class="fas fa-trash me-2"></i>Remove Wallet
+        </button>
+    </div>
+</template> 

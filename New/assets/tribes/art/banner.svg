@@ -1,0 +1,40 @@
+<svg width="800" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="art-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e74c3c"/>
+      <stop offset="100%" style="stop-color:#c0392b"/>
+    </linearGradient>
+    <!-- Art tools pattern -->
+    <pattern id="art-tools" x="0" y="0" width="160" height="160" patternUnits="userSpaceOnUse">
+      <!-- Paintbrush -->
+      <path d="M40,120 c-20,-40 20,-40 0,-80" 
+            stroke="#e95e50" stroke-width="12" stroke-linecap="round" fill="none" opacity="0.2"/>
+      <!-- Pencil -->
+      <path d="M100,40 l20,20 l-60,60 l-20,-20 z" 
+            fill="#e95e50" opacity="0.2"/>
+      <!-- Paint splatter -->
+      <circle cx="120" cy="100" r="15" fill="#e95e50" opacity="0.2"/>
+      <circle cx="130" cy="85" r="8" fill="#e95e50" opacity="0.2"/>
+      <circle cx="110" cy="110" r="10" fill="#e95e50" opacity="0.2"/>
+    </pattern>
+  </defs>
+  
+  <!-- Base gradient -->
+  <rect width="800" height="200" fill="url(#art-bg)"/>
+  
+  <!-- Pattern overlay -->
+  <rect width="800" height="200" fill="url(#art-tools)" opacity="0.4"/>
+  
+  <!-- Dynamic art elements -->
+  <g opacity="0.6">
+    <!-- Paint strokes -->
+    <path d="M100,100 c100,-80 200,80 300,0 s200,-80 300,0" 
+          stroke="#e95e50" stroke-width="20" stroke-linecap="round" fill="none"/>
+    <path d="M50,150 c150,-120 300,120 450,0" 
+          stroke="#e95e50" stroke-width="15" stroke-linecap="round" fill="none"/>
+    <!-- Color dots -->
+    <circle cx="200" cy="50" r="20" fill="#e95e50" opacity="0.8"/>
+    <circle cx="600" cy="70" r="25" fill="#e95e50" opacity="0.8"/>
+    <circle cx="400" cy="150" r="15" fill="#e95e50" opacity="0.8"/>
+  </g>
+</svg> 

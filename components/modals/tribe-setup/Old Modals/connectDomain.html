@@ -1,0 +1,25 @@
+<div id="connectDomain" class="section mb-3">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="h5">Connect Your Tribe's Domain</h2>
+            <form onsubmit="return handleDomainSubmit(event)">
+                <div class="mb-2">
+                    <input type="text" class="form-control" id="domainName" placeholder="Domain Name (e.g., mytribe.ai)" required>
+                </div>
+                <div class="mb-3">
+                    <select class="form-control" id="domainProvider">
+                        <option value="">Select Domain Provider</option>
+                        <option value="godaddy">GoDaddy</option>
+                        <option value="namecheap">Namecheap</option>
+                        <option value="cloudflare">Cloudflare</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-custom btn-sm">Connect Domain</button>
+            </form>
+            <div id="domainStatus" class="alert alert-info d-none mt-2">
+                Domain status will appear here
+            </div>
+        </div>
+    </div>
+</div> 

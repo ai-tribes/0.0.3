@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="/assets/css/sections.css" rel="stylesheet">
+    <style>
+        .backup-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            height: 100%;
+            transition: transform 0.2s;
+        }
+
+        .backup-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin-right: 1rem;
+        }
+
+        .schedule-icon { background: #cff4fc; color: #0dcaf0; }
+        .storage-icon { background: #d1e7dd; color: #198754; }
+        .content-icon { background: #f8d7da; color: #dc3545; }
+        .aws-icon { background: #FF990026; color: #FF9900; }
+        .gcp-icon { background: #4285F426; color: #4285F4; }
+        .azure-icon { background: #0078D426; color: #0078D4; }
+
+        .verification-badge {
+            display: none;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .verification-success {
+            background: #d1e7dd;
+            color: #0f5132;
+        }
+    </style>
+</head>
+<body>
+    <div class="section-container">
+        <h2 class="section-title">Setup Backup</h2>
+        <p class="section-description">Configure automated backups to protect your tribe's data</p>
+
+        <form id="backupForm">
+            <!-- Setup Instructions -->
+            <div class="alert alert-info mb-4">
+                <h6 class="alert-heading mb-3"><i class="fas fa-database me-2"></i>Backup Configuration</h6>
+                <p>Set up automated backups to ensure your tribe's data is safely stored and easily recoverable.</p>
+            </div>
+
+            <!-- Backup Schedule -->
+            <div class="mb-4">
+                <h4 class="mb-3">Backup Schedule</h4>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="backup-card">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon schedule-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Frequency</h5>
+                                    <small class="text-muted">How often to backup</small>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Backup Frequency</label>
+                                <select class="form-select" id="backupFrequency">
+                                    <option value="hourly">Every Hour</option>
+                                    <option value="daily" selected>Daily</option>
+                                    <option value="weekly">Weekly</option>
+                                    <option value="monthly">Monthly</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Backup Time</label>
+                                <input type="time" class="form-control" value="02:00">
+                                <small class="text-muted">Server time (UTC)</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="backup-card">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon storage-icon">
+                                    <i class="fas fa-history"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Retention</h5>
+                                    <small class="text-muted">How long to keep backups</small>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Retention Period</label>
+                                <select class="form-select" id="retentionPeriod">
+                                    <option value="7">7 days</option>
+                                    <option value="30" selected>30 days</option>
+                                    <option value="90">90 days</option>
+                                    <option value="365">1 year</option>
+                                </select>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="keepMonthly" checked>
+                                <label class="form-check-label">Keep monthly backups for 1 year</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Storage Configuration -->
+            <div class="mb-4">
+                <h4 class="mb-3">Storage Provider</h4>
+                <div class="row g-4">
+                    <!-- AWS -->
+                    <div class="col-md-4">
+                        <div class="backup-card">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon aws-icon">
+                                    <i class="fab fa-aws"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Amazon S3</h5>
+                                    <small class="text-muted">Cloud Storage</small>
+                                </div>
+                            </div>
+                            
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="enableAWS" 
+                                       onchange="toggleProvider('aws')">
+                                <label class="form-check-label">Use Amazon S3</label>
+                            </div>
+
+                            <div id="awsSettings" class="d-none">
+                                <input type="text" class="form-control mb-2" placeholder="Bucket Name">
+                                <input type="text" class="form-control mb-2" placeholder="Access Key">
+                                <input type="password" class="form-control mb-3" placeholder="Secret Key">
+                                <button type="button" class="btn btn-outline-primary btn-sm" 
+                                        onclick="verifyProvider('aws')">
+                                    Verify Connection
+                                </button>
+                                <div id="awsVerification" class="verification-badge"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GCP -->
+                    <div class="col-md-4">
+                        <div class="backup-card">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon gcp-icon">
+                                    <i class="fab fa-google"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Google Cloud</h5>
+                                    <small class="text-muted">Cloud Storage</small>
+                                </div>
+                            </div>
+                            
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="enableGCP" 
+                                       onchange="toggleProvider('gcp')">
+                                <label class="form-check-label">Use Google Cloud</label>
+                            </div>
+
+                            <div id="gcpSettings" class="d-none">
+                                <input type="text" class="form-control mb-2" placeholder="Project ID">
+                                <input type="text" class="form-control mb-2" placeholder="Bucket Name">
+                                <textarea class="form-control mb-3" placeholder="Service Account Key (JSON)" rows="3"></textarea>
+                                <button type="button" class="btn btn-outline-primary btn-sm" 
+                                        onclick="verifyProvider('gcp')">
+                                    Verify Connection
+                                </button>
+                                <div id="gcpVerification" class="verification-badge"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Azure -->
+                    <div class="col-md-4">
+                        <div class="backup-card">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon azure-icon">
+                                    <i class="fab fa-microsoft"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Azure</h5>
+                                    <small class="text-muted">Blob Storage</small>
+                                </div>
+                            </div>
+                            
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="enableAzure" 
+                                       onchange="toggleProvider('azure')">
+                                <label class="form-check-label">Use Azure Storage</label>
+                            </div>
+
+                            <div id="azureSettings" class="d-none">
+                                <input type="text" class="form-control mb-2" placeholder="Storage Account">
+                                <input type="text" class="form-control mb-2" placeholder="Container Name">
+                                <input type="password" class="form-control mb-3" placeholder="Access Key">
+                                <button type="button" class="btn btn-outline-primary btn-sm" 
+                                        onclick="verifyProvider('azure')">
+                                    Verify Connection
+                                </button>
+                                <div id="azureVerification" class="verification-badge"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Backup Content -->
+            <div class="mb-4">
+                <h4 class="mb-3">Backup Content</h4>
+                <div class="backup-card">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <h6>Database</h6>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="backupDatabase" checked>
+                                <label class="form-check-label">Full Database Backup</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="backupTransactions" checked>
+                                <label class="form-check-label">Transaction Logs</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <h6>Files & Media</h6>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="backupUploads" checked>
+                                <label class="form-check-label">User Uploads</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="backupMedia" checked>
+                                <label class="form-check-label">Media Library</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <h6>System</h6>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="backupConfig" checked>
+                                <label class="form-check-label">Configuration Files</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="backupLogs">
+                                <label class="form-check-label">System Logs</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button type="button" class="btn btn-back" 
+                        onclick="window.parent.postMessage({action: 'back'}, '*')">Back</button>
+                <button type="button" class="btn btn-next" 
+                        onclick="window.parent.postMessage({action: 'next'}, '*')">Next</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function toggleProvider(provider) {
+            const settings = document.getElementById(`${provider}Settings`);
+            const enableSwitch = document.getElementById(`enable${provider.toUpperCase()}`);
+            settings.classList.toggle('d-none', !enableSwitch.checked);
+        }
+
+        function verifyProvider(provider) {
+            const verification = document.getElementById(`${provider}Verification`);
+            verification.style.display = 'block';
+            verification.innerHTML = 'Verifying connection...';
+            verification.className = 'verification-badge';
+            
+            setTimeout(() => {
+                verification.innerHTML = 'Connection verified successfully!';
+                verification.classList.add('verification-success');
+            }, 1500);
+        }
+
+        document.getElementById('backupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add form submission logic here
+        });
+    </script>
+</body>
+</html> 

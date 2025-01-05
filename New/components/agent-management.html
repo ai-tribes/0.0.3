@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Agent List -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">My AI Agents</h5>
+                        <button class="btn btn-sm btn-primary" onclick="createNewAgent()">
+                            <i class="fas fa-plus me-2"></i>New Agent
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group" id="agentList">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agent Details -->
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Agent Details</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Agent Info -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <h6>Wallet Address</h6>
+                                <code id="agentWallet"></code>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Status</h6>
+                                <span class="badge bg-success" id="agentStatus"></span>
+                            </div>
+                        </div>
+
+                        <!-- Balance -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h6>Balance</h6>
+                                <div class="d-flex gap-3">
+                                    <div class="card flex-grow-1">
+                                        <div class="card-body">
+                                            <small class="text-muted">USDC</small>
+                                            <h4 id="usdcBalance">0.00</h4>
+                                        </div>
+                                    </div>
+                                    <div class="card flex-grow-1">
+                                        <div class="card-body">
+                                            <small class="text-muted">ETH</small>
+                                            <h4 id="ethBalance">0.00</h4>
+                                        </div>
+                                    </div>
+                                    <div class="card flex-grow-1">
+                                        <div class="card-body">
+                                            <small class="text-muted">MATIC</small>
+                                            <h4 id="maticBalance">0.00</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Services -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h6>Connected Services</h6>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Service</th>
+                                                <th>Status</th>
+                                                <th>Usage</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="servicesList">
+                                            <!-- Populated dynamically -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Usage History -->
+                        <div class="row">
+                            <div class="col-12">
+                                <h6>Usage History</h6>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Service</th>
+                                                <th>Usage</th>
+                                                <th>Cost</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="usageHistory">
+                                            <!-- Populated dynamically -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Agent Modal -->
+    <div class="modal fade" id="createAgentModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create New AI Agent</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Agent Name</label>
+                        <input type="text" class="form-control" id="agentName">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Initial Funding</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="initialFunding">
+                            <select class="form-select" id="fundingToken">
+                                <option value="USDC">USDC</option>
+                                <option value="ETH">ETH</option>
+                                <option value="MATIC">MATIC</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="submitCreateAgent()">Create Agent</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize agent manager
+        const agentManager = new AgentServiceManager();
+
+        // Load agents
+        async function loadAgents() {
+            const agents = await agentManager.getAgents();
+            const list = document.getElementById('agentList');
+            
+            list.innerHTML = agents.map(agent => `
+                <a href="#" class="list-group-item list-group-item-action" 
+                   onclick="selectAgent('${agent.id}')">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0">${agent.name}</h6>
+                        <span class="badge bg-${agent.status === 'active' ? 'success' : 'secondary'}">
+                            ${agent.status}
+                        </span>
+                    </div>
+                    <small class="text-muted">${agent.walletAddress.substring(0, 8)}...</small>
+                </a>
+            `).join('');
+        }
+
+        // Create new agent
+        async function createNewAgent() {
+            const modal = new bootstrap.Modal(document.getElementById('createAgentModal'));
+            modal.show();
+        }
+
+        async function submitCreateAgent() {
+            const name = document.getElementById('agentName').value;
+            const amount = document.getElementById('initialFunding').value;
+            const token = document.getElementById('fundingToken').value;
+
+            try {
+                // Create agent
+                const agent = await agentManager.createAgent(window.ethereum.selectedAddress, {
+                    name,
+                    initialFunding: {
+                        amount,
+                        token
+                    }
+                });
+
+                // Fund agent
+                await agentManager.fundAgent(agent.id, amount, token);
+
+                // Refresh list
+                await loadAgents();
+                
+                // Close modal
+                bootstrap.Modal.getInstance(document.getElementById('createAgentModal')).hide();
+
+            } catch (error) {
+                console.error('Failed to create agent:', error);
+                alert('Failed to create agent');
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAgents();
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="/assets/css/sections.css" rel="stylesheet">
+    <style>
+        .style-selectable {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .style-selectable:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .style-selectable.selected {
+            border-color: #0d6efd;
+            background-color: rgba(13, 110, 253, 0.05);
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .preview-grid img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .custom-grid .custom-sample {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            color: #6c757d;
+        }
+
+        .custom-grid .custom-sample i {
+            font-size: 1.5rem;
+        }
+
+        .style-features {
+            text-align: left;
+            padding: 0.5rem;
+        }
+
+        .generation-preview {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .generation-preview img {
+            max-width: 100px;
+            border-radius: 4px;
+            margin: 0.25rem;
+        }
+
+        .trait-layer {
+            background: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .trait-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .trait-item {
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 0.5rem;
+            text-align: center;
+        }
+
+        .trait-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .rarity-badge {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.4rem;
+            border-radius: 12px;
+        }
+
+        .preview-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .preview-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .preview-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .preview-item {
+            background: white;
+            border-radius: 8px;
+            padding: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="section-container">
+        <h2 class="section-title">Create PFP NFT Collection</h2>
+        <p class="section-description">Design and generate your tribe's unique NFT collection</p>
+
+        <form id="pfpForm">
+            <!-- Style Selection -->
+            <div class="mb-4">
+                <h4>Choose Art Style</h4>
+                <div class="row g-4">
+                    <!-- Pixel Art Style -->
+                    <div class="col-md-4">
+                        <div class="style-card p-4 border rounded h-100 text-center style-selectable" data-style="pixel">
+                            <div class="preview-grid">
+                                <!-- Add your pixel art preview images here -->
+                            </div>
+                            <h5>Pixel Art</h5>
+                            <p class="text-muted mb-3">Retro-inspired pixel art characters</p>
+                            <span class="badge bg-primary">Popular Choice</span>
+                            <div class="style-features">
+                                <small class="text-muted">
+                                    <i class="fas fa-check-circle text-success me-1"></i>32x32 Pixel Art<br>
+                                    <i class="fas fa-check-circle text-success me-1"></i>Retro Color Palettes<br>
+                                    <i class="fas fa-check-circle text-success me-1"></i>Nostalgic Appeal
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Anime Style -->
+                    <div class="col-md-4">
+                        <div class="style-card p-4 border rounded h-100 text-center style-selectable" data-style="anime">
+                            <div class="preview-grid">
+                                <!-- Add your anime style preview images here -->
+                            </div>
+                            <h5>Anime</h5>
+                            <p class="text-muted mb-3">Japanese anime-inspired characters</p>
+                            <span class="badge bg-info">Trending</span>
+                            <div class="style-features">
+                                <small class="text-muted">
+                                    <i class="fas fa-check-circle text-success me-1"></i>Anime Art Style<br>
+                                    <i class="fas fa-check-circle text-success me-1"></i>Dynamic Poses<br>
+                                    <i class="fas fa-check-circle text-success me-1"></i>Vibrant Colors
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Custom Style -->
+                    <div class="col-md-4">
+                        <div class="style-card p-4 border rounded h-100 text-center style-selectable" data-style="custom">
+                            <div class="preview-grid custom-grid">
+                                <div class="custom-sample"><i class="fas fa-plus"></i></div>
+                                <div class="custom-sample"><i class="fas fa-image"></i></div>
+                                <div class="custom-sample"><i class="fas fa-layer-group"></i></div>
+                                <div class="custom-sample"><i class="fas fa-magic"></i></div>
+                            </div>
+                            <h5>Custom Design</h5>
+                            <p class="text-muted mb-3">Create your own unique style</p>
+                            <span class="badge bg-secondary">Advanced</span>
+                            <div class="style-features">
+                                <small class="text-muted">
+                                    <i class="fas fa-check-circle text-success me-1"></i>Full Customization<br>
+                                    <i class="fas fa-check-circle text-success me-1"></i>Layer Management<br>
+                                    <i class="fas fa-check-circle text-success me-1"></i>Custom Traits
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collection Settings -->
+            <div class="mb-4">
+                <h4>Collection Details</h4>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Collection Name</label>
+                        <input type="text" class="form-control" name="collectionName" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Collection Size</label>
+                        <input type="number" class="form-control" name="collectionSize" min="100" max="10000" required>
+                        <small class="text-muted">Minimum 100, Maximum 10,000</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Generation Settings -->
+            <div class="mb-4">
+                <h4>Generation Settings</h4>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Image Resolution</label>
+                        <select class="form-control" name="resolution">
+                            <option value="512">512x512 px</option>
+                            <option value="1024">1024x1024 px</option>
+                            <option value="2048">2048x2048 px</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Art Style Strength</label>
+                        <input type="range" class="form-range" min="0" max="100" value="75">
+                        <div class="d-flex justify-content-between">
+                            <small>Subtle</small>
+                            <small>Strong</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preview Section -->
+            <div class="preview-section">
+                <div class="preview-controls">
+                    <h4 class="mb-0">Preview Generated NFTs</h4>
+                    <button type="button" class="btn btn-outline-primary" onclick="generatePreview()">
+                        <i class="fas fa-sync-alt me-2"></i>Generate New Samples
+                    </button>
+                </div>
+                <div class="preview-gallery" id="previewGallery">
+                    <!-- Preview items will be added here -->
+                </div>
+            </div>
+
+            <div class="navigation-buttons mt-4">
+                <button type="button" class="btn btn-back" onclick="window.parent.postMessage({action: 'back'}, '*')">Back</button>
+                <button type="button" class="btn btn-next" onclick="window.parent.postMessage({action: 'next'}, '*')">Next</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Style selection
+        document.querySelectorAll('.style-selectable').forEach(card => {
+            card.addEventListener('click', function() {
+                document.querySelectorAll('.style-selectable').forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        // Generate preview
+        function generatePreview() {
+            const gallery = document.getElementById('previewGallery');
+            gallery.innerHTML = ''; // Clear existing previews
+            
+            // Add loading state
+            for(let i = 0; i < 6; i++) {
+                gallery.innerHTML += `
+                    <div class="preview-item">
+                        <div class="placeholder-glow">
+                            <div class="placeholder" style="height: 150px; width: 100%;"></div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Simulate generation delay
+            setTimeout(() => {
+                gallery.innerHTML = ''; // Clear loading state
+                
+                // Add generated previews
+                for(let i = 0; i < 6; i++) {
+                    gallery.innerHTML += `
+                        <div class="preview-item">
+                            <img src="https://via.placeholder.com/150" class="img-fluid mb-2" alt="Preview NFT">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">#${i + 1}</small>
+                                <span class="badge bg-success">Unique</span>
+                            </div>
+                        </div>
+                    `;
+                }
+            }, 2000);
+        }
+
+        // Form submission
+        document.getElementById('pfpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add form submission logic here
+        });
+    </script>
+</body>
+</html> 

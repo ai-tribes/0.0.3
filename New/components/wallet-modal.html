@@ -1,0 +1,228 @@
+<div class="modal fade" id="walletModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">Connect Wallet</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Search Bar -->
+                <div class="search-bar mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0">
+                            <i class="fas fa-search text-muted"></i>
+                        </span>
+                        <input type="text" class="form-control border-start-0 ps-0" placeholder="Search wallets...">
+                    </div>
+                </div>
+
+                <!-- Network Pills -->
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                    <button class="btn btn-primary btn-sm px-3 rounded-pill">All</button>
+                    <button class="btn btn-outline-secondary btn-sm px-3 rounded-pill">BSV</button>
+                    <button class="btn btn-outline-secondary btn-sm px-3 rounded-pill">ETH</button>
+                    <button class="btn btn-outline-secondary btn-sm px-3 rounded-pill">SOL</button>
+                    <button class="btn btn-outline-secondary btn-sm px-3 rounded-pill">BNB</button>
+                    <button class="btn btn-outline-secondary btn-sm px-3 rounded-pill">MATIC</button>
+                    <button class="btn btn-outline-secondary btn-sm px-3 rounded-pill">AVAX</button>
+                    <button class="btn btn-outline-secondary btn-sm px-3 rounded-pill">ADA</button>
+                </div>
+
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                    <button class="btn btn-outline-secondary btn-sm px-3 rounded-pill">DOGE</button>
+                    <button class="btn btn-outline-secondary btn-sm px-3 rounded-pill">TRX</button>
+                </div>
+
+                <h6 class="mb-3">Recommended</h6>
+
+                <!-- Phantom -->
+                <div class="wallet-option border rounded p-3 mb-3" onclick="connectPhantom()">
+                    <div class="d-flex align-items-center">
+                        <img src="/assets/images/wallets/phantom.png" alt="Phantom" width="32" class="me-3">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1">Phantom</h6>
+                            <p class="text-muted small mb-2">Most popular Solana wallet with 2M+ users</p>
+                            <div class="d-flex gap-2">
+                                <span class="badge bg-light text-dark">Best Choice</span>
+                                <span class="badge bg-light text-dark">AI-Ready</span>
+                                <span class="badge bg-light text-dark">Fast Setup</span>
+                            </div>
+                        </div>
+                        <span class="badge bg-purple ms-2">SOL</span>
+                    </div>
+                </div>
+
+                <!-- MetaMask -->
+                <div class="wallet-option border rounded p-3 mb-3" onclick="connectMetaMask()">
+                    <div class="d-flex align-items-center">
+                        <img src="/assets/images/wallets/metamask.png" alt="MetaMask" width="32" class="me-3">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1">MetaMask</h6>
+                            <p class="text-muted small mb-2">The most popular Ethereum wallet</p>
+                            <div class="d-flex gap-2">
+                                <span class="badge bg-light text-dark">10M+ Users</span>
+                                <span class="badge bg-light text-dark">DApp Ready</span>
+                            </div>
+                        </div>
+                        <span class="badge bg-primary ms-2">ETH</span>
+                    </div>
+                </div>
+
+                <!-- HandCash -->
+                <div class="wallet-option border rounded p-3 mb-3" onclick="connectHandCash()">
+                    <div class="d-flex align-items-center">
+                        <img src="/assets/images/wallets/handcash.png" alt="HandCash" width="32" class="me-3">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1">HandCash</h6>
+                            <p class="text-muted small mb-2">User-friendly BSV wallet with social features</p>
+                            <div class="d-flex gap-2">
+                                <span class="badge bg-light text-dark">Popular</span>
+                                <span class="badge bg-light text-dark">Social Pay</span>
+                            </div>
+                        </div>
+                        <span class="badge bg-success ms-2">BSV</span>
+                    </div>
+                </div>
+
+                <!-- Trust Wallet -->
+                <div class="wallet-option border rounded p-3 mb-3" onclick="connectTrustWallet()">
+                    <div class="d-flex align-items-center">
+                        <img src="/assets/images/wallets/trust.png" alt="Trust" width="32" class="me-3">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1">Trust Wallet</h6>
+                            <p class="text-muted small mb-2">Multi-chain mobile wallet by Binance</p>
+                            <div class="d-flex gap-2">
+                                <span class="badge bg-light text-dark">Mobile</span>
+                                <span class="badge bg-light text-dark">DeFi</span>
+                            </div>
+                        </div>
+                        <span class="badge bg-info ms-2">Multi-Chain</span>
+                    </div>
+                </div>
+
+                <!-- Binance Wallet -->
+                <div class="wallet-option border rounded p-3 mb-3" onclick="connectBinanceWallet()">
+                    <div class="d-flex align-items-center">
+                        <img src="/assets/images/wallets/binance.png" alt="Binance" width="32" class="me-3">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1">Binance Wallet</h6>
+                            <p class="text-muted small mb-2">Official Binance Chain wallet</p>
+                            <div class="d-flex gap-2">
+                                <span class="badge bg-light text-dark">Exchange</span>
+                                <span class="badge bg-light text-dark">Low Fees</span>
+                            </div>
+                        </div>
+                        <span class="badge bg-warning ms-2">BNB</span>
+                    </div>
+                </div>
+
+                <!-- Xverse -->
+                <div class="wallet-option border rounded p-3 mb-3" onclick="connectXverse()">
+                    <div class="d-flex align-items-center">
+                        <img src="/assets/images/wallets/xverse.png" alt="Xverse" width="32" class="me-3">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1">Xverse Wallet</h6>
+                            <p class="text-muted small mb-2">Secure Bitcoin, Ordinals & BRC-20 wallet</p>
+                            <div class="d-flex gap-2">
+                                <span class="badge bg-light text-dark">Ordinals</span>
+                                <span class="badge bg-light text-dark">BRC-20</span>
+                            </div>
+                        </div>
+                        <span class="badge bg-info ms-2">Multi-Chain</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.bg-purple {
+    background-color: #9945FF !important;
+}
+.wallet-option {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid #dee2e6 !important;
+}
+.wallet-option:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-color: #c1c9d0 !important;
+}
+.badge {
+    font-weight: 500;
+    padding: 0.4em 0.8em;
+    letter-spacing: 0.01em;
+}
+.bg-light {
+    background-color: #f8f9fa !important;
+    color: #6c757d !important;
+    border: 1px solid #dee2e6;
+}
+.modal-body {
+    padding: 1.5rem;
+}
+.btn-sm.rounded-pill {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.8rem;
+}
+.btn-network-bsv {
+    color: #13b517;
+    border-color: #13b517;
+}
+.btn-network-bsv:hover {
+    background-color: #13b51715;
+}
+.btn-network-eth {
+    color: #627EEA;
+    border-color: #627EEA;
+}
+.btn-network-eth:hover {
+    background-color: #627EEA15;
+}
+.btn-network-sol {
+    color: #9945FF;
+    border-color: #9945FF;
+}
+.btn-network-sol:hover {
+    background-color: #9945FF15;
+}
+.btn-network-bnb {
+    color: #F3BA2F;
+    border-color: #F3BA2F;
+}
+.btn-network-bnb:hover {
+    background-color: #F3BA2F15;
+}
+.wallet-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+.modal-content {
+    border: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.modal-header {
+    padding: 1.25rem 1.5rem;
+}
+.modal-header .modal-title {
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+.search-bar .input-group {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+.search-bar .form-control {
+    border-color: #dee2e6;
+}
+.search-bar .form-control:focus {
+    box-shadow: none;
+}
+.search-bar .input-group-text {
+    border-color: #dee2e6;
+}
+</style> 

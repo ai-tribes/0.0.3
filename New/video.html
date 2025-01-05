@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tribes Videos</title>
+    <style>
+        .video-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 3s ease-in-out;
+        }
+
+        .video.active {
+            opacity: 1;
+        }
+
+        .title-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 1s ease-in-out, transform 1s ease-out;
+        }
+
+        .title-overlay.active {
+            opacity: 1;
+        }
+
+        .main-title {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 
+                0 0 10px rgba(0,255,255,0.5),
+                0 0 20px rgba(0,255,255,0.4),
+                0 0 30px rgba(0,255,255,0.3),
+                0 0 40px rgba(0,255,255,0.2),
+                0 0 50px rgba(0,255,255,0.1);
+            letter-spacing: 2px;
+            font-family: 'Courier New', monospace;
+            animation: glow 1.5s ease-in-out infinite alternate;
+            transform: perspective(500px) translateZ(0);
+        }
+
+        .subtitle {
+            font-size: 2rem;
+            opacity: 0.9;
+            text-shadow: 
+                0 0 10px rgba(0,255,255,0.4),
+                0 0 20px rgba(0,255,255,0.3),
+                0 0 30px rgba(0,255,255,0.2);
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+            animation: glow 2s ease-in-out infinite alternate;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 
+                    0 0 10px rgba(0,255,255,0.5),
+                    0 0 20px rgba(0,255,255,0.4),
+                    0 0 30px rgba(0,255,255,0.3),
+                    0 0 40px rgba(0,255,255,0.2);
+                transform: perspective(500px) translateZ(0);
+            }
+            to {
+                text-shadow: 
+                    0 0 20px rgba(0,255,255,0.6),
+                    0 0 30px rgba(0,255,255,0.5),
+                    0 0 40px rgba(0,255,255,0.4),
+                    0 0 50px rgba(0,255,255,0.3),
+                    0 0 60px rgba(0,255,255,0.2),
+                    0 0 70px rgba(0,255,255,0.1);
+                transform: perspective(500px) translateZ(20px);
+            }
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0;">
+    <div class="video-container">
+        <video class="video active" muted playsinline autoplay>
+            <source src="assets/heroimages/herovideo1.mp4" type="video/mp4">
+        </video>
+        <video class="video" muted playsinline autoplay>
+            <source src="assets/heroimages/herovideo2.mp4" type="video/mp4">
+        </video>
+        <div class="title-overlay">
+            <div class="main-title"></div>
+            <div class="subtitle"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const videos = document.querySelectorAll('.video');
+            console.log('Found videos:', videos.length);
+            
+            const titleOverlay = document.querySelector('.title-overlay');
+            const mainTitle = document.querySelector('.main-title');
+            const subtitle = document.querySelector('.subtitle');
+            let currentIndex = 0;
+
+            // Video titles and subtitles
+            const titles = [
+                {
+                    main: "NEURALAI ($NAI)",
+                    sub: "By CryptoVoyager"
+                },
+                {
+                    main: "Particle Swarm Optimization",
+                    sub: "Nature-Inspired Neural Network Training"
+                },
+                {
+                    main: "Swarm Intelligence",
+                    sub: "Collective Behavior Optimization"
+                },
+                {
+                    main: "PSO Algorithm",
+                    sub: "Multi-Agent Search Optimization"
+                },
+                {
+                    main: "NEURALAI Architecture",
+                    sub: "Self-Evolving Network Topology"
+                },
+                {
+                    main: "$NAI Token Utility",
+                    sub: "Powering Neural Network Training"
+                },
+                {
+                    main: "CryptoVoyager Presents",
+                    sub: "Revolutionary AI on Bitcoin SV"
+                },
+                {
+                    main: "Particle Swarm Features",
+                    sub: "Global & Local Search Optimization"
+                },
+                {
+                    main: "Advanced PSO",
+                    sub: "Dynamic Parameter Adaptation"
+                },
+                {
+                    main: "NEURALAI ($NAI)",
+                    sub: "The Future of Neural Networks"
+                }
+            ];
+
+            function showTitle(index) {
+                titleOverlay.classList.remove('active');
+                setTimeout(() => {
+                    mainTitle.textContent = titles[index].main;
+                    subtitle.textContent = titles[index].sub;
+                    titleOverlay.classList.add('active');
+                }, 1000);
+            }
+
+            function playNextVideo() {
+                videos[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % videos.length;
+                videos[currentIndex].currentTime = 0;
+                videos[currentIndex].play();
+                videos[currentIndex].classList.add('active');
+                showTitle(currentIndex);
+            }
+
+            // Initialize first video
+            videos[0].play().catch(e => console.log('Video play failed:', e));
+            showTitle(0);
+
+            // Add ended event listeners
+            videos.forEach(video => {
+                video.addEventListener('ended', playNextVideo);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Wallet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Simple centered button -->
+    <div class="container text-center" style="margin-top: 100px;">
+        <button class="btn btn-primary" data-action="connect-wallet">Connect Wallet</button>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Wallet Connector -->
+    <script src="/js/wallet-connect.js"></script>
+
+    <!-- Load the modal -->
+    <script>
+        fetch('/tribeswalletmodal.html')
+            .then(response => response.text())
+            .then(html => {
+                document.body.insertAdjacentHTML('beforeend', html);
+                const walletModal = new bootstrap.Modal(document.getElementById('walletModal'));
+                document.querySelector('[data-action="connect-wallet"]').addEventListener('click', () => {
+                    walletModal.show();
+                });
+            });
+    </script>
+
+</body>
+</html>

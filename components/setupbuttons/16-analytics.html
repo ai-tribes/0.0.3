@@ -1,0 +1,76 @@
+<div class="section-content">
+    <h4 class="mb-4">Setup Analytics</h4>
+    <form id="analyticsForm">
+        <div class="mb-4">
+            <h6 class="mb-3">Configure Analytics Platforms</h6>
+            <div class="alert alert-info">
+                <p class="mb-0">Connect analytics platforms to track your tribe's growth and engagement metrics.</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Google Analytics -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="assets/providers/google-analytics.png" alt="Google Analytics" height="30">
+                            <h6 class="mb-0 ms-2">Google Analytics</h6>
+                        </div>
+                        <div class="mb-3">
+                            <label for="gaTrackingId" class="form-label">Measurement ID</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="gaTrackingId" 
+                                       placeholder="G-XXXXXXXXXX">
+                                <button class="btn btn-outline-primary" type="button" onclick="verifyAnalytics('ga')">
+                                    <i class="fas fa-check me-2"></i>Verify
+                                </button>
+                            </div>
+                            <div class="form-text">GA4 Measurement ID</div>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="gaEnhancedEcom">
+                            <label class="form-check-label">Enable Enhanced Ecommerce</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Custom Analytics -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-chart-line fa-2x text-primary"></i>
+                            <h6 class="mb-0 ms-2">Custom Analytics</h6>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="enableCustom">
+                                <label class="form-check-label">Enable Custom Analytics</label>
+                            </div>
+                        </div>
+                        <div id="customAnalyticsOptions" class="d-none">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="trackPageviews">
+                                <label class="form-check-label">Track Pageviews</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="trackEvents">
+                                <label class="form-check-label">Track Events</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="trackConversions">
+                                <label class="form-check-label">Track Conversions</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-4" id="analyticsSubmitButton" disabled>
+            Save & Continue
+        </button>
+    </form>
+</div> 

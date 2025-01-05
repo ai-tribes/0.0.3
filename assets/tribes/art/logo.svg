@@ -1,0 +1,25 @@
+<svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background Circle -->
+    <circle cx="36" cy="36" r="36" fill="#FF4B6E"/>
+    
+    <!-- Artistic Elements -->
+    <g transform="translate(14, 14)">
+        <!-- Paintbrush -->
+        <path d="M38 6C38 6 34 10 28 10C22 10 18 6 18 6C18 6 22 2 28 2C34 2 38 6 38 6Z" 
+              fill="white" stroke="white" stroke-width="2"/>
+        <path d="M28 10V42" stroke="white" stroke-width="3" stroke-linecap="round"/>
+        
+        <!-- Paint Palette -->
+        <path d="M8 24C8 18.4772 12.4772 14 18 14H38C43.5228 14 48 18.4772 48 24C48 29.5228 43.5228 34 38 34H18C12.4772 34 8 29.5228 8 24Z" 
+              fill="white" fill-opacity="0.2"/>
+        
+        <!-- Paint Dots -->
+        <circle cx="18" cy="24" r="4" fill="white"/>
+        <circle cx="28" cy="24" r="4" fill="white"/>
+        <circle cx="38" cy="24" r="4" fill="white"/>
+    </g>
+    
+    <!-- AI Element -->
+    <path d="M36 52C36 52 44 48 44 44C44 40 40 38 36 38C32 38 28 40 28 44C28 48 36 52 36 52Z" 
+          fill="white" fill-opacity="0.6"/>
+</svg>

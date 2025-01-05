@@ -1,0 +1,24 @@
+<svg width="800" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="edu-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f1c40f"/>
+      <stop offset="100%" style="stop-color:#f39c12"/>
+    </linearGradient>
+    <!-- Education pattern -->
+    <pattern id="books" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+      <path d="M30,30 v40 h15 v-40 Z" fill="#f4d03f"/>
+      <path d="M50,30 v40 h15 v-40 Z" fill="#f4d03f"/>
+      <path d="M70,30 v40 h15 v-40 Z" fill="#f4d03f"/>
+    </pattern>
+  </defs>
+  
+  <!-- Base gradient -->
+  <rect width="800" height="200" fill="url(#edu-bg)"/>
+  
+  <!-- Books pattern overlay -->
+  <rect width="800" height="200" fill="url(#books)" opacity="0.3"/>
+  
+  <!-- Graduation cap -->
+  <path d="M350,80 l50,-25 l50,25 l-50,25 z" fill="#f4d03f" opacity="0.5"/>
+  <path d="M400,105 v30" stroke="#f4d03f" stroke-width="3" opacity="0.5"/>
+</svg> 

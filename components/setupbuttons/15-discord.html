@@ -1,0 +1,65 @@
+<div class="section-content">
+    <h4 class="mb-4">Setup Discord</h4>
+    <form id="discordForm">
+        <div class="mb-4">
+            <h6 class="mb-3">Connect Your Tribe's Discord Server</h6>
+            <div class="alert alert-info">
+                <ol class="mb-0">
+                    <li>Create a Discord server for your tribe</li>
+                    <li>Create a Discord application in Developer Portal</li>
+                    <li>Add a bot to your application</li>
+                    <li>Copy the bot token and server ID below</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="serverName">Server Name</label>
+            <input type="text" class="form-control" id="serverName" 
+                   placeholder="Your Tribe HQ" required>
+            <div class="form-text">Your Discord server name</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="serverId">Server ID</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="serverId" 
+                       placeholder="123456789012345678" required>
+                <button class="btn btn-outline-primary" type="button" onclick="verifyDiscordServer()">
+                    <i class="fas fa-check me-2"></i>Verify
+                </button>
+            </div>
+            <div class="form-text">Enable Developer Mode and right-click server to copy ID</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="botToken">Bot Token</label>
+            <div class="input-group">
+                <input type="password" class="form-control" id="botToken" required>
+                <button class="btn btn-outline-primary" type="button" onclick="verifyDiscordBot()">
+                    <i class="fas fa-check me-2"></i>Verify
+                </button>
+            </div>
+            <div class="form-text">Get this from Discord Developer Portal</div>
+        </div>
+
+        <div class="mb-4">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="enableWelcome">
+                <label class="form-check-label">Enable welcome messages</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="enableModeration">
+                <label class="form-check-label">Enable moderation features</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="enableRoles">
+                <label class="form-check-label">Enable automatic role assignment</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="discordSubmitButton" disabled>
+            Save & Continue
+        </button>
+    </form>
+</div> 

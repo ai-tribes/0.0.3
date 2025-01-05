@@ -1,0 +1,80 @@
+/* Base form styles */
+.section-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.connection-card {
+    background: white;
+    transition: all 0.2s ease;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+}
+
+.connection-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.service-option {
+    background: white;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.service-option:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Form elements */
+.form-control, .form-select {
+    background-color: white;
+    border-color: #dee2e6;
+}
+
+.form-control:focus, .form-select:focus {
+    box-shadow: none;
+    border-color: #0d6efd;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btn-outline-secondary {
+    border-color: #dee2e6;
+}
+
+.setup-steps {
+    padding-left: 1.2rem;
+    line-height: 1.8;
+}
+
+.setup-steps li {
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+.form-section {
+    margin-bottom: 2rem;
+}
+
+.form-section h4 {
+    margin-bottom: 1rem;
+}
+
+.input-group .btn {
+    border-color: #dee2e6;
+}
+
+.service-list .service-item {
+    background: white;
+    border: 1px solid #dee2e6;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+}

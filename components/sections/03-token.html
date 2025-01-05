@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="section-content">
+        <h4 class="mb-4">Network, Token & Wallets</h4>
+        <p class="text-muted">Configure your tribe's blockchain infrastructure</p>
+
+        <!-- Network Selection -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Network Configuration</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label class="form-label">Primary Network</label>
+                        <select class="form-select mb-2">
+                            <option value="solana">Solana</option>
+                            <option value="ethereum">Ethereum</option>
+                            <option value="bsv">BSV</option>
+                        </select>
+                        <div class="form-text">Main network for your tribe's operations</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Additional Networks</label>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="crossChain">
+                            <label class="form-check-label" for="crossChain">Enable Cross-Chain Support</label>
+                        </div>
+                        <div id="networkList" class="d-none">
+                            <!-- Additional networks appear here when cross-chain is enabled -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Token Configuration -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Token Setup</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label class="form-label">Token Name</label>
+                        <input type="text" class="form-control" placeholder="Enter token name">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Token Symbol</label>
+                        <input type="text" class="form-control" placeholder="e.g., TRIBE">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Total Supply</label>
+                        <input type="number" class="form-control" placeholder="Enter total supply">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Decimals</label>
+                        <input type="number" class="form-control" value="9">
+                    </div>
+                </div>
+
+                <!-- Token Distribution -->
+                <div class="mt-4">
+                    <label class="form-label">Token Distribution</label>
+                    <div class="distribution-chart p-3 border rounded">
+                        <!-- Add chart here -->
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-text">Team</span>
+                                    <input type="number" class="form-control" value="15">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-text">Community</span>
+                                    <input type="number" class="form-control" value="50">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-text">Treasury</span>
+                                    <input type="number" class="form-control" value="35">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wallet Configuration -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Wallet Setup</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <!-- Treasury Wallet -->
+                    <div class="col-md-6">
+                        <label class="form-label">Treasury Wallet</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Enter wallet address">
+                            <button class="btn btn-outline-primary">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="form-text">Main treasury wallet for your tribe</div>
+                    </div>
+
+                    <!-- Team Wallet -->
+                    <div class="col-md-6">
+                        <label class="form-label">Team Wallet</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Enter wallet address">
+                            <button class="btn btn-outline-primary">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="form-text">Team allocation wallet</div>
+                    </div>
+
+                    <!-- Vesting Configuration -->
+                    <div class="col-12">
+                        <label class="form-label">Vesting Schedule</label>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <select class="form-select">
+                                    <option value="linear">Linear Vesting</option>
+                                    <option value="cliff">Cliff Vesting</option>
+                                    <option value="custom">Custom Schedule</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-text">Duration</span>
+                                    <input type="number" class="form-control" value="12">
+                                    <span class="input-group-text">months</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Smart Contract Settings -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Smart Contract Settings</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="pausable">
+                            <label class="form-check-label" for="pausable">Pausable</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="burnable">
+                            <label class="form-check-label" for="burnable">Burnable</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="mintable">
+                            <label class="form-check-label" for="mintable">Mintable</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="upgradeable">
+                            <label class="form-check-label" for="upgradeable">Upgradeable</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

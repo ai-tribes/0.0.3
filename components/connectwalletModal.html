@@ -1,0 +1,135 @@
+    <!-- Add this modal for wallet connection -->
+    <div class="modal fade" id="connectWalletModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">Connect Wallet</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                
+                <div class="modal-body">
+                    <!-- Search Bar -->
+                    <div class="wallet-search mb-3">
+                        <input type="text" class="form-control" placeholder="Search wallets...">
+                    </div>
+
+                    <!-- Network Filter -->
+                    <div class="wallet-categories mb-4">
+                        <button class="wallet-category active">All</button>
+                        <button class="wallet-category">BSV</button>
+                        <button class="wallet-category">ETH</button>
+                        <button class="wallet-category">Multi-Chain</button>
+                    </div>
+
+                    <!-- Recommended Section -->
+                    <div class="recommended-section mb-4">
+                        <div class="section-label">Recommended</div>
+                        <div class="wallet-item featured">
+                            <img src="assets/wallets/phantom.svg" alt="Phantom" class="wallet-logo">
+                            <div class="wallet-info">
+                                <div class="wallet-header">
+                                    <span class="wallet-name">Phantom</span>
+                                    <span class="network-badge sol">SOL</span>
+                                </div>
+                                <p class="wallet-description">Most popular Solana wallet with 2M+ users</p>
+                                <div class="wallet-features">
+                                    <span class="feature-badge">Best Choice</span>
+                                    <span class="feature-badge">AI-Ready</span>
+                                    <span class="feature-badge">Fast Setup</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Other Wallets Section -->
+                    <div class="wallet-divider">
+                        <span>Other Wallet Options</span>
+                    </div>
+
+                    <div class="wallet-list">
+                        <!-- MetaMask -->
+                        <div class="wallet-item">
+                            <img src="assets/wallets/metamask.svg" alt="MetaMask" class="wallet-logo">
+                            <div class="wallet-info">
+                                <div class="wallet-header">
+                                    <span class="wallet-name">MetaMask</span>
+                                    <span class="network-badge eth">ETH</span>
+                                </div>
+                                <p class="wallet-description">The most popular Ethereum wallet</p>
+                                <div class="wallet-features">
+                                    <span class="feature-badge">10M+ Users</span>
+                                    <span class="feature-badge">DApp Ready</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- HandCash -->
+                        <div class="wallet-item">
+                            <img src="assets/wallets/handcash.svg" alt="HandCash" class="wallet-logo">
+                            <div class="wallet-info">
+                                <div class="wallet-header">
+                                    <span class="wallet-name">HandCash</span>
+                                    <span class="network-badge bsv">BSV</span>
+                                </div>
+                                <p class="wallet-description">User-friendly BSV wallet with social features</p>
+                                <div class="wallet-features">
+                                    <span class="feature-badge">Popular</span>
+                                    <span class="feature-badge">Social Pay</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- WalletConnect -->
+                        <div class="wallet-item">
+                            <img src="assets/wallets/walletconnect.svg" alt="WalletConnect" class="wallet-logo">
+                            <div class="wallet-info">
+                                <div class="wallet-header">
+                                    <span class="wallet-name">WalletConnect</span>
+                                    <span class="network-badge multi">Multi-Chain</span>
+                                </div>
+                                <p class="wallet-description">Connect to multiple wallets securely</p>
+                                <div class="wallet-features">
+                                    <span class="feature-badge">Universal</span>
+                                    <span class="feature-badge">Secure</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Trust Wallet -->
+                        <div class="wallet-item">
+                            <img src="assets/wallets/trustwallet.svg" alt="Trust Wallet" class="wallet-logo">
+                            <div class="wallet-info">
+                                <div class="wallet-header">
+                                    <span class="wallet-name">Trust Wallet</span>
+                                    <span class="network-badge multi">Multi-Chain</span>
+                                </div>
+                                <p class="wallet-description">Multi-chain wallet by Binance</p>
+                                <div class="wallet-features">
+                                    <span class="feature-badge">Mobile</span>
+                                    <span class="feature-badge">DeFi</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Binance Wallet -->
+                        <div class="wallet-item">
+                            <img src="assets/wallets/binance.svg" alt="Binance Wallet" class="wallet-logo">
+                            <div class="wallet-info">
+                                <div class="wallet-header">
+                                    <span class="wallet-name">Binance Wallet</span>
+                                    <span class="network-badge bnb">BNB</span>
+                                </div>
+                                <p class="wallet-description">Official Binance Chain wallet</p>
+                                <div class="wallet-features">
+                                    <span class="feature-badge">Exchange</span>
+                                    <span class="feature-badge">Low Fees</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bsvWalletHandler.js"></script>

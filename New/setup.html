@@ -1,0 +1,2615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Your AI Tribe</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/setup.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/tribes.css" rel="stylesheet">
+    <script>
+        // Apply theme immediately to prevent flash
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+    <style>
+        /* Layout consistency */
+        .container {
+            max-width: 1400px;
+            padding: 0 2rem;
+        }
+
+        /* Dashboard layout */
+        .dashboard-view {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Card consistency */
+        .dashboard-card {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            border: none;
+        }
+
+        /* Setup intro card */
+        .setup-intro .dashboard-card {
+            margin-bottom: 2rem;
+        }
+
+        /* Navigation consistency */
+        .navbar .container {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        /* Existing styles... */
+    </style>
+</head>
+<body class="bg-light" style="background-color: #e9ecef !important; padding-top: 160px;">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top" style="z-index: 1040; height: 76px;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="tribes_logo.png" alt="AI Tribes Logo">
+                AI Tribes
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <!-- Left side nav items can go here if needed -->
+                </ul>
+                <div class="d-flex">
+                    <button class="btn btn-link p-2" id="theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon nav-icon"></i>
+                    </button>
+                    <button class="btn btn-outline-primary ms-2" data-action="connect-wallet">
+                        <i class="fas fa-wallet me-2"></i>Connect Wallet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sub Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom sticky-top" 
+         style="z-index: 1030; top: 76px; position: fixed; width: 100%;">
+        <div class="container">
+            <ul class="nav nav-pills w-100 py-4 mt-2 pe-3">
+                <li class="nav-item">
+                    <a class="nav-link active d-flex align-items-center px-3 py-3" href="#create-tribe" data-bs-toggle="tab">
+                        <i class="fas fa-plus me-1"></i> Create New Tribe
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center px-3 py-3" href="#profile" data-bs-toggle="tab">
+                        <i class="fas fa-user me-1"></i> My Profile
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center px-3 py-3" href="#team" data-bs-toggle="tab">
+                        <i class="fas fa-users me-1"></i> My Team
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center px-3 py-3" href="#tribes" data-bs-toggle="tab">
+                        <i class="fas fa-layer-group me-1"></i> My Tribes
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Tab Content -->
+    <div class="tab-content container-fluid mt-4">
+        <div class="tab-pane fade show active" id="create-tribe">
+            <div class="container mt-5 pt-4 px-4">
+                <div class="setup-intro mb-3">
+                    <div class="card dashboard-card">
+                        <div class="card-body d-flex justify-content-between align-items-start">
+                            <div class="flex-grow-1 me-3">
+                                <h4>Your Tribe</h4>
+                                <p class="text-muted mb-2">Complete each step to configure your AI tribe. Progress will be tracked below.</p>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <button id="generateTribeBtn" class="btn btn-success">
+                                <i class="fas fa-magic me-2"></i>Generate Random Tribe
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <!-- Left Column - Navigation -->
+                    <div class="col-md-2-5 p-3">
+                        <div class="setup-nav-container">
+                            <div id="navigationButtons">
+                                <!-- Navigation buttons -->
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">01</span>
+                                    <i class="fas fa-signature me-2"></i>
+                                    <span class="text-start flex-grow-1">Create Your Tribe</span>
+                                </button>
+
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">02</span>
+                                    <i class="fas fa-bullseye me-2"></i>
+                                    <span class="text-start flex-grow-1">Define Tribe Purpose</span>
+                                </button>
+
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">03</span>
+                                    <i class="fas fa-coins me-2"></i>
+                                    <span class="text-start flex-grow-1">Create Token</span>
+                                </button>
+
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">04</span>
+                                    <i class="fas fa-image me-2"></i>
+                                    <span class="text-start flex-grow-1">Upload Logo</span>
+                                </button>
+
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">05</span>
+                                    <i class="fab fa-twitter me-2"></i>
+                                    <span class="text-start flex-grow-1">Connect X</span>
+                                </button>
+
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">06</span>
+                                    <i class="fab fa-github me-2"></i>
+                                    <span class="text-start flex-grow-1">Connect GitHub</span>
+                                </button>
+
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">07</span>
+                                    <i class="fas fa-wallet me-2"></i>
+                                    <span class="text-start flex-grow-1">Setup Wallet</span>
+                                </button>
+
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">08</span>
+                                    <i class="fas fa-cloud me-2"></i>
+                                    <span class="text-start flex-grow-1">Setup Google Cloud</span>
+                                </button>
+
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">09</span>
+                                    <i class="fab fa-telegram me-2"></i>
+                                    <span class="text-start flex-grow-1">Setup Telegram</span>
+                                </button>
+
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">10</span>
+                                    <i class="fas fa-globe me-2"></i>
+                                    <span class="text-start flex-grow-1">Setup Domain</span>
+                                </button>
+
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">11</span>
+                                    <i class="fas fa-robot me-2"></i>
+                                    <span class="text-start flex-grow-1">Connect AI APIs</span>
+                                </button>
+
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">12</span>
+                                    <i class="fas fa-user-circle me-2"></i>
+                                    <span class="text-start flex-grow-1">Create PFP NFTs</span>
+                                </button>
+
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">13</span>
+                                    <i class="fab fa-facebook me-2"></i>
+                                    <span class="text-start flex-grow-1">Connect Facebook</span>
+                                </button>
+
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">14</span>
+                                    <i class="fab fa-instagram me-2"></i>
+                                    <span class="text-start flex-grow-1">Connect Instagram</span>
+                                </button>
+
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">15</span>
+                                    <i class="fab fa-discord me-2"></i>
+                                    <span class="text-start flex-grow-1">Setup Discord</span>
+                                </button>
+
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">16</span>
+                                    <i class="fas fa-chart-line me-2"></i>
+                                    <span class="text-start flex-grow-1">Setup Analytics</span>
+                                </button>
+
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">17</span>
+                                    <i class="fas fa-bell me-2"></i>
+                                    <span class="text-start flex-grow-1">Configure Notifications</span>
+                                </button>
+
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">18</span>
+                                    <i class="fas fa-database me-2"></i>
+                                    <span class="text-start flex-grow-1">Setup Backup</span>
+                                </button>
+
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">19</span>
+                                    <i class="fas fa-shield-alt me-2"></i>
+                                    <span class="text-start flex-grow-1">Security Settings</span>
+                                </button>
+
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">20</span>
+                                    <i class="fas fa-paint-brush me-2"></i>
+                                    <span class="text-start flex-grow-1">Customize Theme</span>
+                                </button>
+
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">21</span>
+                                    <i class="fas fa-robot me-2"></i>
+                                    <span class="text-start flex-grow-1">Add Agent #1</span>
+                                </button>
+
+                                <button class="btn btn-custom d-flex align-items-center mb-2">
+                                    <span class="number me-2">22</span>
+                                    <i class="fas fa-id-card me-2"></i>
+                                    <span class="text-start flex-grow-1">KYC & Payments</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right Column - Content Area -->
+                    <div class="col-md-9-5 p-3">
+                        <div class="card preview-panel">
+                            <div class="card-body">
+                                <!-- Section content will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="profile">
+            <div class="container mt-5 pt-4">
+                <h4 class="mb-4">My Profile</h4>
+                <div class="card">
+                    <div class="card-body">
+                        <form id="profileForm" class="needs-validation" novalidate>
+                            <div class="row">
+                                <div class="col-md-3 text-center mb-4">
+                                    <div class="position-relative d-inline-block">
+                                        <img src="assets/default-avatar.png" class="rounded-circle img-thumbnail mb-3" 
+                                            style="width: 150px; height: 150px; object-fit: cover;" id="profileImage">
+                                        <label for="imageUpload" class="btn btn-sm btn-primary position-absolute" 
+                                            style="bottom: 15px; right: 15px; width: 32px; height: 32px; border-radius: 50%; 
+                                            display: flex; align-items: center; justify-content: center; 
+                                            background: rgba(13, 110, 253, 0.9); border: 2px solid white;">
+                                            <i class="fas fa-camera"></i>
+                                        </label>
+                                        <input type="file" id="imageUpload" class="d-none" accept="image/*">
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-9">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Display Name</label>
+                                            <input type="text" class="form-control" id="displayName" required>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <label class="form-label">Username</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">@</span>
+                                                <input type="text" class="form-control" id="username" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label class="form-label">Bio</label>
+                                            <textarea class="form-control" id="bio" rows="3"></textarea>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="email" required>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label">Location</label>
+                                            <input type="text" class="form-control" id="location">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <h5>Social Links</h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label"><i class="fab fa-twitter me-2"></i>X (Twitter)</label>
+                                    <input type="text" class="form-control" id="twitter">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label"><i class="fab fa-github me-2"></i>GitHub</label>
+                                    <input type="text" class="form-control" id="github">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label"><i class="fab fa-discord me-2"></i>Discord</label>
+                                    <input type="text" class="form-control" id="discord">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label"><i class="fab fa-telegram me-2"></i>Telegram</label>
+                                    <input type="text" class="form-control" id="telegram">
+                                </div>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <h5>Wallet & Payments</h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">
+                                        <i class="fab fa-ethereum me-2"></i>ETH Address
+                                        <small class="text-muted">(or ENS name)</small>
+                                    </label>
+                                    <input type="text" class="form-control" id="ethAddress" placeholder="0x... or name.eth">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">
+                                        <img src="assets/wallets/phantom.svg" class="me-2" style="width: 16px;">Solana Address
+                                        <small class="text-muted">(or .SOL domain)</small>
+                                    </label>
+                                    <input type="text" class="form-control" id="solAddress" placeholder="Address or name.sol">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">
+                                        <img src="assets/wallets/handcash.svg" class="me-2" style="width: 16px;">HandCash Handle
+                                        <small class="text-muted">(for instant payments)</small>
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">$</span>
+                                        <input type="text" class="form-control" id="handcashHandle" placeholder="yourhandle">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <h5>Identity Verification <span class="badge bg-secondary ms-2">Optional</span></h5>
+                                    <p class="text-muted small">Enable regulated token issuance by verifying your identity</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Government ID</label>
+                                    <div class="input-group">
+                                        <input type="file" class="form-control" id="govId" accept="image/*,.pdf">
+                                        <button class="btn btn-outline-secondary" type="button" id="uploadGovId">
+                                            <i class="fas fa-upload"></i>
+                                        </button>
+                                    </div>
+                                    <div class="form-text">Document hash will be attached to regulated token issuance</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Proof of Address</label>
+                                    <div class="input-group">
+                                        <input type="file" class="form-control" id="proofAddress" accept="image/*,.pdf">
+                                        <button class="btn btn-outline-secondary" type="button" id="uploadProofAddress">
+                                            <i class="fas fa-upload"></i>
+                                        </button>
+                                    </div>
+                                    <div class="form-text">Required for regulated token issuance in some jurisdictions</div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="alert alert-info d-flex align-items-center" role="alert">
+                                        <i class="fas fa-info-circle me-2"></i>
+                                        <div>
+                                            Your identity documents will be hashed and can be attached to token issuance for regulatory compliance. Choose between regulated or unregulated token distribution. Documents are encrypted and stored securely.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-end mt-4">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save me-2"></i>Save Changes
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="team">
+            <div class="container mt-5 pt-4">
+                <h1 class="mb-2" style="font-size: 2rem;">My Team</h1>
+                <div class="card mb-4" style="background-color: #f8f9fa;">
+                    <div class="card-body">
+                        <p class="text-muted" style="font-size: 0.9rem;">
+                            Add users to your team to help manage your tribes. This allows you to delegate responsibilities and ensure that your team can effectively collaborate on projects. You can assign different access levels to each member based on their role within the team.
+                        </p>
+                    </div>
+                </div>
+                <div class="card mb-4" style="background-color: #f8f9fa;">
+                    <div class="card-body">
+                        <!-- Team Member Search -->
+                        <div class="mb-4">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Enter username/wallet to add existing members, or email address to send an invitation to ai-tribes.online">
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-search me-2"></i>Add or Invite
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Team Members List -->
+                        <div class="team-members">
+                            <!-- Sarah Chen -->
+                            <div class="team-member-row d-flex align-items-start p-3 border-bottom" style="background-color: #e9ecef;">
+                                <div class="profile-circle bg-primary me-3">SC</div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex align-items-center mb-1">
+                                        <h6 class="mb-0">Sarah Chen</h6>
+                                        <span class="badge bg-info ms-2">Verified</span>
+                                        <a href="#" class="ms-2 text-muted small">@sarahc</a>
+                                    </div>
+                                    <div class="profile-completion small text-muted">
+                                        <span class="badge bg-success">ID Verified</span>
+                                        <i class="fab fa-github text-success ms-2" title="GitHub Connected"></i>
+                                        <i class="fab fa-twitter text-success ms-1" title="Twitter Connected"></i>
+                                        <i class="fab fa-discord text-success ms-1" title="Discord Connected"></i>
+                                        <i class="fab fa-telegram text-muted ms-1" title="Telegram Not Connected"></i>
+                                    </div>
+                                    <p class="text-muted small mb-1">AI Researcher & Full-stack Developer</p>
+                                    <div class="d-flex align-items-center small text-muted mb-2">
+                                        <i class="fas fa-map-marker-alt me-1"></i>
+                                        <span>Singapore</span>
+                                        <span class="mx-2">•</span>
+                                        <i class="fab fa-ethereum me-1"></i>
+                                        <span>sarah.eth</span>
+                                        <span class="mx-2">•</span>
+                                        <i class="fas fa-id-card text-success me-1" title="ID Verified"></i>
+                                        <span class="text-success">ID Verified</span>
+                                    </div>
+                                </div>
+                                <!-- Tribes Grid -->
+                                <div class="col-4">
+                                    <div class="row g-2">
+                                        <div class="col-12">
+                                            <div class="tribe-permission-group" style="border: 2px solid #ced4da; padding: 10px; border-radius: 5px;">
+                                                <h6 class="mb-0">Meta Builders DAO <span class="badge bg-success">Active</span></h6>
+                                                <select class="form-select form-select-sm mt-1" id="meta-member1-role">
+                                                    <option value="none" selected>No Access</option>
+                                                    <option value="shield">Read: Shield Sensitive Data</option>
+                                                    <option value="readonly">Read All</option>
+                                                    <option value="admin">Admin</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="tribe-permission-group" style="border: 2px solid #ced4da; padding: 10px; border-radius: 5px;">
+                                                <h6 class="mb-0">AI Collective <span class="badge bg-warning">Setup</span></h6>
+                                                <select class="form-select form-select-sm mt-1" id="ai-member1-role">
+                                                    <option value="none" selected>No Access</option>
+                                                    <option value="shield">Read: Shield Sensitive Data</option>
+                                                    <option value="readonly">Read All</option>
+                                                    <option value="admin">Admin</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="tribe-permission-group" style="border: 2px solid #ced4da; padding: 10px; border-radius: 5px;">
+                                                <h6 class="mb-0">Web3 Pioneers <span class="badge bg-secondary">Draft</span></h6>
+                                                <select class="form-select form-select-sm mt-1" id="web3-member1-role">
+                                                    <option value="none" selected>No Access</option>
+                                                    <option value="shield">Read: Shield Sensitive Data</option>
+                                                    <option value="readonly">Read All</option>
+                                                    <option value="admin">Admin</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Marcus Williams -->
+                            <div class="team-member-row d-flex align-items-start p-3 border-bottom" style="background-color: #e9ecef;">
+                                <div class="profile-circle bg-success me-3">MW</div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex align-items-center mb-1">
+                                        <h6 class="mb-0">Marcus Williams</h6>
+                                        <span class="badge bg-info ms-2">Verified</span>
+                                        <a href="#" class="ms-2 text-muted small">@marcusw</a>
+                                    </div>
+                                    <div class="profile-completion small text-muted">
+                                        <span class="badge bg-warning">ID Pending</span>
+                                        <i class="fab fa-github text-success ms-2" title="GitHub Connected"></i>
+                                        <i class="fab fa-twitter text-success ms-1" title="Twitter Connected"></i>
+                                        <i class="fab fa-discord text-muted ms-1" title="Discord Not Connected"></i>
+                                        <i class="fab fa-telegram text-muted ms-1" title="Telegram Not Connected"></i>
+                                    </div>
+                                    <p class="text-muted small mb-1">AI Researcher & Developer</p>
+                                    <div class="d-flex align-items-center small text-muted mb-2">
+                                        <i class="fas fa-map-marker-alt me-1"></i>
+                                        <span>Location</span>
+                                        <span class="mx-2">•</span>
+                                        <i class="fab fa-ethereum me-1"></i>
+                                        <span>marcus.eth</span>
+                                        <span class="mx-2">•</span>
+                                        <i class="fas fa-id-card text-warning me-1" title="ID Pending"></i>
+                                        <span class="text-warning">ID Pending</span>
+                                    </div>
+                                </div>
+                                <!-- Tribes Grid -->
+                                <div class="col-4">
+                                    <div class="row g-2">
+                                        <div class="col-12">
+                                            <div class="tribe-permission-group" style="border: 2px solid #ced4da; padding: 10px; border-radius: 5px;">
+                                                <h6 class="mb-0">Meta Builders DAO <span class="badge bg-success">Active</span></h6>
+                                                <select class="form-select form-select-sm mt-1" id="meta-member2-role">
+                                                    <option value="none" selected>No Access</option>
+                                                    <option value="shield">Read: Shield Sensitive Data</option>
+                                                    <option value="readonly">Read All</option>
+                                                    <option value="admin">Admin</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="tribe-permission-group" style="border: 2px solid #ced4da; padding: 10px; border-radius: 5px;">
+                                                <h6 class="mb-0">AI Collective <span class="badge bg-warning">Setup</span></h6>
+                                                <select class="form-select form-select-sm mt-1" id="ai-member2-role">
+                                                    <option value="none" selected>No Access</option>
+                                                    <option value="shield">Read: Shield Sensitive Data</option>
+                                                    <option value="readonly">Read All</option>
+                                                    <option value="admin">Admin</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="tribe-permission-group" style="border: 2px solid #ced4da; padding: 10px; border-radius: 5px;">
+                                                <h6 class="mb-0">Web3 Pioneers <span class="badge bg-secondary">Draft</span></h6>
+                                                <select class="form-select form-select-sm mt-1" id="web3-member2-role">
+                                                    <option value="none" selected>No Access</option>
+                                                    <option value="shield">Read: Shield Sensitive Data</option>
+                                                    <option value="readonly">Read All</option>
+                                                    <option value="admin">Admin</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Elena Rodriguez -->
+                            <div class="team-member-row d-flex align-items-start p-3 border-bottom" style="background-color: #e9ecef;">
+                                <div class="profile-circle bg-info me-3">ER</div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex align-items-center mb-1">
+                                        <h6 class="mb-0">Elena Rodriguez</h6>
+                                        <a href="#" class="ms-2 text-muted small">@elenarodr</a>
+                                    </div>
+                                    <div class="profile-completion small text-muted">
+                                        <span class="badge bg-secondary">ID Required</span>
+                                        <i class="fab fa-github text-muted ms-2" title="GitHub Not Connected"></i>
+                                        <i class="fab fa-twitter text-success ms-1" title="Twitter Connected"></i>
+                                        <i class="fab fa-discord text-muted ms-1" title="Discord Not Connected"></i>
+                                        <i class="fab fa-telegram text-muted ms-1" title="Telegram Not Connected"></i>
+                                    </div>
+                                    <p class="text-muted small mb-1">AI Specialist & Designer</p>
+                                    <div class="d-flex align-items-center small text-muted mb-2">
+                                        <i class="fas fa-map-marker-alt me-1"></i>
+                                        <span>Location</span>
+                                        <span class="mx-2">•</span>
+                                        <i class="fab fa-ethereum me-1"></i>
+                                        <span>elena.eth</span>
+                                        <span class="mx-2">•</span>
+                                        <i class="fas fa-id-card text-secondary me-1" title="ID Required"></i>
+                                        <span class="text-secondary">ID Required</span>
+                                    </div>
+                                </div>
+                                <!-- Tribes Grid -->
+                                <div class="col-4">
+                                    <div class="row g-2">
+                                        <div class="col-12">
+                                            <div class="tribe-permission-group" style="border: 2px solid #ced4da; padding: 10px; border-radius: 5px;">
+                                                <h6 class="mb-0">Meta Builders DAO <span class="badge bg-success">Active</span></h6>
+                                                <select class="form-select form-select-sm mt-1" id="meta-member3-role">
+                                                    <option value="none" selected>No Access</option>
+                                                    <option value="shield">Read: Shield Sensitive Data</option>
+                                                    <option value="readonly">Read All</option>
+                                                    <option value="admin">Admin</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="tribe-permission-group" style="border: 2px solid #ced4da; padding: 10px; border-radius: 5px;">
+                                                <h6 class="mb-0">Web3 Pioneers <span class="badge bg-secondary">Draft</span></h6>
+                                                <select class="form-select form-select-sm mt-1" id="web3-member3-role">
+                                                    <option value="none" selected>No Access</option>
+                                                    <option value="shield">Read: Shield Sensitive Data</option>
+                                                    <option value="readonly">Read All</option>
+                                                    <option value="admin">Admin</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="tribe-permission-group" style="border: 2px solid #ced4da; padding: 10px; border-radius: 5px;">
+                                                <h6 class="mb-0">AI Collective <span class="badge bg-warning">Setup</span></h6>
+                                                <select class="form-select form-select-sm mt-1" id="ai-member3-role">
+                                                    <option value="none" selected>No Access</option>
+                                                    <option value="shield">Read: Shield Sensitive Data</option>
+                                                    <option value="readonly">Read All</option>
+                                                    <option value="admin">Admin</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="tribes">
+            <div class="container mt-5 pt-4">
+                <!-- Tribes List View -->
+                <div class="tribes-list-view">
+                    <h4 class="mb-4">My Tribes</h4>
+                    <div class="row g-4">
+                        <!-- Active Tribe -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card h-100 tribe-card" data-tribe-id="meta-builders">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <img src="assets/tribes/meta-builders.svg" class="rounded me-3" width="48" height="48">
+                                        <div>
+                                            <h5 class="mb-0">Meta Builders DAO</h5>
+                                            <div class="d-flex align-items-center gap-2">
+                                                <span class="badge bg-success">Active</span>
+                                                <span class="badge bg-primary" style="font-size: 0.7rem;">
+                                                    <i class="fas fa-crown me-1"></i>Admin
+                                                </span>
+                                                <span class="badge bg-secondary" style="font-size: 0.7rem;">
+                                                    <i class="fab fa-bitcoin me-1"></i>BSV
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted small">Building the future of decentralized AI communities</p>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <small class="text-muted">Members:</small>
+                                            <span class="ms-1">156</span>
+                                        </div>
+                                        <div>
+                                            <small class="text-muted">Token:</small>
+                                            <span class="ms-1">META</span>
+                                        </div>
+                                    </div>
+                                    <div class="progress mb-3" style="height: 6px;">
+                                        <div class="progress-bar bg-success" style="width: 100%"></div>
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-outline-primary flex-grow-1 view-dashboard-btn" data-tribe="meta-builders">
+                                            View Dashboard
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-secondary">
+                                            <i class="fas fa-chart-line"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- In Progress Tribe -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card h-100 tribe-card" data-tribe-id="ai-collective">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <img src="assets/tribes/ai-collective.svg" class="rounded me-3" width="48" height="48">
+                                        <div>
+                                            <h5 class="mb-0">AI Collective</h5>
+                                            <div class="d-flex align-items-center gap-2">
+                                                <span class="badge bg-warning">Setup In Progress</span>
+                                                <span class="badge bg-primary" style="font-size: 0.7rem;">
+                                                    <i class="fas fa-crown me-1"></i>Admin
+                                                </span>
+                                                <span class="badge bg-secondary" style="font-size: 0.7rem;">
+                                                    <i class="fab fa-ethereum me-1"></i>ETH
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted small">Empowering AI agents to create value in the digital economy</p>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <small class="text-muted">Progress:</small>
+                                            <span class="ms-1">14/22 steps</span>
+                                        </div>
+                                        <div>
+                                            <small class="text-muted">Token:</small>
+                                            <span class="ms-1">AIC</span>
+                                        </div>
+                                    </div>
+                                    <div class="progress mb-3" style="height: 6px;">
+                                        <div class="progress-bar bg-warning" style="width: 65%"></div>
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-warning flex-grow-1 view-dashboard-btn" data-tribe="ai-collective">Continue Setup</button>
+                                        <button class="btn btn-sm btn-outline-secondary">
+                                            <i class="fas fa-cog"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Draft Tribe -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card h-100 tribe-card" data-tribe-id="web3-pioneers">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <img src="assets/tribes/web3-pioneers.svg" class="rounded me-3" width="48" height="48">
+                                        <div>
+                                            <h5 class="mb-0">Web3 Pioneers</h5>
+                                            <div class="d-flex align-items-center gap-2">
+                                                <span class="badge bg-secondary">Draft</span>
+                                                <span class="badge bg-primary" style="font-size: 0.7rem;">
+                                                    <i class="fas fa-crown me-1"></i>Admin
+                                                </span>
+                                                <span class="badge bg-secondary" style="font-size: 0.7rem;">
+                                                    <i class="fas fa-cube me-1"></i>SOL
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted small">Pioneering the intersection of AI and blockchain technology</p>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <small class="text-muted">Created:</small>
+                                            <span class="ms-1">2 days ago</span>
+                                        </div>
+                                        <div>
+                                            <small class="text-muted">Token:</small>
+                                            <span class="ms-1">$W3P</span>
+                                        </div>
+                                    </div>
+                                    <div class="progress mb-3" style="height: 6px;">
+                                        <div class="progress-bar bg-secondary" style="width: 15%"></div>
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-outline-primary flex-grow-1 view-dashboard-btn" data-tribe="web3-pioneers">Resume Setup</button>
+                                        <button class="btn btn-sm btn-outline-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Other Tribes Section Header -->
+                        <div class="col-12">
+                            <h4 class="mt-3 mb-3">Other Tribes</h4>
+                        </div>
+
+                        <!-- BlockDrive -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card h-100 tribe-card" data-tribe-id="blockdrive">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="rounded me-3 d-flex align-items-center justify-content-center" 
+                                             style="width: 48px; height: 48px; background: #3B82F6; opacity: 0.9;">
+                                           <i class="fas fa-cube text-white fa-lg"></i>
+                                       </div>
+                                       <div>
+                                           <h5 class="mb-0">
+                                               BlockDrive
+                                               <small class="text-muted ms-2" style="font-size: 0.75rem;">by CoffeeGuy999</small>
+                                           </h5>
+                                           <div class="d-flex align-items-center gap-2">
+                                               <span class="badge bg-info">Development</span>
+                                               <span class="badge bg-success" style="font-size: 0.7rem;">
+                                                   <i class="fas fa-edit me-1"></i>Read/Write
+                                               </span>
+                                               <span class="badge bg-secondary" style="font-size: 0.7rem;">
+                                                   <i class="fab fa-ethereum me-1"></i>ETH
+                                               </span>
+                                           </div>
+                                       </div>
+                                   </div>
+                                   <p class="text-muted small">Decentralized storage solutions for the future</p>
+                                   <div class="d-flex justify-content-between align-items-center mb-3">
+                                       <div>
+                                           <small class="text-muted">Members:</small>
+                                           <span class="ms-1">42</span>
+                                       </div>
+                                       <div>
+                                           <small class="text-muted">Token:</small>
+                                           <span class="ms-1">$DRIVE</span>
+                                       </div>
+                                   </div>
+                                   <div class="progress mb-3" style="height: 6px;">
+                                       <div class="progress-bar bg-info" style="width: 45%"></div>
+                                   </div>
+                                   <div class="d-flex gap-2">
+                                       <button class="btn btn-sm btn-outline-primary flex-grow-1 view-dashboard-btn" data-tribe="blockdrive">View Dashboard</button>
+                                       <button class="btn btn-sm btn-outline-secondary">
+                                           <i class="fas fa-cog"></i>
+                                       </button>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+
+                       <!-- NeuralAI -->
+                       <div class="col-md-6 col-lg-4">
+                           <div class="card h-100 tribe-card" data-tribe-id="neural-ai">
+                               <div class="card-body">
+                                   <div class="d-flex align-items-center mb-3">
+                                       <div class="rounded me-3 d-flex align-items-center justify-content-center" 
+                                            style="width: 48px; height: 48px; background: #8B5CF6; opacity: 0.9;">
+                                           <i class="fas fa-brain text-white fa-lg"></i>
+                                       </div>
+                                       <div>
+                                           <h5 class="mb-0">
+                                               NeuralAI
+                                               <small class="text-muted ms-2" style="font-size: 0.75rem;">by CryptoVoyager</small>
+                                           </h5>
+                                           <div class="d-flex align-items-center gap-2">
+                                               <span class="badge bg-warning">Setup</span>
+                                               <span class="badge bg-secondary" style="font-size: 0.7rem;">
+                                                   <i class="fas fa-eye me-1"></i>Read Only
+                                               </span>
+                                               <span class="badge bg-secondary" style="font-size: 0.7rem;">
+                                                   <i class="fab fa-bitcoin me-1"></i>BTC
+                                               </span>
+                                           </div>
+                                       </div>
+                                   </div>
+                                   <p class="text-muted small">Advanced neural networks for decentralized intelligence</p>
+                                   <div class="d-flex justify-content-between align-items-center mb-3">
+                                       <div>
+                                           <small class="text-muted">Members:</small>
+                                           <span class="ms-1">28</span>
+                                       </div>
+                                       <div>
+                                           <small class="text-muted">Token:</small>
+                                           <span class="ms-1">$NRAI</span>
+                                       </div>
+                                   </div>
+                                   <div class="progress mb-3" style="height: 6px;">
+                                       <div class="progress-bar bg-warning" style="width: 25%"></div>
+                                   </div>
+                                   <div class="d-flex gap-2">
+                                       <button class="btn btn-sm btn-outline-primary flex-grow-1 view-dashboard-btn" data-tribe="neural-ai">View Dashboard</button>
+                                       <button class="btn btn-sm btn-outline-secondary" disabled title="Read-only access">
+                                           <i class="fas fa-eye"></i>
+                                       </button>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+
+                       <!-- HecTik CDN -->
+                       <div class="col-md-6 col-lg-4">
+                           <div class="card h-100 tribe-card" data-tribe-id="hectik-cdn">
+                               <div class="card-body">
+                                   <div class="d-flex align-items-center mb-3">
+                                       <div class="rounded me-3 d-flex align-items-center justify-content-center" 
+                                            style="width: 48px; height: 48px; background: #EC4899; opacity: 0.9;">
+                                           <i class="fas fa-cloud text-white fa-lg"></i>
+                                       </div>
+                                       <div>
+                                           <h5 class="mb-0">
+                                               HecTik CDN
+                                               <small class="text-muted ms-2" style="font-size: 0.75rem;">by Hector</small>
+                                           </h5>
+                                           <div class="d-flex align-items-center gap-2">
+                                               <span class="badge bg-secondary">Draft</span>
+                                               <span class="badge bg-success" style="font-size: 0.7rem;">
+                                                   <i class="fas fa-edit me-1"></i>Read/Write
+                                               </span>
+                                               <span class="badge bg-secondary" style="font-size: 0.7rem;">
+                                                   <i class="fas fa-cube me-1"></i>SOL
+                                               </span>
+                                           </div>
+                                       </div>
+                                   </div>
+                                   <p class="text-muted small">Decentralized content delivery network</p>
+                                   <div class="d-flex justify-content-between align-items-center mb-3">
+                                       <div>
+                                           <small class="text-muted">Members:</small>
+                                           <span class="ms-1">12</span>
+                                       </div>
+                                       <div>
+                                           <small class="text-muted">Token:</small>
+                                           <span class="ms-1">$HTIK</span>
+                                       </div>
+                                   </div>
+                                   <div class="progress mb-3" style="height: 6px;">
+                                       <div class="progress-bar bg-secondary" style="width: 10%"></div>
+                                   </div>
+                                   <div class="d-flex gap-2">
+                                       <button class="btn btn-sm btn-outline-primary flex-grow-1 view-dashboard-btn" data-tribe="hectik-cdn">View Dashboard</button>
+                                       <button class="btn btn-sm btn-outline-secondary">
+                                           <i class="fas fa-cog"></i>
+                                       </button>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                    </div>
+                </div>
+                
+                <!-- Dashboard View (hidden by default) -->
+                <div class="tribe-dashboard-view" style="display: none;">
+                    <div class="dashboard-title-card">
+                        <h2></h2>
+                    </div>
+                    <div class="tribe-identity-card">
+                        <div class="card-body"></div>
+                    </div>
+                    <div class="dashboard-grid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wallet Connect Modal -->
+    <div class="modal fade" id="connectWalletModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">Connect Wallet</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                
+                <div class="modal-body">
+                    <!-- Search Bar -->
+                    <div class="wallet-search mb-3">
+                        <input type="text" class="form-control" placeholder="Search wallets...">
+                    </div>
+
+                    <!-- Network Filter -->
+                    <div class="wallet-categories mb-4">
+                        <button class="wallet-category active">All</button>
+                        <button class="wallet-category">BSV</button>
+                        <button class="wallet-category">ETH</button>
+                        <button class="wallet-category">Multi-Chain</button>
+                    </div>
+
+                    <!-- Recommended Section -->
+                    <div class="recommended-section mb-4">
+                        <div class="section-label">Recommended</div>
+                        <div class="wallet-item featured">
+                            <img src="assets/wallets/phantom.svg" alt="Phantom" class="wallet-logo">
+                            <div class="wallet-info">
+                                <div class="wallet-header">
+                                    <span class="wallet-name">Phantom</span>
+                                    <span class="network-badge sol">SOL</span>
+                                </div>
+                                <p class="wallet-description">Most popular Solana wallet with 2M+ users</p>
+                                <div class="wallet-features">
+                                    <span class="feature-badge">Best Choice</span>
+                                    <span class="feature-badge">AI-Ready</span>
+                                    <span class="feature-badge">Fast Setup</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Other Wallets Section -->
+                    <div class="wallet-list">
+                        <!-- MetaMask -->
+                        <div class="wallet-item">
+                            <img src="assets/wallets/metamask.svg" alt="MetaMask" class="wallet-logo">
+                            <div class="wallet-info">
+                                <div class="wallet-header">
+                                    <span class="wallet-name">MetaMask</span>
+                                    <span class="network-badge eth">ETH</span>
+                                </div>
+                                <p class="wallet-description">The most popular Ethereum wallet</p>
+                                <div class="wallet-features">
+                                    <span class="feature-badge">10M+ Users</span>
+                                    <span class="feature-badge">DApp Ready</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Coinbase Wallet -->
+                        <div class="wallet-item">
+                            <img src="assets/wallets/coinbase.svg" alt="Coinbase Wallet" class="wallet-logo">
+                            <div class="wallet-info">
+                                <div class="wallet-header">
+                                    <span class="wallet-name">Coinbase Wallet</span>
+                                    <span class="network-badge multi">Multi-Chain</span>
+                                </div>
+                                <p class="wallet-description">Simple and secure crypto wallet by Coinbase</p>
+                                <div class="wallet-features">
+                                    <span class="feature-badge">User Friendly</span>
+                                    <span class="feature-badge">Multi-Chain</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Trust Wallet -->
+                        <div class="wallet-item">
+                            <img src="assets/wallets/trustwallet.svg" alt="Trust Wallet" class="wallet-logo">
+                            <div class="wallet-info">
+                                <div class="wallet-header">
+                                    <span class="wallet-name">Trust Wallet</span>
+                                    <span class="network-badge multi">Multi-Chain</span>
+                                </div>
+                                <p class="wallet-description">Multi-chain wallet by Binance</p>
+                                <div class="wallet-features">
+                                    <span class="feature-badge">Mobile</span>
+                                    <span class="feature-badge">DeFi</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Binance Wallet -->
+                        <div class="wallet-item">
+                            <img src="assets/wallets/binance-logo.svg" alt="Binance Wallet" class="wallet-logo">
+                            <div class="wallet-info">
+                                <div class="wallet-header">
+                                    <span class="wallet-name">Binance Wallet</span>
+                                    <span class="network-badge bnb">BNB</span>
+                                </div>
+                                <p class="wallet-description">Official Binance Chain wallet</p>
+                                <div class="wallet-features">
+                                    <span class="feature-badge">Exchange</span>
+                                    <span class="feature-badge">Low Fees</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- HandCash -->
+                        <div class="wallet-item">
+                            <img src="assets/wallets/handcash.svg" alt="HandCash" class="wallet-logo">
+                            <div class="wallet-info">
+                                <div class="wallet-header">
+                                    <span class="wallet-name">HandCash</span>
+                                    <span class="network-badge bsv">BSV</span>
+                                </div>
+                                <p class="wallet-description">User-friendly BSV wallet with social features</p>
+                                <div class="wallet-features">
+                                    <span class="feature-badge">Popular</span>
+                                    <span class="feature-badge">Social Pay</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Xverse Wallet -->
+                        <div class="wallet-item">
+                            <img src="assets/wallets/xverse.svg" alt="Xverse Wallet" class="wallet-logo">
+                            <div class="wallet-info">
+                                <div class="wallet-header">
+                                    <span class="wallet-name">Xverse Wallet</span>
+                                    <span class="network-badge multi">Multi-Chain</span>
+                                </div>
+                                <p class="wallet-description">Secure Bitcoin, Ordinals & BRC-20 wallet</p>
+                                <div class="wallet-features">
+                                    <span class="feature-badge">Ordinals</span>
+                                    <span class="feature-badge">BRC-20</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/walletModal.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/imageGenerator.js"></script>
+    <script src="js/nightMode.js"></script>
+    <script src="js/tribeDashboard.js"></script>
+
+    <!-- Add Team Member Modal -->
+    <div class="modal fade" id="addTeamMemberModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Team Member</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Search User</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="searchUser" placeholder="Enter username or email">
+                            <button class="btn btn-outline-secondary" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="searchResults" class="list-group">
+                        <!-- Search results will appear here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add some CSS -->
+    <style>
+    .team-member-row {
+        padding: 1.5rem !important;
+        transition: background-color 0.2s;
+    }
+
+    .team-member-row:hover {
+        background-color: #f8f9fa;
+    }
+
+    .tribe-permissions {
+        min-width: 200px;
+    }
+
+    .tribe-permission-group {
+        margin-bottom: 0.5rem;
+    }
+
+    .tribe-permission-group:last-child {
+        margin-bottom: 0;
+    }
+
+    .form-select-sm {
+        font-size: 0.875rem;
+        padding: 0.25rem 2rem 0.25rem 0.5rem;
+    }
+
+    .form-select option {
+        padding: 0.75rem;
+        line-height: 1.4;
+    }
+
+    .permission-checkboxes {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .form-check-input:checked {
+        background-color: #0d6efd;
+        border-color: #0d6efd;
+    }
+
+    .tribe-permission-group {
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+    }
+
+    .tribe-permission-group:hover {
+        background-color: #f8f9fa;
+    }
+
+    .profile-circle {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .bg-primary { background-color: #0d6efd !important; }
+    .bg-success { background-color: #198754 !important; }
+    .bg-info { background-color: #0dcaf0 !important; }
+
+    .badge.bg-info {
+        background-color: #0dcaf0;
+        font-weight: normal;
+        font-size: 0.75rem;
+    }
+
+    .team-member-row {
+        background-color: white;
+        border-radius: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .team-member-row:hover {
+        box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+    }
+
+    .profile-completion i {
+        font-size: 0.9rem;
+    }
+
+    .profile-completion i.text-success {
+        color: #198754 !important;
+    }
+
+    .profile-completion i.text-muted {
+        color: #6c757d !important;
+        opacity: 0.5;
+    }
+
+    .badge.bg-warning {
+        background-color: #ffc107 !important;
+        color: #000;
+    }
+
+    .badge.bg-secondary {
+        background-color: #6c757d !important;
+    }
+
+    /* Make the select wider to accommodate longer options */
+    .tribe-permissions .form-select {
+        min-width: 220px;
+    }
+
+    .form-select option {
+        padding: 0.75rem;
+        line-height: 1.4;
+    }
+
+    /* Make the select wider to accommodate options */
+    .tribe-permissions .form-select {
+        min-width: 160px;
+    }
+
+    /* Dashboard Styles */
+    .tribe-dashboard {
+        background: var(--bg-secondary);
+        padding: 2rem;
+        border-radius: 12px;
+    }
+
+    .dashboard-header {
+        background: var(--bg-primary);
+        padding: 2rem;
+        border-radius: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: var(--card-shadow);
+    }
+
+    .tribe-identity {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .key-metrics {
+        display: flex;
+        gap: 3rem;
+    }
+
+    .metric {
+        text-align: right;
+    }
+
+    .metric-label {
+        display: block;
+        color: var(--text-muted);
+        font-size: 0.875rem;
+    }
+
+    .metric-value {
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .dashboard-card {
+        background: var(--bg-primary);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+    }
+
+    .dashboard-card .card-header {
+        background: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 1.25rem;
+    }
+
+    .change.positive {
+        color: var(--success);
+    }
+
+    .change.negative {
+        color: var(--danger);
+    }
+
+    /* Sticky navigation */
+    .setup-nav-container {
+        position: sticky;
+        top: 160px;  /* Account for navbar height */
+        max-height: calc(100vh - 180px);
+        overflow-y: auto;
+    }
+
+    /* Scrollbar styling for the navigation */
+    .setup-nav-container::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .setup-nav-container::-webkit-scrollbar-track {
+        background: var(--bg-secondary);
+        border-radius: 3px;
+    }
+
+    .setup-nav-container::-webkit-scrollbar-thumb {
+        background: var(--border-color);
+        border-radius: 3px;
+    }
+
+    .setup-nav-container::-webkit-scrollbar-thumb:hover {
+        background: var(--text-muted);
+    }
+
+    /* Dashboard Title Card */
+    .dashboard-title-card {
+        background: var(--bg-primary);
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: var(--card-shadow);
+        margin-bottom: 2rem;
+    }
+
+    .dashboard-title-card h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0;
+    }
+
+    /* Token Stats Table Styles */
+    .token-stats-table {
+        margin-bottom: 0;
+    }
+
+    .token-stats-table th {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        font-weight: 500;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .token-stats-table td {
+        font-size: 1.1rem;
+        font-weight: 600;
+        vertical-align: middle;
+        border: none;
+    }
+
+    .token-stats-table .change {
+        font-size: 0.875rem;
+        margin-left: 0.5rem;
+    }
+
+    /* Title Card */
+    .dashboard-title-card {
+        background: var(--bg-primary);
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: var(--card-shadow);
+        text-align: center;
+    }
+
+    .dashboard-title-card h2 {
+        font-size: 2.25rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0;
+    }
+
+    /* Token Metrics Table */
+    .token-metrics-table {
+        margin: 0;
+        width: 100%;
+        border-spacing: 0;
+        border-collapse: separate;
+        background: var(--bg-primary);
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .metric-header {
+        background: var(--bg-secondary);
+        padding: 1.25rem 1rem 0.75rem;
+        font-weight: 500;
+        border: none;
+        text-align: center;
+    }
+
+    .metric-label {
+        color: var(--text-muted);
+        font-size: 0.875rem;
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+    }
+
+    .metric-value {
+        padding: 1.25rem 1rem;
+        text-align: center;
+        border: none;
+        white-space: nowrap;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.25rem;
+    }
+
+    .change {
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .change.positive {
+        color: #00b894;
+    }
+
+    .change.negative {
+        color: #ff7675;
+    }
+
+    /* Dark mode specific styles */
+    [data-bs-theme="dark"] .token-metrics-table {
+        background: #1a2234;
+    }
+
+    [data-bs-theme="dark"] .metric-header {
+        background: #151b2b;
+    }
+
+    [data-bs-theme="dark"] .metric-label {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    [data-bs-theme="dark"] .value-primary {
+        color: rgba(255, 255, 255, 0.95);
+    }
+
+    [data-bs-theme="dark"] .change.positive {
+        color: #00d68f;
+    }
+
+    [data-bs-theme="dark"] .change.negative {
+        color: #ff6b6b;
+    }
+
+    /* Sticky navigation */
+    .setup-nav-container {
+        position: sticky;
+        top: 160px;  /* Account for navbar height */
+        max-height: calc(100vh - 180px);
+        overflow-y: auto;
+    }
+
+    /* Scrollbar styling for the navigation */
+    .setup-nav-container::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .setup-nav-container::-webkit-scrollbar-track {
+        background: var(--bg-secondary);
+        border-radius: 3px;
+    }
+
+    .setup-nav-container::-webkit-scrollbar-thumb {
+        background: var(--border-color);
+        border-radius: 3px;
+    }
+
+    .setup-nav-container::-webkit-scrollbar-thumb:hover {
+        background: var(--text-muted);
+    }
+
+    /* Dashboard Title Card */
+    .dashboard-title-card {
+        background: var(--bg-primary);
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: var(--card-shadow);
+        margin-bottom: 2rem;
+    }
+
+    .dashboard-title-card h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0;
+    }
+
+    /* Token Stats Table Styles */
+    .token-stats-table {
+        margin-bottom: 0;
+    }
+
+    .token-stats-table th {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        font-weight: 500;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .token-stats-table td {
+        font-size: 1.1rem;
+        font-weight: 600;
+        vertical-align: middle;
+        border: none;
+    }
+
+    .token-stats-table .change {
+        font-size: 0.875rem;
+        margin-left: 0.5rem;
+    }
+
+    /* Title Card */
+    .dashboard-title-card {
+        background: var(--bg-primary);
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: var(--card-shadow);
+        text-align: center;
+    }
+
+    .dashboard-title-card h2 {
+        font-size: 2.25rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0;
+    }
+
+    /* Token Metrics Table */
+    .token-metrics-table {
+        margin: 0;
+        width: 100%;
+    }
+
+    .token-metrics-table th {
+        background: var(--bg-secondary);
+        padding: 1rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        border: none;
+        text-align: center;
+    }
+
+    .token-metrics-table td {
+        padding: 1.25rem 1rem;
+        text-align: center;
+        font-weight: 600;
+        border: none;
+        white-space: nowrap;
+        color: var(--text-primary);  /* Ensure text is visible in both light/dark modes */
+    }
+
+    /* Dark mode specific styles */
+    [data-bs-theme="dark"] .token-metrics-table th {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    [data-bs-theme="dark"] .token-metrics-table td {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    [data-bs-theme="dark"] .token-metrics-table {
+        background: var(--bg-primary);
+    }
+
+    .token-metrics-table .change {
+        display: inline-block;
+        margin-left: 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    /* Token Metrics Grid */
+    .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 1px;
+        background: var(--border-color);
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .metric-card {
+        background: var(--bg-primary);
+        padding: 1.5rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .metric-label {
+        color: var(--text-muted);
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .metric-value {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+
+    .metric-change {
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .metric-change.positive {
+        color: #00d68f;
+    }
+
+    .metric-change.negative {
+        color: #ff6b6b;
+    }
+
+    /* Dark mode adjustments */
+    [data-bs-theme="dark"] .metric-card {
+        background: #1a2234;
+    }
+
+    [data-bs-theme="dark"] .metric-value {
+        color: rgba(255, 255, 255, 0.95);
+    }
+
+    [data-bs-theme="dark"] .metric-label {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Tribe Identity Card */
+    .tribe-identity-card code {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        background: var(--bg-secondary);
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+    }
+
+    .tribe-identity-card .btn-link {
+        color: var(--text-muted);
+    }
+
+    .tribe-identity-card .btn-link:hover {
+        color: var(--text-primary);
+    }
+
+    [data-bs-theme="dark"] .tribe-identity-card code {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Dashboard Container */
+    .tribe-dashboard-view {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    /* Dashboard Grid Layout */
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 1.5rem;
+        padding: 1rem;
+        background: var(--bg-secondary);
+        border-radius: 12px;
+    }
+
+    /* Card Header Refinements */
+    .dashboard-card .card-header {
+        padding: 1.25rem 1.5rem;
+        background: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    /* Card Body Padding */
+    .dashboard-card .card-body,
+    .dashboard-card .p-3 {
+        padding: 1.5rem !important;
+    }
+
+    /* Metrics Grid Refinements */
+    .metrics-grid {
+        margin: 0.5rem;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    /* Title Card Spacing */
+    .dashboard-title-card {
+        margin: 1rem 1rem 2rem 1rem;
+    }
+
+    /* Tribe Identity Card Spacing */
+    .tribe-identity-card {
+        margin: 0 1rem 1.5rem 1rem;
+    }
+
+    /* Dashboard Layout */
+    .tribe-dashboard-view {
+        background: var(--bs-body-bg);
+        color: var(--bs-body-color);
+    }
+
+    /* Card Styles */
+    .dashboard-card {
+        background: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 0.5rem;
+    }
+
+    .dashboard-card .card-header {
+        background: var(--bs-body-bg);
+        border-bottom: 1px solid var(--bs-border-color);
+    }
+
+    /* Metrics Grid */
+    .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .metric-card {
+        padding: 1rem;
+        text-align: center;
+        background: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 0.5rem;
+    }
+
+    /* Dark mode specific adjustments */
+    [data-bs-theme="dark"] .dashboard-card {
+        background: #2d3748;
+        border-color: #4a5568;
+    }
+
+    [data-bs-theme="dark"] .metric-card {
+        background: #2d3748;
+        border-color: #4a5568;
+    }
+
+    [data-bs-theme="dark"] .card-header {
+        border-color: #4a5568;
+    }
+
+    /* Base Dashboard Styles */
+    .tribe-dashboard-view {
+        background: var(--bs-body-bg);
+        padding: 2rem;
+        border-radius: 0.5rem;
+    }
+
+    .dashboard-title-card {
+        background: var(--bs-body-bg);
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .dashboard-title-card h2 {
+        color: var(--bs-body-color);
+        margin: 0;
+    }
+
+    /* Card Styles */
+    .dashboard-card {
+        background: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+    .dashboard-card .card-header {
+        background: var(--bs-body-bg);
+        border-bottom: 1px solid var(--bs-border-color);
+        color: var(--bs-body-color);
+    }
+
+    /* Dark Mode Specific */
+    [data-bs-theme="dark"] .tribe-dashboard-view {
+        background: #1a1d21;
+    }
+
+    [data-bs-theme="dark"] .dashboard-card {
+        background: #2d3338;
+        border-color: #3d4144;
+    }
+
+    [data-bs-theme="dark"] .card-header {
+        background: #2d3338;
+        border-color: #3d4144;
+    }
+
+    [data-bs-theme="dark"] .metric-card {
+        background: #2d3338;
+        border-color: #3d4144;
+    }
+
+    [data-bs-theme="dark"] .metric-value {
+        color: #e9ecef;
+    }
+
+    [data-bs-theme="dark"] .metric-label {
+        color: #adb5bd;
+    }
+
+    /* Base Dashboard Styles */
+    .tribe-dashboard-view {
+        background: var(--bs-body-bg);
+        padding: 2rem;
+        border-radius: 0.5rem;
+        color: var(--bs-body-color);
+    }
+
+    /* Dark Mode Specific */
+    [data-bs-theme="dark"] .tribe-dashboard-view {
+        background: #1a1d21;
+    }
+
+    [data-bs-theme="dark"] .dashboard-card {
+        background: #2d3338;
+        border-color: #3d4144;
+    }
+
+    /* Text Colors for Dark Mode */
+    [data-bs-theme="dark"] .dashboard-card h3,
+    [data-bs-theme="dark"] .dashboard-card h4,
+    [data-bs-theme="dark"] .dashboard-card h5,
+    [data-bs-theme="dark"] .metric-value,
+    [data-bs-theme="dark"] .stat-value {
+        color: #e9ecef;
+    }
+
+    [data-bs-theme="dark"] .text-muted,
+    [data-bs-theme="dark"] .metric-label,
+    [data-bs-theme="dark"] .stat-label {
+        color: #adb5bd !important;
+    }
+
+    [data-bs-theme="dark"] .metric-card {
+        background: #2d3338;
+        border-color: #3d4144;
+    }
+
+    /* Card Header Styles */
+    .dashboard-card .card-header {
+        background: transparent;
+        border-bottom-color: var(--bs-border-color);
+    }
+
+    /* Metric Card Styles */
+    .metric-card {
+        padding: 1rem;
+        background: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 0.5rem;
+    }
+
+    /* Change Text Colors */
+    .metric-value {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--bs-body-color);
+    }
+
+    .metric-label {
+        font-size: 0.875rem;
+        color: var(--bs-secondary);
+    }
+
+    .metric-change.positive {
+        color: var(--bs-success);
+    }
+
+    /* Dashboard Card Text Colors */
+    .dashboard-card {
+        color: var(--bs-body-color);
+    }
+
+    /* Card Headers */
+    .dashboard-card .card-header h3 {
+        color: var(--bs-body-color);
+    }
+
+    /* Text Content */
+    .dashboard-card p,
+    .dashboard-card .text-muted,
+    .dashboard-card span:not(.badge),
+    .dashboard-card h4,
+    .dashboard-card h5,
+    .dashboard-card h6 {
+        color: var(--bs-body-color);
+    }
+
+    /* Dark Mode Specific Text Colors */
+    [data-bs-theme="dark"] .dashboard-card {
+        color: #e9ecef;
+    }
+
+    [data-bs-theme="dark"] .dashboard-card .text-muted {
+        color: #adb5bd !important;
+    }
+
+    [data-bs-theme="dark"] .dashboard-card p {
+        color: #e9ecef;
+    }
+
+    [data-bs-theme="dark"] .dashboard-card h3,
+    [data-bs-theme="dark"] .dashboard-card h4,
+    [data-bs-theme="dark"] .dashboard-card h5,
+    [data-bs-theme="dark"] .dashboard-card h6 {
+        color: #fff;
+    }
+
+    /* Stat Values and Labels */
+    [data-bs-theme="dark"] .stat-box .stat-label,
+    [data-bs-theme="dark"] .stat-item .label {
+        color: #adb5bd;
+    }
+
+    [data-bs-theme="dark"] .stat-box h4,
+    [data-bs-theme="dark"] .stat-item h4 {
+        color: #fff;
+    }
+
+    /* Mission Points */
+    [data-bs-theme="dark"] .mission-points li {
+        color: #e9ecef;
+    }
+
+    /* Agent Info */
+    [data-bs-theme="dark"] .agent-info p {
+        color: #adb5bd;
+    }
+
+    /* Transaction Info */
+    [data-bs-theme="dark"] .transaction-info h6 {
+        color: #fff;
+    }
+    </style>
+
+    <!-- Add JavaScript for functionality -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle permission changes
+        document.querySelectorAll('.form-select').forEach(select => {
+            select.addEventListener('change', function() {
+                const [tribeId, memberId, type] = this.id.split('-');
+                const permission = this.value;
+                
+                // Update tribe access
+                updateTribeAccess(memberId, tribeId, permission);
+            });
+        });
+
+        function updateTribeAccess(memberId, tribeId, permission) {
+            // TODO: Update backend with new access rights
+            console.log(`Updating ${memberId}'s access for tribe ${tribeId} to: ${permission}`);
+            
+            // Visual feedback
+            const select = document.getElementById(`${tribeId}-${memberId}-role`);
+            select.classList.add('border-primary');
+            setTimeout(() => select.classList.remove('border-primary'), 500);
+        }
+
+        document.querySelectorAll('.tribe-permission-group input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const tribeGroup = this.closest('.tribe-permission-group');
+                if (this.checked) {
+                    tribeGroup.classList.remove('disabled');
+                } else {
+                    tribeGroup.classList.add('disabled');
+                }
+            });
+        });
+
+        // Handle dashboard views
+        document.querySelectorAll('.view-dashboard-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const tribeId = this.getAttribute('data-tribe');
+                const tribesView = document.querySelector('.tribes-list-view');
+                const dashboardView = document.querySelector('.tribe-dashboard-view');
+                
+                // Update dashboard content based on tribe
+                updateDashboardContent(tribeId);
+                
+                // Show dashboard, hide tribes list
+                tribesView.style.display = 'none';
+                dashboardView.style.display = 'block';
+            });
+        });
+
+        function updateDashboardContent(tribeId) {
+            // Check if elements exist
+            const dashboardTitle = document.querySelector('.dashboard-title-card h2');
+            const tribeIdentity = document.querySelector('.tribe-identity-card .card-body');
+            const dashboardContent = document.querySelector('.dashboard-grid');
+            
+            if (!dashboardTitle || !tribeIdentity || !dashboardContent) {
+                console.error('Required dashboard elements not found');
+                return;
+            }
+            
+            switch(tribeId) {
+                case 'meta-builders':
+                    dashboardTitle.textContent = "Meta Builders DAO Dashboard";
+                    // Meta Builders Identity Card
+                    tribeIdentity.innerHTML = `
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center gap-3">
+                                <img src="assets/tribes/meta-builders.svg" alt="Meta Builders DAO" width="64" height="64" class="rounded">
+                                <div>
+                                    <h3 class="mb-1">Meta Builders DAO</h3>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <span class="badge bg-success">Active</span>
+                                        <span class="badge bg-primary">Admin</span>
+                                        <div class="d-flex align-items-center text-muted">
+                                            <i class="fab fa-bitcoin me-2"></i>BSV Network
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-cog me-2"></i>Settings
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary">
+                                    <i class="fas fa-external-link-alt me-2"></i>Explorer
+                                </button>
+                            </div>
+                        </div>`;
+                    // Full Meta Builders Dashboard Content
+                    dashboardContent.innerHTML = `
+                        <!-- Token Analytics Card -->
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <div class="dashboard-card">
+                                    <div class="card-header">
+                                        <h3 class="mb-0">Token Analytics</h3>
+                                    </div>
+                                    <div class="card-body p-0">
+                                        <div class="metrics-grid">
+                                            <div class="metric-card">
+                                                <div class="metric-label">Token Price</div>
+                                                <div class="metric-value">$0.0234</div>
+                                                <div class="metric-change positive">+5.2%</div>
+                                            </div>
+                                            <div class="metric-card">
+                                                <div class="metric-label">Circulating Supply</div>
+                                                <div class="metric-value">24.5M</div>
+                                            </div>
+                                            <div class="metric-card">
+                                                <div class="metric-label">Total Supply</div>
+                                                <div class="metric-value">100M</div>
+                                            </div>
+                                            <div class="metric-card">
+                                                <div class="metric-label">Active Addresses</div>
+                                                <div class="metric-value">2,345</div>
+                                                <div class="metric-change positive">+12% (7d)</div>
+                                            </div>
+                                            <div class="metric-card">
+                                                <div class="metric-label">Market Cap</div>
+                                                <div class="metric-value">$234,567</div>
+                                            </div>
+                                            <div class="metric-card">
+                                                <div class="metric-label">24h Volume</div>
+                                                <div class="metric-value">$12,345</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Quick Actions -->
+                            <div class="col-12">
+                                <div class="dashboard-card">
+                                    <div class="card-header">
+                                        <h3 class="mb-0">Quick Actions</h3>
+                                    </div>
+                                    <div class="p-3">
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <button class="btn btn-outline-primary">
+                                                <i class="fas fa-robot me-2"></i>Add Agent
+                                            </button>
+                                            <button class="btn btn-outline-primary">
+                                                <i class="fas fa-coins me-2"></i>Token Sale
+                                            </button>
+                                            <button class="btn btn-outline-primary">
+                                                <i class="fab fa-github me-2"></i>View Repository
+                                            </button>
+                                            <button class="btn btn-outline-primary">
+                                                <i class="fas fa-chart-line me-2"></i>Analytics
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tribe Overview -->
+                            <div class="col-12">
+                                <div class="dashboard-card">
+                                    <div class="card-header">
+                                        <h3 class="mb-0">Tribe Overview</h3>
+                                    </div>
+                                    <div class="p-3">
+                                        <div class="tribe-details">
+                                            <div class="overview-stats d-flex gap-4 mb-4">
+                                                <div class="stat-box">
+                                                    <span class="stat-label">Total Members</span>
+                                                    <h4 class="mb-0">156</h4>
+                                                    <span class="change positive">+12 this week</span>
+                                                </div>
+                                                <div class="stat-box">
+                                                    <span class="stat-label">Active Agents</span>
+                                                    <h4 class="mb-0">8</h4>
+                                                    <span class="change positive">+2 this month</span>
+                                                </div>
+                                                <div class="stat-box">
+                                                    <span class="stat-label">Treasury Value</span>
+                                                    <h4 class="mb-0">$385,412</h4>
+                                                    <span class="change positive">+5.2% 24h</span>
+                                                </div>
+                                            </div>
+                                            <div class="overview-description mb-4">
+                                                <h5>About</h5>
+                                                <p class="text-muted">Building the future of decentralized AI communities through collaborative development and innovative token economics. Our focus is on creating sustainable AI-powered ecosystems that benefit all participants.</p>
+                                            </div>
+                                            <div class="mt-3">
+                                                <h5>Mission Statement</h5>
+                                                <p>To empower AI agents to create, build, and maintain decentralized applications while fostering a sustainable token economy. We aim to:</p>
+                                                <ul class="mission-points">
+                                                    <li>Develop cutting-edge AI-powered DeFi solutions</li>
+                                                    <li>Create self-sustaining agent economies</li>
+                                                    <li>Foster open-source collaboration</li>
+                                                    <li>Drive innovation in AI governance</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Agent Activity -->
+                            <div class="col-12">
+                                <div class="dashboard-card">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h3 class="mb-0">Active Agents</h3>
+                                        <button class="btn btn-sm btn-outline-primary">Add Agent</button>
+                                    </div>
+                                    <div class="agent-list p-3">
+                                        <div class="agent-card mb-3">
+                                            <div class="d-flex align-items-start">
+                                                <img src="assets/agents/builder-bot.svg" alt="BuilderBot" class="agent-avatar rounded me-3" width="48">
+                                                <div class="agent-info flex-grow-1">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <h5 class="mb-1">BuilderBot</h5>
+                                                        <span class="badge bg-success">Online</span>
+                                                    </div>
+                                                    <p class="text-muted mb-2">Smart contract development and code review specialist</p>
+                                                    <div class="agent-stats d-flex gap-3 small">
+                                                        <span><i class="fas fa-code-branch me-1"></i>156 commits</span>
+                                                        <span><i class="fas fa-code-pull-request me-1"></i>34 PRs</span>
+                                                        <span><i class="fas fa-check-circle me-1"></i>89 reviews</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="agent-card mb-3">
+                                            <div class="d-flex align-items-start">
+                                                <img src="assets/agents/content-gpt.svg" alt="ContentGPT" class="agent-avatar rounded me-3" width="48">
+                                                <div class="agent-info flex-grow-1">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <h5 class="mb-1">ContentGPT</h5>
+                                                        <span class="badge bg-success">Online</span>
+                                                    </div>
+                                                    <p class="text-muted mb-2">Technical documentation and social media management</p>
+                                                    <div class="agent-stats d-flex gap-3 small">
+                                                        <span><i class="fas fa-file-alt me-1"></i>45 docs</span>
+                                                        <span><i class="fas fa-share-alt me-1"></i>245 posts</span>
+                                                        <span><i class="fas fa-heart me-1"></i>78% engagement</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Treasury Management -->
+                            <div class="col-md-6">
+                                <div class="dashboard-card">
+                                    <div class="card-header">
+                                        <h3 class="mb-0">Treasury</h3>
+                                    </div>
+                                    <div class="p-3">
+                                        <div class="treasury-balances mb-4">
+                                            <div class="balance-grid">
+                                                <div class="balance-item">
+                                                    <i class="fab fa-bitcoin text-warning"></i>
+                                                    <div>
+                                                        <h5>245.8 BSV</h5>
+                                                        <span class="text-muted">≈ $34,412</span>
+                                                    </div>
+                                                </div>
+                                                <div class="balance-item">
+                                                    <i class="fas fa-coins text-primary"></i>
+                                                    <div>
+                                                        <h5>15M META</h5>
+                                                        <span class="text-muted">≈ $351,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="recent-transactions">
+                                            <h5>Recent Transactions</h5>
+                                            <div class="transaction-list">
+                                                <div class="transaction-item">
+                                                    <div class="transaction-icon">
+                                                        <i class="fas fa-arrow-up text-success"></i>
+                                                    </div>
+                                                    <div class="transaction-info">
+                                                        <h6>Treasury Deposit</h6>
+                                                        <span class="text-muted">+12.5 BSV</span>
+                                                    </div>
+                                                    <div class="transaction-time">
+                                                        <span>2h ago</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- GitHub Activity -->
+                            <div class="col-md-6">
+                                <div class="dashboard-card">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h3 class="mb-0">GitHub Activity</h3>
+                                        <a href="#" class="btn btn-sm btn-outline-primary">View Repository</a>
+                                    </div>
+                                    <div class="p-3">
+                                        <div class="github-stats d-flex gap-4 mb-4">
+                                            <div class="stat-item">
+                                                <span class="label">Total Commits</span>
+                                                <h4 class="mb-0">1,245</h4>
+                                                <span class="change positive">+89 this week</span>
+                                            </div>
+                                            <div class="stat-item">
+                                                <span class="label">Open PRs</span>
+                                                <h4 class="mb-0">23</h4>
+                                                <span class="change neutral">+5 this week</span>
+                                            </div>
+                                            <div class="stat-item">
+                                                <span class="label">Contributors</span>
+                                                <h4 class="mb-0">34</h4>
+                                                <span class="change positive">+3 this week</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Development Roadmap -->
+                            <div class="col-12">
+                                <div class="dashboard-card">
+                                    <div class="card-header">
+                                        <h3 class="mb-0">Development Roadmap</h3>
+                                    </div>
+                                    <div class="p-3">
+                                        <div class="roadmap-timeline">
+                                            <div class="milestone completed">
+                                                <div class="milestone-header">
+                                                    <h5>Phase 1: Infrastructure</h5>
+                                                    <span class="badge bg-success">Completed</span>
+                                                </div>
+                                                <ul class="milestone-tasks">
+                                                    <li class="done">Smart Contract Deployment</li>
+                                                    <li class="done">Agent Framework Setup</li>
+                                                    <li class="done">Basic Treasury Management</li>
+                                                </ul>
+                                            </div>
+                                            <div class="milestone active">
+                                                <div class="milestone-header">
+                                                    <h5>Phase 2: Expansion</h5>
+                                                    <span class="badge bg-primary">In Progress</span>
+                                                </div>
+                                                <ul class="milestone-tasks">
+                                                    <li class="done">Advanced Trading Algorithms</li>
+                                                    <li class="in-progress">Cross-chain Integration</li>
+                                                    <li>Governance Implementation</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Recent Activity -->
+                            <div class="col-12">
+                                <div class="dashboard-card">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h3 class="mb-0">Recent Activity</h3>
+                                        <button class="btn btn-sm btn-outline-primary">View All</button>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="activity-list">
+                                            <div class="activity-item d-flex align-items-center py-2">
+                                                <i class="fas fa-code-branch text-success me-3"></i>
+                                                <div>
+                                                    <strong>New proposal submitted:</strong> Add AI Training Module
+                                                    <small class="text-muted d-block">by @cryptodev · 2 hours ago</small>
+                                                </div>
+                                            </div>
+                                            <div class="activity-item d-flex align-items-center py-2">
+                                                <i class="fas fa-users text-primary me-3"></i>
+                                                <div>
+                                                    <strong>5 new members joined</strong> the DAO
+                                                    <small class="text-muted d-block">4 hours ago</small>
+                                                </div>
+                                            </div>
+                                            <div class="activity-item d-flex align-items-center py-2">
+                                                <i class="fas fa-check-circle text-success me-3"></i>
+                                                <div>
+                                                    <strong>Proposal passed:</strong> Upgrade Network Infrastructure
+                                                    <small class="text-muted d-block">yesterday</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                    break;
+
+                case 'blockdrive':
+                    dashboardTitle.textContent = 'BlockDrive Dashboard';
+                    // BlockDrive Identity Card
+                    tribeIdentity.innerHTML = `
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="rounded d-flex align-items-center justify-content-center" 
+                                     style="width: 64px; height: 64px; background: #3B82F6; opacity: 0.9;">
+                                    <i class="fas fa-cube text-white fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h3 class="mb-1">BlockDrive <small class="text-muted">by CoffeeGuy999</small></h3>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <span class="badge bg-info">Development</span>
+                                        <span class="badge bg-success">Read/Write</span>
+                                        <div class="d-flex align-items-center text-muted">
+                                            <i class="fab fa-ethereum me-2"></i>ETH Network
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-cog me-2"></i>Settings
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary">
+                                    <i class="fas fa-external-link-alt me-2"></i>Explorer
+                                </button>
+                            </div>
+                        </div>`;
+                    // BlockDrive Dashboard Content
+                    dashboardContent.innerHTML = `
+                        <!-- Storage Analytics Card -->
+                        <div class="dashboard-card mb-4">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h3 class="mb-0">Storage Analytics</h3>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-outline-primary active">Day</button>
+                                    <button class="btn btn-sm btn-outline-primary">Week</button>
+                                    <button class="btn btn-sm btn-outline-primary">Month</button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-4">
+                                    <div class="col-md-3">
+                                        <div class="storage-stat">
+                                            <h4>Total Storage</h4>
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-database text-primary me-2"></i>
+                                                <span class="h3 mb-0">2.4 TB</span>
+                                            </div>
+                                            <div class="progress mt-2" style="height: 6px;">
+                                                <div class="progress-bar bg-primary" style="width: 65%"></div>
+                                            </div>
+                                            <small class="text-muted">3.7 TB Capacity</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="storage-stat">
+                                            <h4>Files Stored</h4>
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-file text-success me-2"></i>
+                                                <span class="h3 mb-0">45,231</span>
+                                            </div>
+                                            <small class="text-success">+124 today</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="storage-stat">
+                                            <h4>Network Nodes</h4>
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-server text-info me-2"></i>
+                                                <span class="h3 mb-0">142</span>
+                                            </div>
+                                            <small class="text-info">98.5% uptime</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="storage-stat">
+                                            <h4>$DRIVE Price</h4>
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-chart-line text-warning me-2"></i>
+                                                <span class="h3 mb-0">$0.42</span>
+                                            </div>
+                                            <small class="text-success">+5.2% (24h)</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activity Card -->
+                        <div class="row g-4">
+                            <div class="col-md-8">
+                                <div class="dashboard-card mb-4">
+                                    <div class="card-header">
+                                        <h3 class="mb-0">Recent Activity</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="activity-list">
+                                            <div class="activity-item d-flex align-items-center py-2">
+                                                <i class="fas fa-upload text-success me-3"></i>
+                                                <div>
+                                                    <strong>business-plan.pdf</strong> uploaded
+                                                    <small class="text-muted d-block">2.4 MB · 5 minutes ago</small>
+                                                </div>
+                                            </div>
+                                            <div class="activity-item d-flex align-items-center py-2">
+                                                <i class="fas fa-share-alt text-info me-3"></i>
+                                                <div>
+                                                    <strong>project-assets/</strong> shared with team
+                                                    <small class="text-muted d-block">15 minutes ago</small>
+                                                </div>
+                                            </div>
+                                            <div class="activity-item d-flex align-items-center py-2">
+                                                <i class="fas fa-sync text-warning me-3"></i>
+                                                <div>
+                                                    <strong>contracts/</strong> backup completed
+                                                    <small class="text-muted d-block">1 hour ago</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="dashboard-card mb-4">
+                                    <div class="card-header">
+                                        <h3 class="mb-0">Quick Actions</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-grid gap-2">
+                                            <button class="btn btn-primary">
+                                                <i class="fas fa-upload me-2"></i>Upload Files
+                                            </button>
+                                            <button class="btn btn-outline-primary">
+                                                <i class="fas fa-folder-plus me-2"></i>New Folder
+                                            </button>
+                                            <button class="btn btn-outline-primary">
+                                                <i class="fas fa-share-alt me-2"></i>Share Files
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Storage Distribution Card -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3 class="mb-0">Storage Distribution</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <h4 class="mb-3">File Types</h4>
+                                        <div class="storage-type-item d-flex justify-content-between align-items-center mb-2">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-file-pdf text-danger me-2"></i>
+                                                <span>Documents</span>
+                                            </div>
+                                            <span>45%</span>
+                                        </div>
+                                        <div class="storage-type-item d-flex justify-content-between align-items-center mb-2">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-image text-primary me-2"></i>
+                                                <span>Images</span>
+                                            </div>
+                                            <span>30%</span>
+                                        </div>
+                                        <div class="storage-type-item d-flex justify-content-between align-items-center">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-file-code text-success me-2"></i>
+                                                <span>Code</span>
+                                            </div>
+                                            <span>25%</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h4 class="mb-3">Network Health</h4>
+                                        <div class="network-health-item mb-3">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span>Node Distribution</span>
+                                                <span class="text-success">Optimal</span>
+                                            </div>
+                                            <div class="progress" style="height: 6px;">
+                                                <div class="progress-bar bg-success" style="width: 92%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="network-health-item">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span>Redundancy Level</span>
+                                                <span class="text-info">3x</span>
+                                            </div>
+                                            <div class="progress" style="height: 6px;">
+                                                <div class="progress-bar bg-info" style="width: 100%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                    break;
+
+                // Continue with other tribes...
+            }
+        }
+    });
+    </script>
+
+</body>
+</html>

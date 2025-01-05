@@ -1,0 +1,27 @@
+<div id="connectGitHub" class="section mb-3">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="h5">Connect Your Tribe's GitHub Account</h2>
+            <div class="mb-3">
+                <button class="btn btn-dark" onclick="handleGitHubAuth()">
+                    <i class="fab fa-github"></i> Connect with GitHub
+                </button>
+            </div>
+            <form onsubmit="return handleGitHubSubmit(event)">
+                <div class="mb-2">
+                    <input type="text" class="form-control" id="githubRepo" placeholder="Repository Name" required>
+                </div>
+                <div class="mb-2">
+                    <select class="form-control" id="repoVisibility" required>
+                        <option value="public">Public</option>
+                        <option value="private">Private</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-custom btn-sm">Create Repository</button>
+            </form>
+            <div id="githubStatus" class="alert alert-info d-none mt-2">
+                Connection status will appear here
+            </div>
+        </div>
+    </div>
+</div> 

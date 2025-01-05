@@ -1,0 +1,121 @@
+<div class="section-content">
+    <h4 class="mb-4">Setup Backup</h4>
+    <form id="backupForm">
+        <div class="mb-4">
+            <h6 class="mb-3">Configure Backup Strategy</h6>
+            <div class="alert alert-info">
+                <p class="mb-0">Set up automated backups to ensure your tribe's data is safely stored and easily recoverable.</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Backup Schedule -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-clock fa-2x text-primary"></i>
+                            <h6 class="mb-0 ms-2">Backup Schedule</h6>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Frequency</label>
+                            <select class="form-select" id="backupFrequency">
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="monthly">Monthly</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Retention Period</label>
+                            <select class="form-select" id="retentionPeriod">
+                                <option value="7">7 days</option>
+                                <option value="30">30 days</option>
+                                <option value="90">90 days</option>
+                                <option value="365">1 year</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Storage Configuration -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-database fa-2x text-primary"></i>
+                            <h6 class="mb-0 ms-2">Storage Configuration</h6>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Storage Provider</label>
+                            <select class="form-select mb-3" id="storageProvider">
+                                <option value="aws">Amazon S3</option>
+                                <option value="gcp">Google Cloud Storage</option>
+                                <option value="azure">Azure Blob Storage</option>
+                            </select>
+                            <div id="storageSettings">
+                                <input type="text" class="form-control mb-2" placeholder="Bucket Name">
+                                <input type="text" class="form-control mb-2" placeholder="Access Key">
+                                <input type="password" class="form-control" placeholder="Secret Key">
+                            </div>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="encryptBackups">
+                            <label class="form-check-label">Enable Encryption</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mt-1">
+            <!-- Backup Content -->
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-list-check fa-2x text-primary"></i>
+                            <h6 class="mb-0 ms-2">Backup Content</h6>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="backupDatabase" checked>
+                                    <label class="form-check-label">Database</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="backupFiles" checked>
+                                    <label class="form-check-label">Files & Media</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="backupConfig" checked>
+                                    <label class="form-check-label">Configuration</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="backupLogs">
+                                    <label class="form-check-label">System Logs</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="backupAnalytics">
+                                    <label class="form-check-label">Analytics Data</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="backupAudit">
+                                    <label class="form-check-label">Audit Trail</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-4">
+            Save & Continue
+        </button>
+    </form>
+</div> 

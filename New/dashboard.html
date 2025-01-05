@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AI Tribes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <style>
+        .setup-nav {
+            padding: 20px;
+            height: calc(100vh - 160px);
+            overflow-y: auto;
+        }
+
+        .setup-btn {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 8px;
+            padding: 10px 15px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            background: white;
+            transition: all 0.2s;
+        }
+
+        .setup-btn.active {
+            background: #f8f9fa;
+            border-color: #0d6efd;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 24px;
+            margin-right: 8px;
+            color: #6c757d;
+        }
+
+        #mainContent {
+            padding: 20px;
+            height: calc(100vh - 160px);
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="tribes_logo.png" alt="AI Tribes Logo" height="30">
+                AI Tribes
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                </ul>
+                <div class="ms-auto d-flex align-items-center">
+                    <a href="https://twitter.com/ai_tribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+                    <a href="https://discord.gg/J8kcT2d7" target="_blank" class="btn btn-link p-2">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <button class="btn btn-primary" onclick="connectWallet()">
+                        <i class="fas fa-wallet me-2"></i>Connect Wallet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="container-fluid p-0">
+        <!-- Top Navigation -->
+        <div class="d-flex justify-content-center py-4">
+            <button class="btn btn-success me-2" onclick="showCreateForm()">
+                <i class="fas fa-plus me-2"></i>Create New AI Tribe
+            </button>
+            <button class="btn btn-primary me-2" onclick="loadContent('myprofile')">
+                <i class="fas fa-user me-2"></i>My Profile
+            </button>
+            <button class="btn btn-primary me-2" onclick="loadContent('tribes')">
+                <i class="fas fa-layer-group me-2"></i>My Tribes
+            </button>
+            <button class="btn btn-primary" onclick="loadContent('team')">
+                <i class="fas fa-users me-2"></i>My Team
+            </button>
+        </div>
+
+        <!-- Content Area -->
+        <div class="row g-0">
+            <!-- Left Sidebar (hidden by default) -->
+            <div class="col-md-3 border-end d-none" id="setupSidebar">
+                <div class="setup-nav">
+                    <!-- Setup navigation buttons will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-12" id="mainContent">
+                <!-- Content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load content into main area
+        function loadContent(page) {
+            const mainContent = document.getElementById('mainContent');
+            const setupSidebar = document.getElementById('setupSidebar');
+            
+            // Hide setup sidebar when loading regular content
+            setupSidebar.classList.add('d-none');
+            mainContent.classList.remove('col-md-9');
+            mainContent.classList.add('col-md-12');
+
+            fetch(`/components/${page}.html`)
+                .then(response => response.text())
+                .then(html => {
+                    mainContent.innerHTML = html;
+                });
+        }
+
+        // Show create form
+        function showCreateForm() {
+            const mainContent = document.getElementById('mainContent');
+            const setupSidebar = document.getElementById('setupSidebar');
+            
+            // Show setup sidebar
+            setupSidebar.classList.remove('d-none');
+            mainContent.classList.remove('col-md-12');
+            mainContent.classList.add('col-md-9');
+
+            // Load setup navigation
+            fetch('/components/setup-nav.html')
+                .then(response => response.text())
+                .then(html => {
+                    setupSidebar.querySelector('.setup-nav').innerHTML = html;
+                    
+                    // Add click handlers to setup buttons
+                    setupSidebar.querySelectorAll('.setup-btn').forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            setupSidebar.querySelectorAll('.setup-btn').forEach(b => 
+                                b.classList.remove('active')
+                            );
+                            this.classList.add('active');
+                            loadSetupContent(this.dataset.step);
+                        });
+                    });
+                });
+
+            // Load initial setup content
+            loadSetupContent('01-name');
+        }
+
+        // Load setup content
+        function loadSetupContent(step) {
+            fetch(`/components/sections/${step}.html`)
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('mainContent').innerHTML = html;
+                });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start with welcome page
+            loadContent('welcome');
+        });
+    </script>
+</body>
+</html>

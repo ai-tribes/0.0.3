@@ -1,0 +1,61 @@
+<div class="section-content">
+    <h4 class="mb-4">Connect Facebook</h4>
+    <form id="facebookForm">
+        <div class="mb-4">
+            <h6 class="mb-3">Connect Your Tribe's Facebook Page</h6>
+            <div class="alert alert-info">
+                <ol class="mb-0">
+                    <li>Create a Facebook Page for your tribe</li>
+                    <li>Set up Facebook Developer account</li>
+                    <li>Enable Facebook Graph API access</li>
+                    <li>Copy your page details below</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="fbPageName">Page Name</label>
+            <input type="text" class="form-control" id="fbPageName" 
+                   placeholder="Your Tribe Official" required>
+            <div class="form-text">Your Facebook page name</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="fbPageId">Page ID</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="fbPageId" 
+                       placeholder="123456789012345" required>
+                <button class="btn btn-outline-primary" type="button" onclick="verifyFacebookPage()">
+                    <i class="fas fa-check me-2"></i>Verify
+                </button>
+            </div>
+            <div class="form-text">Find this in your page settings</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="fbAccessToken">Access Token</label>
+            <div class="input-group">
+                <input type="password" class="form-control" id="fbAccessToken" required>
+                <button class="btn btn-outline-primary" type="button" onclick="verifyFacebookToken()">
+                    <i class="fas fa-check me-2"></i>Verify
+                </button>
+            </div>
+            <div class="form-text">Get this from Facebook Developer Console</div>
+        </div>
+
+        <div class="mb-4">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="autoPublish">
+                <label class="form-check-label">Enable automatic content publishing</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="enableMessenger">
+                <label class="form-check-label">Enable Messenger integration</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="fbSubmitButton" disabled>
+            Save & Continue
+        </button>
+    </form>
+</div> 

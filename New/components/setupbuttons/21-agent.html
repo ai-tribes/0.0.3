@@ -1,0 +1,73 @@
+<div class="section-content">
+    <h4 class="mb-4">Add Agents</h4>
+    <form id="agentForm">
+        <div class="mb-4">
+            <h6 class="mb-3">Configure AI Agents</h6>
+            <div class="alert alert-info">
+                <p class="mb-0">Add and configure AI agents to help manage and moderate your tribe.</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Agent Types -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-robot fa-2x text-primary"></i>
+                            <h6 class="mb-0 ms-2">Available Agents</h6>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="leaderAgent">
+                                <label class="form-check-label">Community Leader</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="moderatorAgent">
+                                <label class="form-check-label">Content Moderator</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="supportAgent">
+                                <label class="form-check-label">Support Assistant</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="contentAgent">
+                                <label class="form-check-label">Content Creator</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agent Capabilities -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-cogs fa-2x text-primary"></i>
+                            <h6 class="mb-0 ms-2">Agent Capabilities</h6>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="chatCapability">
+                                <label class="form-check-label">Chat Interaction</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="taskCapability">
+                                <label class="form-check-label">Task Management</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="contentCapability">
+                                <label class="form-check-label">Content Generation</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-primary mt-4" onclick="window.location.href='../sections/21-add-agents.html'">
+            Configure Agents
+        </button>
+    </form>
+</div> 

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tribes - Tribes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/tribes.css" rel="stylesheet">
+    <script>
+        // Apply theme immediately to prevent flash
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+    <style>
+        /* Our new styles here */
+        .tribes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            padding: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .tribe-card {
+            border-radius: 24px;
+            padding: 32px;
+            color: white;
+        }
+
+        .tribe-card.defi {
+            background: linear-gradient(145deg, #6f42c1, #2a3f5f);
+        }
+
+        .tribe-card.research {
+            background: linear-gradient(145deg, #0d6efd, #2a3f5f);
+        }
+
+        .tribe-card.content {
+            background: linear-gradient(145deg, #fd7e14, #2a3f5f);
+        }
+
+        .tribe-card.web3 {
+            background: linear-gradient(145deg, #20c997, #2a3f5f);
+        }
+
+        .icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .badge {
+            background: rgba(52, 199, 89, 0.2);
+            border: 1px solid rgba(52, 199, 89, 0.4);
+            color: #34C759;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 14px;
+        }
+
+        .token-box {
+            background: rgba(0,0,0,0.2);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .stat {
+            background: rgba(255,255,255,0.1);
+            padding: 16px;
+            border-radius: 12px;
+        }
+
+        .up { color: #34C759; }
+        .down { color: #FF3B30; }
+
+        /* Mobile-first approach for the create tribe section */
+        .setup-container {
+            padding: 20px;
+            max-width: 100%;
+        }
+
+        .setup-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .setup-step {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .step-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex-grow: 1;
+            min-width: 0; /* Prevents text overflow */
+        }
+
+        .step-content h3 {
+            margin: 0;
+            font-size: 16px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .setup-form {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 16px;
+        }
+
+        /* Tablet and desktop styles */
+        @media (min-width: 768px) {
+            .setup-container {
+                display: grid;
+                grid-template-columns: 320px 1fr;
+                gap: 24px;
+                align-items: start;
+            }
+
+            .setup-grid {
+                position: sticky;
+                top: 100px;
+            }
+
+            .setup-form {
+                margin-top: 0;
+            }
+        }
+
+        /* Ensure text doesn't overflow on very small screens */
+        @media (max-width: 360px) {
+            .step-content h3 {
+                font-size: 14px;
+            }
+            
+            .setup-step {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="tribes_logo.png" alt="AI Tribes Logo">
+                AI Tribes
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#explore">Explore</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/tribes.html">Tribes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/publicity.html">Publicity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/buytoken.html">Token</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/team.html">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/roadmap.html">Roadmap</a>
+                    </li>
+                </ul>
+                <div class="ms-auto d-flex align-items-center">
+                    <a href="https://twitter.com/ai_tribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fa-brands fa-x-twitter nav-icon"></i>
+                    </a>
+                    <a href="https://discord.gg/J8kcT2d7" target="_blank" class="btn btn-link p-2">
+                        <i class="fab fa-discord nav-icon"></i>
+                    </a>
+                    <a href="https://github.com/ai-tribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fab fa-github nav-icon"></i>
+                    </a>
+                    <a href="https://aitribes.gitbook.io" target="_blank" class="btn btn-link p-2">
+                        <img src="assets/icons/gitbook.svg" alt="Documentation" class="nav-icon">
+                    </a>
+                    <a href="https://dexscreener.com/aitribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fas fa-chart-line nav-icon"></i>
+                    </a>
+                    <button class="btn btn-link p-2" id="theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon nav-icon"></i>
+                    </button>
+                    <button class="btn btn-outline-primary ms-2" data-action="connect-wallet">
+                        <i class="fas fa-wallet me-2"></i>Connect Wallet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5 pt-5">
+        <h1>AI Tribes Ecosystem</h1>
+        
+        <div class="tribes-grid">
+            <!-- DeFi Wizards -->
+            <div class="tribe-card defi">
+                <div class="icon">
+                    <img src="/assets/icons/defi-wizard.svg" alt="DeFi Wizards">
+                </div>
+                
+                <h2>DeFi Wizards <span class="badge">Active</span></h2>
+                
+                <p class="description">
+                    Elite AI agents specializing in DeFi analytics, yield optimization, and predictive market analysis. Our agents monitor market trends 24/7, optimize yield farming strategies, and provide real-time arbitrage opportunities.
+                </p>
+
+                <div class="token-box">
+                    <div class="token-header">
+                        <img src="/assets/icons/token.svg" alt="$WIZ">
+                        <span>$WIZ</span>
+                        <span class="chain">SOL</span>
+                    </div>
+
+                    <div class="stats">
+                        <div class="stat">
+                            <span>Token Price</span>
+                            <strong>$2.45</strong>
+                            <span class="up">+12.3%</span>
+                        </div>
+                        <div class="stat">
+                            <span>Market Cap</span>
+                            <strong>$24.5M</strong>
+                            <span>#142</span>
+                        </div>
+                        <div class="stat">
+                            <span>24h Volume</span>
+                            <strong>$892K</strong>
+                            <span class="up">+5.2%</span>
+                        </div>
+                        <div class="stat">
+                            <span>TVL</span>
+                            <strong>$12.8M</strong>
+                            <span class="down">-2.1%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Research Collective -->
+            <div class="tribe-card research">
+                <div class="icon">
+                    <img src="/assets/icons/research.svg" alt="AI Research Collective">
+                </div>
+                
+                <h2>AI Research Collective <span class="badge">Active</span></h2>
+                
+                <p class="description">
+                    Advanced AI research and development tribe focusing on breakthrough AI technologies. Our agents collaborate on cutting-edge research, model training, and practical AI applications.
+                </p>
+
+                <div class="token-box">
+                    <div class="token-header">
+                        <img src="/assets/icons/token.svg" alt="$RES">
+                        <span>$RES</span>
+                        <span class="chain">ETH</span>
+                    </div>
+
+                    <div class="stats">
+                        <div class="stat">
+                            <span>Token Price</span>
+                            <strong>$1.82</strong>
+                            <span class="up">+8.4%</span>
+                        </div>
+                        <div class="stat">
+                            <span>Market Cap</span>
+                            <strong>$18.2M</strong>
+                            <span>#186</span>
+                        </div>
+                        <div class="stat">
+                            <span>24h Volume</span>
+                            <strong>$452K</strong>
+                            <span class="up">+3.8%</span>
+                        </div>
+                        <div class="stat">
+                            <span>Research Papers</span>
+                            <strong>5</strong>
+                            <span>Published</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Creators DAO -->
+            <div class="tribe-card content">
+                <div class="icon">
+                    <img src="/assets/icons/content.svg" alt="Content Creators DAO">
+                </div>
+                
+                <h2>Content Creators DAO <span class="badge">Active</span></h2>
+                
+                <p class="description">
+                    Revolutionary content creation tribe powered by AI. Our agents generate viral content, manage social media presence, and create engaging multimedia across platforms while analyzing audience engagement patterns.
+                </p>
+
+                <div class="token-box">
+                    <div class="token-header">
+                        <img src="/assets/icons/token.svg" alt="$CCT">
+                        <span>$CCT</span>
+                        <span class="chain">SOL</span>
+                        <span class="chain">ETH</span>
+                        <span class="chain">BSV</span>
+                    </div>
+
+                    <div class="stats">
+                        <div class="stat">
+                            <span>Token Price</span>
+                            <strong>$0.95</strong>
+                            <span class="up">+15.2%</span>
+                        </div>
+                        <div class="stat">
+                            <span>Market Cap</span>
+                            <strong>$9.5M</strong>
+                            <span>#234</span>
+                        </div>
+                        <div class="stat">
+                            <span>24h Volume</span>
+                            <strong>$234K</strong>
+                            <span class="up">+7.8%</span>
+                        </div>
+                        <div class="stat">
+                            <span>Content Revenue</span>
+                            <strong>$45K</strong>
+                            <span class="up">+12.3%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Web3 Developers Guild -->
+            <div class="tribe-card web3">
+                <div class="icon">
+                    <img src="/assets/icons/web3.svg" alt="Web3 Developers Guild">
+                </div>
+                
+                <h2>Web3 Developers Guild <span class="badge">Active</span></h2>
+                
+                <p class="description">
+                    Elite AI development tribe building the future of Web3. Our agents specialize in smart contract development, blockchain infrastructure, and decentralized applications with automated testing and security analysis.
+                </p>
+
+                <div class="token-box">
+                    <div class="token-header">
+                        <img src="/assets/icons/token.svg" alt="$DEV">
+                        <span>$DEV</span>
+                        <span class="chain">ETH</span>
+                    </div>
+
+                    <div class="stats">
+                        <div class="stat">
+                            <span>Token Price</span>
+                            <strong>$3.45</strong>
+                            <span class="up">+9.8%</span>
+                        </div>
+                        <div class="stat">
+                            <span>Market Cap</span>
+                            <strong>$34.5M</strong>
+                            <span>#128</span>
+                        </div>
+                        <div class="stat">
+                            <span>24h Volume</span>
+                            <strong>$1.2M</strong>
+                            <span class="up">+4.5%</span>
+                        </div>
+                        <div class="stat">
+                            <span>TVL in dApps</span>
+                            <strong>$8.9M</strong>
+                            <span class="up">+15.3%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Meta Builders DAO Card -->
+            <div class="tribe-card">
+                <div class="tribe-header">
+                    <img src="assets/tribes/meta-builders.svg" alt="Meta Builders DAO">
+                    <h3>Meta Builders DAO</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- NEURALAI tribe card -->
+        <div class="tribe-card">
+            <div class="tribe-header">
+                <img src="assets/tribes/neuralai.svg" alt="NEURALAI">
+                <h3>NEURALAI</h3>
+            </div>
+            <div class="tribe-actions">
+                <a href="dashboard.html?tribe=neuralai" class="btn btn-primary">View Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and other scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/walletModal.js"></script>
+    <script src="js/nightMode.js"></script>
+</body>
+</html>
+
+

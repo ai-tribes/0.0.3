@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="/assets/css/sections.css" rel="stylesheet">
+    <style>
+        .analytics-card {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .analytics-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .provider-icon {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .test-response {
+            display: none;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .test-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .test-error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .metric-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .metric-icon {
+            font-size: 1.5rem;
+            color: #0d6efd;
+            margin-bottom: 0.5rem;
+        }
+
+        .custom-metrics {
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="section-container">
+        <h2 class="section-title">Setup Analytics</h2>
+        <p class="section-description">Configure analytics platforms to track your tribe's growth and engagement</p>
+
+        <form id="analyticsForm">
+            <!-- Analytics Platforms -->
+            <div class="row g-4 mb-4">
+                <!-- Google Analytics -->
+                <div class="col-md-6">
+                    <div class="analytics-card h-100">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fab fa-google fa-2x text-primary me-2"></i>
+                                <h5 class="mb-0">Google Analytics 4</h5>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label" for="gaTrackingId">Measurement ID</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="gaTrackingId" 
+                                           placeholder="G-XXXXXXXXXX" required>
+                                    <button class="btn btn-outline-primary" type="button" onclick="verifyGA()">
+                                        Verify
+                                    </button>
+                                </div>
+                                <div class="form-text">Your GA4 Measurement ID</div>
+                                <div id="gaVerification" class="test-response"></div>
+                            </div>
+
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="gaEnhancedEcom" checked>
+                                <label class="form-check-label" for="gaEnhancedEcom">
+                                    Enable Enhanced Ecommerce
+                                </label>
+                            </div>
+
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="gaUserMetrics" checked>
+                                <label class="form-check-label" for="gaUserMetrics">
+                                    Track User Metrics
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom Analytics -->
+                <div class="col-md-6">
+                    <div class="analytics-card h-100">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fas fa-chart-line fa-2x text-success me-2"></i>
+                                <h5 class="mb-0">Custom Analytics</h5>
+                            </div>
+
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="enableCustom" 
+                                       onchange="toggleCustomAnalytics()">
+                                <label class="form-check-label" for="enableCustom">
+                                    Enable Custom Analytics
+                                </label>
+                            </div>
+
+                            <div id="customAnalyticsOptions" class="d-none">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="trackPageviews" checked>
+                                    <label class="form-check-label" for="trackPageviews">
+                                        Track Pageviews
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="trackEvents" checked>
+                                    <label class="form-check-label" for="trackEvents">
+                                        Track Custom Events
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="trackConversions" checked>
+                                    <label class="form-check-label" for="trackConversions">
+                                        Track Conversions
+                                    </label>
+                                </div>
+
+                                <div class="form-group mt-3">
+                                    <label class="form-label">Custom Event Types</label>
+                                    <input type="text" class="form-control" 
+                                           placeholder="signup, purchase, interaction">
+                                    <small class="form-text">Comma-separated list of custom events to track</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metrics Configuration -->
+            <div class="mb-4">
+                <h4 class="mb-3">Metrics Configuration</h4>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="metric-card">
+                            <div class="metric-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h6>User Metrics</h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" checked>
+                                <label class="form-check-label">Active Users</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" checked>
+                                <label class="form-check-label">User Retention</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="metric-card">
+                            <div class="metric-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h6>Engagement Metrics</h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" checked>
+                                <label class="form-check-label">Session Duration</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" checked>
+                                <label class="form-check-label">Interaction Rate</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="metric-card">
+                            <div class="metric-icon">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <h6>Revenue Metrics</h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" checked>
+                                <label class="form-check-label">Transaction Value</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" checked>
+                                <label class="form-check-label">Conversion Rate</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons mt-4">
+                <button type="button" class="btn btn-back" onclick="window.parent.postMessage({action: 'back'}, '*')">Back</button>
+                <button type="button" class="btn btn-next" onclick="window.parent.postMessage({action: 'next'}, '*')">Next</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function verifyGA() {
+            const trackingId = document.getElementById('gaTrackingId').value;
+            const verification = document.getElementById('gaVerification');
+            
+            verification.style.display = 'block';
+            verification.innerHTML = 'Verifying GA4 Measurement ID...';
+            verification.className = 'test-response';
+            
+            // Simulate API verification
+            setTimeout(() => {
+                if (trackingId.startsWith('G-') && trackingId.length > 8) {
+                    verification.innerHTML = 'GA4 Measurement ID verified successfully!';
+                    verification.classList.add('test-success');
+                } else {
+                    verification.innerHTML = 'Invalid Measurement ID. Please check and try again.';
+                    verification.classList.add('test-error');
+                }
+            }, 1500);
+        }
+
+        function toggleCustomAnalytics() {
+            const customOptions = document.getElementById('customAnalyticsOptions');
+            const enableCustom = document.getElementById('enableCustom');
+            
+            customOptions.classList.toggle('d-none', !enableCustom.checked);
+        }
+
+        document.getElementById('analyticsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add form submission logic here
+        });
+    </script>
+</body>
+</html> 

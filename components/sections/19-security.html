@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="/assets/css/sections.css" rel="stylesheet">
+    <style>
+        .security-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            height: 100%;
+            transition: transform 0.2s;
+        }
+
+        .security-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin-right: 1rem;
+        }
+
+        .auth-icon { background: #cff4fc; color: #0dcaf0; }
+        .wallet-icon { background: #d1e7dd; color: #198754; }
+        .audit-icon { background: #f8d7da; color: #dc3545; }
+        .privacy-icon { background: #e7f5e7; color: #25D366; }
+
+        .security-level {
+            padding: 1rem;
+            border-radius: 8px;
+            background: #f8f9fa;
+            margin-bottom: 1rem;
+        }
+
+        .security-level.active {
+            background: #d1e7dd;
+            border: 1px solid #198754;
+        }
+
+        .security-badge {
+            font-size: 0.8rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="section-container">
+        <h2 class="section-title">Security Settings</h2>
+        <p class="section-description">Configure security features and protection measures for your tribe</p>
+
+        <form id="securityForm">
+            <!-- Setup Instructions -->
+            <div class="alert alert-info mb-4">
+                <h6 class="alert-heading mb-3"><i class="fas fa-shield-alt me-2"></i>Security Configuration</h6>
+                <p>Set up security measures to protect your tribe's assets and members.</p>
+            </div>
+
+            <!-- Security Level -->
+            <div class="mb-4">
+                <h4 class="mb-3">Security Level</h4>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="security-level" onclick="selectLevel('basic')" id="basicLevel">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="mb-0">Basic</h5>
+                                <span class="security-badge bg-info">Recommended</span>
+                            </div>
+                            <p class="text-muted mb-2">Essential security features</p>
+                            <ul class="small text-muted mb-0">
+                                <li>Email verification</li>
+                                <li>Password policies</li>
+                                <li>Basic logging</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="security-level" onclick="selectLevel('enhanced')" id="enhancedLevel">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="mb-0">Enhanced</h5>
+                                <span class="security-badge bg-primary">Advanced</span>
+                            </div>
+                            <p class="text-muted mb-2">Additional protection layers</p>
+                            <ul class="small text-muted mb-0">
+                                <li>Two-factor authentication</li>
+                                <li>IP whitelisting</li>
+                                <li>Advanced logging</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="security-level" onclick="selectLevel('maximum')" id="maximumLevel">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="mb-0">Maximum</h5>
+                                <span class="security-badge bg-warning">Enterprise</span>
+                            </div>
+                            <p class="text-muted mb-2">Highest security standards</p>
+                            <ul class="small text-muted mb-0">
+                                <li>Hardware key support</li>
+                                <li>Multi-signature wallets</li>
+                                <li>Real-time monitoring</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Features -->
+            <div class="mb-4">
+                <h4 class="mb-3">Security Features</h4>
+                <div class="row g-4">
+                    <!-- Authentication -->
+                    <div class="col-md-6">
+                        <div class="security-card">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon auth-icon">
+                                    <i class="fas fa-key"></i>
+                                </div>
+                                <h5 class="mb-0">Authentication</h5>
+                            </div>
+                            
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="2fa" checked>
+                                <label class="form-check-label">Two-Factor Authentication</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="hardwareKey">
+                                <label class="form-check-label">Hardware Security Keys</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="biometric">
+                                <label class="form-check-label">Biometric Authentication</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wallet Security -->
+                    <div class="col-md-6">
+                        <div class="security-card">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon wallet-icon">
+                                    <i class="fas fa-wallet"></i>
+                                </div>
+                                <h5 class="mb-0">Wallet Security</h5>
+                            </div>
+                            
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="multiSig" checked>
+                                <label class="form-check-label">Multi-Signature Wallet</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="timelock">
+                                <label class="form-check-label">Time-Lock Transactions</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="spendingLimits">
+                                <label class="form-check-label">Daily Spending Limits</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Monitoring -->
+                    <div class="col-md-6">
+                        <div class="security-card">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon audit-icon">
+                                    <i class="fas fa-list-check"></i>
+                                </div>
+                                <h5 class="mb-0">Monitoring</h5>
+                            </div>
+                            
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="auditLogs" checked>
+                                <label class="form-check-label">Audit Logs</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="activityAlerts">
+                                <label class="form-check-label">Suspicious Activity Alerts</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="realtime">
+                                <label class="form-check-label">Real-time Monitoring</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Privacy -->
+                    <div class="col-md-6">
+                        <div class="security-card">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon privacy-icon">
+                                    <i class="fas fa-user-shield"></i>
+                                </div>
+                                <h5 class="mb-0">Privacy</h5>
+                            </div>
+                            
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="encryption" checked>
+                                <label class="form-check-label">End-to-End Encryption</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="dataMinimization">
+                                <label class="form-check-label">Data Minimization</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="anonymization">
+                                <label class="form-check-label">Data Anonymization</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button type="button" class="btn btn-back" 
+                        onclick="window.parent.postMessage({action: 'back'}, '*')">Back</button>
+                <button type="button" class="btn btn-next" 
+                        onclick="window.parent.postMessage({action: 'next'}, '*')">Next</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function selectLevel(level) {
+            // Remove active class from all levels
+            document.querySelectorAll('.security-level').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Add active class to selected level
+            document.getElementById(`${level}Level`).classList.add('active');
+            
+            // Update checkboxes based on selected level
+            updateFeatures(level);
+        }
+
+        function updateFeatures(level) {
+            const features = {
+                basic: ['2fa', 'multiSig', 'auditLogs', 'encryption'],
+                enhanced: ['2fa', 'multiSig', 'auditLogs', 'encryption', 'activityAlerts', 'timelock'],
+                maximum: ['2fa', 'hardwareKey', 'multiSig', 'timelock', 'auditLogs', 'activityAlerts', 
+                         'realtime', 'encryption', 'dataMinimization']
+            };
+            
+            // Reset all checkboxes
+            document.querySelectorAll('.form-check-input').forEach(checkbox => {
+                checkbox.checked = features[level].includes(checkbox.id);
+            });
+        }
+
+        // Initialize with basic security level
+        document.addEventListener('DOMContentLoaded', () => {
+            selectLevel('basic');
+        });
+    </script>
+</body>
+</html> 

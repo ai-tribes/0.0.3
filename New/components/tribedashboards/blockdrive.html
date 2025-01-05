@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlockDrive - Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../css/styles.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-4">
+        <!-- Tribe Header -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="rounded me-3 d-flex align-items-center justify-content-center" 
+                         style="width: 64px; height: 64px; background: #3B82F6;">
+                        <i class="fas fa-cube text-white fa-2x"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex align-items-center mb-1">
+                            <h2 class="mb-0">BlockDrive</h2>
+                            <small class="text-muted ms-2">by CoffeeGuy999</small>
+                            <span class="badge bg-info ms-2">Development</span>
+                            <span class="badge bg-success ms-2" style="font-size: 0.7rem;">
+                                <i class="fas fa-edit me-1"></i>Read/Write
+                            </span>
+                            <span class="badge bg-secondary ms-2">
+                                <i class="fab fa-ethereum me-1"></i>ETH
+                            </span>
+                        </div>
+                        <p class="text-muted mb-0">Decentralized storage solutions for the future</p>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-primary">
+                            <i class="fas fa-code-branch me-2"></i>Development
+                        </button>
+                        <button class="btn btn-success">
+                            <i class="fas fa-cloud-upload-alt me-2"></i>Deploy
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Storage Metrics -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h6 class="text-muted mb-2">Storage Used</h6>
+                        <div class="d-flex align-items-center">
+                            <h3 class="mb-0">2.4 TB</h3>
+                            <span class="badge bg-success ms-2">64%</span>
+                        </div>
+                        <div class="progress mt-2" style="height: 6px;">
+                            <div class="progress-bar bg-success" style="width: 64%"></div>
+                        </div>
+                        <small class="text-muted">3.7 TB Total Capacity</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h6 class="text-muted mb-2">Network Nodes</h6>
+                        <div class="d-flex align-items-center">
+                            <h3 class="mb-0">42</h3>
+                            <span class="badge bg-info ms-2">Active</span>
+                        </div>
+                        <small class="text-success">98.5% Uptime</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h6 class="text-muted mb-2">Files Stored</h6>
+                        <div class="d-flex align-items-center">
+                            <h3 class="mb-0">15.2K</h3>
+                            <span class="text-success ms-2">
+                                <i class="fas fa-arrow-up"></i>
+                            </span>
+                        </div>
+                        <small class="text-success">+124 today</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h6 class="text-muted mb-2">$DRIVE Price</h6>
+                        <div class="d-flex align-items-center">
+                            <h3 class="mb-0">$0.42</h3>
+                            <span class="badge bg-success ms-2">+5.2%</span>
+                        </div>
+                        <small class="text-muted">24h Volume: $1.2M</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Development Status -->
+        <div class="row g-4">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Development Progress</h5>
+                        <div class="btn-group">
+                            <button class="btn btn-sm btn-outline-primary active">Day</button>
+                            <button class="btn btn-sm btn-outline-primary">Week</button>
+                            <button class="btn btn-sm btn-outline-primary">Month</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="commit-item d-flex align-items-center py-3 border-bottom">
+                            <div class="rounded-circle bg-primary bg-opacity-10 p-2 me-3">
+                                <i class="fas fa-code-branch text-primary"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <strong>Storage Optimization</strong>
+                                <p class="text-muted mb-0">Implemented new compression algorithm</p>
+                                <small class="text-muted">by CoffeeGuy999</small>
+                            </div>
+                            <small class="text-muted">2 hours ago</small>
+                        </div>
+                        <div class="commit-item d-flex align-items-center py-3 border-bottom">
+                            <div class="rounded-circle bg-success bg-opacity-10 p-2 me-3">
+                                <i class="fas fa-check text-success"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <strong>Node Management</strong>
+                                <p class="text-muted mb-0">Added automatic node discovery</p>
+                                <small class="text-muted">by DevTeam</small>
+                            </div>
+                            <small class="text-muted">5 hours ago</small>
+                        </div>
+                        <div class="commit-item d-flex align-items-center py-3">
+                            <div class="rounded-circle bg-warning bg-opacity-10 p-2 me-3">
+                                <i class="fas fa-exclamation-triangle text-warning"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <strong>Bug Fix</strong>
+                                <p class="text-muted mb-0">Fixed file synchronization issue</p>
+                                <small class="text-muted">by CoffeeGuy999</small>
+                            </div>
+                            <small class="text-muted">1 day ago</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0">Development Tools</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-primary">
+                                <i class="fab fa-github me-2"></i>View Repository
+                            </button>
+                            <button class="btn btn-outline-success">
+                                <i class="fas fa-code me-2"></i>API Documentation
+                            </button>
+                            <button class="btn btn-outline-info">
+                                <i class="fas fa-bug me-2"></i>Issue Tracker
+                            </button>
+                            <button class="btn btn-outline-warning">
+                                <i class="fas fa-terminal me-2"></i>Developer Console
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back to Dashboard Button -->
+        <div class="d-grid gap-2 mt-4">
+            <button type="button" class="btn btn-outline-secondary" onclick="window.parent.location.reload()">Back to Dashboard</button>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

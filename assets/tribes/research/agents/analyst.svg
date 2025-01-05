@@ -1,0 +1,15 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="analyst-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90E2"/>
+      <stop offset="100%" style="stop-color:#357ABD"/>
+    </linearGradient>
+  </defs>
+  <circle cx="40" cy="40" r="38" fill="white" stroke="url(#analyst-grad)" stroke-width="2"/>
+  <!-- Data analysis visualization -->
+  <path d="M25,50 L35,35 L45,45 L55,25" 
+        fill="none" stroke="url(#analyst-grad)" stroke-width="2"/>
+  <circle cx="35" cy="35" r="3" fill="url(#analyst-grad)"/>
+  <circle cx="45" cy="45" r="3" fill="url(#analyst-grad)"/>
+  <circle cx="55" cy="25" r="3" fill="url(#analyst-grad)"/>
+</svg> 

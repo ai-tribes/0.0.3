@@ -1,0 +1,33 @@
+<div class="section-content">
+    <h4 class="mb-4">Compliance Settings</h4>
+    <form id="complianceForm">
+        <div class="mb-3">
+            <label for="jurisdiction" class="form-label">Primary Jurisdiction</label>
+            <select class="form-select" id="jurisdiction" required>
+                <option value="" selected disabled>Select jurisdiction...</option>
+                <option value="us">United States</option>
+                <option value="eu">European Union</option>
+                <option value="uk">United Kingdom</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Compliance Requirements</label>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="kyc">
+                <label class="form-check-label" for="kyc">KYC/AML</label>
+            </div>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="gdpr">
+                <label class="form-check-label" for="gdpr">GDPR Compliance</label>
+            </div>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="dataRetention">
+                <label class="form-check-label" for="dataRetention">Data Retention Policy</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Compliance Settings</button>
+    </form>
+</div> 

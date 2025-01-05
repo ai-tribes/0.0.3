@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HecTik CDN Dashboard - AI Tribes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../sections/sections.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid p-4">
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="mb-1">HecTik CDN</h2>
+                <p class="text-muted mb-0">Content Delivery Network Management</p>
+            </div>
+            <button class="btn btn-primary">
+                <i class="fas fa-plus me-2"></i>Add Domain
+            </button>
+        </div>
+
+        <!-- Stats Overview -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="text-muted mb-2">Total Bandwidth</h6>
+                        <h3 class="mb-0">2.4 TB</h3>
+                        <small class="text-success">
+                            <i class="fas fa-arrow-up me-1"></i>12% this month
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="text-muted mb-2">Cache Hit Rate</h6>
+                        <h3 class="mb-0">94.2%</h3>
+                        <small class="text-success">
+                            <i class="fas fa-arrow-up me-1"></i>2.1% improvement
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="text-muted mb-2">Active Domains</h6>
+                        <h3 class="mb-0">12</h3>
+                        <small class="text-primary">
+                            <i class="fas fa-check me-1"></i>All healthy
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="text-muted mb-2">SSL Certificates</h6>
+                        <h3 class="mb-0">15</h3>
+                        <small class="text-warning">
+                            <i class="fas fa-clock me-1"></i>2 renewing soon
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Domains Table -->
+        <div class="card mb-4">
+            <div class="card-header bg-white">
+                <h5 class="mb-0">Managed Domains</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Domain</th>
+                                <th>Status</th>
+                                <th>SSL</th>
+                                <th>Cache Hit</th>
+                                <th>Bandwidth</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-globe me-2 text-primary"></i>
+                                        cdn1.hectik.ai
+                                    </div>
+                                </td>
+                                <td><span class="badge bg-success">Active</span></td>
+                                <td><span class="badge bg-success">Valid</span></td>
+                                <td>96.4%</td>
+                                <td>842 GB</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary me-1">
+                                        <i class="fas fa-cog"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-globe me-2 text-primary"></i>
+                                        cdn2.hectik.ai
+                                    </div>
+                                </td>
+                                <td><span class="badge bg-success">Active</span></td>
+                                <td><span class="badge bg-warning">Renewing</span></td>
+                                <td>93.8%</td>
+                                <td>1.1 TB</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary me-1">
+                                        <i class="fas fa-cog"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Graph -->
+        <div class="card mb-4">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Network Performance</h5>
+                <div class="btn-group">
+                    <button class="btn btn-outline-secondary btn-sm">24h</button>
+                    <button class="btn btn-outline-secondary btn-sm active">7d</button>
+                    <button class="btn btn-outline-secondary btn-sm">30d</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="performanceGraph" style="height: 300px;">
+                    <!-- Graph will be rendered here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Cards -->
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Cache Settings</h5>
+                        <p class="text-muted">Configure caching rules and behaviors</p>
+                        <button class="btn btn-outline-primary">Manage Cache</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Security Rules</h5>
+                        <p class="text-muted">WAF and security configurations</p>
+                        <button class="btn btn-outline-primary">Configure Security</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Edge Rules</h5>
+                        <p class="text-muted">Manage edge computing rules</p>
+                        <button class="btn btn-outline-primary">Edit Rules</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Initialize performance graph
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.createElement('canvas');
+            document.getElementById('performanceGraph').appendChild(ctx);
+            
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Bandwidth Usage (TB)',
+                        data: [1.2, 1.4, 1.1, 1.8, 1.3, 0.9, 1.5],
+                        borderColor: '#0d6efd',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

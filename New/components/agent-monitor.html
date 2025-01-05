@@ -1,0 +1,122 @@
+<div class="agent-monitor">
+    <div class="row g-4">
+        <!-- Agent Status Overview -->
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Active Agents</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Agent</th>
+                                    <th>Status</th>
+                                    <th>Load</th>
+                                    <th>Response Time</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="agentStatusTable">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">System Stats</h5>
+                </div>
+                <div class="card-body">
+                    <div class="stat-item mb-3">
+                        <label>System Load</label>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 65%">65%</div>
+                        </div>
+                    </div>
+                    <div class="stat-item mb-3">
+                        <label>API Usage</label>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" style="width: 45%">45%</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <label>Memory Usage</label>
+                        <div class="progress">
+                            <div class="progress-bar bg-info" style="width: 78%">78%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Agent Interactions -->
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Recent Interactions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="timeline" id="agentTimeline">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function updateAgentMonitor() {
+    // Simulated agent status updates
+    const agents = [
+        { name: 'Community Manager', status: 'active', load: '45%', responseTime: '1.2s' },
+        { name: 'Content Creator', status: 'active', load: '67%', responseTime: '2.1s' },
+        { name: 'Analytics Agent', status: 'idle', load: '12%', responseTime: '0.8s' }
+    ];
+
+    const tableBody = document.getElementById('agentStatusTable');
+    tableBody.innerHTML = agents.map(agent => `
+        <tr>
+            <td>${agent.name}</td>
+            <td><span class="badge bg-${agent.status === 'active' ? 'success' : 'secondary'}">${agent.status}</span></td>
+            <td>${agent.load}</td>
+            <td>${agent.responseTime}</td>
+            <td>
+                <button class="btn btn-sm btn-outline-primary me-1" onclick="configureAgent('${agent.name}')">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger" onclick="pauseAgent('${agent.name}')">
+                    <i class="fas fa-pause"></i>
+                </button>
+            </td>
+        </tr>
+    `).join('');
+}
+
+// Update monitor every 5 seconds
+setInterval(updateAgentMonitor, 5000);
+</script>
+
+<style>
+.timeline {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.stat-item label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #6c757d;
+}
+
+.progress {
+    height: 1.5rem;
+}
+</style> 

@@ -1,0 +1,13 @@
+# htdocs/.htaccess
+AddType audio/mpeg mp3
+AddType audio/mp4 m4a
+
+# Handle JavaScript files
+AddType application/javascript .js
+AddType text/javascript .js
+
+# Enable directory listing if needed
+Options +Indexes
+
+# Handle errors
+ErrorDocument 404 /404.html

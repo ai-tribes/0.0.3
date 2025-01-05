@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="section-content">
+        <h4 class="mb-4">Brand & Design</h4>
+        <p class="text-muted">Create your tribe's visual identity</p>
+
+        <!-- Logo & Visual Assets -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Logo & Visual Assets</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <!-- Main Logo -->
+                    <div class="col-md-4">
+                        <label class="form-label">Main Logo</label>
+                        <div class="upload-preview mb-2" id="logoPreview">
+                            <div class="upload-placeholder">
+                                <i class="fas fa-cloud-upload-alt mb-2"></i>
+                                <div>Drag & drop or click to upload</div>
+                                <small class="text-muted">Recommended: 512x512px PNG</small>
+                            </div>
+                            <img src="" class="preview-image d-none">
+                            <input type="file" class="d-none" accept="image/*" onchange="handleImageUpload(this, 'logo')">
+                        </div>
+                    </div>
+
+                    <!-- NFT Collection -->
+                    <div class="col-md-4">
+                        <label class="form-label">NFT Collection</label>
+                        <div class="upload-preview mb-2" id="nftPreview">
+                            <div class="upload-placeholder">
+                                <i class="fas fa-images mb-2"></i>
+                                <div>Upload Collection</div>
+                                <small class="text-muted">ZIP with PNG/JPG images</small>
+                            </div>
+                            <div class="preview-files d-none"></div>
+                            <input type="file" class="d-none" accept=".zip" onchange="handleNFTUpload(this)">
+                        </div>
+                    </div>
+
+                    <!-- Banner Image -->
+                    <div class="col-md-4">
+                        <label class="form-label">Banner Image</label>
+                        <div class="upload-preview mb-2" id="bannerPreview">
+                            <div class="upload-placeholder">
+                                <i class="fas fa-image mb-2"></i>
+                                <div>Upload Banner</div>
+                                <small class="text-muted">Recommended: 1500x500px</small>
+                            </div>
+                            <img src="" class="preview-image d-none">
+                            <input type="file" class="d-none" accept="image/*" onchange="handleImageUpload(this, 'banner')">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Color Scheme -->
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Color Scheme</h5>
+                <button class="btn btn-sm btn-outline-primary" onclick="generateColorPalette()">
+                    <i class="fas fa-magic me-2"></i>Generate Palette
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <div class="col-md-3">
+                        <label class="form-label">Primary Color</label>
+                        <div class="input-group color-picker">
+                            <input type="color" class="form-control form-control-color" value="#4ECDC4" onchange="updateColorScheme(this, 'primary')">
+                            <input type="text" class="form-control" value="#4ECDC4" onchange="updateColorInput(this, 'primary')">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Secondary Color</label>
+                        <div class="input-group color-picker">
+                            <input type="color" class="form-control form-control-color" value="#FF6B6B" onchange="updateColorScheme(this, 'secondary')">
+                            <input type="text" class="form-control" value="#FF6B6B" onchange="updateColorInput(this, 'secondary')">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Accent Color</label>
+                        <div class="input-group color-picker">
+                            <input type="color" class="form-control form-control-color" value="#45B7D1" onchange="updateColorScheme(this, 'accent')">
+                            <input type="text" class="form-control" value="#45B7D1" onchange="updateColorInput(this, 'accent')">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Background</label>
+                        <div class="input-group color-picker">
+                            <input type="color" class="form-control form-control-color" value="#FFFFFF" onchange="updateColorScheme(this, 'background')">
+                            <input type="text" class="form-control" value="#FFFFFF" onchange="updateColorInput(this, 'background')">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Color Preview -->
+                <div class="color-preview mt-4 p-4 rounded">
+                    <h6>Preview</h6>
+                    <div class="preview-elements">
+                        <button class="btn btn-primary me-2">Primary Button</button>
+                        <button class="btn btn-secondary me-2">Secondary Button</button>
+                        <span class="badge bg-accent me-2">Accent Badge</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Typography -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Typography</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label class="form-label">Heading Font</label>
+                        <select class="form-select" onchange="updateFonts(this, 'heading')">
+                            <option value="Inter">Inter</option>
+                            <option value="Roboto">Roboto</option>
+                            <option value="Poppins">Poppins</option>
+                            <option value="custom">Custom Font...</option>
+                        </select>
+                        <div class="font-preview mt-3">
+                            <h1 class="preview-text">Heading 1</h1>
+                            <h3 class="preview-text">Heading 3</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Body Font</label>
+                        <select class="form-select" onchange="updateFonts(this, 'body')">
+                            <option value="Inter">Inter</option>
+                            <option value="Roboto">Roboto</option>
+                            <option value="Poppins">Poppins</option>
+                            <option value="custom">Custom Font...</option>
+                        </select>
+                        <div class="font-preview mt-3">
+                            <p class="preview-text">Body text example</p>
+                            <small class="preview-text">Small text example</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design Elements -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Design Elements</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label class="form-label">Button Style</label>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-primary" data-radius="default">Default</button>
+                            <button class="btn btn-primary" data-radius="0">Square</button>
+                            <button class="btn btn-primary" data-radius="25px">Pill</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Card Style</label>
+                        <div class="d-flex gap-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="cardStyle" value="rounded" checked>
+                                <label class="form-check-label">Rounded</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="cardStyle" value="sharp">
+                                <label class="form-check-label">Sharp</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="d-flex justify-content-between mt-4">
+            <button class="btn btn-outline-primary" onclick="loadSetupContent('02-token')">
+                <i class="fas fa-arrow-left me-2"></i>Previous
+            </button>
+            <button class="btn btn-primary" onclick="saveBrandingAndContinue()">
+                Next<i class="fas fa-arrow-right ms-2"></i>
+            </button>
+        </div>
+    </div>
+
+    <style>
+        .upload-preview {
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .upload-preview:hover {
+            border-color: #4ECDC4;
+            background: #f8f9fa;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            max-height: 180px;
+            object-fit: contain;
+        }
+
+        .color-picker .form-control-color {
+            width: 50px;
+        }
+
+        .color-preview {
+            background: var(--background-color);
+            border: 1px solid #dee2e6;
+        }
+
+        .font-preview {
+            border: 1px solid #dee2e6;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .preview-text {
+            margin: 0;
+            line-height: 1.5;
+        }
+    </style>
+
+    <script>
+        // Image upload handling
+        function handleImageUpload(input, type) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.querySelector(`#${type}Preview .preview-image`);
+                    const placeholder = document.querySelector(`#${type}Preview .upload-placeholder`);
+                    preview.src = e.target.result;
+                    preview.classList.remove('d-none');
+                    placeholder.classList.add('d-none');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // NFT Collection upload
+        function handleNFTUpload(input) {
+            const file = input.files[0];
+            if (file) {
+                const preview = document.querySelector('#nftPreview .preview-files');
+                const placeholder = document.querySelector('#nftPreview .upload-placeholder');
+                preview.textContent = `Selected: ${file.name}`;
+                preview.classList.remove('d-none');
+                placeholder.classList.add('d-none');
+            }
+        }
+
+        // Color scheme handling
+        function updateColorScheme(input, type) {
+            const hexInput = input.nextElementSibling;
+            hexInput.value = input.value.toUpperCase();
+            updatePreview();
+        }
+
+        function updateColorInput(input, type) {
+            const colorPicker = input.previousElementSibling;
+            colorPicker.value = input.value;
+            updatePreview();
+        }
+
+        function updatePreview() {
+            const root = document.documentElement;
+            const colors = {
+                primary: document.querySelector('[onchange="updateColorScheme(this, \'primary\')"]').value,
+                secondary: document.querySelector('[onchange="updateColorScheme(this, \'secondary\')"]').value,
+                accent: document.querySelector('[onchange="updateColorScheme(this, \'accent\')"]').value,
+                background: document.querySelector('[onchange="updateColorScheme(this, \'background\')"]').value
+            };
+
+            root.style.setProperty('--primary-color', colors.primary);
+            root.style.setProperty('--secondary-color', colors.secondary);
+            root.style.setProperty('--accent-color', colors.accent);
+            root.style.setProperty('--background-color', colors.background);
+        }
+
+        // Font handling
+        function updateFonts(select, type) {
+            const previewElements = select.parentElement.querySelector('.font-preview');
+            if (select.value === 'custom') {
+                // Show custom font upload dialog
+                return;
+            }
+            previewElements.style.fontFamily = select.value;
+        }
+
+        // Save and continue
+        function saveBrandingAndContinue() {
+            // Save branding configuration
+            const config = {
+                colors: {
+                    primary: document.querySelector('[onchange="updateColorScheme(this, \'primary\')"]').value,
+                    secondary: document.querySelector('[onchange="updateColorScheme(this, \'secondary\')"]').value,
+                    accent: document.querySelector('[onchange="updateColorScheme(this, \'accent\')"]').value,
+                    background: document.querySelector('[onchange="updateColorScheme(this, \'background\')"]').value
+                },
+                fonts: {
+                    heading: document.querySelector('[onchange="updateFonts(this, \'heading\')"]').value,
+                    body: document.querySelector('[onchange="updateFonts(this, \'body\')"]').value
+                },
+                styles: {
+                    buttonRadius: document.querySelector('.btn-primary[data-radius].active')?.dataset.radius || 'default',
+                    cardStyle: document.querySelector('input[name="cardStyle"]:checked').value
+                }
+            };
+
+            localStorage.setItem('brandingConfig', JSON.stringify(config));
+            loadSetupContent('04-socials');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize upload handlers
+            document.querySelectorAll('.upload-preview').forEach(preview => {
+                preview.addEventListener('click', function() {
+                    this.querySelector('input[type="file"]').click();
+                });
+            });
+
+            // Load saved config if exists
+            const savedConfig = localStorage.getItem('brandingConfig');
+            if (savedConfig) {
+                const config = JSON.parse(savedConfig);
+                // Apply saved configuration
+                // ... implementation here
+            }
+
+            // Initialize color preview
+            updatePreview();
+        });
+    </script>
+</body>
+</html> 

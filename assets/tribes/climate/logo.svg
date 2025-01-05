@@ -1,0 +1,33 @@
+<svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background Circle -->
+    <circle cx="36" cy="36" r="36" fill="#34C759"/>
+    
+    <!-- Leaf Elements -->
+    <g transform="translate(16, 16)">
+        <!-- Main Leaf -->
+        <path d="M20 40C20 40 8 32 8 20C8 8 20 4 20 4C20 4 32 8 32 20C32 32 20 40 20 40Z" 
+              fill="white" fill-opacity="0.9"/>
+        
+        <!-- Secondary Leaf -->
+        <path d="M32 36C32 36 24 30 24 22C24 14 32 11 32 11C32 11 40 14 40 22C40 30 32 36 32 36Z" 
+              fill="white" fill-opacity="0.7"/>
+        
+        <!-- Stem -->
+        <path d="M20 40L26 44" stroke="white" stroke-width="3" stroke-linecap="round"/>
+        
+        <!-- Data Points (representing AI/Tech) -->
+        <circle cx="16" cy="16" r="2" fill="white"/>
+        <circle cx="24" cy="20" r="2" fill="white"/>
+        <circle cx="32" cy="24" r="2" fill="white"/>
+        
+        <!-- Connecting Lines -->
+        <path d="M16 16L24 20L32 24" 
+              stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    
+    <!-- Circular Progress Element (representing sustainability cycle) -->
+    <path d="M36 8C48.1503 8 58 17.8497 58 30" 
+          stroke="white" stroke-width="3" stroke-linecap="round"/>
+    <path d="M14 30C14 17.8497 23.8497 8 36 8" 
+          stroke="white" stroke-opacity="0.3" stroke-width="3" stroke-linecap="round"/>
+</svg>

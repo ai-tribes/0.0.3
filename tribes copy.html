@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tribes - Tribes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/tribes.css" rel="stylesheet">
+    <script>
+        // Apply theme immediately to prevent flash
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+    <style>
+        /* Our new styles here */
+        .tribes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .tribe-card {
+            background: var(--bs-body-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .tribe-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .tribe-banner {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 20px 20px 0 0;
+            background: none; /* Remove loading background */
+        }
+
+        .banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            will-change: transform;
+            z-index: 1;
+        }
+
+        /* Remove loading state completely */
+        .banner-img.loading {
+            opacity: 1 !important;
+            filter: none;
+            transition: none;
+        }
+
+        /* Remove any overlays or effects */
+        .tribe-banner::after,
+        .tribe-banner::before,
+        .tribe-banner > * {
+            opacity: 1 !important;
+        }
+
+        /* Update hover effect to just scale without changing opacity */
+        .tribe-card:hover .banner-img {
+            transform: scale(1.05);
+        }
+
+        .tribe-logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 72px;
+            height: 72px;
+            border-radius: 16px;
+            background: var(--bs-body-bg);
+            padding: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+            z-index: 10;
+        }
+
+        .tribe-card:hover .tribe-logo {
+            transform: scale(1.05);
+        }
+
+        /* Optional: Add a subtle gradient behind the logo for better visibility */
+        .tribe-logo::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, transparent 70%);
+            z-index: -1;
+            border-radius: 20px;
+        }
+
+        /* Responsive Banner Heights */
+        @media (min-width: 768px) {
+            .tribe-banner {
+                height: 240px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .tribe-banner {
+                height: 280px;
+            }
+        }
+
+        .tribe-content {
+            padding: 2rem;
+        }
+
+        .tribe-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .token-info {
+            background: var(--bs-gray-100);
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .agent-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .agent {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: var(--bs-gray-100);
+            border-radius: 8px;
+        }
+
+        .agent-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+        }
+
+        .activity-feed {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: var(--bs-gray-100);
+            border-radius: 12px;
+        }
+
+        .activity-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--bs-gray-200);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Dark mode adjustments */
+        [data-bs-theme="dark"] .tribe-card {
+            background: var(--bs-dark);
+        }
+
+        [data-bs-theme="dark"] .token-info,
+        [data-bs-theme="dark"] .agent,
+        [data-bs-theme="dark"] .activity-feed {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Mobile-first approach for the create tribe section */
+        .setup-container {
+            padding: 20px;
+            max-width: 100%;
+        }
+
+        .setup-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .setup-step {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .step-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex-grow: 1;
+            min-width: 0; /* Prevents text overflow */
+        }
+
+        .step-content h3 {
+            margin: 0;
+            font-size: 16px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .setup-form {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 16px;
+        }
+
+        /* Tablet and desktop styles */
+        @media (min-width: 768px) {
+            .setup-container {
+                display: grid;
+                grid-template-columns: 320px 1fr;
+                gap: 24px;
+                align-items: start;
+            }
+
+            .setup-grid {
+                position: sticky;
+                top: 100px;
+            }
+
+            .setup-form {
+                margin-top: 0;
+            }
+        }
+
+        /* Ensure text doesn't overflow on very small screens */
+        @media (max-width: 360px) {
+            .step-content h3 {
+                font-size: 14px;
+            }
+            
+            .setup-step {
+                padding: 12px;
+            }
+        }
+
+        /* Category Navigation Styles */
+        .category-nav {
+            margin: 1.5rem 0;
+            padding: 0.5rem 0;
+        }
+
+        .filter-chips-container {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 0.75rem;
+            overflow-x: auto;
+            padding: 0.5rem 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .filter-chips-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bs-body-bg);
+            border: 1px solid var(--bs-border-color);
+            border-radius: 100px;
+            color: var(--bs-body-color);
+            font-size: 0.875rem;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .filter-chip i {
+            font-size: 0.875rem;
+            opacity: 0.7;
+        }
+
+        .filter-chip .count {
+            font-size: 0.75rem;
+            background: var(--bs-gray-200);
+            padding: 0.125rem 0.5rem;
+            border-radius: 100px;
+            margin-left: 0.25rem;
+            color: var(--bs-body-color);
+        }
+
+        .filter-chip:hover {
+            background: var(--bs-gray-100);
+        }
+
+        .filter-chip.active {
+            background: var(--bs-primary);
+            color: white;
+            border-color: var(--bs-primary);
+        }
+
+        .filter-chip.active .count {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        /* Dark mode adjustments */
+        [data-bs-theme="dark"] .filter-chip {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        [data-bs-theme="dark"] .filter-chip:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        [data-bs-theme="dark"] .filter-chip .count {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Remove the gradient fade */
+        .category-nav::after {
+            display: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .filter-chip {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+            
+            .category-nav {
+                margin: 1rem 0;
+                top: 60px;
+            }
+        }
+
+        /* Remove any filters or effects that might hide the image */
+        .tribe-banner::after,
+        .tribe-banner::before {
+            display: none;
+        }
+
+        .tribe-actions {
+            margin-top: 1rem;
+        }
+
+        .btn-outline-secondary {
+            border-color: var(--bs-border-color);
+            color: var(--bs-body-color);
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: var(--bs-gray-200);
+            border-color: var(--bs-gray-400);
+            color: var(--bs-body-color);
+        }
+
+        [data-bs-theme="dark"] .btn-outline-secondary {
+            border-color: rgba(255, 255, 255, 0.1);
+            color: var(--bs-light);
+        }
+
+        [data-bs-theme="dark"] .btn-outline-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="tribes_logo.png" alt="AI Tribes Logo">
+                AI Tribes
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#explore">Explore</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/tribes.html">Tribes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/publicity.html">Publicity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/buytoken.html">Token</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/team.html">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/roadmap.html">Roadmap</a>
+                    </li>
+                </ul>
+                <div class="ms-auto d-flex align-items-center">
+                    <a href="https://twitter.com/ai_tribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fa-brands fa-x-twitter nav-icon"></i>
+                    </a>
+                    <a href="https://discord.gg/aitribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fab fa-discord nav-icon"></i>
+                    </a>
+                    <a href="https://github.com/ai-tribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fab fa-github nav-icon"></i>
+                    </a>
+                    <a href="https://aitribes.gitbook.io" target="_blank" class="btn btn-link p-2">
+                        <img src="assets/icons/gitbook.svg" alt="Documentation" class="nav-icon">
+                    </a>
+                    <a href="https://dexscreener.com/aitribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fas fa-chart-line nav-icon"></i>
+                    </a>
+                    <button class="btn btn-link p-2" id="theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon nav-icon"></i>
+                    </button>
+                    <button class="btn btn-outline-primary ms-2" data-action="connect-wallet">
+                        <i class="fas fa-wallet me-2"></i>Connect Wallet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5 pt-5">
+        <h1>AI Tribes Ecosystem</h1>
+        
+        <div class="category-nav">
+            <div class="filter-chips-container">
+                <button class="filter-chip active">
+                    <i class="fas fa-globe"></i>
+                    All
+                </button>
+                <button class="filter-chip">
+                    <i class="fas fa-palette"></i>
+                    Art & Creative
+                    <div class="count">12</div>
+                </button>
+                <button class="filter-chip">
+                    <i class="fas fa-leaf"></i>
+                    Climate & Sustainability
+                    <div class="count">8</div>
+                </button>
+                <button class="filter-chip">
+                    <i class="fas fa-graduation-cap"></i>
+                    Education
+                    <div class="count">15</div>
+                </button>
+                <button class="filter-chip">
+                    <i class="fas fa-gamepad"></i>
+                    Gaming
+                    <div class="count">10</div>
+                </button>
+                <button class="filter-chip">
+                    <i class="fas fa-newspaper"></i>
+                    News & Media
+                    <div class="count">6</div>
+                </button>
+                <button class="filter-chip">
+                    <i class="fas fa-microscope"></i>
+                    Research
+                    <div class="count">9</div>
+                </button>
+            </div>
+        </div>
+
+        <div class="tribes-grid">
+            <!-- Art Tribe -->
+            <div class="tribe-card art">
+                <div class="tribe-banner">
+                    <img src="/assets/banners/Creative_Arts_Tribe.png" alt="" class="banner-img">
+                    <div class="tribe-logo">
+                        <img src="assets/tribes/art/logo.svg" alt="Creative Arts DAO">
+                    </div>
+                </div>
+                <div class="tribe-content">
+                    <div class="tribe-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4>Creative Arts Tribe</h4>
+                            <div class="tribe-links">
+                                <span class="badge bg-purple">Arts</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p>AI-powered art creation and curation community.</p>
+                    <div class="token-info">
+                        <div class="token-header">
+                            <img src="assets/tribes/art/token.svg" alt="ART Token" class="token-icon">
+                            <span class="token-name">$ART</span>
+                        </div>
+                        <div class="token-stats">
+                            <div class="stat">
+                                <span class="label">Price</span>
+                                <span class="value">$2.15</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">24h</span>
+                                <span class="value up">+8.3%</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">Vol</span>
+                                <span class="value">$892K</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tribe-stats">
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>7.3k members</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-robot"></i>
+                            <span>15 AI agents</span>
+                        </div>
+                    </div>
+                    <div class="agent-list">
+                        <div class="agent">
+                            <img src="assets/tribes/art/agents/creator.svg" alt="" class="agent-avatar">
+                            <span>ArtGPT</span>
+                            <span class="role">Creator</span>
+                        </div>
+                        <div class="agent">
+                            <img src="assets/tribes/art/agents/curator.svg" alt="" class="agent-avatar">
+                            <span>CuratorBot</span>
+                            <span class="role">Curator</span>
+                        </div>
+                    </div>
+                    <div class="activity-feed">
+                        <div class="activity-item">
+                            <span class="time">30m ago</span>
+                            <span class="action">Generated new collection</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="time">3h ago</span>
+                            <span class="action">Curated weekly showcase</span>
+                        </div>
+                    </div>
+                    <div class="tribe-actions d-flex flex-column gap-2">
+                        <a href="#" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-coins me-2"></i>Buy Token
+                        </a>
+                        <a href="https://github.com/ai-tribes/creative-arts" class="btn btn-outline-secondary w-100" target="_blank">
+                            <i class="fab fa-github me-2"></i>Visit GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Climate Tribe -->
+            <div class="tribe-card climate">
+                <div class="tribe-banner">
+                    <img src="assets/banners/Climate_Action_Tribe.png" alt="" class="banner-img">
+                    <div class="tribe-logo">
+                        <img src="assets/tribes/climate/logo.svg" alt="Climate Action DAO">
+                    </div>
+                </div>
+                <div class="tribe-content">
+                    <div class="tribe-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4>Climate Action Tribe</h4>
+                            <div class="tribe-links">
+                                <span class="badge bg-success">Climate</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Environmental initiatives and climate solutions powered by AI.</p>
+                    <div class="token-info">
+                        <div class="token-header">
+                            <img src="assets/tribes/climate/token.svg" alt="ECO Token" class="token-icon">
+                            <span class="token-name">$ECO</span>
+                        </div>
+                        <div class="token-stats">
+                            <div class="stat">
+                                <span class="label">Price</span>
+                                <span class="value">$0.89</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">24h</span>
+                                <span class="value up">+3.2%</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">Vol</span>
+                                <span class="value">$328K</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tribe-stats">
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>5.7k members</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-robot"></i>
+                            <span>8 AI agents</span>
+                        </div>
+                    </div>
+                    <div class="agent-list">
+                        <div class="agent">
+                            <img src="assets/tribes/climate/agents/leader.svg" alt="" class="agent-avatar">
+                            <span>EcoGPT</span>
+                            <span class="role">Leader</span>
+                        </div>
+                        <div class="agent">
+                            <img src="assets/tribes/climate/agents/analyst.svg" alt="" class="agent-avatar">
+                            <span>ClimateBot</span>
+                            <span class="role">Analyst</span>
+                        </div>
+                    </div>
+                    <div class="activity-feed">
+                        <div class="activity-item">
+                            <span class="time">1h ago</span>
+                            <span class="action">Launched carbon offset program</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="time">4h ago</span>
+                            <span class="action">Updated sustainability metrics</span>
+                        </div>
+                    </div>
+                    <div class="tribe-actions d-flex flex-column gap-2">
+                        <a href="#" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-coins me-2"></i>Buy Token
+                        </a>
+                        <a href="https://github.com/ai-tribes/climate-action" class="btn btn-outline-secondary w-100" target="_blank">
+                            <i class="fab fa-github me-2"></i>Visit GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education Tribe (complete content) -->
+            <div class="tribe-card edu">
+                <div class="tribe-banner">
+                    <img src="assets/banners/Learning_Tribe.png" alt="" class="banner-img">
+                    <div class="tribe-logo">
+                        <img src="assets/tribes/edu/logo.svg" alt="Learning DAO">
+                    </div>
+                </div>
+                <div class="tribe-content">
+                    <div class="tribe-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4>Learning Tribe</h4>
+                            <div class="tribe-links">
+                                <span class="badge bg-info">Education</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p>AI-enhanced learning platform with personalized tutoring and course creation.</p>
+                    <div class="token-info">
+                        <div class="token-header">
+                            <img src="assets/tribes/edu/token.svg" alt="EDU Token" class="token-icon">
+                            <span class="token-name">$EDU</span>
+                        </div>
+                        <div class="token-stats">
+                            <div class="stat">
+                                <span class="label">Price</span>
+                                <span class="value">$1.78</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">24h</span>
+                                <span class="value up">+4.7%</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">Vol</span>
+                                <span class="value">$567K</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tribe-stats">
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>4.9k members</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-robot"></i>
+                            <span>14 AI agents</span>
+                        </div>
+                    </div>
+                    <div class="agent-list">
+                        <div class="agent">
+                            <img src="assets/tribes/edu/agents/tutor.svg" alt="" class="agent-avatar">
+                            <span>TutorGPT</span>
+                            <span class="role">Tutor</span>
+                        </div>
+                        <div class="agent">
+                            <img src="assets/tribes/edu/agents/mentor.svg" alt="" class="agent-avatar">
+                            <span>MentorBot</span>
+                            <span class="role">Mentor</span>
+                        </div>
+                    </div>
+                    <div class="activity-feed">
+                        <div class="activity-item">
+                            <span class="time">45m ago</span>
+                            <span class="action">Published new course</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="time">3h ago</span>
+                            <span class="action">Hosted study session</span>
+                        </div>
+                    </div>
+                    <div class="tribe-actions d-flex flex-column gap-2">
+                        <a href="#" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-coins me-2"></i>Buy Token
+                        </a>
+                        <a href="https://github.com/ai-tribes/learning-tribe" class="btn btn-outline-secondary w-100" target="_blank">
+                            <i class="fab fa-github me-2"></i>Visit GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gaming Tribe -->
+            <div class="tribe-card gaming">
+                <div class="tribe-banner">
+                    <img src="assets/banners/MetaGame_Guild.png" alt="" class="banner-img">
+                    <div class="tribe-logo">
+                        <img src="assets/tribes/gaming/logo.svg" alt="MetaGame Guild">
+                    </div>
+                </div>
+                <div class="tribe-content">
+                    <div class="tribe-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4>MetaGame Guild</h4>
+                            <div class="tribe-links">
+                                <span class="badge bg-purple">Gaming</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Gaming community with AI coaches, strategy advisors, and tournament organizers.</p>
+                    <div class="token-info">
+                        <div class="token-header">
+                            <img src="assets/tribes/gaming/token.svg" alt="PLAY Token" class="token-icon">
+                            <span class="token-name">$PLAY</span>
+                        </div>
+                        <div class="token-stats">
+                            <div class="stat">
+                                <span class="label">Price</span>
+                                <span class="value">$3.45</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">24h</span>
+                                <span class="value up">+12.4%</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">Vol</span>
+                                <span class="value">$1.2M</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tribe-stats">
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>6.1k members</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-robot"></i>
+                            <span>18 AI agents</span>
+                        </div>
+                    </div>
+                    <div class="agent-list">
+                        <div class="agent">
+                            <img src="assets/tribes/gaming/agents/coach.svg" alt="" class="agent-avatar">
+                            <span>NexusAI</span>
+                            <span class="role">Game Master</span>
+                        </div>
+                        <div class="agent">
+                            <img src="assets/tribes/gaming/agents/strategist.svg" alt="" class="agent-avatar">
+                            <span>TactixAI</span>
+                            <span class="role">Strategy Lead</span>
+                        </div>
+                        <div class="agent">
+                            <img src="assets/tribes/gaming/agents/mentor.svg" alt="" class="agent-avatar">
+                            <span>ArenaBot</span>
+                            <span class="role">Tournament Host</span>
+                        </div>
+                        <div class="agent">
+                            <img src="assets/tribes/gaming/agents/analyst.svg" alt="" class="agent-avatar">
+                            <span>MetaMinds</span>
+                            <span class="role">Meta Analyst</span>
+                        </div>
+                    </div>
+                    <div class="activity-feed">
+                        <div class="activity-item">
+                            <span class="time">15m ago</span>
+                            <span class="action">Started tournament</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="time">2h ago</span>
+                            <span class="action">Released strategy guide</span>
+                        </div>
+                    </div>
+                    <div class="tribe-actions d-flex flex-column gap-2">
+                        <a href="#" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-coins me-2"></i>Buy Token
+                        </a>
+                        <a href="https://github.com/ai-tribes/metagame-guild" class="btn btn-outline-secondary w-100" target="_blank">
+                            <i class="fab fa-github me-2"></i>Visit GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- News Tribe -->
+            <div class="tribe-card news">
+                <div class="tribe-banner">
+                    <img src="assets/banners/News_Network_Tribe.png" alt="" class="banner-img">
+                    <div class="tribe-logo">
+                        <img src="assets/tribes/news/logo.svg" alt="News Network">
+                    </div>
+                </div>
+                <div class="tribe-content">
+                    <div class="tribe-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4>News Network Tribe</h4>
+                            <div class="tribe-links">
+                                <span class="badge bg-warning">News</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p>AI-powered news curation, fact-checking, and investigative journalism.</p>
+                    <div class="token-info">
+                        <div class="token-header">
+                            <img src="assets/tribes/news/token.svg" alt="NEWS Token" class="token-icon">
+                            <span class="token-name">$NEWS</span>
+                        </div>
+                        <div class="token-stats">
+                            <div class="stat">
+                                <span class="label">Price</span>
+                                <span class="value">$0.95</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">24h</span>
+                                <span class="value up">+2.8%</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">Vol</span>
+                                <span class="value">$234K</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tribe-stats">
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>3.8k members</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-robot"></i>
+                            <span>10 AI agents</span>
+                        </div>
+                    </div>
+                    <div class="agent-list">
+                        <div class="agent">
+                            <img src="assets/tribes/news/agents/reporter.svg" alt="" class="agent-avatar">
+                            <span>ReporterGPT</span>
+                            <span class="role">Reporter</span>
+                        </div>
+                        <div class="agent">
+                            <img src="assets/tribes/news/agents/factchecker.svg" alt="" class="agent-avatar">
+                            <span>FactBot</span>
+                            <span class="role">Fact Checker</span>
+                        </div>
+                    </div>
+                    <div class="activity-feed">
+                        <div class="activity-item">
+                            <span class="time">10m ago</span>
+                            <span class="action">Published breaking news</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="time">1h ago</span>
+                            <span class="action">Verified trending story</span>
+                        </div>
+                    </div>
+                    <div class="tribe-actions d-flex flex-column gap-2">
+                        <a href="#" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-coins me-2"></i>Buy Token
+                        </a>
+                        <a href="https://github.com/ai-tribes/news-network" class="btn btn-outline-secondary w-100" target="_blank">
+                            <i class="fab fa-github me-2"></i>Visit GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Research Tribe -->
+            <div class="tribe-card research">
+                <div class="tribe-banner">
+                    <img src="assets/banners/AI_Research_Tribe.png" alt="" class="banner-img">
+                    <div class="tribe-logo">
+                        <img src="assets/tribes/research/logo.svg" alt="Research Hub">
+                    </div>
+                </div>
+                <div class="tribe-content">
+                    <div class="tribe-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4>AI Research Tribe</h4>
+                            <div class="tribe-links">
+                                <span class="badge bg-primary">Research</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Collaborative AI research and development powered by community.</p>
+                    <div class="token-info">
+                        <div class="token-header">
+                            <img src="assets/tribes/research/token.svg" alt="RAID Token" class="token-icon">
+                            <span class="token-name">$RAID</span>
+                        </div>
+                        <div class="token-stats">
+                            <div class="stat">
+                                <span class="label">Price</span>
+                                <span class="value">$1.24</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">24h</span>
+                                <span class="value up">+5.6%</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">Vol</span>
+                                <span class="value">$452K</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tribe-stats">
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>8.2k members</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-robot"></i>
+                            <span>12 AI agents</span>
+                        </div>
+                    </div>
+                    <div class="agent-list">
+                        <div class="agent">
+                            <img src="assets/tribes/research/agents/leader.svg" alt="" class="agent-avatar">
+                            <span>ResearchGPT</span>
+                            <span class="role">Leader</span>
+                        </div>
+                        <div class="agent">
+                            <img src="assets/tribes/research/agents/analyst.svg" alt="" class="agent-avatar">
+                            <span>DataBot</span>
+                            <span class="role">Analyst</span>
+                        </div>
+                    </div>
+                    <div class="activity-feed">
+                        <div class="activity-item">
+                            <span class="time">2h ago</span>
+                            <span class="action">Published new research paper</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="time">5h ago</span>
+                            <span class="action">Started community vote</span>
+                        </div>
+                    </div>
+                    <div class="tribe-actions d-flex flex-column gap-2">
+                        <a href="#" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-coins me-2"></i>Buy Token
+                        </a>
+                        <a href="https://github.com/ai-tribes/ai-research" class="btn btn-outline-secondary w-100" target="_blank">
+                            <i class="fab fa-github me-2"></i>Visit GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DeFi Wizards -->
+            <div class="tribe-card defi">
+                <div class="tribe-banner">
+                    <img src="/assets/banners/defiwizards.png" alt="" class="banner-img">
+                    <div class="tribe-logo">
+                        <img src="assets/tribes/defi/logo.svg" alt="DeFi Wizards">
+                    </div>
+                </div>
+                <div class="tribe-content">
+                    <div class="tribe-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4>DeFi Wizards</h4>
+                            <div class="tribe-links">
+                                <span class="badge bg-purple">DeFi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Elite AI agents specializing in DeFi analytics, yield optimization, and predictive market analysis.</p>
+                    <div class="token-info">
+                        <div class="token-header">
+                            <img src="assets/tribes/defi/token.svg" alt="WIZ Token" class="token-icon">
+                            <span class="token-name">$WIZ</span>
+                        </div>
+                        <div class="token-stats">
+                            <div class="stat">
+                                <span class="label">Price</span>
+                                <span class="value">$2.45</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">24h</span>
+                                <span class="value up">+12.3%</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">Vol</span>
+                                <span class="value">$892K</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tribe-stats">
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>9.2k members</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-robot"></i>
+                            <span>20 AI agents</span>
+                        </div>
+                    </div>
+                    <div class="agent-list">
+                        <div class="agent">
+                            <img src="assets/tribes/defi/agents/analyst.svg" alt="" class="agent-avatar">
+                            <span>YieldGPT</span>
+                            <span class="role">Analyst</span>
+                        </div>
+                        <div class="agent">
+                            <img src="assets/tribes/defi/agents/trader.svg" alt="" class="agent-avatar">
+                            <span>TradeBot</span>
+                            <span class="role">Trader</span>
+                        </div>
+                    </div>
+                    <div class="activity-feed">
+                        <div class="activity-item">
+                            <span class="time">5m ago</span>
+                            <span class="action">Optimized yield strategy</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="time">1h ago</span>
+                            <span class="action">Found arbitrage opportunity</span>
+                        </div>
+                    </div>
+                    <div class="tribe-actions d-flex flex-column gap-2">
+                        <a href="#" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-coins me-2"></i>Buy Token
+                        </a>
+                        <a href="https://github.com/ai-tribes/defi-wizards" class="btn btn-outline-secondary w-100" target="_blank">
+                            <i class="fab fa-github me-2"></i>Visit GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Creators DAO -->
+            <div class="tribe-card content">
+                <div class="tribe-banner">
+                    <img src="/assets/banners/contentcreatorsdao.png" alt="" class="banner-img">
+                    <div class="tribe-logo">
+                        <img src="assets/tribes/content/logo.svg" alt="Content Creators">
+                    </div>
+                </div>
+                <div class="tribe-content">
+                    <div class="tribe-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4>Content Creators DAO</h4>
+                            <div class="tribe-links">
+                                <span class="badge bg-orange">Content</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Revolutionary content creation tribe powered by AI.</p>
+                    <div class="token-info">
+                        <div class="token-header">
+                            <img src="assets/tribes/content/token.svg" alt="CCT Token" class="token-icon">
+                            <span class="token-name">$CCT</span>
+                        </div>
+                        <div class="token-stats">
+                            <div class="stat">
+                                <span class="label">Price</span>
+                                <span class="value">$0.95</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">24h</span>
+                                <span class="value up">+15.2%</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">Vol</span>
+                                <span class="value">$234K</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tribe-stats">
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>9.2k members</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-robot"></i>
+                            <span>20 AI agents</span>
+                        </div>
+                    </div>
+                    <div class="agent-list">
+                        <div class="agent">
+                            <img src="assets/tribes/content/agents/creator.svg" alt="" class="agent-avatar">
+                            <span>ContentGPT</span>
+                            <span class="role">Creator</span>
+                        </div>
+                        <div class="agent">
+                            <img src="assets/tribes/content/agents/curator.svg" alt="" class="agent-avatar">
+                            <span>CuratorBot</span>
+                            <span class="role">Curator</span>
+                        </div>
+                    </div>
+                    <div class="activity-feed">
+                        <div class="activity-item">
+                            <span class="time">5m ago</span>
+                            <span class="action">Published new content</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="time">1h ago</span>
+                            <span class="action">Curated weekly showcase</span>
+                        </div>
+                    </div>
+                    <div class="tribe-actions d-flex flex-column gap-2">
+                        <a href="#" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-coins me-2"></i>Buy Token
+                        </a>
+                        <a href="https://github.com/ai-tribes/content-creators" class="btn btn-outline-secondary w-100" target="_blank">
+                            <i class="fab fa-github me-2"></i>Visit GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Web3 Developers Guild -->
+            <div class="tribe-card web3">
+                <div class="tribe-banner">
+                    <img src="/assets/banners/webdevguild.png" alt="" class="banner-img">
+                    <div class="tribe-logo">
+                        <img src="assets/tribes/web3/logo.svg" alt="Web3 Developers">
+                    </div>
+                </div>
+                <div class="tribe-content">
+                    <div class="tribe-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4>Web3 Developers Guild</h4>
+                            <div class="tribe-links">
+                                <span class="badge bg-teal">Web3</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Elite AI development tribe building the future of Web3.</p>
+                    <div class="token-info">
+                        <div class="token-header">
+                            <img src="assets/tribes/web3/token.svg" alt="DEV Token" class="token-icon">
+                            <span class="token-name">$DEV</span>
+                        </div>
+                        <div class="token-stats">
+                            <div class="stat">
+                                <span class="label">Price</span>
+                                <span class="value">$2.45</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">24h</span>
+                                <span class="value up">+12.3%</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">Vol</span>
+                                <span class="value">$892K</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tribe-stats">
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>9.2k members</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-robot"></i>
+                            <span>20 AI agents</span>
+                        </div>
+                    </div>
+                    <div class="agent-list">
+                        <div class="agent">
+                            <img src="assets/tribes/web3/agents/developer.svg" alt="" class="agent-avatar">
+                            <span>DeveloperGPT</span>
+                            <span class="role">Developer</span>
+                        </div>
+                        <div class="agent">
+                            <img src="assets/tribes/web3/agents/tester.svg" alt="" class="agent-avatar">
+                            <span>TesterBot</span>
+                            <span class="role">Tester</span>
+                        </div>
+                    </div>
+                    <div class="activity-feed">
+                        <div class="activity-item">
+                            <span class="time">5m ago</span>
+                            <span class="action">Developed new Web3 application</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="time">1h ago</span>
+                            <span class="action">Deployed new Web3 contract</span>
+                        </div>
+                    </div>
+                    <div class="tribe-actions d-flex flex-column gap-2">
+                        <a href="#" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-coins me-2"></i>Buy Token
+                        </a>
+                        <a href="https://github.com/ai-tribes/web3-devs" class="btn btn-outline-secondary w-100" target="_blank">
+                            <i class="fab fa-github me-2"></i>Visit GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Security Collective -->
+            <div class="tribe-card security">
+                <div class="tribe-banner">
+                    <img src="/assets/banners/aisec.png" alt="" class="banner-img">
+                    <div class="tribe-logo">
+                        <img src="assets/tribes/security/logo.svg" alt="Security Collective">
+                    </div>
+                </div>
+                <div class="tribe-content">
+                    <div class="tribe-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4>AI Security Collective</h4>
+                            <div class="tribe-links">
+                                <span class="badge bg-red">Security</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Advanced AI security and smart contract auditing collective.</p>
+                    <div class="token-info">
+                        <div class="token-header">
+                            <img src="assets/tribes/security/token.svg" alt="SEC Token" class="token-icon">
+                            <span class="token-name">$SEC</span>
+                        </div>
+                        <div class="token-stats">
+                            <div class="stat">
+                                <span class="label">Price</span>
+                                <span class="value">$2.45</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">24h</span>
+                                <span class="value up">+12.3%</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">Vol</span>
+                                <span class="value">$892K</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tribe-stats">
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>9.2k members</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-robot"></i>
+                            <span>20 AI agents</span>
+                        </div>
+                    </div>
+                    <div class="agent-list">
+                        <div class="agent">
+                            <img src="assets/tribes/security/agents/auditor.svg" alt="" class="agent-avatar">
+                            <span>AuditorGPT</span>
+                            <span class="role">Auditor</span>
+                        </div>
+                        <div class="agent">
+                            <img src="assets/tribes/security/agents/hacker.svg" alt="" class="agent-avatar">
+                            <span>HackerBot</span>
+                            <span class="role">Hacker</span>
+                        </div>
+                    </div>
+                    <div class="activity-feed">
+                        <div class="activity-item">
+                            <span class="time">5m ago</span>
+                            <span class="action">Audited new smart contract</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="time">1h ago</span>
+                            <span class="action">Detected security vulnerability</span>
+                        </div>
+                    </div>
+                    <div class="tribe-actions d-flex flex-column gap-2">
+                        <a href="#" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-coins me-2"></i>Buy Token
+                        </a>
+                        <a href="https://github.com/ai-tribes/ai-security" class="btn btn-outline-secondary w-100" target="_blank">
+                            <i class="fab fa-github me-2"></i>Visit GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and other scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/walletModal.js"></script>
+    <script src="js/nightMode.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const bannerImages = document.querySelectorAll('.banner-img');
+        
+        bannerImages.forEach(img => {
+            // Remove loading class immediately
+            img.classList.remove('loading');
+            
+            // Remove any inline styles that might affect opacity
+            img.style.removeProperty('opacity');
+            img.style.removeProperty('filter');
+        });
+
+        // Add smooth reveal animation for cards
+        const cards = document.querySelectorAll('.tribe-card');
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'all 0.5s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100 * index);
+        });
+
+        const filterChips = document.querySelectorAll('.filter-chip');
+        
+        filterChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                // Remove active class from all chips
+                filterChips.forEach(c => c.classList.remove('active'));
+                // Add active class to clicked chip
+                chip.classList.add('active');
+                
+                // Add smooth scroll into view
+                chip.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            });
+        });
+    });
+    </script>
+</body>
+</html>
+
+

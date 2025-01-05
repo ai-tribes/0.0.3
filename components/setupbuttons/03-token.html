@@ -1,0 +1,312 @@
+<div class="section-content">
+    <h4 class="mb-4">Create Your Token</h4>
+    
+    <form id="tokenForm">
+        <!-- Basic Token Info -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="mb-3">Token Details</h5>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Token Name</label>
+                        <input type="text" class="form-control" name="tokenName" required 
+                            placeholder="e.g., TribeToken">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Token Symbol</label>
+                        <input type="text" class="form-control" name="tokenSymbol" required 
+                            placeholder="3-4 characters (e.g., TRB)" maxlength="4">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Token Supply -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="mb-3">Supply & Distribution</h5>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Initial Supply</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" name="initialSupply" required>
+                            <span class="input-group-text">tokens</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Supply Type</label>
+                        <select class="form-select" name="supplyType" required>
+                            <option value="fixed">Fixed (No more tokens can be minted)</option>
+                            <option value="capped">Capped (Limited future minting)</option>
+                            <option value="unlimited">Unlimited (Continuous minting)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Token Networks -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="mb-3">Blockchain Networks</h5>
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="alert alert-info border-info bg-info-subtle mb-3">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Multi-chain deployment increases your tribe's reach and liquidity options
+                        </div>
+                        <div class="network-distribution">
+                            <!-- Ethereum -->
+                            <div class="form-check d-flex align-items-center mb-3">
+                                <input class="form-check-input me-2" type="checkbox" name="networks" value="eth" checked 
+                                    onchange="updateDistributionInputs()">
+                                <label class="form-check-label flex-grow-1 d-flex align-items-center">
+                                    <i class="fab fa-ethereum me-2"></i>Ethereum (ERC-20)
+                                    <span class="badge bg-success ms-2">Popular</span>
+                                    <small class="text-muted ms-2">Best for DeFi integration</small>
+                                </label>
+                                <div class="distribution-input ms-3" style="width: 120px;">
+                                    <div class="input-group input-group-sm">
+                                        <input type="number" class="form-control" name="eth-distribution" 
+                                            value="100" min="1" max="100" onchange="validateDistribution()">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Solana -->
+                            <div class="form-check d-flex align-items-center mb-3">
+                                <input class="form-check-input me-2" type="checkbox" name="networks" value="sol" 
+                                    onchange="updateDistributionInputs()">
+                                <label class="form-check-label flex-grow-1 d-flex align-items-center">
+                                    <i class="fas fa-sun me-2"></i>Solana (SPL)
+                                    <span class="badge bg-primary ms-2">Fast & Cheap</span>
+                                    <small class="text-muted ms-2">Great for NFTs and gaming</small>
+                                </label>
+                                <div class="distribution-input ms-3" style="width: 120px;">
+                                    <div class="input-group input-group-sm">
+                                        <input type="number" class="form-control" name="sol-distribution" 
+                                            value="0" min="1" max="100" disabled onchange="validateDistribution()">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bitcoin -->
+                            <div class="form-check d-flex align-items-center mb-3">
+                                <input class="form-check-input me-2" type="checkbox" name="networks" value="btc" 
+                                    onchange="updateDistributionInputs()">
+                                <label class="form-check-label flex-grow-1 d-flex align-items-center">
+                                    <i class="fab fa-bitcoin me-2"></i>Bitcoin (BRC-20)
+                                    <span class="badge bg-warning ms-2">Emerging</span>
+                                    <small class="text-muted ms-2">Growing ecosystem, strong brand</small>
+                                </label>
+                                <div class="distribution-input ms-3" style="width: 120px;">
+                                    <div class="input-group input-group-sm">
+                                        <input type="number" class="form-control" name="btc-distribution" 
+                                            value="0" min="1" max="100" disabled onchange="validateDistribution()">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sui -->
+                            <div class="form-check d-flex align-items-center mb-3">
+                                <input class="form-check-input me-2" type="checkbox" name="networks" value="sui" 
+                                    onchange="updateDistributionInputs()">
+                                <label class="form-check-label flex-grow-1 d-flex align-items-center">
+                                    <i class="fas fa-cube me-2"></i>Sui
+                                    <span class="badge bg-info ms-2">New</span>
+                                    <small class="text-muted ms-2">Modern smart contracts, high performance</small>
+                                </label>
+                                <div class="distribution-input ms-3" style="width: 120px;">
+                                    <div class="input-group input-group-sm">
+                                        <input type="number" class="form-control" name="sui-distribution" 
+                                            value="0" min="1" max="100" disabled onchange="validateDistribution()">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Avalanche -->
+                            <div class="form-check d-flex align-items-center mb-3">
+                                <input class="form-check-input me-2" type="checkbox" name="networks" value="avax" 
+                                    onchange="updateDistributionInputs()">
+                                <label class="form-check-label flex-grow-1 d-flex align-items-center">
+                                    <i class="fas fa-mountain me-2"></i>Avalanche
+                                    <span class="badge bg-danger ms-2">Fast</span>
+                                    <small class="text-muted ms-2">EVM compatible, rapid finality</small>
+                                </label>
+                                <div class="distribution-input ms-3" style="width: 120px;">
+                                    <div class="input-group input-group-sm">
+                                        <input type="number" class="form-control" name="avax-distribution" 
+                                            value="0" min="1" max="100" disabled onchange="validateDistribution()">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- BSV -->
+                            <div class="form-check d-flex align-items-center mb-3">
+                                <input class="form-check-input me-2" type="checkbox" name="networks" value="bsv" 
+                                    onchange="updateDistributionInputs()">
+                                <label class="form-check-label flex-grow-1 d-flex align-items-center">
+                                    <i class="fab fa-bitcoin me-2"></i>BSV (STAS)
+                                    <span class="badge bg-secondary ms-2">Enterprise</span>
+                                    <small class="text-muted ms-2">Unlimited scale, micropayments</small>
+                                </label>
+                                <div class="distribution-input ms-3" style="width: 120px;">
+                                    <div class="input-group input-group-sm">
+                                        <input type="number" class="form-control" name="bsv-distribution" 
+                                            value="0" min="1" max="100" disabled onchange="validateDistribution()">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="distribution-total mt-3 text-end">
+                            <small class="text-muted">Total Distribution: </small>
+                            <span id="distributionTotal" class="fw-bold">100%</span>
+                            <div class="invalid-feedback">Distribution must total 100%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Token Economics -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="mb-3">Token Economics</h5>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Transaction Fee</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" name="transactionFee" min="0" max="10" step="0.1">
+                            <span class="input-group-text">%</span>
+                        </div>
+                        <div class="form-text">Optional: Fee on each transfer (0-10%)</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Fee Distribution</label>
+                        <select class="form-select" name="feeDistribution" onchange="toggleTreasuryConfig(this.value)">
+                            <option value="burn">Burn</option>
+                            <option value="treasury">Treasury</option>
+                            <option value="dividend">Dividend (Airdrop to token holders)</option>
+                        </select>
+                    </div>
+                    <div id="burnWarning" class="col-12 d-none">
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            <strong>Caution:</strong> High burn rates can lead to token illiquidity. Consider using a combination 
+                            of burn and treasury/dividend to maintain healthy token economics.
+                        </div>
+                    </div>
+                    <div id="treasuryConfig" class="col-12 d-none">
+                        <div class="card border-light">
+                            <div class="card-body">
+                                <h6 class="mb-3">Treasury Configuration</h6>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Treasury Type</label>
+                                        <select class="form-select" name="treasuryType">
+                                            <option value="multisig">Multi-signature</option>
+                                            <option value="single">Single Signature</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Required Signatures</label>
+                                        <select class="form-select" name="requiredSignatures">
+                                            <option value="2">2 of 3</option>
+                                            <option value="3">3 of 5</option>
+                                            <option value="4">4 of 7</option>
+                                            <option value="custom">Custom Configuration</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Signer Addresses</label>
+                                        <div id="signersList">
+                                            <div class="input-group mb-2">
+                                                <input type="text" class="form-control" name="signers[]" 
+                                                    placeholder="Enter signer wallet address">
+                                                <button type="button" class="btn btn-outline-primary" onclick="addSigner()">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Features -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="mb-3">Advanced Features</h5>
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="pausable">
+                            <label class="form-check-label">Pausable</label>
+                            <div class="form-text">Ability to pause token transfers in emergency</div>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="burnable">
+                            <label class="form-check-label">Burnable</label>
+                            <div class="form-text">Allow tokens to be permanently destroyed</div>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="mintable">
+                            <label class="form-check-label">Mintable</label>
+                            <div class="form-text">Allow new tokens to be created later</div>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="freezable">
+                            <label class="form-check-label">Freezable</label>
+                            <div class="form-text">Ability to freeze specific wallet balances</div>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="whitelist">
+                            <label class="form-check-label">Whitelist</label>
+                            <div class="form-text">Restrict transfers to approved addresses only</div>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="blacklist">
+                            <label class="form-check-label">Blacklist</label>
+                            <div class="form-text">Block specific addresses from token transactions</div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="alert alert-info">
+                            <i class="fas fa-shield-alt me-2"></i>
+                            These security features give you more control but may require additional governance considerations.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-outline-primary" onclick="generateRandomToken()">
+                <i class="fas fa-magic me-2"></i>Generate Random
+            </button>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-check me-2"></i>Save & Continue
+            </button>
+        </div>
+    </form>
+</div>
+
+<script>
+// Add any token-specific validation or UI enhancement logic here
+document.getElementById('tokenForm')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Add validation and submission logic
+    markStepCompleted('03');
+});
+</script> 

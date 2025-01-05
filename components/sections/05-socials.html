@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="section-content">
+        <h4 class="mb-4">Setup Social Media</h4>
+        
+        <!-- Primary Socials -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Primary Platforms</h5>
+            </div>
+            <div class="card-body">
+                <!-- X/Twitter -->
+                <div class="social-connect-item mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <i class="fab fa-x-twitter fa-lg me-3"></i>
+                            <div>
+                                <h6 class="mb-0">X (Twitter)</h6>
+                                <small class="text-muted">Connect your tribe's X account</small>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="connectSocial('twitter')">
+                            <i class="fas fa-plug me-2"></i>Connect
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Discord -->
+                <div class="social-connect-item mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <i class="fab fa-discord fa-lg me-3"></i>
+                            <div>
+                                <h6 class="mb-0">Discord</h6>
+                                <small class="text-muted">Setup your tribe's Discord server</small>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="connectSocial('discord')">
+                            <i class="fas fa-plug me-2"></i>Connect
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Telegram -->
+                <div class="social-connect-item mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <i class="fab fa-telegram fa-lg me-3"></i>
+                            <div>
+                                <h6 class="mb-0">Telegram</h6>
+                                <small class="text-muted">Setup your tribe's Telegram group</small>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-primary" onclick="createTelegramGroup()">
+                                <i class="fas fa-plus me-2"></i>Create Group
+                            </button>
+                            <button class="btn btn-primary" onclick="connectSocial('telegram')">
+                                <i class="fas fa-plug me-2"></i>Connect Bot
+                            </button>
+                        </div>
+                    </div>
+                    <div class="telegram-settings mt-3 d-none">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Bot Token</label>
+                                <input type="text" class="form-control" placeholder="Enter bot token">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Group Type</label>
+                                <select class="form-select">
+                                    <option value="public">Public Group</option>
+                                    <option value="private">Private Group</option>
+                                    <option value="channel">Channel</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Platforms -->
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Additional Platforms</h5>
+                <button class="btn btn-outline-primary btn-sm" onclick="showAllPlatforms()">
+                    <i class="fas fa-plus me-2"></i>Add More
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <!-- Instagram -->
+                    <div class="col-md-6">
+                        <div class="social-platform-card">
+                            <i class="fab fa-instagram fa-lg me-2"></i>
+                            Instagram
+                            <button class="btn btn-sm btn-outline-secondary ms-auto">Add</button>
+                        </div>
+                    </div>
+
+                    <!-- YouTube -->
+                    <div class="col-md-6">
+                        <div class="social-platform-card">
+                            <i class="fab fa-youtube fa-lg me-2"></i>
+                            YouTube
+                            <button class="btn btn-sm btn-outline-secondary ms-auto">Add</button>
+                        </div>
+                    </div>
+
+                    <!-- TikTok -->
+                    <div class="col-md-6">
+                        <div class="social-platform-card">
+                            <i class="fab fa-tiktok fa-lg me-2"></i>
+                            TikTok
+                            <button class="btn btn-sm btn-outline-secondary ms-auto">Add</button>
+                        </div>
+                    </div>
+
+                    <!-- LinkedIn -->
+                    <div class="col-md-6">
+                        <div class="social-platform-card">
+                            <i class="fab fa-linkedin fa-lg me-2"></i>
+                            LinkedIn
+                            <button class="btn btn-sm btn-outline-secondary ms-auto">Add</button>
+                        </div>
+                    </div>
+
+                    <!-- Reddit -->
+                    <div class="col-md-6">
+                        <div class="social-platform-card">
+                            <i class="fab fa-reddit fa-lg me-2"></i>
+                            Reddit
+                            <button class="btn btn-sm btn-outline-secondary ms-auto">Add</button>
+                        </div>
+                    </div>
+
+                    <!-- Medium -->
+                    <div class="col-md-6">
+                        <div class="social-platform-card">
+                            <i class="fab fa-medium fa-lg me-2"></i>
+                            Medium
+                            <button class="btn btn-sm btn-outline-secondary ms-auto">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .social-platform-card {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+        }
+    </style>
+
+    <script>
+        function connectSocial(platform) {
+            // Implement social connection logic
+            console.log(`Connecting to ${platform}...`);
+        }
+
+        function showAllPlatforms() {
+            // Show modal with all available platforms
+            console.log('Showing all platforms...');
+        }
+    </script>
+</body>
+</html> 

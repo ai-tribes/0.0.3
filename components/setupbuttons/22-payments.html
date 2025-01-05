@@ -1,0 +1,122 @@
+<div class="section-content">
+    <h4 class="mb-4">Configure Payments</h4>
+    <form id="paymentsForm">
+        <div class="mb-4">
+            <h6 class="mb-3">Payment Settings</h6>
+            <div class="alert alert-info">
+                <p class="mb-0">Configure payment methods and processing options for your tribe's transactions.</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Payment Processors -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-credit-card fa-2x text-primary"></i>
+                            <h6 class="mb-0 ms-2">Payment Processors</h6>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="enableStripe">
+                                <label class="form-check-label">Enable Stripe</label>
+                            </div>
+                            <div id="stripeSettings" class="d-none">
+                                <input type="text" class="form-control mb-2" placeholder="Stripe Public Key">
+                                <input type="password" class="form-control mb-2" placeholder="Stripe Secret Key">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="enablePayPal">
+                                <label class="form-check-label">Enable PayPal</label>
+                            </div>
+                            <div id="paypalSettings" class="d-none">
+                                <input type="text" class="form-control mb-2" placeholder="PayPal Client ID">
+                                <input type="password" class="form-control" placeholder="PayPal Secret">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Crypto Payments -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fab fa-bitcoin fa-2x text-primary"></i>
+                            <h6 class="mb-0 ms-2">Crypto Payments</h6>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="enableCrypto">
+                                <label class="form-check-label">Enable Crypto Payments</label>
+                            </div>
+                            <div id="cryptoSettings" class="d-none">
+                                <select class="form-select mb-2" multiple>
+                                    <option value="eth">Ethereum (ETH)</option>
+                                    <option value="usdc">USD Coin (USDC)</option>
+                                    <option value="usdt">Tether (USDT)</option>
+                                    <option value="dai">DAI</option>
+                                </select>
+                                <input type="text" class="form-control" placeholder="Merchant Wallet Address">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mt-1">
+            <!-- Payment Settings -->
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-cog fa-2x text-primary"></i>
+                            <h6 class="mb-0 ms-2">General Settings</h6>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="autoPayouts" checked>
+                                    <label class="form-check-label">Automatic Payouts</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="refunds" checked>
+                                    <label class="form-check-label">Allow Refunds</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="subscriptions">
+                                    <label class="form-check-label">Enable Subscriptions</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="invoicing">
+                                    <label class="form-check-label">Enable Invoicing</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="taxCollection">
+                                    <label class="form-check-label">Tax Collection</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="paymentReports">
+                                    <label class="form-check-label">Payment Reports</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-4">
+            Save & Continue
+        </button>
+    </form>
+</div> 

@@ -1,0 +1,414 @@
+<div id="nameTribe" class="section mb-3">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="h5">Name Your Tribe</h2>
+            <form onsubmit="return handleNameTribeSubmit(event)">
+                <!-- Essential Fields -->
+                <div class="mb-3">
+                    <label class="form-label">Tribe Name</label>
+                    <input type="text" class="form-control" id="tribeName" 
+                           placeholder="Enter your tribe's name" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Brief Description</label>
+                    <textarea class="form-control" id="tribeDescription" 
+                             placeholder="What's your tribe about?" rows="2" required></textarea>
+                </div>
+
+                <!-- Optional Fields Toggle -->
+                <div class="mb-3">
+                    <button type="button" class="btn btn-link btn-sm p-0" 
+                            onclick="toggleMoreDetails()">
+                        + Add more details (optional)
+                    </button>
+                </div>
+
+                <!-- Extended Optional Fields -->
+                <div id="moreDetails" class="d-none">
+                    <!-- Basic Info -->
+                    <div class="mb-3">
+                        <label class="form-label">Category</label>
+                        <select class="form-control" id="tribeCategory">
+                            <option value="">Select a category (optional)</option>
+                            <option value="ai-research">AI Research</option>
+                            <option value="content-creation">Content Creation</option>
+                            <option value="development">Development</option>
+                            <option value="gaming">Gaming</option>
+                            <option value="education">Education</option>
+                            <option value="investment">Investment</option>
+                            <option value="social">Social</option>
+                            <option value="dao">DAO</option>
+                            <option value="defi">DeFi</option>
+                            <option value="nft">NFT</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- Detailed Description -->
+                    <div class="mb-3">
+                        <label class="form-label">Full Description</label>
+                        <textarea class="form-control" id="tribeLongDescription" 
+                                 placeholder="Tell us more about your tribe's mission and goals" rows="4"></textarea>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="mb-3">
+                        <label class="form-label">Tags</label>
+                        <input type="text" class="form-control" id="tribeTags" 
+                               placeholder="ai, web3, community, etc (comma separated)">
+                    </div>
+
+                    <!-- Tribe Settings -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Tribe Settings</label>
+                        
+                        <!-- Membership -->
+                        <div class="mb-3">
+                            <label class="form-label">Membership Type</label>
+                            <select class="form-control" id="membershipType">
+                                <option value="open">Open (Anyone can join)</option>
+                                <option value="application">Application Required</option>
+                                <option value="invite">Invite Only</option>
+                                <option value="token">Token Gated</option>
+                            </select>
+                        </div>
+
+                        <!-- Governance -->
+                        <div class="mb-3">
+                            <label class="form-label">Governance Model</label>
+                            <select class="form-control" id="governanceModel">
+                                <option value="community">Community Driven</option>
+                                <option value="council">Council</option>
+                                <option value="dao">DAO</option>
+                                <option value="hybrid">Hybrid</option>
+                            </select>
+                        </div>
+
+                        <!-- Privacy -->
+                        <div class="mb-3">
+                            <label class="form-label">Privacy Settings</label>
+                            <select class="form-control" id="privacyLevel">
+                                <option value="public">Public</option>
+                                <option value="unlisted">Unlisted</option>
+                                <option value="private">Private</option>
+                            </select>
+                        </div>
+
+                        <!-- Features -->
+                        <div class="mb-3">
+                            <label class="form-label">Enable Features</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="enableTokens">
+                                <label class="form-check-label" for="enableTokens">
+                                    Tribe Tokens
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="enableNFTs">
+                                <label class="form-check-label" for="enableNFTs">
+                                    NFT Membership
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="enableTreasury">
+                                <label class="form-check-label" for="enableTreasury">
+                                    Tribe Treasury
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="enableVoting">
+                                <label class="form-check-label" for="enableVoting">
+                                    Governance Voting
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="enableAI">
+                                <label class="form-check-label" for="enableAI">
+                                    AI Features
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Add these to the Tribe Settings section -->
+                        <div class="mb-3">
+                            <label class="form-label">Community Culture</label>
+                            <select class="form-control" id="tribeCulture">
+                                <option value="collaborative">Collaborative & Open</option>
+                                <option value="competitive">Competitive & Achievement-Focused</option>
+                                <option value="learning">Learning & Growth</option>
+                                <option value="creative">Creative & Experimental</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">AI Integration Level</label>
+                            <select class="form-control" id="aiIntegration">
+                                <option value="basic">Basic (AI Chatbot)</option>
+                                <option value="advanced">Advanced (Multiple AI Agents)</option>
+                                <option value="full">Full (AI-First Community)</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Revenue Model</label>
+                            <select class="form-control" id="revenueModel">
+                                <option value="free">Free Community</option>
+                                <option value="subscription">Subscription Based</option>
+                                <option value="tokenized">Token Economy</option>
+                                <option value="hybrid">Hybrid Model</option>
+                            </select>
+                        </div>
+
+                        <!-- Token Section -->
+                        <div class="mb-4">
+                            <label class="form-label">Give Your Tribe a Token</label>
+                            <p class="text-muted small mb-3">
+                                Tokens can help incentivize participation and enable unique features in your tribe.
+                            </p>
+
+                            <!-- Initial Token Choice -->
+                            <div class="mb-3">
+                                <select class="form-control" id="tokenType" onchange="toggleTokenOptions(this.value)">
+                                    <option value="">Do you want to create a token?</option>
+                                    <option value="utility">Yes - Create a Utility Token</option>
+                                    <option value="governance">Yes - Create a Governance Token</option>
+                                    <option value="reward">Yes - Create a Reward Token</option>
+                                    <option value="multi">Yes - Create Multiple Token Types</option>
+                                    <option value="no">No - Skip Token Creation</option>
+                                </select>
+                            </div>
+
+                            <!-- Token Configuration -->
+                            <div id="tokenConfig" class="d-none">
+                                <!-- Quick Setup Templates -->
+                                <div class="mb-3">
+                                    <label class="form-label">Quick Setup Template</label>
+                                    <select class="form-control" id="tokenTemplate" onchange="applyTokenTemplate(this.value)">
+                                        <option value="">Choose a template (optional)</option>
+                                        <optgroup label="BSV Templates">
+                                            <option value="bsvRewards">BSV Rewards System</option>
+                                            <option value="bsvContent">Content Monetization</option>
+                                        </optgroup>
+                                        <optgroup label="Other Templates">
+                                            <option value="dao">DAO Governance Token</option>
+                                            <option value="community">Community Rewards Token</option>
+                                            <option value="membership">Membership Access Token</option>
+                                        </optgroup>
+                                    </select>
+                                    <div class="form-text">Templates provide pre-configured settings for common use cases</div>
+                                </div>
+
+                                <!-- Distribution Method -->
+                                <div class="mb-3">
+                                    <label class="form-label">How will tokens be distributed?</label>
+                                    <select class="form-control" id="tokenDistribution">
+                                        <option value="fair">Fair Launch (Equal Distribution)</option>
+                                        <option value="airdrop">Community Airdrop</option>
+                                        <option value="mining">Earn Through Participation</option>
+                                        <option value="sale">Initial Token Sale</option>
+                                    </select>
+                                </div>
+
+                                <!-- Token Powers -->
+                                <div class="mb-3">
+                                    <label class="form-label">What can members do with tokens?</label>
+                                    <div class="token-powers">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="utilityAccess">
+                                            <label class="form-check-label" for="utilityAccess">
+                                                Access exclusive areas
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="utilityGovernance">
+                                            <label class="form-check-label" for="utilityGovernance">
+                                                Vote on decisions
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="utilityRewards">
+                                            <label class="form-check-label" for="utilityRewards">
+                                                Earn rewards
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="utilityStaking">
+                                            <label class="form-check-label" for="utilityStaking">
+                                                Stake for benefits
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Network Selection -->
+                                <div class="mb-3">
+                                    <label class="form-label">Which blockchain network?</label>
+                                    <select class="form-control" id="tokenNetwork" onchange="handleNetworkChange(this.value)">
+                                        <option value="bsv">BitcoinSV (Recommended - Scalable)</option>
+                                        <option value="polygon">Polygon (Low Fees)</option>
+                                        <option value="ethereum">Ethereum (Most Popular)</option>
+                                        <option value="optimism">Optimism (Fast & Cheap)</option>
+                                        <option value="arbitrum">Arbitrum (Fast & Cheap)</option>
+                                        <option value="bsc">BSC (Low Fees)</option>
+                                    </select>
+                                    <div class="form-text">Choose the blockchain where your token will live</div>
+                                </div>
+
+                                <!-- Wallet Selection -->
+                                <div class="mb-3">
+                                    <label class="form-label">Connect Wallet</label>
+                                    <select class="form-control" id="tokenWallet" onchange="handleWalletSelection(this.value)">
+                                        <option value="">Select a wallet</option>
+                                        <optgroup label="BitcoinSV Wallets">
+                                            <option value="handcash">HandCash (Recommended)</option>
+                                            <option value="yours">Yours Wallet</option>
+                                        </optgroup>
+                                        <optgroup label="Other Wallets">
+                                            <option value="metamask">MetaMask (ETH/Polygon)</option>
+                                            <option value="walletconnect">WalletConnect (Multiple)</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+
+                                <!-- BSV Features (shows when BSV is selected) -->
+                                <div id="bsvFeatures" class="d-none">
+                                    <div class="mb-3">
+                                        <label class="form-label">BSV-Specific Features</label>
+                                        <div class="token-powers">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="featureMicropayments">
+                                                <label class="form-check-label" for="featureMicropayments">
+                                                    Micropayments
+                                                    <i class="fas fa-info-circle" data-bs-toggle="tooltip" 
+                                                       title="Enable tiny payments for granular content access"></i>
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="featureDataStorage">
+                                                <label class="form-check-label" for="featureDataStorage">
+                                                    On-chain Data Storage
+                                                    <i class="fas fa-info-circle" data-bs-toggle="tooltip" 
+                                                       title="Store data directly on the BSV blockchain"></i>
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="featureMetadata">
+                                                <label class="form-check-label" for="featureMetadata">
+                                                    Token Metadata
+                                                    <i class="fas fa-info-circle" data-bs-toggle="tooltip" 
+                                                       title="Attach metadata to tokens for rich content"></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Micropayment Settings -->
+                                    <div id="micropaymentConfig" class="mb-3">
+                                        <label class="form-label">Micropayment Settings</label>
+                                        <div class="micropayment-config">
+                                            <div class="mb-3">
+                                                <label class="form-label">Minimum Payment (BSV)</label>
+                                                <input type="number" class="form-control" id="minPayment" 
+                                                       step="0.00001" min="0.00001" value="0.00001">
+                                            </div>
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" type="checkbox" id="autoPayment">
+                                                <label class="form-check-label" for="autoPayment">
+                                                    Enable Auto-Payments
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="tipsEnabled">
+                                                <label class="form-check-label" for="tipsEnabled">
+                                                    Enable Tipping
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Advanced Options Toggle -->
+                                <button type="button" class="btn btn-link btn-sm p-0 mb-3" onclick="toggleAdvancedTokenOptions()">
+                                    + Show Advanced Options
+                                </button>
+
+                                <!-- Advanced Options -->
+                                <div id="advancedTokenOptions" class="d-none">
+                                    <div class="mb-3">
+                                        <label class="form-label">Token Supply Model</label>
+                                        <select class="form-control" id="tokenEconomics">
+                                            <option value="fixed">Fixed Supply (Like Bitcoin)</option>
+                                            <option value="inflationary">Inflationary (New tokens over time)</option>
+                                            <option value="deflationary">Deflationary (Tokens are burned)</option>
+                                            <option value="dynamic">Dynamic (Adjusts based on usage)</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Advanced Features</label>
+                                        <div class="advanced-features">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="featureVesting">
+                                                <label class="form-check-label" for="featureVesting">
+                                                    Vesting Schedule
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="featureMultisig">
+                                                <label class="form-check-label" for="featureMultisig">
+                                                    Multi-Signature Treasury
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="featureUpgradeable">
+                                                <label class="form-check-label" for="featureUpgradeable">
+                                                    Upgradeable Contract
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Add to Advanced Features -->
+                                    <div class="mb-3">
+                                        <label class="form-label">BSV Features</label>
+                                        <div class="advanced-features">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="featureMicropayments">
+                                                <label class="form-check-label" for="featureMicropayments">
+                                                    Micropayments
+                                                    <i class="fas fa-info-circle" data-bs-toggle="tooltip" 
+                                                       title="Enable tiny payments for granular content access"></i>
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="featureDataStorage">
+                                                <label class="form-check-label" for="featureDataStorage">
+                                                    On-chain Data Storage
+                                                    <i class="fas fa-info-circle" data-bs-toggle="tooltip" 
+                                                       title="Store data directly on the BSV blockchain"></i>
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="featureMetadata">
+                                                <label class="form-check-label" for="featureMetadata">
+                                                    Token Metadata
+                                                    <i class="fas fa-info-circle" data-bs-toggle="tooltip" 
+                                                       title="Attach metadata to tokens for rich content"></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-custom btn-sm">Save Tribe Details</button>
+            </form>
+            <div id="nameStatus" class="alert alert-info d-none mt-2">
+                Status will appear here
+            </div>
+        </div>
+    </div>
+</div> 

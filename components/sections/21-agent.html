@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Agent #1 - AI Tribes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../sections/sections.css" rel="stylesheet">
+</head>
+<body>
+    <div class="section-container">
+        <div class="section-header">
+            <h1 class="section-title">Add Primary AI Agent</h1>
+            <p class="section-description">Configure your tribe's first AI agent</p>
+        </div>
+
+        <div class="connection-card mb-4">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-robot fa-2x text-primary me-3"></i>
+                    <div>
+                        <h5 class="mb-1">AI Agent Configuration</h5>
+                        <p class="text-muted mb-0">Set up your primary AI agent's capabilities</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form>
+            <!-- Basic Agent Info -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="mb-3">Basic Information</h5>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Agent Name</label>
+                            <input type="text" class="form-control" name="agentName" placeholder="e.g., Alpha" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Role</label>
+                            <select class="form-select" name="agentRole" required>
+                                <option value="">Select primary role...</option>
+                                <option value="community">Community Manager</option>
+                                <option value="support">Support Specialist</option>
+                                <option value="content">Content Creator</option>
+                                <option value="analyst">Data Analyst</option>
+                                <option value="sales">Token Sales Manager</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" name="agentDescription" rows="2" placeholder="Describe this agent's primary responsibilities"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Model Configuration -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="mb-3">AI Model Settings</h5>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Base Model</label>
+                            <select class="form-select" name="baseModel" required>
+                                <option value="gpt4">GPT-4</option>
+                                <option value="gpt35">GPT-3.5 Turbo</option>
+                                <option value="claude">Claude 2</option>
+                                <option value="palm">PaLM</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Personality Type</label>
+                            <select class="form-select" name="personality">
+                                <option value="professional">Professional & Formal</option>
+                                <option value="friendly">Friendly & Casual</option>
+                                <option value="technical">Technical Expert</option>
+                                <option value="supportive">Supportive & Helpful</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" name="useCustomInstructions" checked>
+                                <label class="form-check-label">Use Custom Instructions</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Custom Instructions</label>
+                            <textarea class="form-control" name="customInstructions" rows="3" placeholder="Specific instructions for how this agent should behave and interact"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Capabilities -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="mb-3">Agent Capabilities</h5>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" name="canPost" checked>
+                                <label class="form-check-label">Can Post Content</label>
+                            </div>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" name="canReply" checked>
+                                <label class="form-check-label">Can Reply to Messages</label>
+                            </div>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" name="canDM" checked>
+                                <label class="form-check-label">Can Send DMs</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" name="canModerate" checked>
+                                <label class="form-check-label">Can Moderate Content</label>
+                            </div>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" name="canAnalyze">
+                                <label class="form-check-label">Can Analyze Data</label>
+                            </div>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" name="canManageTokens">
+                                <label class="form-check-label">Can Manage Tokens</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Operating Hours -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="mb-3">Operating Schedule</h5>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Activity Level</label>
+                            <select class="form-select" name="activityLevel">
+                                <option value="high">High (24/7)</option>
+                                <option value="medium">Medium (Business Hours)</option>
+                                <option value="low">Low (Specific Hours)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Response Time</label>
+                            <select class="form-select" name="responseTime">
+                                <option value="instant">Instant (< 1 min)</option>
+                                <option value="quick">Quick (< 5 mins)</option>
+                                <option value="standard">Standard (< 30 mins)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-info d-flex align-items-center mb-4">
+                <i class="fas fa-info-circle me-2"></i>
+                <div>
+                    This is your tribe's primary AI agent. Additional agents can be added later to handle specific tasks.
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <button type="button" class="btn btn-outline-secondary btn-section" onclick="window.parent.postMessage({action: 'back'}, '*')">Back</button>
+                <button type="button" class="btn btn-primary btn-section" onclick="window.parent.postMessage({action: 'next'}, '*')">Continue</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Handle form submission and validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add form submission logic here
+        });
+
+        // Update custom instructions visibility based on checkbox
+        document.querySelector('[name="useCustomInstructions"]').addEventListener('change', function(e) {
+            const textarea = document.querySelector('[name="customInstructions"]');
+            textarea.disabled = !e.target.checked;
+        });
+
+        // Update capabilities based on role selection
+        document.querySelector('[name="agentRole"]').addEventListener('change', function(e) {
+            const role = e.target.value;
+            const capabilities = {
+                community: ['canPost', 'canReply', 'canDM', 'canModerate'],
+                support: ['canReply', 'canDM'],
+                content: ['canPost'],
+                analyst: ['canAnalyze'],
+                sales: ['canPost', 'canDM', 'canManageTokens']
+            };
+
+            // Reset all capabilities
+            document.querySelectorAll('[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+
+            // Enable role-specific capabilities
+            if (capabilities[role]) {
+                capabilities[role].forEach(capability => {
+                    document.querySelector(`[name="${capability}"]`).checked = true;
+                });
+            }
+        });
+    </script>
+</body>
+</html>

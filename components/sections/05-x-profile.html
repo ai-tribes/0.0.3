@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect X Profile - AI Tribes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../sections/sections.css" rel="stylesheet">
+</head>
+<body>
+    <div class="section-container">
+        <div class="section-header">
+            <h1 class="section-title">Connect X Profile</h1>
+            <p class="section-description">Link your tribe's X (Twitter) account to @ai_tribes</p>
+        </div>
+
+        <!-- Main Tribe Account -->
+        <div class="connection-card mb-4">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                    <i class="fab fa-twitter fa-2x text-primary me-3"></i>
+                    <div>
+                        <h5 class="mb-1">X Account</h5>
+                        <p class="text-muted mb-0">Connect your tribe's X profile</p>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-section" onclick="connectXAccount('main')">Connect</button>
+            </div>
+        </div>
+
+        <form>
+            <div class="form-group mb-4">
+                <label class="form-label">X Handle</label>
+                <div class="input-group">
+                    <span class="input-group-text">@</span>
+                    <input type="text" class="form-control" id="mainHandle" placeholder="your_tribe">
+                </div>
+                <small class="text-muted">Your tribe's X username</small>
+            </div>
+
+            <!-- AI Agent Accounts -->
+            <div class="connection-card mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0">AI Agent Accounts</h5>
+                    <button type="button" class="btn btn-outline-primary btn-sm" onclick="addAgentAccount()">
+                        <i class="fas fa-plus me-2"></i>Add Agent
+                    </button>
+                </div>
+
+                <div id="agentAccounts">
+                    <!-- Agent accounts will be added here -->
+                </div>
+            </div>
+
+            <!-- X API Settings -->
+            <div class="connection-card mb-4">
+                <h5 class="mb-3">API Configuration</h5>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">API Key</label>
+                        <input type="password" class="form-control" id="apiKey" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">API Secret</label>
+                        <input type="password" class="form-control" id="apiSecret" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <button type="button" class="btn btn-outline-secondary btn-section" onclick="window.parent.postMessage({action: 'back'}, '*')">Back</button>
+                <button type="button" class="btn btn-primary btn-section" onclick="window.parent.postMessage({action: 'next'}, '*')">Continue</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function addAgentAccount() {
+            const agentId = Date.now();
+            const template = `
+                <div class="agent-account border rounded p-3 mb-3" id="agent-${agentId}">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Agent Name</label>
+                            <input type="text" class="form-control" placeholder="e.g., Support Bot">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">X Handle</label>
+                            <div class="input-group">
+                                <span class="input-group-text">@</span>
+                                <input type="text" class="form-control" placeholder="agent_handle">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Role</label>
+                            <select class="form-select">
+                                <option value="community">Community Manager</option>
+                                <option value="support">Support Agent</option>
+                                <option value="content">Content Creator</option>
+                                <option value="sales">Token Sales</option>
+                                <option value="analyst">Data Analyst</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Posting Frequency</label>
+                            <select class="form-select">
+                                <option value="high">High (Multiple times/day)</option>
+                                <option value="medium">Medium (Daily)</option>
+                                <option value="low">Low (Weekly)</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button type="button" class="btn btn-primary" onclick="connectXAccount('${agentId}')">
+                                    <i class="fab fa-twitter me-2"></i>Connect Agent
+                                </button>
+                                <button type="button" class="btn btn-outline-danger" onclick="removeAgent('${agentId}')">
+                                    <i class="fas fa-trash me-2"></i>Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('agentAccounts').insertAdjacentHTML('beforeend', template);
+        }
+
+        function connectXAccount(id) {
+            const button = id === 'main' ? 
+                document.querySelector('.btn-section') : 
+                document.querySelector(`#agent-${id} .btn-primary`);
+            
+            button.innerHTML = '<i class="fas fa-circle-notch fa-spin me-2"></i>Connecting...';
+            
+            // Simulate OAuth connection
+            setTimeout(() => {
+                button.innerHTML = '<i class="fas fa-check me-2"></i>Connected';
+                button.classList.remove('btn-primary');
+                button.classList.add('btn-success');
+                button.disabled = true;
+            }, 1500);
+        }
+
+        function removeAgent(agentId) {
+            document.getElementById(`agent-${agentId}`).remove();
+        }
+
+        // Add first agent account by default
+        document.addEventListener('DOMContentLoaded', () => {
+            addAgentAccount();
+        });
+    </script>
+</body>
+</html> 

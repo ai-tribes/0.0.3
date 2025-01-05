@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="/assets/css/sections.css" rel="stylesheet">
+    <style>
+        .verification-badge {
+            display: none;
+            color: #198754;
+            margin-left: 0.5rem;
+        }
+        
+        .setup-steps {
+            counter-reset: step;
+        }
+        
+        .setup-step {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .setup-step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: #e9ecef;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .integration-features {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item i {
+            color: #0d6efd;
+            margin-right: 1rem;
+            margin-top: 0.25rem;
+        }
+
+        .test-response {
+            display: none;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .test-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .test-error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="section-container">
+        <h2 class="section-title">Connect Facebook</h2>
+        <p class="section-description">Integrate your tribe's Facebook presence and enable social features</p>
+
+        <form id="facebookForm">
+            <!-- Setup Instructions -->
+            <div class="alert alert-info mb-4">
+                <h6 class="alert-heading mb-3"><i class="fas fa-info-circle me-2"></i>Setup Instructions</h6>
+                <div class="setup-steps">
+                    <div class="setup-step">Create a Facebook Page for your tribe if you haven't already</div>
+                    <div class="setup-step">Set up a Facebook Developer account at developers.facebook.com</div>
+                    <div class="setup-step">Create a new app in the Facebook Developer Console</div>
+                    <div class="setup-step">Enable the Facebook Graph API for your app</div>
+                    <div class="setup-step">Generate an access token with required permissions</div>
+                </div>
+            </div>
+
+            <!-- Page Details -->
+            <div class="mb-4">
+                <h4 class="mb-3">Facebook Page Details</h4>
+                
+                <div class="mb-3">
+                    <label class="form-label" for="fbPageName">Page Name</label>
+                    <input type="text" class="form-control" id="fbPageName" 
+                           placeholder="Your Tribe Official" required>
+                    <div class="form-text">The name of your Facebook page</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="fbPageId">Page ID</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="fbPageId" 
+                               placeholder="123456789012345" required>
+                        <button class="btn btn-outline-primary" type="button" onclick="verifyPage()">
+                            Verify Page
+                        </button>
+                    </div>
+                    <div class="form-text">Found in your Facebook page settings</div>
+                    <div id="pageVerification" class="test-response"></div>
+                </div>
+            </div>
+
+            <!-- API Configuration -->
+            <div class="mb-4">
+                <h4 class="mb-3">API Configuration</h4>
+                
+                <div class="mb-3">
+                    <label class="form-label" for="fbAppId">App ID</label>
+                    <input type="text" class="form-control" id="fbAppId" 
+                           placeholder="987654321098765" required>
+                    <div class="form-text">Your Facebook Developer App ID</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="fbAccessToken">Access Token</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="fbAccessToken" required>
+                        <button class="btn btn-outline-primary" type="button" onclick="verifyToken()">
+                            Verify Token
+                        </button>
+                    </div>
+                    <div class="form-text">Page access token from Facebook Developer Console</div>
+                    <div id="tokenVerification" class="test-response"></div>
+                </div>
+            </div>
+
+            <!-- Integration Features -->
+            <div class="mb-4">
+                <h4 class="mb-3">Integration Features</h4>
+                
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="autoPublish" checked>
+                    <label class="form-check-label" for="autoPublish">
+                        Enable automatic content publishing
+                    </label>
+                    <small class="form-text d-block">Automatically share tribe updates to Facebook</small>
+                </div>
+
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="enableMessenger" checked>
+                    <label class="form-check-label" for="enableMessenger">
+                        Enable Messenger integration
+                    </label>
+                    <small class="form-text d-block">Allow members to interact via Messenger</small>
+                </div>
+
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="enableInsights">
+                    <label class="form-check-label" for="enableInsights">
+                        Enable Facebook Insights
+                    </label>
+                    <small class="form-text d-block">Track engagement and analytics</small>
+                </div>
+            </div>
+
+            <!-- Additional Features -->
+            <div class="integration-features">
+                <h5 class="mb-3">Available Integrations</h5>
+                
+                <div class="feature-item">
+                    <i class="fas fa-share-alt"></i>
+                    <div>
+                        <h6 class="mb-1">Social Sharing</h6>
+                        <p class="text-muted mb-0">Automatically share tribe updates and milestones</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <i class="fas fa-comments"></i>
+                    <div>
+                        <h6 class="mb-1">Community Engagement</h6>
+                        <p class="text-muted mb-0">Interact with members through comments and messages</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <i class="fas fa-chart-line"></i>
+                    <div>
+                        <h6 class="mb-1">Analytics Integration</h6>
+                        <p class="text-muted mb-0">Track engagement and growth metrics</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons mt-4">
+                <button type="button" class="btn btn-back" onclick="window.parent.postMessage({action: 'back'}, '*')">Back</button>
+                <button type="button" class="btn btn-next" onclick="window.parent.postMessage({action: 'next'}, '*')">Next</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function verifyPage() {
+            const pageId = document.getElementById('fbPageId').value;
+            const verification = document.getElementById('pageVerification');
+            
+            verification.style.display = 'block';
+            verification.innerHTML = 'Verifying page...';
+            verification.className = 'test-response';
+            
+            // Simulate API verification
+            setTimeout(() => {
+                if (pageId.length > 10) {
+                    verification.innerHTML = 'Page verified successfully!';
+                    verification.classList.add('test-success');
+                } else {
+                    verification.innerHTML = 'Invalid page ID. Please check and try again.';
+                    verification.classList.add('test-error');
+                }
+            }, 1500);
+        }
+
+        function verifyToken() {
+            const token = document.getElementById('fbAccessToken').value;
+            const verification = document.getElementById('tokenVerification');
+            
+            verification.style.display = 'block';
+            verification.innerHTML = 'Verifying token...';
+            verification.className = 'test-response';
+            
+            // Simulate API verification
+            setTimeout(() => {
+                if (token.length > 20) {
+                    verification.innerHTML = 'Token verified successfully! Required permissions granted.';
+                    verification.classList.add('test-success');
+                } else {
+                    verification.innerHTML = 'Invalid token or missing permissions. Please check and try again.';
+                    verification.classList.add('test-error');
+                }
+            }, 1500);
+        }
+
+        document.getElementById('facebookForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add form submission logic here
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy $TRIBE Token - AI Tribes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <style>
+        .network-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .pumpfun-banner {
+            background: linear-gradient(to right, #FF6B6B, #4ECDC4);
+            border-radius: 12px;
+            padding: 24px;
+            color: white;
+        }
+        .network-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+        }
+        .nav-icon {
+            font-size: 20px;
+            width: 20px;
+            height: 20px;
+            color: #6c757d;
+            transition: color 0.2s ease;
+        }
+        .btn-link:hover .nav-icon {
+            color: #0d6efd;
+        }
+        .btn-link {
+            text-decoration: none;
+        }
+        #theme-toggle {
+            border: none;
+            background: none;
+        }
+        .pumpfun-banner img {
+            filter: brightness(0) invert(1);
+        }
+        .text-pink {
+            color: #FF6B6B;
+        }
+    </style>
+    <script>
+        // Apply theme immediately to prevent flash
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="tribes_logo.png" alt="AI Tribes Logo">
+                AI Tribes
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tribes.html">Tribes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/publicity.html">Publicity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/buytoken.html">Token</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/team.html">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/roadmap.html">Roadmap</a>
+                    </li>
+                </ul>
+                <div class="ms-auto d-flex align-items-center">
+                    <a href="/dashboard.html" class="btn btn-primary">Dashboard</a>
+                    <a href="https://twitter.com/ai_tribes" target="_blank" class="btn btn-link p-2">
+                        <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://discord.gg/J8kcT2d7" target="_blank" class="btn btn-link p-2">
+                        <i class="fab fa-discord nav-icon"></i>
+                    </a>
+                    <a href="https://github.com/ai-tribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fab fa-github nav-icon"></i>
+                    </a>
+                    <a href="https://aitribes.gitbook.io" target="_blank" class="btn btn-link p-2">
+                        <img src="assets/icons/gitbook.svg" alt="Documentation" class="nav-icon">
+                    </a>
+                    <a href="https://dexscreener.com/aitribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fas fa-chart-line nav-icon"></i>
+                    </a>
+                    <button class="btn btn-link p-2" id="theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon nav-icon"></i>
+                    </button>
+                    <button class="btn btn-primary ms-2" onclick="connectWallet()">
+                        <i class="fas fa-wallet me-2"></i>Connect Wallet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5">
+        <!-- Pump.Fun Banner -->
+        <div class="pumpfun-banner mb-4">
+            <div class="d-flex align-items-center mb-2">
+                <img src="assets/images/pumpfun-square.png" alt="Pump.Fun" class="me-2" style="width: 40px; height: 40px;">
+                <h2 class="mb-0">$TRIBE is Coming!! 🚀</h2>
+            </div>
+            <p class="mb-3">Trade $TRIBE token on Solana's newest and most exciting DEX platform</p>
+            <a href="https://pump.fun" target="_blank" class="btn btn-light">Trade on Pump.Fun</a>
+        </div>
+
+        <!-- Networks Grid -->
+        <div class="row g-4">
+            <!-- Solana Network -->
+            <div class="col-md-4">
+                <div class="network-card">
+                    <div class="d-flex align-items-center mb-2">
+                        <img src="assets/images/networks/solana-square.png" alt="Solana" class="network-icon">
+                        <h3 class="mb-0">Solana</h3>
+                    </div>
+                    <p class="text-muted">Primary Network</p>
+                    <div class="mb-3">
+                        <small>Contract Address:</small>
+                        <div class="d-flex align-items-center">
+                            <code class="text-pink">Coming soon...</code>
+                            <button class="btn btn-sm btn-link" onclick="copy()">Copy</button>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <a href="https://pump.fun" class="btn btn-primary">Trade on Pump.Fun</a>
+                        <button class="btn btn-outline-secondary" disabled>Raydium (Coming Soon)</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ethereum Network -->
+            <div class="col-md-4">
+                <div class="network-card">
+                    <div class="d-flex align-items-center mb-2">
+                        <img src="assets/images/networks/ethereum-square.png" alt="Ethereum" class="network-icon">
+                        <h3 class="mb-0">Ethereum</h3>
+                    </div>
+                    <p class="text-muted">Coming Q2 2024</p>
+                    <div class="mb-3">
+                        <small>Contract Address:</small>
+                        <div class="text-muted">Launching Soon</div>
+                    </div>
+                    <button class="btn btn-secondary" disabled>Coming Soon</button>
+                </div>
+            </div>
+
+            <!-- BSV Network -->
+            <div class="col-md-4">
+                <div class="network-card">
+                    <div class="d-flex align-items-center mb-2">
+                        <img src="assets/images/networks/bsv-square.png" alt="BSV" class="network-icon">
+                        <h3 class="mb-0">BSV</h3>
+                    </div>
+                    <p class="text-muted">Coming Q2 2024</p>
+                    <div class="mb-3">
+                        <small>Contract Address:</small>
+                        <div class="text-muted">Launching Soon</div>
+                    </div>
+                    <button class="btn btn-secondary" disabled>Coming Soon</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trading Chart -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="card-title mb-4">Price Chart</h3>
+                <div id="tradingChart" style="height: 400px;">
+                    <div class="text-center text-muted py-5">
+                        Chart will be available after token launch
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wallet Connect Modal -->
+    <div class="modal fade" id="walletModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Connect Wallet</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-grid gap-3">
+                        <!-- Phantom -->
+                        <button class="btn btn-outline-primary d-flex align-items-center justify-content-between p-3" onclick="connectPhantom()">
+                            <div class="d-flex align-items-center">
+                                <img src="assets/wallets/phantom.png" alt="Phantom" height="24" class="me-3">
+                                <span>Phantom</span>
+                            </div>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+
+                        <!-- Solflare -->
+                        <button class="btn btn-outline-primary d-flex align-items-center justify-content-between p-3" onclick="connectSolflare()">
+                            <div class="d-flex align-items-center">
+                                <img src="assets/wallets/solflare.png" alt="Solflare" height="24" class="me-3">
+                                <span>Solflare</span>
+                            </div>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+
+                        <!-- MetaMask (Disabled) -->
+                        <button class="btn btn-outline-secondary d-flex align-items-center justify-content-between p-3" disabled>
+                            <div class="d-flex align-items-center">
+                                <img src="assets/wallets/metamask.png" alt="MetaMask" height="24" class="me-3">
+                                <span>MetaMask</span>
+                            </div>
+                            <span class="badge bg-secondary">Coming Soon</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <small class="text-muted">By connecting your wallet, you agree to our Terms of Service</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add required scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Wallet connection functions
+        let walletModal;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            walletModal = new bootstrap.Modal(document.getElementById('walletModal'));
+        });
+
+        function connectWallet() {
+            walletModal.show();
+        }
+
+        async function connectPhantom() {
+            try {
+                if (!window.solana || !window.solana.isPhantom) {
+                    window.open('https://phantom.app/', '_blank');
+                    return;
+                }
+
+                const resp = await window.solana.connect();
+                console.log('Connected with Public Key:', resp.publicKey.toString());
+                walletModal.hide();
+                // Update UI to show connected state
+            } catch (err) {
+                console.error('Error connecting to Phantom wallet:', err);
+            }
+        }
+
+        async function connectSolflare() {
+            try {
+                if (!window.solflare) {
+                    window.open('https://solflare.com/', '_blank');
+                    return;
+                }
+
+                await window.solflare.connect();
+                console.log('Connected to Solflare');
+                walletModal.hide();
+                // Update UI to show connected state
+            } catch (err) {
+                console.error('Error connecting to Solflare wallet:', err);
+            }
+        }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const moonIcon = themeToggle.querySelector('.fa-moon');
+            
+            // Check initial state
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.documentElement.classList.add('dark-mode');
+                moonIcon.classList.remove('fa-moon');
+                moonIcon.classList.add('fa-sun');
+            }
+            
+            themeToggle.addEventListener('click', function() {
+                document.documentElement.classList.toggle('dark-mode');
+                
+                // Toggle icon
+                if (moonIcon.classList.contains('fa-moon')) {
+                    moonIcon.classList.remove('fa-moon');
+                    moonIcon.classList.add('fa-sun');
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    moonIcon.classList.remove('fa-sun');
+                    moonIcon.classList.add('fa-moon');
+                    localStorage.setItem('darkMode', null);
+                }
+            });
+        });
+    </script>
+
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --card-bg: #ffffff;
+            --border-color: rgba(0,0,0,0.125);
+        }
+        
+        .dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --card-bg: #2d2d2d;
+            --border-color: rgba(255,255,255,0.125);
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border-color: var(--border-color);
+        }
+        
+        .dark-mode .navbar {
+            background-color: #2d2d2d !important;
+        }
+        
+        .dark-mode .navbar-light .navbar-nav .nav-link {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .dark-mode .navbar-light .navbar-nav .nav-link:hover,
+        .dark-mode .navbar-light .navbar-nav .nav-link.active {
+            color: rgba(255,255,255,1);
+        }
+        
+        .dark-mode .text-muted {
+            color: rgba(255,255,255,0.6) !important;
+        }
+    </style>
+</body>
+</html> 

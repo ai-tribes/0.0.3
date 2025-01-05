@@ -1,0 +1,52 @@
+<div class="section-content">
+    <h4 class="mb-4">Connect Instagram</h4>
+    <form id="instagramForm">
+        <div class="mb-4">
+            <h6 class="mb-3">Connect Your Tribe's Instagram</h6>
+            <div class="alert alert-info">
+                <ol class="mb-0">
+                    <li>Create a business Instagram account for your tribe</li>
+                    <li>Connect it to a Facebook Page</li>
+                    <li>Enable Instagram API access</li>
+                    <li>Copy your account details below</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="igHandle">Instagram Handle</label>
+            <div class="input-group">
+                <span class="input-group-text">@</span>
+                <input type="text" class="form-control" id="igHandle" 
+                       placeholder="yourtribe" required>
+            </div>
+            <div class="form-text">Your tribe's Instagram username</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="igAccessToken">Access Token</label>
+            <div class="input-group">
+                <input type="password" class="form-control" id="igAccessToken" required>
+                <button class="btn btn-outline-primary" type="button" onclick="verifyInstagram()">
+                    <i class="fas fa-check me-2"></i>Verify
+                </button>
+            </div>
+            <div class="form-text">Get this from your Facebook Developer Console</div>
+        </div>
+
+        <div class="mb-4">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="autoPost">
+                <label class="form-check-label">Enable automatic content posting</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="storySharing">
+                <label class="form-check-label">Enable story sharing</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="igSubmitButton" disabled>
+            Save & Continue
+        </button>
+    </form>
+</div> 

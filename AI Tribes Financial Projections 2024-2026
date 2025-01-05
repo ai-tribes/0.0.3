@@ -1,0 +1,61 @@
++ Sheet1: "Dashboard"
++ Format: Dark blue headers (#1a73e8), white text, light gray alternating rows
++ Contents:
+  - Company Overview
+  - Key Metrics Summary
+  - Charts: Revenue Mix, Growth Trajectory, User Growth
+  - Quick Stats
+
++ Sheet2: "Revenue Projections"
++ Format: Professional financial spreadsheet style
++ Columns:
+  A: Month/Year
+  B: Basic Users
+  C: Basic Revenue
+  D: Pro Users
+  E: Pro Revenue
+  F: Enterprise Clients
+  G: Enterprise Revenue
+  H: AI Services Revenue
+  I: Token Revenue
+  J: Total Revenue
+
++ Formulas:
+  Basic Revenue = B2 * 10 (Basic user count × $10)
+  Pro Revenue = D2 * 20 (Pro user count × $20)
+  Enterprise Revenue = F2 * 5000 (Enterprise clients × $5000)
+  Growth Rates:
+  - Basic Users: =B2 * (1.25-0.05) [25% growth - 5% churn]
+  - Pro Users: =D2 * (1.20-0.03) [20% growth - 3% churn]
+  - Enterprise: =IF(MOD(ROW(),3)=0, F2+2, F2) [Add 2 clients quarterly]
+
++ Sheet3: "Cost Structure"
++ Format: Red for costs, conditional formatting for variances
++ Sections:
+  - Development Costs
+  - Marketing Expenses
+  - Operations
+  - Infrastructure
+  Monthly breakdown with formulas for:
+  - Salary costs with growth
+  - Infrastructure scaling
+  - Marketing budget as % of revenue
+  - Overhead calculations
+
++ Sheet4: "Token Economics"
++ Format: Crypto-style with dark theme option
++ Metrics:
+  - Token Supply
+  - Staking Rewards
+  - Transaction Volume
+  - Fee Revenue
+  - TVL Projections
+
++ Sheet5: "KPIs & Metrics"
++ Format: Dashboard style with gauges and indicators
++ Auto-calculated metrics:
+  - CAC = Marketing Spend / New Users
+  - LTV = ARPU × Avg User Lifetime
+  - Burn Rate = Total Costs / Month
+  - Runway = Available Funds / Burn Rate
+  - Unit Economics 

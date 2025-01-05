@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>My Tribes</h2>
+            <button class="btn btn-success" onclick="showCreateForm()">
+                <i class="fas fa-plus me-2"></i>Create New Tribe
+            </button>
+        </div>
+
+        <!-- HecTik CDN Tribe Card -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-md-2">
+                        <img src="/assets/images/hectik-logo.png" alt="HecTik CDN" class="img-fluid rounded">
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="mb-1">HecTik CDN</h4>
+                        <p class="text-muted mb-2">Content Delivery Network</p>
+                        <span class="badge bg-success">Active</span>
+                        <span class="badge bg-primary ms-2">Enterprise</span>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <div class="small text-muted">Bandwidth Usage</div>
+                                <div class="h6 mb-0">2.4 TB / 5 TB</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="small text-muted">Active Domains</div>
+                                <div class="h6 mb-0">12 domains</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="small text-muted">Cache Hit Rate</div>
+                                <div class="h6 mb-0">94.2%</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="small text-muted">SSL Status</div>
+                                <div class="h6 mb-0 text-success">
+                                    <i class="fas fa-shield-alt me-1"></i>Secured
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" onclick="manageTribe('hectik-cdn')">
+                                <i class="fas fa-cog me-2"></i>Manage
+                            </button>
+                            <button class="btn btn-outline-secondary" onclick="viewAnalytics('hectik-cdn')">
+                                <i class="fas fa-chart-line me-2"></i>Analytics
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Neural AI Tribe Card -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-md-2">
+                        <img src="/assets/images/neural-logo.png" alt="Neural AI" class="img-fluid rounded">
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="mb-1">Neural AI</h4>
+                        <p class="text-muted mb-2">AI Development</p>
+                        <span class="badge bg-success">Active</span>
+                        <span class="badge bg-info ms-2">Research</span>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <div class="small text-muted">Active Nodes</div>
+                                <div class="h6 mb-0">1,247</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="small text-muted">Network TVL</div>
+                                <div class="h6 mb-0">157.3M</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="small text-muted">Avg Node Weight</div>
+                                <div class="h6 mb-0">1.24</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="small text-muted">Status</div>
+                                <div class="h6 mb-0 text-success">
+                                    <i class="fas fa-circle me-1"></i>Online
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" onclick="manageTribe('neural-ai')">
+                                <i class="fas fa-cog me-2"></i>Manage
+                            </button>
+                            <button class="btn btn-outline-secondary" onclick="viewAnalytics('neural-ai')">
+                                <i class="fas fa-chart-line me-2"></i>Analytics
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function manageTribe(tribeId) {
+            // Load the tribe's dashboard
+            const mainContent = document.getElementById('setupContent');
+            fetch(`/components/dashboards/${tribeId}.html`)
+                .then(response => response.text())
+                .then(html => {
+                    mainContent.innerHTML = html;
+                });
+        }
+
+        function viewAnalytics(tribeId) {
+            // Load analytics dashboard
+            const mainContent = document.getElementById('setupContent');
+            fetch(`/components/analytics/${tribeId}.html`)
+                .then(response => response.text())
+                .then(html => {
+                    mainContent.innerHTML = html;
+                });
+        }
+    </script>
+</body>
+</html> 

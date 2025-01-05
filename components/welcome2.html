@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="welcome-content text-center py-5">
+        <h1 class="display-4 mb-3">Welcome to AI Tribes</h1>
+        <p class="lead text-muted mb-5">Create and manage your AI-powered community</p>
+
+        <div class="container">
+            <div class="row g-4">
+                <!-- Create New Tribe -->
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center p-4">
+                            <h3 class="card-title mb-3">Create New Tribe</h3>
+                            <p class="card-text text-muted mb-4">Start building your AI-powered community with custom features and integrations.</p>
+                            <button class="btn btn-success" onclick="showCreateForm()">
+                                <i class="fas fa-plus me-2"></i>Get Started
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manage Tribes -->
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center p-4">
+                            <h3 class="card-title mb-3">Manage Tribes</h3>
+                            <p class="card-text text-muted mb-4">View and manage your existing tribes, monitor performance, and adjust settings.</p>
+                            <button class="btn btn-primary" onclick="loadContent('tribes')">
+                                <i class="fas fa-layer-group me-2"></i>View Tribes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Settings -->
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center p-4">
+                            <h3 class="card-title mb-3">Team Settings</h3>
+                            <p class="card-text text-muted mb-4">Manage team members, roles, and permissions for your tribes.</p>
+                            <button class="btn btn-primary" onclick="loadContent('team')">
+                                <i class="fas fa-users me-2"></i>Team Settings
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .welcome-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .card {
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+        }
+
+        .display-4 {
+            font-weight: 600;
+        }
+
+        .lead {
+            font-size: 1.25rem;
+        }
+    </style>
+</body>
+</html> 

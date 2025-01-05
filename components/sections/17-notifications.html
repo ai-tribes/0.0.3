@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="/assets/css/sections.css" rel="stylesheet">
+    <style>
+        .notification-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            height: 100%;
+            transition: transform 0.2s;
+        }
+
+        .notification-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin-right: 1rem;
+        }
+
+        .email-icon { background: #f8d7da; color: #dc3545; }
+        .push-icon { background: #cff4fc; color: #0dcaf0; }
+        .inapp-icon { background: #d1e7dd; color: #198754; }
+        .whatsapp-icon { background: #e7f5e7; color: #25D366; }
+        .telegram-icon { background: #0088cc26; color: #0088cc; }
+        .discord-icon { background: #5865F226; color: #5865F2; }
+        .slack-icon { background: #4a154b26; color: #4a154b; }
+
+        .verification-badge {
+            display: none;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .verification-success {
+            background: #d1e7dd;
+            color: #0f5132;
+        }
+
+        .template-preview {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="section-container">
+        <h2 class="section-title">Configure Notifications</h2>
+        <p class="section-description">Set up notification channels and customize message delivery for your tribe</p>
+
+        <form id="notificationsForm">
+            <!-- Setup Instructions -->
+            <div class="alert alert-info mb-4">
+                <h6 class="alert-heading mb-3"><i class="fas fa-bell me-2"></i>Notification Setup</h6>
+                <p>Configure how your tribe members will receive updates and alerts through various channels.</p>
+            </div>
+
+            <!-- Notification Channels -->
+            <div class="mb-4">
+                <h4 class="mb-3">Notification Channels</h4>
+                <div class="row g-4">
+                    <!-- Email Channel -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="notification-card">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon email-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Email</h5>
+                                    <small class="text-muted">SMTP Configuration</small>
+                                </div>
+                            </div>
+                            
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="enableEmail" 
+                                       onchange="toggleChannel('email')">
+                                <label class="form-check-label">Enable Email Notifications</label>
+                            </div>
+
+                            <div id="emailSettings" class="d-none">
+                                <div class="mb-2">
+                                    <input type="text" class="form-control" placeholder="SMTP Host">
+                                </div>
+                                <div class="mb-2">
+                                    <input type="text" class="form-control" placeholder="SMTP Port">
+                                </div>
+                                <div class="mb-2">
+                                    <input type="text" class="form-control" placeholder="Username">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="password" class="form-control" placeholder="Password">
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="emailDigest">
+                                    <label class="form-check-label">Enable Daily Digest</label>
+                                </div>
+                                <button type="button" class="btn btn-outline-primary btn-sm" 
+                                        onclick="verifyChannel('email')">
+                                    Verify Connection
+                                </button>
+                                <div id="emailVerification" class="verification-badge"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WhatsApp Channel -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="notification-card">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon whatsapp-icon">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">WhatsApp</h5>
+                                    <small class="text-muted">Business API</small>
+                                </div>
+                            </div>
+                            
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="enableWhatsapp" 
+                                       onchange="toggleChannel('whatsapp')">
+                                <label class="form-check-label">Enable WhatsApp Notifications</label>
+                            </div>
+
+                            <div id="whatsappSettings" class="d-none">
+                                <div class="mb-2">
+                                    <input type="text" class="form-control" placeholder="Business Account ID">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Access Token">
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="whatsappTemplate" checked>
+                                    <label class="form-check-label">Use Message Templates</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="whatsappMedia">
+                                    <label class="form-check-label">Allow Media Messages</label>
+                                </div>
+                                <button type="button" class="btn btn-outline-primary btn-sm" 
+                                        onclick="verifyChannel('whatsapp')">
+                                    Verify Connection
+                                </button>
+                                <div id="whatsappVerification" class="verification-badge"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Push Notifications -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="notification-card">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon push-icon">
+                                    <i class="fas fa-bell"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Push</h5>
+                                    <small class="text-muted">Browser & Mobile</small>
+                                </div>
+                            </div>
+                            
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="enablePush" 
+                                       onchange="toggleChannel('push')">
+                                <label class="form-check-label">Enable Push Notifications</label>
+                            </div>
+
+                            <div id="pushSettings" class="d-none">
+                                <div class="mb-2">
+                                    <input type="text" class="form-control" placeholder="Firebase Project ID">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Server Key">
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="pushSound" checked>
+                                    <label class="form-check-label">Enable Sound</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="pushVibration">
+                                    <label class="form-check-label">Enable Vibration</label>
+                                </div>
+                                <button type="button" class="btn btn-outline-primary btn-sm" 
+                                        onclick="verifyChannel('push')">
+                                    Verify Connection
+                                </button>
+                                <div id="pushVerification" class="verification-badge"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Message Templates -->
+            <div class="mb-4">
+                <h4 class="mb-3">Message Templates</h4>
+                <div class="notification-card">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <label class="form-label">Welcome Message</label>
+                            <textarea class="form-control" rows="3" 
+                                    onchange="updatePreview(this.value, 'welcome')"
+                                    placeholder="Welcome {username} to {tribename}!"></textarea>
+                            <div class="template-preview">
+                                <small class="text-muted d-block mb-2">Preview:</small>
+                                <div id="welcomePreview">Welcome John to CryptoTribe!</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Event Notification</label>
+                            <textarea class="form-control" rows="3" 
+                                    onchange="updatePreview(this.value, 'event')"
+                                    placeholder="New event: {eventname} at {time}"></textarea>
+                            <div class="template-preview">
+                                <small class="text-muted d-block mb-2">Preview:</small>
+                                <div id="eventPreview">New event: Community Call at 2:00 PM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delivery Rules -->
+            <div class="mb-4">
+                <h4 class="mb-3">Delivery Rules</h4>
+                <div class="notification-card">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <h6>Quiet Hours</h6>
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <label class="form-label">Start Time</label>
+                                    <input type="time" class="form-control" value="22:00">
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label">End Time</label>
+                                    <input type="time" class="form-control" value="07:00">
+                                </div>
+                            </div>
+                            <div class="form-check mt-3">
+                                <input class="form-check-input" type="checkbox" id="respectTimezone" checked>
+                                <label class="form-check-label">Respect User Timezone</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Rate Limiting</h6>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="rateLimiting" checked>
+                                <label class="form-check-label">Enable Rate Limiting</label>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Maximum Notifications</label>
+                                <input type="number" class="form-control" 
+                                       placeholder="Max notifications per hour" value="5">
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="batchNotifications" checked>
+                                <label class="form-check-label">Batch Similar Notifications</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button type="button" class="btn btn-back" 
+                        onclick="window.parent.postMessage({action: 'back'}, '*')">Back</button>
+                <button type="button" class="btn btn-next" 
+                        onclick="window.parent.postMessage({action: 'next'}, '*')">Next</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function toggleChannel(channel) {
+            const settings = document.getElementById(`${channel}Settings`);
+            const enableSwitch = document.getElementById(`enable${channel.charAt(0).toUpperCase() + channel.slice(1)}`);
+            settings.classList.toggle('d-none', !enableSwitch.checked);
+        }
+
+        function verifyChannel(channel) {
+            const verification = document.getElementById(`${channel}Verification`);
+            verification.style.display = 'block';
+            verification.innerHTML = 'Verifying connection...';
+            verification.className = 'verification-badge';
+            
+            setTimeout(() => {
+                verification.innerHTML = 'Connection verified successfully!';
+                verification.classList.add('verification-success');
+            }, 1500);
+        }
+
+        function updatePreview(template, type) {
+            const preview = document.getElementById(`${type}Preview`);
+            let text = template;
+            
+            if (type === 'welcome') {
+                text = text.replace('{username}', 'John')
+                          .replace('{tribename}', 'CryptoTribe');
+            } else if (type === 'event') {
+                text = text.replace('{eventname}', 'Community Call')
+                          .replace('{time}', '2:00 PM');
+            }
+            
+            preview.textContent = text;
+        }
+
+        document.getElementById('notificationsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add form submission logic here
+        });
+    </script>
+</body>
+</html> 

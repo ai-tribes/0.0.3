@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="section-content">
+        <h4 class="mb-4">Create Your Tribe</h4>
+        <p class="text-muted">Set up your tribe's core identity and purpose</p>
+
+        <!-- Basic Information -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Basic Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label class="form-label">Tribe Name*</label>
+                        <input type="text" class="form-control" id="tribeName" placeholder="Enter tribe name">
+                        <div class="form-text">This will be your tribe's unique identifier</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Category</label>
+                        <select class="form-select" id="tribeCategory">
+                            <option value="">Select a category</option>
+                            <option value="gaming">Gaming</option>
+                            <option value="defi">DeFi</option>
+                            <option value="nft">NFT</option>
+                            <option value="dao">DAO</option>
+                            <option value="social">Social</option>
+                            <option value="creator">Creator</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Description*</label>
+                        <textarea class="form-control" id="tribeDescription" rows="3" 
+                            placeholder="Describe your tribe's purpose and vision"></textarea>
+                        <div class="form-text">A clear description helps potential members understand your tribe</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tribe Purpose -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Tribe Purpose</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label class="form-label">Primary Goal</label>
+                        <select class="form-select" id="primaryGoal">
+                            <option value="community">Build Community</option>
+                            <option value="product">Develop Product</option>
+                            <option value="service">Provide Service</option>
+                            <option value="investment">Investment DAO</option>
+                            <option value="governance">Governance</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Target Audience</label>
+                        <select class="form-select" id="targetAudience">
+                            <option value="global">Global</option>
+                            <option value="local">Local</option>
+                            <option value="niche">Niche Interest</option>
+                            <option value="professional">Professional</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Key Values</label>
+                        <div class="value-tags d-flex flex-wrap gap-2" id="valueTagsContainer">
+                            <!-- Value tags will be added here -->
+                        </div>
+                        <div class="input-group mt-2">
+                            <input type="text" class="form-control" id="valueInput" placeholder="Add a value">
+                            <button class="btn btn-outline-primary" onclick="addValue()">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Governance Structure -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Governance Structure</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label class="form-label">Governance Type</label>
+                        <select class="form-select" id="governanceType" onchange="updateGovernanceOptions()">
+                            <option value="democratic">Democratic</option>
+                            <option value="meritocratic">Meritocratic</option>
+                            <option value="delegated">Delegated</option>
+                            <option value="automated">AI-Automated</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Decision Making</label>
+                        <select class="form-select" id="decisionMaking">
+                            <option value="majority">Simple Majority</option>
+                            <option value="supermajority">Super Majority</option>
+                            <option value="consensus">Consensus</option>
+                        </select>
+                    </div>
+                    <div class="col-12" id="governanceOptionsContainer">
+                        <!-- Dynamic governance options will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Initial Setup -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Initial Setup</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label class="form-label">Privacy Setting</label>
+                        <select class="form-select" id="privacySetting">
+                            <option value="public">Public</option>
+                            <option value="private">Private</option>
+                            <option value="invite">Invite Only</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Membership Type</label>
+                        <select class="form-select" id="membershipType">
+                            <option value="open">Open</option>
+                            <option value="token">Token Gated</option>
+                            <option value="nft">NFT Gated</option>
+                            <option value="application">Application Based</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="d-flex justify-content-between mt-4">
+            <button class="btn btn-outline-secondary" disabled>
+                <i class="fas fa-arrow-left me-2"></i>Previous
+            </button>
+            <button class="btn btn-primary" onclick="saveAndContinue()">
+                Next<i class="fas fa-arrow-right ms-2"></i>
+            </button>
+        </div>
+    </div>
+
+    <style>
+        .value-tag {
+            padding: 0.5rem 1rem;
+            background: #f8f9fa;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .value-tag .remove-tag {
+            cursor: pointer;
+            color: #dc3545;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+    </style>
+
+    <script>
+        let values = [];
+
+        function addValue() {
+            const input = document.getElementById('valueInput');
+            const value = input.value.trim();
+            
+            if (value && values.length < 5) {
+                values.push(value);
+                updateValueTags();
+                input.value = '';
+            }
+        }
+
+        function removeValue(index) {
+            values.splice(index, 1);
+            updateValueTags();
+        }
+
+        function updateValueTags() {
+            const container = document.getElementById('valueTagsContainer');
+            container.innerHTML = values.map((value, index) => `
+                <div class="value-tag">
+                    ${value}
+                    <i class="fas fa-times remove-tag" onclick="removeValue(${index})"></i>
+                </div>
+            `).join('');
+        }
+
+        function updateGovernanceOptions() {
+            const type = document.getElementById('governanceType').value;
+            const container = document.getElementById('governanceOptionsContainer');
+            
+            const options = {
+                democratic: `
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="enableVoting" checked>
+                        <label class="form-check-label" for="enableVoting">Enable Voting System</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="enableProposals" checked>
+                        <label class="form-check-label" for="enableProposals">Enable Proposal System</label>
+                    </div>
+                `,
+                meritocratic: `
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="enableReputation" checked>
+                        <label class="form-check-label" for="enableReputation">Enable Reputation System</label>
+                    </div>
+                `,
+                delegated: `
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="enableDelegation" checked>
+                        <label class="form-check-label" for="enableDelegation">Enable Delegation System</label>
+                    </div>
+                `,
+                automated: `
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="enableAI" checked>
+                        <label class="form-check-label" for="enableAI">Enable AI Governance</label>
+                    </div>
+                `
+            };
+
+            container.innerHTML = options[type] || '';
+        }
+
+        function saveAndContinue() {
+            // Validate required fields
+            const name = document.getElementById('tribeName').value;
+            const description = document.getElementById('tribeDescription').value;
+
+            if (!name || !description) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            // Save tribe configuration
+            const config = {
+                basic: {
+                    name,
+                    category: document.getElementById('tribeCategory').value,
+                    description
+                },
+                purpose: {
+                    primaryGoal: document.getElementById('primaryGoal').value,
+                    targetAudience: document.getElementById('targetAudience').value,
+                    values
+                },
+                governance: {
+                    type: document.getElementById('governanceType').value,
+                    decisionMaking: document.getElementById('decisionMaking').value
+                },
+                setup: {
+                    privacy: document.getElementById('privacySetting').value,
+                    membership: document.getElementById('membershipType').value
+                }
+            };
+
+            // Save to localStorage
+            localStorage.setItem('tribeConfig', JSON.stringify(config));
+
+            // Proceed to next step
+            loadSetupContent('02-token');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateGovernanceOptions();
+
+            // Load saved config if exists
+            const savedConfig = localStorage.getItem('tribeConfig');
+            if (savedConfig) {
+                const config = JSON.parse(savedConfig);
+                // Apply saved configuration
+                document.getElementById('tribeName').value = config.basic.name;
+                document.getElementById('tribeCategory').value = config.basic.category;
+                document.getElementById('tribeDescription').value = config.basic.description;
+                values = config.purpose.values;
+                updateValueTags();
+            }
+        });
+    </script>
+</body>
+</html> 

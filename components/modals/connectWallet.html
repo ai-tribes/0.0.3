@@ -1,0 +1,63 @@
+<div class="modal fade" id="connectWalletModal" tabindex="-1" aria-labelledby="connectWalletModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="connectWalletModalLabel">Connect Wallet</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-grid gap-3">
+                    <!-- MetaMask -->
+                    <button class="btn btn-outline-primary d-flex align-items-center justify-content-between p-3" onclick="connectWallet('metamask')">
+                        <span class="d-flex align-items-center">
+                            <img src="assets/wallets/metamask.png" alt="MetaMask" height="24" class="me-3">
+                            MetaMask
+                        </span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+
+                    <!-- WalletConnect -->
+                    <button class="btn btn-outline-primary d-flex align-items-center justify-content-between p-3" onclick="connectWallet('walletconnect')">
+                        <span class="d-flex align-items-center">
+                            <img src="assets/wallets/walletconnect.png" alt="WalletConnect" height="24" class="me-3">
+                            WalletConnect
+                        </span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+
+                    <!-- Coinbase Wallet -->
+                    <button class="btn btn-outline-primary d-flex align-items-center justify-content-between p-3" onclick="connectWallet('coinbase')">
+                        <span class="d-flex align-items-center">
+                            <img src="assets/wallets/coinbase.png" alt="Coinbase Wallet" height="24" class="me-3">
+                            Coinbase Wallet
+                        </span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+
+                    <!-- Trust Wallet -->
+                    <button class="btn btn-outline-primary d-flex align-items-center justify-content-between p-3" onclick="connectWallet('trust')">
+                        <span class="d-flex align-items-center">
+                            <img src="assets/wallets/trust-wallet.png" alt="Trust Wallet" height="24" class="me-3">
+                            Trust Wallet
+                        </span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+
+                    <!-- Phantom -->
+                    <button class="btn btn-outline-primary d-flex align-items-center justify-content-between p-3" onclick="connectWallet('phantom')">
+                        <span class="d-flex align-items-center">
+                            <img src="assets/wallets/phantom.png" alt="Phantom" height="24" class="me-3">
+                            Phantom
+                        </span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <p class="text-muted mb-0">New to Web3? <a href="#" class="text-primary">Learn about wallets</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/bsvWalletHandler.js"></script> 

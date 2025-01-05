@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Define Purpose - AI Tribes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../sections/sections.css" rel="stylesheet">
+</head>
+<body>
+    <div class="section-container">
+        <h2>Define Tribe Purpose</h2>
+        <form>
+            <div class="form-group mb-4">
+                <label class="form-label">Category</label>
+                <select class="form-control">
+                    <option value="">Select a category...</option>
+                    <option value="ai">AI & Machine Learning</option>
+                    <option value="defi">DeFi & Finance</option>
+                    <option value="gaming">Gaming & Entertainment</option>
+                    <option value="social">Social & Community</option>
+                    <option value="creator">Creator Economy</option>
+                    <option value="dao">DAO & Governance</option>
+                </select>
+                <small class="text-muted">Choose the main focus area of your tribe</small>
+            </div>
+
+            <div class="form-group mb-4">
+                <label class="form-label">Mission Statement</label>
+                <textarea class="form-control" rows="4" placeholder="What is your tribe's mission?"></textarea>
+                <small class="text-muted">Define the core purpose of your tribe</small>
+            </div>
+
+            <div class="form-group mb-4">
+                <label class="form-label">Goals</label>
+                <div class="connection-card">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" placeholder="Short-term goal (3 months)">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" placeholder="Mid-term goal (6 months)">
+                    </div>
+                    <div>
+                        <input type="text" class="form-control" placeholder="Long-term goal (1 year+)">
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-outline-secondary" onclick="window.parent.postMessage({action: 'back'}, '*')">Back</button>
+                <button type="button" class="btn btn-primary" onclick="window.parent.postMessage({action: 'next'}, '*')">Continue</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html> 

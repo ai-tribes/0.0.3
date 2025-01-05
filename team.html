@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team - AI Tribes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/tribes.css" rel="stylesheet">
+    <link href="css/image-states.css" rel="stylesheet">
+    <link href="css/pricing.css" rel="stylesheet">
+    <script>
+        // Apply theme immediately to prevent flash
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="tribes_logo.png" alt="AI Tribes Logo">
+                AI Tribes
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tribes.html">Tribes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/publicity.html">Publicity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/buytoken.html">Token</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/team.html">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/roadmap.html">Roadmap</a>
+                    </li>
+                </ul>
+                <div class="ms-auto d-flex align-items-center">
+                    <a href="/dashboard.html" class="btn btn-primary">Dashboard</a>
+                    <a href="https://twitter.com/ai_tribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fa-brands fa-x-twitter nav-icon"></i>
+                    </a>
+                    <a href="https://discord.gg/J8kcT2d7" target="_blank" class="btn btn-link p-2">
+                        <i class="fab fa-discord nav-icon"></i>
+                    </a>
+                    <a href="https://github.com/ai-tribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fab fa-github nav-icon"></i>
+                    </a>
+                    <a href="https://aitribes.gitbook.io" target="_blank" class="btn btn-link p-2">
+                        <img src="assets/icons/gitbook.svg" alt="Documentation" class="nav-icon">
+                    </a>
+                    <a href="https://dexscreener.com/aitribes" target="_blank" class="btn btn-link p-2">
+                        <i class="fas fa-chart-line nav-icon"></i>
+                    </a>
+                    <button class="btn btn-link p-2" id="theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon nav-icon"></i>
+                    </button>
+                    <button class="btn btn-outline-primary ms-2" data-action="connect-wallet">
+                        <i class="fas fa-wallet me-2"></i>Connect Wallet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Team Grid -->
+    <div class="container mt-5 pt-5 mb-5">
+        <h1 class="text-center mb-5">Team</h1>
+        <div class="row g-4">
+            <!-- Richard Boase -->
+            <div class="col-md-4">
+                <div class="card border">
+                    <div class="card-body text-center p-4">
+                        <div class="profile-icon rounded-circle mb-3 mx-auto" style="background-color: #7ED321; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-user fa-4x" style="color: white;"></i>
+                        </div>
+                        <h5 class="mb-1">Richard</h5>
+                        <p class="text-muted small mb-3">Founder</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="https://github.com/richardboase" class="text-decoration-none text-dark">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://twitter.com/richardboase" class="text-decoration-none text-dark">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CoffeeGuy999 -->
+            <div class="col-md-4">
+                <div class="card border">
+                    <div class="card-body text-center p-4">
+                        <div class="profile-icon rounded-circle mb-3 mx-auto" style="background-color: #9013FE; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-user fa-4x" style="color: white;"></i>
+                        </div>
+                        <h5 class="mb-1">Coffee</h5>
+                        <p class="text-muted small mb-3">Project Manager</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="https://github.com/coffeeguy999" class="text-decoration-none text-dark">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://twitter.com/coffeeguy999" class="text-decoration-none text-dark">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alex Breadman -->
+            <div class="col-md-4">
+                <div class="card border">
+                    <div class="card-body text-center p-4">
+                        <div class="profile-icon rounded-circle mb-3 mx-auto" style="background-color: #F5A623; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-user fa-4x" style="color: white;"></i>
+                        </div>
+                        <h5 class="mb-1">Alex</h5>
+                        <p class="text-muted small mb-3">Tech Support</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="https://github.com/alexbreadman" class="text-decoration-none text-dark">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://twitter.com/alexbreadman" class="text-decoration-none text-dark">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Include Kitty Treats component -->
+            <div data-include="components/team/kitty-treats.html"></div>
+
+            <!-- 1Love -->
+            <div class="col-md-4">
+                <div class="card border">
+                    <div class="card-body text-center p-4">
+                        <div class="profile-icon rounded-circle mb-3 mx-auto" style="background-color: #FF6B6B; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-user fa-4x" style="color: white;"></i>
+                        </div>
+                        <h5 class="mb-1">1Love</h5>
+                        <p class="text-muted small mb-3">Community Manager</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="https://github.com/1love" class="text-decoration-none text-dark">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://twitter.com/1love" class="text-decoration-none text-dark">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rae -->
+            <div class="col-md-4">
+                <div class="card border">
+                    <div class="card-body text-center p-4">
+                        <div class="profile-icon rounded-circle mb-3 mx-auto" style="background-color: #B19CD9; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-user fa-4x" style="color: white;"></i>
+                        </div>
+                        <h5 class="mb-1">Rae</h5>
+                        <p class="text-muted small mb-3">Community Developer</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="https://github.com/rae" class="text-decoration-none text-dark">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://twitter.com/rae" class="text-decoration-none text-dark">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Face -->
+            <div class="col-md-4">
+                <div class="card border">
+                    <div class="card-body text-center p-4">
+                        <div class="profile-icon rounded-circle mb-3 mx-auto" style="background-color: #FFB6C1; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-user fa-4x" style="color: white;"></i>
+                        </div>
+                        <h5 class="mb-1">Face</h5>
+                        <p class="text-muted small mb-3">Business Strategy Lead</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="https://github.com/face" class="text-decoration-none text-dark">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://twitter.com/face" class="text-decoration-none text-dark">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tommy -->
+            <div class="col-md-4">
+                <div class="card border">
+                    <div class="card-body text-center p-4">
+                        <div class="profile-icon rounded-circle mb-3 mx-auto" style="background-color: #20B2AA; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-user fa-4x" style="color: white;"></i>
+                        </div>
+                        <h5 class="mb-1">Tommy</h5>
+                        <p class="text-muted small mb-3">AI Strategy Analyst</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="https://github.com/tommy" class="text-decoration-none text-dark">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://twitter.com/tommy" class="text-decoration-none text-dark">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Derek Moore -->
+            <div class="col-md-4">
+                <div class="card border">
+                    <div class="card-body text-center p-4">
+                        <div class="profile-icon rounded-circle mb-3 mx-auto" style="background-color: #4A90E2; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-user fa-4x" style="color: white;"></i>
+                        </div>
+                        <h5 class="mb-1">Derek</h5>
+                        <p class="text-muted small mb-3">Technical Consultant</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="https://github.com/dmoore" class="text-decoration-none text-dark">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://twitter.com/dmoore" class="text-decoration-none text-dark">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stephan February -->
+            <div class="col-md-4">
+                <div class="card border">
+                    <div class="card-body text-center p-4">
+                        <div class="profile-icon rounded-circle mb-3 mx-auto" style="background-color: #50E3C2; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-user fa-4x" style="color: white;"></i>
+                        </div>
+                        <h5 class="mb-1">Stephan</h5>
+                        <p class="text-muted small mb-3">Specialist Consultant</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="https://github.com/stephanfebruary" class="text-decoration-none text-dark">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://twitter.com/stephanfebruary" class="text-decoration-none text-dark">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hooligan -->
+            <div class="col-md-4">
+                <div class="card border">
+                    <div class="card-body text-center p-4">
+                        <div class="profile-icon rounded-circle mb-3 mx-auto" style="background-color: #87CEEB; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-user fa-4x" style="color: white;"></i>
+                        </div>
+                        <h5 class="mb-1">Hooligan</h5>
+                        <p class="text-muted small mb-3">Branding Consultant</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="https://github.com/hooligan" class="text-decoration-none text-dark">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://twitter.com/hooligan" class="text-decoration-none text-dark">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cryptovoyager -->
+            <div class="col-md-4">
+                <div class="card border">
+                    <div class="card-body text-center p-4">
+                        <div class="profile-icon rounded-circle mb-3 mx-auto" style="background-color: #6A5ACD; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-user fa-4x" style="color: white;"></i>
+                        </div>
+                        <h5 class="mb-1">Voyager</h5>
+                        <p class="text-muted small mb-3">Ideas Guy</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="https://github.com/cryptovoyager" class="text-decoration-none text-dark">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://twitter.com/cryptovoyager" class="text-decoration-none text-dark">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Joe -->
+            <div class="col-md-4">
+                <div class="card border">
+                    <div class="card-body text-center p-4">
+                        <div class="profile-icon rounded-circle mb-3 mx-auto" style="background-color: #40E0D0; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-user fa-4x" style="color: white;"></i>
+                        </div>
+                        <h5 class="mb-1">Froobs</h5>
+                        <p class="text-muted small mb-3">Data Analyst</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="https://github.com/joe" class="text-decoration-none text-dark">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://twitter.com/joe" class="text-decoration-none text-dark">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/loadHeader.js"></script>
+    <script src="js/walletModal.js"></script>
+    <script src="js/nightMode.js"></script>
+</body>
+</html>

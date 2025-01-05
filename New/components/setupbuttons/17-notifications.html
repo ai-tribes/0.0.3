@@ -1,0 +1,102 @@
+<div class="section-content">
+    <h4 class="mb-4">Configure Notifications</h4>
+    <form id="notificationsForm">
+        <div class="mb-4">
+            <h6 class="mb-3">Setup Notification Channels</h6>
+            <div class="alert alert-info">
+                <p class="mb-0">Configure how your tribe members will receive updates and alerts.</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Email Notifications -->
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-envelope fa-2x text-primary"></i>
+                            <h6 class="mb-0 ms-2">Email</h6>
+                        </div>
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" id="enableEmail">
+                            <label class="form-check-label">Enable Email Notifications</label>
+                        </div>
+                        <div id="emailSettings" class="d-none">
+                            <div class="mb-3">
+                                <label class="form-label">SMTP Settings</label>
+                                <input type="text" class="form-control mb-2" placeholder="SMTP Host">
+                                <input type="text" class="form-control mb-2" placeholder="SMTP Port">
+                                <input type="text" class="form-control" placeholder="SMTP Username">
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="emailDigest">
+                                <label class="form-check-label">Enable Daily Digest</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Push Notifications -->
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-bell fa-2x text-primary"></i>
+                            <h6 class="mb-0 ms-2">Push</h6>
+                        </div>
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" id="enablePush">
+                            <label class="form-check-label">Enable Push Notifications</label>
+                        </div>
+                        <div id="pushSettings" class="d-none">
+                            <div class="mb-3">
+                                <label class="form-label">Firebase Settings</label>
+                                <input type="text" class="form-control mb-2" placeholder="Project ID">
+                                <input type="text" class="form-control" placeholder="Server Key">
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="pushSound">
+                                <label class="form-check-label">Enable Sound</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- In-App Notifications -->
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-comment-alt fa-2x text-primary"></i>
+                            <h6 class="mb-0 ms-2">In-App</h6>
+                        </div>
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" id="enableInApp">
+                            <label class="form-check-label">Enable In-App Notifications</label>
+                        </div>
+                        <div id="inAppSettings" class="d-none">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="showBadge">
+                                <label class="form-check-label">Show Badge Count</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="showPreview">
+                                <label class="form-check-label">Show Preview</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="persistNotifs">
+                                <label class="form-check-label">Persist Notifications</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-4">
+            Save & Continue
+        </button>
+    </form>
+</div> 

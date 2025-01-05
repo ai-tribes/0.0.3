@@ -1,0 +1,153 @@
+<div class="section-content">
+    <h4 class="mb-4">Google Cloud Integration</h4>
+    
+    <form id="googleCloudForm">
+        <!-- Main Project Settings -->
+        <div class="project-settings mb-4 pb-3 border-bottom">
+            <h5>Project Configuration</h5>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Project Name</label>
+                    <input type="text" name="projectName" class="form-control" placeholder="e.g., my-tribe-project" required />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Region</label>
+                    <select name="region" class="form-select">
+                        <option value="us-central1">US Central (Iowa)</option>
+                        <option value="us-east1">US East (S. Carolina)</option>
+                        <option value="europe-west1">Europe West (Belgium)</option>
+                        <option value="asia-east1">Asia East (Taiwan)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service Selection -->
+        <div class="services-selection mb-4 pb-3 border-bottom">
+            <h5>Enable Services</h5>
+            <div class="row g-3">
+                <!-- AI & ML -->
+                <div class="col-md-4">
+                    <div class="service-card p-3 border rounded">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-circle bg-primary bg-opacity-10 me-3">
+                                <i class="fas fa-brain text-primary"></i>
+                            </div>
+                            <h6 class="mb-0">AI & Machine Learning</h6>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="enableVertexAI" name="services[]" value="vertex-ai">
+                            <label class="form-check-label" for="enableVertexAI">Vertex AI</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="enableVision" name="services[]" value="vision-ai">
+                            <label class="form-check-label" for="enableVision">Vision AI</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="enableLanguage" name="services[]" value="language">
+                            <label class="form-check-label" for="enableLanguage">Language AI</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Storage -->
+                <div class="col-md-4">
+                    <div class="service-card p-3 border rounded">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-circle bg-success bg-opacity-10 me-3">
+                                <i class="fas fa-database text-success"></i>
+                            </div>
+                            <h6 class="mb-0">Storage & Database</h6>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="enableStorage" name="services[]" value="storage">
+                            <label class="form-check-label" for="enableStorage">Cloud Storage</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="enableFirestore" name="services[]" value="firestore">
+                            <label class="form-check-label" for="enableFirestore">Firestore</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="enableBigQuery" name="services[]" value="bigquery">
+                            <label class="form-check-label" for="enableBigQuery">BigQuery</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Compute -->
+                <div class="col-md-4">
+                    <div class="service-card p-3 border rounded">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-circle bg-warning bg-opacity-10 me-3">
+                                <i class="fas fa-microchip text-warning"></i>
+                            </div>
+                            <h6 class="mb-0">Compute & Functions</h6>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="enableFunctions" name="services[]" value="functions">
+                            <label class="form-check-label" for="enableFunctions">Cloud Functions</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="enableRun" name="services[]" value="run">
+                            <label class="form-check-label" for="enableRun">Cloud Run</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="enableVM" name="services[]" value="compute">
+                            <label class="form-check-label" for="enableVM">Compute Engine</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Agent Service Assignments -->
+        <div class="agent-services mb-4">
+            <h5>Agent Service Access</h5>
+            <p class="text-muted">Configure which services each agent can access</p>
+            
+            <div id="agentServicesList">
+                <!-- Agent services will be added here -->
+            </div>
+
+            <button type="button" class="btn btn-outline-primary mt-3" onclick="addAgentService()">
+                <i class="fas fa-plus me-2"></i>Add Agent Service Access
+            </button>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Save & Continue
+        </button>
+    </form>
+</div>
+
+<!-- Agent Service Template -->
+<template id="agentServiceTemplate">
+    <div class="agent-service mb-3 p-3 border rounded">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label">Agent Name</label>
+                <input type="text" class="form-control agent-name" placeholder="e.g., Content Agent">
+            </div>
+            <div class="col-md-8">
+                <label class="form-label">Allowed Services</label>
+                <div class="service-checkboxes">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="vertex-ai">
+                        <label class="form-check-label">Vertex AI</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="storage">
+                        <label class="form-check-label">Storage</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="functions">
+                        <label class="form-check-label">Functions</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-sm btn-outline-danger mt-2" onclick="removeAgentService(this)">
+            <i class="fas fa-trash me-2"></i>Remove Access
+        </button>
+    </div>
+</template> 

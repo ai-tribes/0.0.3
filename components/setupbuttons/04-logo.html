@@ -1,0 +1,226 @@
+<div class="section-content">
+    <h4 class="mb-4">Brand Your Tribe</h4>
+
+    <!-- Logo Upload/Generation -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="mb-3">Logo & Icons</h5>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="upload-area text-center p-4 border rounded">
+                        <img id="logoPreview" src="assets/placeholder-logo.png" 
+                            class="img-fluid mb-3" style="max-height: 150px;">
+                        <div class="d-grid gap-2">
+                            <button type="button" class="btn btn-outline-primary" onclick="document.getElementById('logoUpload').click()">
+                                <i class="fas fa-upload me-2"></i>Upload Logo
+                            </button>
+                            <input type="file" id="logoUpload" hidden accept="image/*" onchange="handleLogoUpload(event)">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="ai-generation">
+                        <label class="form-label">AI Logo Generation</label>
+                        <div class="mb-3">
+                            <label class="form-label small">Style Preferences</label>
+                            <div class="d-flex flex-wrap gap-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="addStyleToPrompt('minimalist')">Minimalist</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="addStyleToPrompt('3D')">3D</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="addStyleToPrompt('geometric')">Geometric</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="addStyleToPrompt('abstract')">Abstract</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="addStyleToPrompt('futuristic')">Futuristic</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="addStyleToPrompt('hand-drawn')">Hand-drawn</button>
+                            </div>
+                        </div>
+                        <textarea class="form-control mb-2" rows="3" id="logoPrompt"
+                            placeholder="Describe your ideal logo or let AI suggest based on your tribe's purpose"></textarea>
+                        <div class="form-text mb-2">Tip: Include colors, style preferences, and any symbolic elements you'd like to see</div>
+                        <div class="d-grid">
+                            <button type="button" class="btn btn-primary" onclick="generateAILogo()" id="generateLogoBtn">
+                                <i class="fas fa-wand-magic-sparkles me-2"></i>Generate Logo
+                            </button>
+                        </div>
+                        <div class="mt-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="matchThemeColors">
+                                <label class="form-check-label">
+                                    Use theme colors in generated logo
+                                </label>
+                            </div>
+                        </div>
+                        <div id="aiGeneratedLogos" class="mt-3 row g-2">
+                            <!-- AI generated logos will appear here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Banner Images -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="mb-3">Banner Images</h5>
+            <div class="row g-3">
+                <div class="col-12">
+                    <div class="banner-preview mb-3" style="height: 200px; background-size: cover;">
+                        <img id="bannerPreview" class="img-fluid w-100 h-100 object-fit-cover" 
+                            src="assets/placeholder-banner.png">
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="button" class="btn btn-outline-primary" onclick="document.getElementById('bannerUpload').click()">
+                            <i class="fas fa-upload me-2"></i>Upload Banner
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary" onclick="generateAIBanner()">
+                            <i class="fas fa-wand-magic-sparkles me-2"></i>Generate Banner
+                        </button>
+                        <input type="file" id="bannerUpload" hidden accept="image/*" onchange="handleBannerUpload(event)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Selection -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="mb-3">Theme & Colors</h5>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Color Theme</label>
+                    <div class="theme-selector">
+                        <div class="row g-2">
+                            <!-- Modern Themes -->
+                            <div class="col-4">
+                                <div class="theme-option" data-theme="modern-blue" onclick="previewTheme('modern-blue')">
+                                    <div class="color-preview">
+                                        <div class="color-strip bg-primary"></div>
+                                        <div class="color-strip bg-secondary"></div>
+                                        <div class="color-strip bg-accent"></div>
+                                    </div>
+                                    <span class="theme-name">Modern Blue</span>
+                                </div>
+                            </div>
+                            <!-- Cyber Themes -->
+                            <div class="col-4">
+                                <div class="theme-option" data-theme="cyber-neon" onclick="previewTheme('cyber-neon')">
+                                    <div class="color-preview">
+                                        <div class="color-strip" style="background: #00ff9d"></div>
+                                        <div class="color-strip" style="background: #0d1117"></div>
+                                        <div class="color-strip" style="background: #ff00ff"></div>
+                                    </div>
+                                    <span class="theme-name">Cyber Neon</span>
+                                </div>
+                            </div>
+                            <!-- Dark Theme -->
+                            <div class="col-4">
+                                <div class="theme-option" data-theme="dark-matter" onclick="previewTheme('dark-matter')">
+                                    <div class="color-preview">
+                                        <div class="color-strip" style="background: #1a1a1a"></div>
+                                        <div class="color-strip" style="background: #333333"></div>
+                                        <div class="color-strip" style="background: #ff3366"></div>
+                                    </div>
+                                    <span class="theme-name">Dark Matter</span>
+                                </div>
+                            </div>
+                            <!-- Nature Theme -->
+                            <div class="col-4">
+                                <div class="theme-option" data-theme="forest" onclick="previewTheme('forest')">
+                                    <div class="color-preview">
+                                        <div class="color-strip" style="background: #2ecc71"></div>
+                                        <div class="color-strip" style="background: #27ae60"></div>
+                                        <div class="color-strip" style="background: #f1c40f"></div>
+                                    </div>
+                                    <span class="theme-name">Forest</span>
+                                </div>
+                            </div>
+                            <!-- Ocean Theme -->
+                            <div class="col-4">
+                                <div class="theme-option" data-theme="ocean" onclick="previewTheme('ocean')">
+                                    <div class="color-preview">
+                                        <div class="color-strip" style="background: #3498db"></div>
+                                        <div class="color-strip" style="background: #2980b9"></div>
+                                        <div class="color-strip" style="background: #1abc9c"></div>
+                                    </div>
+                                    <span class="theme-name">Ocean</span>
+                                </div>
+                            </div>
+                            <!-- Sunset Theme -->
+                            <div class="col-4">
+                                <div class="theme-option" data-theme="sunset" onclick="previewTheme('sunset')">
+                                    <div class="color-preview">
+                                        <div class="color-strip" style="background: #e74c3c"></div>
+                                        <div class="color-strip" style="background: #d35400"></div>
+                                        <div class="color-strip" style="background: #f39c12"></div>
+                                    </div>
+                                    <span class="theme-name">Sunset</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Custom Colors</label>
+                    <div class="custom-colors">
+                        <div class="mb-2">
+                            <label class="form-label small">Primary Color</label>
+                            <input type="color" class="form-control form-control-color w-100" 
+                                id="primaryColor" onchange="updateCustomTheme()">
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label small">Secondary Color</label>
+                            <input type="color" class="form-control form-control-color w-100" 
+                                id="secondaryColor" onchange="updateCustomTheme()">
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label small">Accent Color</label>
+                            <input type="color" class="form-control form-control-color w-100" 
+                                id="accentColor" onchange="updateCustomTheme()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Typography -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="mb-3">Typography</h5>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Heading Font</label>
+                    <select class="form-select" onchange="updateFonts()" id="headingFont">
+                        <option value="'Poppins', sans-serif">Poppins</option>
+                        <option value="'Roboto', sans-serif">Roboto</option>
+                        <option value="'Space Grotesk', sans-serif">Space Grotesk</option>
+                        <option value="'Orbitron', sans-serif">Orbitron</option>
+                    </select>
+                    <div class="font-preview mt-2 h3" id="headingPreview">
+                        Your Tribe Name
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Body Font</label>
+                    <select class="form-select" onchange="updateFonts()" id="bodyFont">
+                        <option value="'Inter', sans-serif">Inter</option>
+                        <option value="'Open Sans', sans-serif">Open Sans</option>
+                        <option value="'Roboto', sans-serif">Roboto</option>
+                    </select>
+                    <div class="font-preview mt-2" id="bodyPreview">
+                        This is how your tribe's content will look.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <button type="button" class="btn btn-outline-primary" onclick="generateRandomBranding()">
+            <i class="fas fa-magic me-2"></i>Generate Random Style
+        </button>
+        <button type="submit" class="btn btn-primary" onclick="saveBranding()">
+            <i class="fas fa-check me-2"></i>Save & Continue
+        </button>
+    </div>
+</div> 

@@ -1,0 +1,156 @@
+<div class="section-content">
+    <h4 class="mb-4">Define Your Tribe's Vision and Purpose</h4>
+    
+    <form id="purposeForm">
+        <!-- Vision -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <textarea class="form-control" name="mission" rows="4" required 
+                            placeholder="Here you define the reason for your tribe's existence. You might want to build software for example, or create art, hold parties, or drive political change. It's up to you, but remember, crypto tribes can grow very big very fast, so aim to be a billion dollar tribe! Don't be shy, 'Think Big!'"></textarea>
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <div class="dropdown">
+                                <button class="btn btn-link text-muted btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    <i class="fas fa-lightbulb me-1"></i>Feature Ideas
+                                </button>
+                                <ul class="dropdown-menu p-3" style="width: 300px;">
+                                    <li class="small mb-2">Popular Features:</li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-robot me-2"></i>AI Agents</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-paint-brush me-2"></i>NFT Creation</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-comments me-2"></i>Social Network</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-store me-2"></i>Marketplace</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-gamepad me-2"></i>Gaming Elements</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li class="small mb-2">Advanced Features:</li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-brain me-2"></i>AI Training</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-chart-line me-2"></i>Token Economics</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-vote-yea me-2"></i>Governance</a></li>
+                                </ul>
+                            </div>
+                            <button type="button" class="btn btn-link btn-sm text-muted" onclick="getAIAssistance()">
+                                <i class="fas fa-magic me-1"></i>Get Ideas
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inspiration Cards -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-primary-subtle">
+                    <div class="card-body">
+                        <h6 class="card-title"><i class="fas fa-rocket me-2"></i>Growth Ideas</h6>
+                        <ul class="list-unstyled small mb-0">
+                            <li class="mb-2">• Network effects through social features</li>
+                            <li class="mb-2">• AI-powered content creation</li>
+                            <li class="mb-2">• Community-driven development</li>
+                            <li>• Cross-chain integrations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-success-subtle">
+                    <div class="card-body">
+                        <h6 class="card-title"><i class="fas fa-dollar-sign me-2"></i>Value Creation</h6>
+                        <ul class="list-unstyled small mb-0">
+                            <li class="mb-2">• Token-gated access</li>
+                            <li class="mb-2">• NFT marketplaces</li>
+                            <li class="mb-2">• AI service fees</li>
+                            <li>• Community treasury</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-info-subtle">
+                    <div class="card-body">
+                        <h6 class="card-title"><i class="fas fa-users me-2"></i>Community Building</h6>
+                        <ul class="list-unstyled small mb-0">
+                            <li class="mb-2">• Governance systems</li>
+                            <li class="mb-2">• Reward mechanisms</li>
+                            <li class="mb-2">• Collaborative tools</li>
+                            <li>• Social features</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Focus Areas -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="mb-3">Focus Areas</h5>
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="focusAreas" 
+                                placeholder="Type your areas of focus (e.g., AI, Art, Gaming...)">
+                            <button type="button" class="btn btn-outline-secondary" onclick="suggestFocusAreas()">
+                                <i class="fas fa-lightbulb"></i>
+                            </button>
+                        </div>
+                        <div id="focusTags" class="mt-2">
+                            <!-- Tags will be added here dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Target Scale -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="mb-3">Target Scale</h5>
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="btn-group w-100" role="group">
+                            <input type="radio" class="btn-check" name="valuationTarget" id="val1" value="seed">
+                            <label class="btn btn-outline-primary" for="val1">$1M-$10M</label>
+                            
+                            <input type="radio" class="btn-check" name="valuationTarget" id="val2" value="early">
+                            <label class="btn btn-outline-primary" for="val2">$10M-$100M</label>
+                            
+                            <input type="radio" class="btn-check" name="valuationTarget" id="val3" value="growth">
+                            <label class="btn btn-outline-primary" for="val3">$100M-$1B</label>
+                            
+                            <input type="radio" class="btn-check" name="valuationTarget" id="val4" value="scale">
+                            <label class="btn btn-outline-primary" for="val4">$1B-$10B</label>
+                            
+                            <input type="radio" class="btn-check" name="valuationTarget" id="val5" value="mega">
+                            <label class="btn btn-outline-primary" for="val5">$10B+</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-outline-primary" onclick="generateRandomPurpose()">
+                <i class="fas fa-magic me-2"></i>Generate
+            </button>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-check me-2"></i>Continue
+            </button>
+        </div>
+    </form>
+</div>
+
+<script>
+function addObjective() {
+    const objectivesList = document.getElementById('objectivesList');
+    const newObjective = document.createElement('div');
+    newObjective.className = 'input-group mb-2';
+    newObjective.innerHTML = `
+        <input type="text" class="form-control" name="objectives[]" placeholder="Add a key objective">
+        <button type="button" class="btn btn-outline-danger" onclick="this.parentElement.remove()">
+            <i class="fas fa-minus"></i>
+        </button>
+    `;
+    objectivesList.appendChild(newObjective);
+}
+</script> 
